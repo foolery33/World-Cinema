@@ -7,18 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84D785F829CC5445004D518D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D785F729CC5445004D518D /* Coordinator.swift */; };
+		84D785FA29CC54FB004D518D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D785F929CC54FB004D518D /* AppCoordinator.swift */; };
+		84D785FD29CC5AB9004D518D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84D785FC29CC5AB9004D518D /* SnapKit */; };
+		84D7860029CC5C2D004D518D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D785FF29CC5C2D004D518D /* LoginViewController.swift */; };
+		84D7860529CC5D5D004D518D /* LoginScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7860429CC5D5D004D518D /* LoginScreenModel.swift */; };
+		84D7860729CC5D8F004D518D /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7860629CC5D8F004D518D /* LoginScreenViewModel.swift */; };
+		84D7860A29CC6240004D518D /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7860929CC6240004D518D /* LoginScreenView.swift */; };
+		84D7860C29CC7752004D518D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7860B29CC7752004D518D /* Colors.swift */; };
+		84D7860E29CC7A0C004D518D /* OutlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7860D29CC7A0C004D518D /* OutlinedTextField.swift */; };
+		84D7861029CC8534004D518D /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7860F29CC8534004D518D /* FilledButton.swift */; };
+		84D7861229CC8767004D518D /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7861129CC8767004D518D /* OutlinedButton.swift */; };
 		84E4C7E929CAD6F80004732C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4C7E829CAD6F80004732C /* AppDelegate.swift */; };
-		84E4C7EB29CAD6F80004732C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4C7EA29CAD6F80004732C /* SceneDelegate.swift */; };
-		84E4C7ED29CAD6F80004732C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4C7EC29CAD6F80004732C /* ViewController.swift */; };
 		84E4C7F229CAD6F90004732C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E4C7F129CAD6F90004732C /* Assets.xcassets */; };
 		84E4C7F529CAD6F90004732C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E4C7F329CAD6F90004732C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84D785F729CC5445004D518D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		84D785F929CC54FB004D518D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		84D785FF29CC5C2D004D518D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		84D7860429CC5D5D004D518D /* LoginScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenModel.swift; sourceTree = "<group>"; };
+		84D7860629CC5D8F004D518D /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
+		84D7860929CC6240004D518D /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
+		84D7860B29CC7752004D518D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		84D7860D29CC7A0C004D518D /* OutlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedTextField.swift; sourceTree = "<group>"; };
+		84D7860F29CC8534004D518D /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
+		84D7861129CC8767004D518D /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		84E4C7E529CAD6F80004732C /* Mobile-Cinema-Lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile-Cinema-Lab1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E4C7E829CAD6F80004732C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84E4C7EA29CAD6F80004732C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		84E4C7EC29CAD6F80004732C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84E4C7F129CAD6F90004732C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84E4C7F429CAD6F90004732C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84E4C7F629CAD6F90004732C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -29,12 +46,67 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D785FD29CC5AB9004D518D /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84D785F629CC5432004D518D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				84D785F729CC5445004D518D /* Coordinator.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		84D785FE29CC5C0B004D518D /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84D7860829CC6227004D518D /* View */,
+				84D7860329CC5D50004D518D /* Model */,
+				84D7860229CC5D4B004D518D /* ViewModel */,
+				84D7860129CC5D40004D518D /* ViewController */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		84D7860129CC5D40004D518D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84D785FF29CC5C2D004D518D /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84D7860229CC5D4B004D518D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				84D7860629CC5D8F004D518D /* LoginScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		84D7860329CC5D50004D518D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84D7860429CC5D5D004D518D /* LoginScreenModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84D7860829CC6227004D518D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84D7860929CC6240004D518D /* LoginScreenView.swift */,
+				84D7860D29CC7A0C004D518D /* OutlinedTextField.swift */,
+				84D7860F29CC8534004D518D /* FilledButton.swift */,
+				84D7861129CC8767004D518D /* OutlinedButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		84E4C7DC29CAD6F80004732C = {
 			isa = PBXGroup;
 			children = (
@@ -54,12 +126,14 @@
 		84E4C7E729CAD6F80004732C /* Mobile-Cinema-Lab1 */ = {
 			isa = PBXGroup;
 			children = (
+				84D785FE29CC5C0B004D518D /* LoginScreen */,
+				84D785F629CC5432004D518D /* Protocols */,
 				84E4C7E829CAD6F80004732C /* AppDelegate.swift */,
-				84E4C7EA29CAD6F80004732C /* SceneDelegate.swift */,
-				84E4C7EC29CAD6F80004732C /* ViewController.swift */,
 				84E4C7F129CAD6F90004732C /* Assets.xcassets */,
 				84E4C7F329CAD6F90004732C /* LaunchScreen.storyboard */,
 				84E4C7F629CAD6F90004732C /* Info.plist */,
+				84D785F929CC54FB004D518D /* AppCoordinator.swift */,
+				84D7860B29CC7752004D518D /* Colors.swift */,
 			);
 			path = "Mobile-Cinema-Lab1";
 			sourceTree = "<group>";
@@ -80,6 +154,9 @@
 			dependencies = (
 			);
 			name = "Mobile-Cinema-Lab1";
+			packageProductDependencies = (
+				84D785FC29CC5AB9004D518D /* SnapKit */,
+			);
 			productName = "Mobile-Cinema-Lab1";
 			productReference = 84E4C7E529CAD6F80004732C /* Mobile-Cinema-Lab1.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +185,9 @@
 				Base,
 			);
 			mainGroup = 84E4C7DC29CAD6F80004732C;
+			packageReferences = (
+				84D785FB29CC5AB9004D518D /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 84E4C7E629CAD6F80004732C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,9 +214,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E4C7ED29CAD6F80004732C /* ViewController.swift in Sources */,
+				84D7860E29CC7A0C004D518D /* OutlinedTextField.swift in Sources */,
+				84D7861029CC8534004D518D /* FilledButton.swift in Sources */,
+				84D785F829CC5445004D518D /* Coordinator.swift in Sources */,
+				84D7860C29CC7752004D518D /* Colors.swift in Sources */,
+				84D7861229CC8767004D518D /* OutlinedButton.swift in Sources */,
+				84D7860529CC5D5D004D518D /* LoginScreenModel.swift in Sources */,
+				84D785FA29CC54FB004D518D /* AppCoordinator.swift in Sources */,
+				84D7860A29CC6240004D518D /* LoginScreenView.swift in Sources */,
+				84D7860729CC5D8F004D518D /* LoginScreenViewModel.swift in Sources */,
+				84D7860029CC5C2D004D518D /* LoginViewController.swift in Sources */,
 				84E4C7E929CAD6F80004732C /* AppDelegate.swift in Sources */,
-				84E4C7EB29CAD6F80004732C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,8 +368,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -308,8 +396,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -346,6 +434,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		84D785FB29CC5AB9004D518D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84D785FC29CC5AB9004D518D /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84D785FB29CC5AB9004D518D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 84E4C7DD29CAD6F80004732C /* Project object */;
 }
