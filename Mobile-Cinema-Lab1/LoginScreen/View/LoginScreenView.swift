@@ -10,22 +10,29 @@ import SnapKit
 
 class LoginScreenView: UIView {
 
-    var viewModel: LoginScreenViewModel!
+    var viewModel: LoginScreenViewModel
     
     private enum Paddings {
-        static let betweenLogoAndTop: Float = 132.0
-        static let defaultPadding: Float = 16.0
-        static let betweenLogoAndEmail: Float = 104.0
-        static let betweenPasswordAndLogin: Float = 156.0
-        static let betweenBottomAndRegister: Float = 44.0
+        static let betweenTopAndLogo = 132.0
+        static let defaultPadding = 16.0
+        static let betweenLogoAndEmail = 104.0
+        static let betweenPasswordAndLogin = 156.0
+        static let betweenBottomAndRegister = 44.0
     }
     private enum Scales {
         static let textFieldHeight = 44.0
         static let buttonHeight = 44.0
     }
+    private enum Strings {
+        static let email = "E-mail"
+        static let password = "Пароль"
+        static let login = "Войти"
+        static let register = "Регистрация"
+    }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: LoginScreenViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: CGRect.zero)
         setupSubviews()
         addKeyboardDidmiss()
     }
@@ -57,7 +64,7 @@ class LoginScreenView: UIView {
     
     // MARK: Logotype setup
     
-    public lazy var logotype: UIImageView = {
+    private lazy var logotype: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "LogoWithName")!
         return logo
@@ -65,7 +72,7 @@ class LoginScreenView: UIView {
     private func setupLogo() {
         addSubview(logotype)
         logotype.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaInsets.top).offset(Paddings.betweenLogoAndTop)
+            make.top.equalTo(safeAreaInsets.top).offset(Paddings.betweenTopAndLogo)
             make.centerX.equalTo(self)
             
         }
@@ -73,9 +80,9 @@ class LoginScreenView: UIView {
     
     // MARK: Email setup
     
-    public lazy var emailTextField: OutlinedTextField = {
+    private lazy var emailTextField: OutlinedTextField = {
         let textField = OutlinedTextField()
-        return textField.getOutlinedTextField(placeholderText: "E-mail", isSecured: false, selector: #selector(updateEmail(_:)))
+        return textField.getOutlinedTextField(text: viewModel.email, placeholderText: Strings.email, isSecured: false, selector: #selector(updateEmail(_:)))
     }()
     private func setupEmailTextField() {
         addSubview(emailTextField)
@@ -94,7 +101,7 @@ class LoginScreenView: UIView {
     
     private lazy var passwordTextField: OutlinedTextField = {
         let passwordTextField = OutlinedTextField()
-        return passwordTextField.getOutlinedTextField(placeholderText: "Password", isSecured: true, selector: #selector(updatePassword(_:)))
+        return passwordTextField.getOutlinedTextField(text: viewModel.password, placeholderText: Strings.password, isSecured: true, selector: #selector(updatePassword(_:)))
     }()
     private func setupPasswordTextField() {
         addSubview(passwordTextField)
@@ -113,11 +120,11 @@ class LoginScreenView: UIView {
     
     private lazy var registerButton: OutlinedButton = {
         let button = OutlinedButton()
-        return button.getOutlinedButton(label: "Регистрация", selector: #selector(printSomethingElse))
+        return button.getOutlinedButton(label: Strings.register, selector: #selector(goToRegisterScreen))
     }()
     @objc
-    private func printSomethingElse() {
-        
+    private func goToRegisterScreen() {
+        viewModel.registerButtonTapped()
     }
     private func setupRegisterButton() {
         addSubview(registerButton)
@@ -132,10 +139,10 @@ class LoginScreenView: UIView {
     
     private lazy var loginButton: FilledButton = {
         let button = FilledButton()
-        return button.getFilledButton(label: "Войти", selector: #selector(printSomething))
+        return button.getFilledButton(label: Strings.login, selector: #selector(goToMainScreen))
     }()
     @objc
-    private func printSomething() {
+    private func goToMainScreen() {
         
     }
     private func setupLoginButton() {

@@ -19,15 +19,14 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        goToLoginScreen()
+        goToAuth()
     }
     
-    func goToLoginScreen() {
-        let loginViewController = LoginViewController()
-        let loginViewModel = LoginScreenViewModel()
-        loginViewModel.coordinator = self
-        loginViewController.viewModel = loginViewModel
-        navigationController.pushViewController(loginViewController, animated: true)
+    func goToAuth() {
+        let authCoordinator = AuthCoordinator(navigationController: self.navigationController, loginViewModel: LoginScreenViewModel(), registerViewModel: RegisterScreenViewModel())
+        authCoordinator.parentCoordinator = self
+        children.append(authCoordinator)
+        authCoordinator.start()
     }
     
 }

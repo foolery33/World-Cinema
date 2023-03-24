@@ -21,10 +21,11 @@ class OutlinedTextField: UITextField {
         return bounds.inset(by: padding)
     }
     
-    func getOutlinedTextField(placeholderText: String, isSecured: Bool, selector: Selector) -> OutlinedTextField {
+    func getOutlinedTextField(text: String, placeholderText: String, isSecured: Bool, selector: Selector) -> OutlinedTextField {
         let textField = OutlinedTextField()
 
-        textField.textColor = UIColor.grayTextColor
+        textField.text = text
+        textField.textColor = UIColor.redColor
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textField.isSecureTextEntry = isSecured
         

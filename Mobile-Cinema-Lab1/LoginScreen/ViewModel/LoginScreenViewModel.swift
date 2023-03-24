@@ -10,7 +10,7 @@ import Foundation
 class LoginScreenViewModel {
     
     private var model: LoginScreenModel = LoginScreenModel()
-    weak var coordinator: AppCoordinator!
+    weak var coordinator: AuthCoordinator!
     
     var email: String {
         get {
@@ -28,6 +28,10 @@ class LoginScreenViewModel {
         set {
             model.password = newValue
         }
+    }
+    
+    func registerButtonTapped() {
+        coordinator.goToRegisterScreen()
     }
     
 }
