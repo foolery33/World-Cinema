@@ -246,8 +246,7 @@ class RegisterScreenView: UIView {
         viewModel.register { success in
             activityIndicator.stopAnimating()
             if(success) {
-                print("success")
-//                self.viewModel.coordinator.goToMainScreen()
+                self.viewModel.coordinator.goToMainScreen()
             }
             else {
                 let alert = UIAlertController(title: Strings.registerFailed, message: self.viewModel.error, preferredStyle: .alert)

@@ -166,7 +166,7 @@ class LoginScreenView: UIView {
         self.viewModel.login { success in
             activityIndicator.stopAnimating()
             if(success) {
-//                self.viewModel.coordinator.goToMainScreen()
+                self.viewModel.coordinator.goToMainScreen()
             }
             else {
                 let alert = UIAlertController(title: Strings.loginFailed, message: self.viewModel.error, preferredStyle: .alert)
