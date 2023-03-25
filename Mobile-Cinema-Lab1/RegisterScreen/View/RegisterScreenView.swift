@@ -212,7 +212,19 @@ class RegisterScreenView: UIView {
     }
     @objc
     func goToMainScreen() {
-        
+        viewModel.register { success in
+            if(success) {
+                print("success")
+//                self.viewModel.coordinator.goToMainScreen()
+            }
+            else {
+                let alert = UIAlertController(title: "Registration failed", message: self.viewModel.error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                if let viewController = self.next as? UIViewController {
+                    viewController.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
 
 }

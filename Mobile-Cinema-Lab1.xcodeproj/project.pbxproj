@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		84B6049329CD9BCB0047A603 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6049229CD9BCB0047A603 /* AuthCoordinator.swift */; };
+		84B6049B29CDEEF00047A603 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6049A29CDEEF00047A603 /* AuthViewModel.swift */; };
+		84B6049E29CDEF190047A603 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 84B6049D29CDEF190047A603 /* Alamofire */; };
+		84B604A129CDEF2B0047A603 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 84B604A029CDEF2B0047A603 /* SwiftKeychainWrapper */; };
+		84B604A329CDF1810047A603 /* CustomRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604A229CDF1810047A603 /* CustomRequestInterceptor.swift */; };
+		84B604A529CDF1DA0047A603 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604A429CDF1DA0047A603 /* TokenManager.swift */; };
+		84B604A829CDF40D0047A603 /* RefreshTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604A729CDF40D0047A603 /* RefreshTokenModel.swift */; };
+		84B604AA29CDF5C20047A603 /* AuthTokenPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604A929CDF5C20047A603 /* AuthTokenPairModel.swift */; };
+		84B604AC29CDF8E40047A603 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604AB29CDF8E40047A603 /* AppError.swift */; };
+		84B604AF29CE0F680047A603 /* EmptyFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604AE29CE0F680047A603 /* EmptyFieldValidation.swift */; };
+		84B604B129CE0FFC0047A603 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604B029CE0FFC0047A603 /* EmailValidation.swift */; };
+		84B604B329CE10BC0047A603 /* PasswordsEquality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604B229CE10BC0047A603 /* PasswordsEquality.swift */; };
 		84D785F829CC5445004D518D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D785F729CC5445004D518D /* Coordinator.swift */; };
 		84D785FA29CC54FB004D518D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D785F929CC54FB004D518D /* AppCoordinator.swift */; };
 		84D785FD29CC5AB9004D518D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84D785FC29CC5AB9004D518D /* SnapKit */; };
@@ -30,6 +41,15 @@
 
 /* Begin PBXFileReference section */
 		84B6049229CD9BCB0047A603 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		84B6049A29CDEEF00047A603 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		84B604A229CDF1810047A603 /* CustomRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestInterceptor.swift; sourceTree = "<group>"; };
+		84B604A429CDF1DA0047A603 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		84B604A729CDF40D0047A603 /* RefreshTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenModel.swift; sourceTree = "<group>"; };
+		84B604A929CDF5C20047A603 /* AuthTokenPairModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenPairModel.swift; sourceTree = "<group>"; };
+		84B604AB29CDF8E40047A603 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		84B604AE29CE0F680047A603 /* EmptyFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFieldValidation.swift; sourceTree = "<group>"; };
+		84B604B029CE0FFC0047A603 /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
+		84B604B229CE10BC0047A603 /* PasswordsEquality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordsEquality.swift; sourceTree = "<group>"; };
 		84D785F729CC5445004D518D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		84D785F929CC54FB004D518D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		84D785FF29CC5C2D004D518D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +77,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D785FD29CC5AB9004D518D /* SnapKit in Frameworks */,
+				84B6049E29CDEF190047A603 /* Alamofire in Frameworks */,
+				84B604A129CDEF2B0047A603 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +92,46 @@
 				84B6049229CD9BCB0047A603 /* AuthCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		84B6049829CDEEC10047A603 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				84B6049929CDEEC80047A603 /* Auth */,
+				84B604A229CDF1810047A603 /* CustomRequestInterceptor.swift */,
+				84B604A429CDF1DA0047A603 /* TokenManager.swift */,
+				84B604AB29CDF8E40047A603 /* AppError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		84B6049929CDEEC80047A603 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				84B604AD29CE0F340047A603 /* UseCase */,
+				84B604A629CDF3FF0047A603 /* Model */,
+				84B6049A29CDEEF00047A603 /* AuthViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		84B604A629CDF3FF0047A603 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84B604A729CDF40D0047A603 /* RefreshTokenModel.swift */,
+				84B604A929CDF5C20047A603 /* AuthTokenPairModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84B604AD29CE0F340047A603 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				84B604AE29CE0F680047A603 /* EmptyFieldValidation.swift */,
+				84B604B029CE0FFC0047A603 /* EmailValidation.swift */,
+				84B604B229CE10BC0047A603 /* PasswordsEquality.swift */,
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		84D785F629CC5432004D518D /* Protocols */ = {
@@ -188,6 +250,7 @@
 		84E4C7E729CAD6F80004732C /* Mobile-Cinema-Lab1 */ = {
 			isa = PBXGroup;
 			children = (
+				84B6049829CDEEC10047A603 /* Network */,
 				84B6049429CD9DC40047A603 /* Coordinator */,
 				84D7861429CCADE3004D518D /* RegisterScreen */,
 				84D785FE29CC5C0B004D518D /* LoginScreen */,
@@ -219,6 +282,8 @@
 			name = "Mobile-Cinema-Lab1";
 			packageProductDependencies = (
 				84D785FC29CC5AB9004D518D /* SnapKit */,
+				84B6049D29CDEF190047A603 /* Alamofire */,
+				84B604A029CDEF2B0047A603 /* SwiftKeychainWrapper */,
 			);
 			productName = "Mobile-Cinema-Lab1";
 			productReference = 84E4C7E529CAD6F80004732C /* Mobile-Cinema-Lab1.app */;
@@ -250,6 +315,8 @@
 			mainGroup = 84E4C7DC29CAD6F80004732C;
 			packageReferences = (
 				84D785FB29CC5AB9004D518D /* XCRemoteSwiftPackageReference "SnapKit" */,
+				84B6049C29CDEF190047A603 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				84B6049F29CDEF2B0047A603 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 84E4C7E629CAD6F80004732C /* Products */;
 			projectDirPath = "";
@@ -278,21 +345,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D7860E29CC7A0C004D518D /* OutlinedTextField.swift in Sources */,
+				84B604AA29CDF5C20047A603 /* AuthTokenPairModel.swift in Sources */,
 				84D7861C29CCAF00004D518D /* RegisterScreenViewModel.swift in Sources */,
+				84B604B129CE0FFC0047A603 /* EmailValidation.swift in Sources */,
 				84D7861029CC8534004D518D /* FilledButton.swift in Sources */,
 				84D7861A29CCAE9F004D518D /* RegisterScreenModel.swift in Sources */,
+				84B604B329CE10BC0047A603 /* PasswordsEquality.swift in Sources */,
 				84D785F829CC5445004D518D /* Coordinator.swift in Sources */,
 				84D7860C29CC7752004D518D /* Colors.swift in Sources */,
+				84B604A329CDF1810047A603 /* CustomRequestInterceptor.swift in Sources */,
+				84B604AC29CDF8E40047A603 /* AppError.swift in Sources */,
+				84B604A529CDF1DA0047A603 /* TokenManager.swift in Sources */,
 				84D7861229CC8767004D518D /* OutlinedButton.swift in Sources */,
+				84B6049B29CDEEF00047A603 /* AuthViewModel.swift in Sources */,
 				84D7860529CC5D5D004D518D /* LoginScreenModel.swift in Sources */,
 				84D785FA29CC54FB004D518D /* AppCoordinator.swift in Sources */,
 				84D7861E29CCAFA8004D518D /* RegisterViewController.swift in Sources */,
 				84D7860A29CC6240004D518D /* LoginScreenView.swift in Sources */,
 				84D7860729CC5D8F004D518D /* LoginScreenViewModel.swift in Sources */,
+				84B604A829CDF40D0047A603 /* RefreshTokenModel.swift in Sources */,
 				84D7860029CC5C2D004D518D /* LoginViewController.swift in Sources */,
 				84E4C7E929CAD6F80004732C /* AppDelegate.swift in Sources */,
 				84B6049329CD9BCB0047A603 /* AuthCoordinator.swift in Sources */,
 				84D7862029CCB331004D518D /* RegisterScreenView.swift in Sources */,
+				84B604AF29CE0F680047A603 /* EmptyFieldValidation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +580,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		84B6049C29CDEF190047A603 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		84B6049F29CDEF2B0047A603 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		84D785FB29CC5AB9004D518D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -515,6 +607,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		84B6049D29CDEF190047A603 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B6049C29CDEF190047A603 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		84B604A029CDEF2B0047A603 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B6049F29CDEF2B0047A603 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 		84D785FC29CC5AB9004D518D /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 84D785FB29CC5AB9004D518D /* XCRemoteSwiftPackageReference "SnapKit" */;

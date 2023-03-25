@@ -24,6 +24,7 @@ class OutlinedTextField: UITextField {
     func getOutlinedTextField(text: String, placeholderText: String, isSecured: Bool, selector: Selector) -> OutlinedTextField {
         let textField = OutlinedTextField()
 
+        textField.autocapitalizationType = .none
         textField.text = text
         textField.textColor = UIColor.redColor
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)

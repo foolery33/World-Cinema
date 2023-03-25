@@ -14,5 +14,6 @@ struct RegisterScreenModel {
     var email: String = ""
     var password: String = ""
     var confirmPassword: String = ""
+    var error: String = ""
     
 }
