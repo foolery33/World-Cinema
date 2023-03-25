@@ -19,6 +19,7 @@
 		84B604AF29CE0F680047A603 /* EmptyFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604AE29CE0F680047A603 /* EmptyFieldValidation.swift */; };
 		84B604B129CE0FFC0047A603 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604B029CE0FFC0047A603 /* EmailValidation.swift */; };
 		84B604B329CE10BC0047A603 /* PasswordsEquality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604B229CE10BC0047A603 /* PasswordsEquality.swift */; };
+		84BE5C2829CEF27D0051B6D0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE5C2729CEF27D0051B6D0 /* ActivityIndicator.swift */; };
 		84D785F829CC5445004D518D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D785F729CC5445004D518D /* Coordinator.swift */; };
 		84D785FA29CC54FB004D518D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D785F929CC54FB004D518D /* AppCoordinator.swift */; };
 		84D785FD29CC5AB9004D518D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84D785FC29CC5AB9004D518D /* SnapKit */; };
@@ -50,6 +51,7 @@
 		84B604AE29CE0F680047A603 /* EmptyFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFieldValidation.swift; sourceTree = "<group>"; };
 		84B604B029CE0FFC0047A603 /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		84B604B229CE10BC0047A603 /* PasswordsEquality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordsEquality.swift; sourceTree = "<group>"; };
+		84BE5C2729CEF27D0051B6D0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		84D785F729CC5445004D518D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		84D785F929CC54FB004D518D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		84D785FF29CC5C2D004D518D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				84E4C7F329CAD6F90004732C /* LaunchScreen.storyboard */,
 				84E4C7F629CAD6F90004732C /* Info.plist */,
 				84D7860B29CC7752004D518D /* Colors.swift */,
+				84BE5C2729CEF27D0051B6D0 /* ActivityIndicator.swift */,
 			);
 			path = "Mobile-Cinema-Lab1";
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				84B604AA29CDF5C20047A603 /* AuthTokenPairModel.swift in Sources */,
 				84D7861C29CCAF00004D518D /* RegisterScreenViewModel.swift in Sources */,
 				84B604B129CE0FFC0047A603 /* EmailValidation.swift in Sources */,
+				84BE5C2829CEF27D0051B6D0 /* ActivityIndicator.swift in Sources */,
 				84D7861029CC8534004D518D /* FilledButton.swift in Sources */,
 				84D7861A29CCAE9F004D518D /* RegisterScreenModel.swift in Sources */,
 				84B604B329CE10BC0047A603 /* PasswordsEquality.swift in Sources */,

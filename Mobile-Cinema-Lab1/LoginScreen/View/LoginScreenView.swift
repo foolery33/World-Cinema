@@ -28,6 +28,8 @@ class LoginScreenView: UIView {
         static let password = "Пароль"
         static let login = "Войти"
         static let register = "Регистрация"
+        static let loginFailed = "Login failed"
+        static let ok = "OK"
     }
     
     init(viewModel: LoginScreenViewModel) {
@@ -81,8 +83,8 @@ class LoginScreenView: UIView {
     // MARK: Email setup
     
     private lazy var emailTextField: OutlinedTextField = {
-        let textField = OutlinedTextField()
-        return textField.getOutlinedTextField(text: viewModel.email, placeholderText: Strings.email, isSecured: false, selector: #selector(updateEmail(_:)))
+        let textField = OutlinedTextField(isSecured: false)
+        return textField.getOutlinedTextField(text: viewModel.email, placeholderText: Strings.email, selector: #selector(updateEmail(_:)))
     }()
     private func setupEmailTextField() {
         addSubview(emailTextField)
@@ -100,8 +102,8 @@ class LoginScreenView: UIView {
     // MARK: Password setup
     
     private lazy var passwordTextField: OutlinedTextField = {
-        let passwordTextField = OutlinedTextField()
-        return passwordTextField.getOutlinedTextField(text: viewModel.password, placeholderText: Strings.password, isSecured: true, selector: #selector(updatePassword(_:)))
+        let passwordTextField = OutlinedTextField(isSecured: true, passwordEye: passwordEye)
+        return passwordTextField.getOutlinedTextField(text: viewModel.password, placeholderText: Strings.password, selector: #selector(updatePassword(_:)))
     }()
     private func setupPasswordTextField() {
         addSubview(passwordTextField)
@@ -110,6 +112,18 @@ class LoginScreenView: UIView {
             make.height.equalTo(Scales.textFieldHeight)
             make.top.equalTo(emailTextField.snp.bottom).offset(Paddings.defaultPadding)
         }
+    }
+    private lazy var passwordEye: UIButton = {
+        let eye = UIButton(type: .custom)
+        eye.setImage(UIImage(systemName: "eye.slash")!.resizeImage(newWidth: 24, newHeight: 24).withTintColor(.redColor), for: .normal)
+        eye.setImage(UIImage(systemName: "eye")!.resizeImage(newWidth: 24, newHeight: 24).withTintColor(.redColor), for: .selected)
+        eye.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        return eye
+    }()
+    @objc
+    func togglePasswordVisibility(_ sender: UIButton) {
+        passwordTextField.isSecureTextEntry.toggle()
+        sender.isSelected = !sender.isSelected
     }
     @objc
     private func updatePassword(_ textField: OutlinedTextField) {
@@ -144,6 +158,24 @@ class LoginScreenView: UIView {
     @objc
     private func goToMainScreen() {
         
+        let activityIndicator = ActivityIndicator()
+        addSubview(activityIndicator)
+        activityIndicator.setupEdges()
+        activityIndicator.startAnimating()
+        
+        self.viewModel.login { success in
+            activityIndicator.stopAnimating()
+            if(success) {
+//                self.viewModel.coordinator.goToMainScreen()
+            }
+            else {
+                let alert = UIAlertController(title: Strings.loginFailed, message: self.viewModel.error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: Strings.ok, style: .default))
+                if let viewController = self.next as? UIViewController {
+                    viewController.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
     private func setupLoginButton() {
         addSubview(loginButton)
@@ -154,4 +186,53 @@ class LoginScreenView: UIView {
         }
     }
     
+    func getActivityIndicator() -> UIView {
+        let newView = UIView(frame: .zero)
+        newView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        newView.alpha = 0.0
+        newView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        let indicator = UIActivityIndicatorView(style: .medium)
+        newView.addSubview(indicator)
+        indicator.color = .white
+        indicator.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        UIView.animate(withDuration: 0.15) {
+            newView.alpha = 1.0
+        }
+        return newView
+    }
+    
+}
+
+extension ActivityIndicator {
+    func setupEdges() {
+        self.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        self.startAnimating()
+    }
+}
+
+extension UIImage {
+    func resizeImage(newWidth: CGFloat, newHeight: CGFloat) -> UIImage {
+        let targetSize = CGSize(width: newWidth, height: newHeight)
+        
+        let widthScaleRatio = targetSize.width / self.size.width
+        let heightScaleRatio = targetSize.height / self.size.height
+        
+        let scaleFactor = min(widthScaleRatio, heightScaleRatio)
+        
+        let scaledImageSize = CGSize(width: self.size.width * scaleFactor, height: self.size.height * scaleFactor)
+        
+        let renderer = UIGraphicsImageRenderer(size: scaledImageSize)
+        
+        let scaledImage = renderer.image { _ in
+            self.draw(in: CGRect(origin: .zero, size: scaledImageSize))
+        }
+        return scaledImage
+    }
 }

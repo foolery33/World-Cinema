@@ -11,17 +11,18 @@ class RegisterScreenView: UIView {
 
     var viewModel: RegisterScreenViewModel
 
-    private enum Paddings {
+    fileprivate enum Paddings {
         static let betweenTopAndLogo = 88.0
         static let betweenLogoAndName = 64.0
         static let defaultPadding = 16.0
         static let betweenBottomAndLogin = 44.0
+        static let textFieldVertical = 13.0
     }
-    private enum Scales {
+    fileprivate enum Scales {
         static let textFieldHeight = 44.0
         static let buttonHeight = 44.0
     }
-    private enum Strings {
+    fileprivate enum Strings {
         static let name = "Имя"
         static let surname = "Фамилия"
         static let email = "E-mail"
@@ -29,6 +30,8 @@ class RegisterScreenView: UIView {
         static let confirmPassword = "Повторите пароль"
         static let register = "Зарегистрироваться"
         static let alreadyHaveAccount = "У меня уже есть аккаунт"
+        static let registerFailed = "Registration failed"
+        static let ok = "OK"
     }
 
     init(viewModel: RegisterScreenViewModel) {
@@ -85,8 +88,8 @@ class RegisterScreenView: UIView {
     // MARK: Name setup
 
     private lazy var nameTextField: OutlinedTextField = {
-        let textField = OutlinedTextField()
-        return textField.getOutlinedTextField(text: viewModel.name, placeholderText: Strings.name, isSecured: false, selector: #selector(updateName(_:)))
+        let textField = OutlinedTextField(isSecured: false)
+        return textField.getOutlinedTextField(text: viewModel.name, placeholderText: Strings.name, selector: #selector(updateName(_:)))
     }()
     private func setupNameTextField() {
         addSubview(nameTextField)
@@ -104,8 +107,8 @@ class RegisterScreenView: UIView {
     // MARK: Surname setup
 
     private lazy var surnameTextField: OutlinedTextField = {
-        let textField = OutlinedTextField()
-        return textField.getOutlinedTextField(text: viewModel.surname, placeholderText: Strings.surname, isSecured: false, selector: #selector(updateSurname(_:)))
+        let textField = OutlinedTextField(isSecured: false)
+        return textField.getOutlinedTextField(text: viewModel.surname, placeholderText: Strings.surname, selector: #selector(updateSurname(_:)))
     }()
     private func setupSurnameTextField() {
         addSubview(surnameTextField)
@@ -123,8 +126,8 @@ class RegisterScreenView: UIView {
     // MARK: Email setup
 
     private lazy var emailTextField: OutlinedTextField = {
-        let textField = OutlinedTextField()
-        return textField.getOutlinedTextField(text: viewModel.email, placeholderText: Strings.email, isSecured: false, selector: #selector(updateEmail(_:)))
+        let textField = OutlinedTextField(isSecured: false)
+        return textField.getOutlinedTextField(text: viewModel.email, placeholderText: Strings.email, selector: #selector(updateEmail(_:)))
     }()
     private func setupEmailTextField() {
         addSubview(emailTextField)
@@ -142,8 +145,8 @@ class RegisterScreenView: UIView {
     // MARK: Password setup
 
     private lazy var passwordTextField: OutlinedTextField = {
-        let textField = OutlinedTextField()
-        return textField.getOutlinedTextField(text: viewModel.password, placeholderText: Strings.password, isSecured: true, selector: #selector(updatePassword(_:)))
+        let textField = OutlinedTextField(isSecured: true, passwordEye: passwordEye)
+        return textField.getOutlinedTextField(text: viewModel.password, placeholderText: Strings.password, selector: #selector(updatePassword(_:)))
     }()
     private func setupPasswordTextField() {
         addSubview(passwordTextField)
@@ -153,6 +156,18 @@ class RegisterScreenView: UIView {
             make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
         }
     }
+    private lazy var passwordEye: UIButton = {
+        let eye = UIButton(type: .custom)
+        eye.setImage(UIImage(systemName: "eye.slash")!.resizeImage(newWidth: 24, newHeight: 24).withTintColor(.redColor), for: .normal)
+        eye.setImage(UIImage(systemName: "eye")!.resizeImage(newWidth: 24, newHeight: 24).withTintColor(.redColor), for: .selected)
+        eye.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        return eye
+    }()
+    @objc
+    func togglePasswordVisibility(_ sender: UIButton) {
+        passwordTextField.isSecureTextEntry.toggle()
+        sender.isSelected = !sender.isSelected
+    }
     @objc
     func updatePassword(_ textField: OutlinedTextField) {
         self.viewModel.password = textField.text ?? ""
@@ -161,8 +176,8 @@ class RegisterScreenView: UIView {
     // MARK: Confirm password setup
 
     private lazy var confirmPasswordTextField: OutlinedTextField = {
-        let textField = OutlinedTextField()
-        return textField.getOutlinedTextField(text: viewModel.confirmPassword, placeholderText: Strings.confirmPassword, isSecured: true, selector: #selector(updateConfirmPassword(_:)))
+        let textField = OutlinedTextField(isSecured: true, passwordEye: confirmPasswordEye)
+        return textField.getOutlinedTextField(text: viewModel.confirmPassword, placeholderText: Strings.confirmPassword, selector: #selector(updateConfirmPassword(_:)))
     }()
     private func setupConfirmPasswordTextField() {
         addSubview(confirmPasswordTextField)
@@ -171,6 +186,18 @@ class RegisterScreenView: UIView {
             make.top.equalTo(passwordTextField.snp.bottom).offset(Paddings.defaultPadding)
             make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
         }
+    }
+    private lazy var confirmPasswordEye: UIButton = {
+        let eye = UIButton(type: .custom)
+        eye.setImage(UIImage(systemName: "eye.slash")!.resizeImage(newWidth: 24, newHeight: 24).withTintColor(.redColor), for: .normal)
+        eye.setImage(UIImage(systemName: "eye")!.resizeImage(newWidth: 24, newHeight: 24).withTintColor(.redColor), for: .selected)
+        eye.addTarget(self, action: #selector(toggleConfirmPasswordVisibility), for: .touchUpInside)
+        return eye
+    }()
+    @objc
+    func toggleConfirmPasswordVisibility(_ sender: UIButton) {
+        confirmPasswordTextField.isSecureTextEntry.toggle()
+        sender.isSelected = !sender.isSelected
     }
     @objc
     func updateConfirmPassword(_ textField: OutlinedTextField) {
@@ -212,14 +239,19 @@ class RegisterScreenView: UIView {
     }
     @objc
     func goToMainScreen() {
+        let activityIndicator = ActivityIndicator()
+        addSubview(activityIndicator)
+        activityIndicator.setupEdges()
+        activityIndicator.startAnimating()
         viewModel.register { success in
+            activityIndicator.stopAnimating()
             if(success) {
                 print("success")
 //                self.viewModel.coordinator.goToMainScreen()
             }
             else {
-                let alert = UIAlertController(title: "Registration failed", message: self.viewModel.error, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                let alert = UIAlertController(title: Strings.registerFailed, message: self.viewModel.error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: Strings.ok, style: .default))
                 if let viewController = self.next as? UIViewController {
                     viewController.present(alert, animated: true, completion: nil)
                 }
@@ -227,4 +259,11 @@ class RegisterScreenView: UIView {
         }
     }
 
+}
+
+enum UITextFieldPaddings {
+    static let securedTextField = UIEdgeInsets(top: RegisterScreenView.Paddings.textFieldVertical, left: RegisterScreenView.Paddings.defaultPadding, bottom: RegisterScreenView.Paddings.textFieldVertical, right: RegisterScreenView.Paddings.defaultPadding * 3)
+    static let textField = UIEdgeInsets(top: RegisterScreenView.Paddings.textFieldVertical, left: RegisterScreenView.Paddings.defaultPadding, bottom: RegisterScreenView.Paddings.textFieldVertical, right: RegisterScreenView.Paddings.defaultPadding)
+    static let passwordEyeSize: CGFloat = 24.0
+    static let padding: CGFloat = RegisterScreenView.Paddings.defaultPadding
 }

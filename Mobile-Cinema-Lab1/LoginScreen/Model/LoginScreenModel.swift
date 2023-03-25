@@ -11,5 +11,6 @@ struct LoginScreenModel {
     
     var email: String = ""
     var password: String = ""
+    var error: String = ""
     
 }
