@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class RegisterScreenView: UIView {
 
@@ -50,8 +51,9 @@ class RegisterScreenView: UIView {
 
     func setupSubviews() {
         setupLogo()
-        setupTextFieldsStackView()
-        setupButtonsStackView()
+        setupScrollView()
+//        setupTextFieldsStackView()
+//        setupButtonsStackView()
     }
 
     // MARK: Keyboard dismiss
@@ -81,10 +83,29 @@ class RegisterScreenView: UIView {
         }
     }
     
-    // MARK: TextFields StackView setup
+    // MARK: - ScrollView setup
+    
+    private lazy var scrollView: UIScrollView = {
+        let myScrollView = UIScrollView()
+        myScrollView.backgroundColor = .white
+        return myScrollView
+    }()
+    private func setupScrollView() {
+        addSubview(scrollView)
+        setupTextFieldsStackView()
+        scrollView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.width.equalToSuperview()
+            make.top.equalTo(logotype.snp.bottom).offset(Paddings.betweenLogoAndName)
+            make.bottom.equalToSuperview()
+        }
+    }
+    
+    // MARK: - TextFields StackView setup
     
     private lazy var textFieldsStackView: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.backgroundColor = .red
         myStackView.axis = .vertical
         myStackView.spacing = Paddings.defaultPadding
         myStackView.addArrangedSubview(nameTextField)
@@ -94,11 +115,27 @@ class RegisterScreenView: UIView {
         myStackView.addArrangedSubview(confirmPasswordTextField)
         return myStackView
     }()
+    private lazy var label: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "aldsfjahlskdjfhlaksjdfhlkjasdlfkjahsldkfhlaksjdfhkdfhlkashdfkjashldjfhlkasjdhfadfasdfasdf"
+        return label
+    }()
     private func setupTextFieldsStackView() {
-        addSubview(textFieldsStackView)
-        textFieldsStackView.snp.makeConstraints { make in
-            make.top.equalTo(logotype.snp.bottom).offset(Paddings.betweenLogoAndName)
-            make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
+//        scrollView.addSubview(textField)
+//        scrollView.addSubview(textFieldsStackView)
+//
+//        textFieldsStackView.snp.makeConstraints { make in
+//            make.top.equalTo(logotype.snp.bottom).offset(Paddings.betweenTopAndLogo)
+//            make.leading.equalTo(scrollView.snp.leading)
+//            make.trailing.equalTo(scrollView.snp.trailing)
+//            make.width.equalTo(scrollView.snp.width).offset(32)
+//        }
+        scrollView.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalToSuperview()
         }
     }
 

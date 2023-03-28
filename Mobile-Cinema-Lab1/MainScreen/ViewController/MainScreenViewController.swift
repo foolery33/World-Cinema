@@ -24,9 +24,7 @@ class MainScreenViewController: UIViewController {
                     print("error", self.viewModel.error)
                     let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.error, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    if let viewController = self.next as? UIViewController {
-                        viewController.present(alert, animated: true, completion: nil)
-                    }
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             self.viewModel.getNewMovies { success in
@@ -37,9 +35,7 @@ class MainScreenViewController: UIViewController {
                     print("error", self.viewModel.error)
                     let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.error, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    if let viewController = self.next as? UIViewController {
-                        viewController.present(alert, animated: true, completion: nil)
-                    }
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }
