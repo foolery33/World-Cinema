@@ -43,6 +43,12 @@ class AuthCoordinator: Coordinator {
     }
     
     func goToRegisterScreen() {
+        if((UserDefaults.standard.value(forKey: "firstLaunch")) != nil) {
+            let loginViewController = LoginViewController()
+            self.loginViewModel.coordinator = self
+            loginViewController.viewModel = self.loginViewModel
+            navigationController.pushViewController(loginViewController, animated: false)
+        }
         let registerViewController = RegisterViewController()
         self.registerViewModel.coordinator = self
         registerViewController.viewModel = self.registerViewModel

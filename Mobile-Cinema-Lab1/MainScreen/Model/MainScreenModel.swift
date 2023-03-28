@@ -9,4 +9,7 @@ import Foundation
 
 struct MainScreenModel {
     
+    var inTrendMovies: [MovieModel] = [MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: [])]
+    var newMovies: [MovieModel] = [MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: [])]
+    var error: String = ""
 }

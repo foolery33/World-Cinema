@@ -13,11 +13,24 @@ class FilledButton: UIButton {
         let button = FilledButton(type: .system)
         button.layer.backgroundColor = CGColor.redColor
         button.setTitle(label, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        button.contentEdgeInsets = UIEdgeInsets(top: Paddings.topContentPadding, left: Paddings.leadingContentPadding, bottom: Paddings.bottomContentPadding, right: Paddings.trailingContentPadding)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: Scales.fontSize, weight: .bold)
         button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 4
+        button.layer.cornerRadius = Scales.cornerRadius
         button.addTarget(self, action: selector, for: .touchUpInside)
         return button
     }
 
+    private enum Paddings {
+        static let topContentPadding = 13.0
+        static let bottomContentPadding = 13.0
+        static let leadingContentPadding = 0.0
+        static let trailingContentPadding = 0.0
+    }
+    
+    private enum Scales {
+        static let fontSize = 14.0
+        static let cornerRadius = 4.0
+    }
+    
 }
