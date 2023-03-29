@@ -14,6 +14,13 @@ class MainScreenViewController: UIViewController {
     var profiles: [Profile] = []
     var stackViews: [(UIStackView, CGFloat)] = []
     
+    private enum Sections {
+        static let inTrend = 0
+        static let youWatched = 1
+        static let new = 2
+        static let forYou = 3
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
@@ -50,11 +57,32 @@ class MainScreenViewController: UIViewController {
     }
     
     private func setupSubviews() {
+//        setupPoster()
+//        setupWatchPosterButton()
+        setupScrollView()
+//        setupCollectionsStackView()
+//        setupInTrendStackView()
+//        setupNewStackView()
+    }
+    
+    // MARK: - ScrollView setup
+    
+    private lazy var scrollView: UIScrollView = {
+        let myScrollView = UIScrollView()
+        myScrollView.backgroundColor = .grayColor
+        myScrollView.showsVerticalScrollIndicator = false
+        myScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return myScrollView
+    }()
+    private func setupScrollView() {
+        view.addSubview(scrollView)
         setupPoster()
         setupWatchPosterButton()
         setupCollectionsStackView()
-//        setupInTrendStackView()
-//        setupNewStackView()
+        scrollView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+            make.edges.equalTo(view.safeAreaInsets)
+        }
     }
     
     // MARK: Poster image setup
@@ -76,11 +104,11 @@ class MainScreenViewController: UIViewController {
         poster.layer.addSublayer(gradient)
     }
     private func setupPoster() {
-        view.addSubview(poster)
+        scrollView.addSubview(poster)
         poster.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaInsets.top)
-            make.leading.equalTo(view.safeAreaInsets.left)
-            make.trailing.equalTo(view.safeAreaInsets.right)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.height.equalTo(400)
         }
     }
@@ -98,7 +126,7 @@ class MainScreenViewController: UIViewController {
         return myButton
     }()
     private func setupWatchPosterButton() {
-        view.addSubview(watchPosterButton)
+        scrollView.addSubview(watchPosterButton)
         watchPosterButton.snp.makeConstraints { make in
             make.bottom.equalTo(poster.snp.bottom).inset(64)
             make.centerX.equalToSuperview()
@@ -115,13 +143,17 @@ class MainScreenViewController: UIViewController {
         return myStackView
     }()
     private func setupCollectionsStackView() {
-        view.addSubview(collectionsStackView)
+        scrollView.addSubview(collectionsStackView)
         setupInTrendStackView()
         setupNewStackView()
         collectionsStackView.snp.makeConstraints { make in
             make.top.equalTo(poster.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo((144 + inTrendStack.spacing + inTrendLabel.frame.size.height) * 2)
+            make.bottom.equalToSuperview()
+//            make.height.equalTo((144 + inTrendStack.spacing + inTrendLabel.frame.size.height) * 2)
+            print(144 + inTrendStack.spacing + inTrendLabel.frame.size.height)
+            print(144 + newStack.spacing + newLabel.frame.size.height)
+            make.bottom.equalToSuperview().offset(-16)
         }
     }
     
@@ -178,7 +210,7 @@ class MainScreenViewController: UIViewController {
     // MARK: Reload InTrendCollectionView
     private func reloadInTrendMoviesView() {
         if(self.viewModel.inTrendMovies.isEmpty) {
-//            removeSection(at: 0)
+            removeSection(at: 0)
         }
         else {
             inTrendCollectionView.reloadData()
@@ -263,7 +295,8 @@ class MainScreenViewController: UIViewController {
         collectionsStackView.snp.remakeConstraints { make in
             make.top.equalTo(poster.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(newHeight)
+//            make.height.equalTo(newHeight)
+            make.bottom.equalToSuperview()
         }
     }
 }
