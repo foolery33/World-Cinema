@@ -18,10 +18,10 @@ final class NewCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupViews()
+        setupPosterImageView()
     }
 
     private func setupViews() {
-        print("here")
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white
     }
@@ -39,12 +39,41 @@ final class NewCollectionViewCell: UICollectionViewCell {
     }
 
     func setup(with movie: MovieModel) {
-        posterImageView.image = UIImage(named: "NewFilmPoster")
+//        posterImageView.image = UIImage(named: "NewFilmPoster")
+        posterImageView.loadImageWithURL(movie.poster)
     }
 }
 
 extension NewCollectionViewCell: ReusableView {
     static var identifier: String {
         return String(describing: self)
+    }
+}
+
+extension UIImageView {
+    func loadImageWithURL(_ url: String) {
+        if let url = URL(string: url) {
+            // Проверяем, есть ли данные в кэше
+            if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
+
+                // Если есть, используем кэшированные данные для создания изображения
+                let image = UIImage(data: cachedResponse.data)
+                self.image = image
+
+            } else {
+
+                // Если данных в кэше нет, загружаем их и добавляем в кэш
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    if let data = data, let response = response {
+                        let cachedData = CachedURLResponse(response: response, data: data)
+                        URLCache.shared.storeCachedResponse(cachedData, for: URLRequest(url: url))
+                        DispatchQueue.main.async {
+                            let image = UIImage(data: data)
+                            self.image = image
+                        }
+                    }
+                }.resume()
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ class NewCollectionView: UICollectionView {
         backgroundColor = .white
         dataSource = self
         delegate = self
-        register(InTrendMovieCell.self, forCellWithReuseIdentifier: InTrendMovieCell.identifier)
+        register(NewCollectionViewCell.self, forCellWithReuseIdentifier: NewCollectionViewCell.identifier)
     }
 
 }

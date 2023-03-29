@@ -12,6 +12,7 @@ class MainScreenViewController: UIViewController {
 
     var viewModel: MainScreenViewModel!
     var profiles: [Profile] = []
+    var stackViews: [(UIStackView, CGFloat)] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,7 +30,7 @@ class MainScreenViewController: UIViewController {
             }
             self.viewModel.getNewMovies { success in
                 if(success) {
-//                    self.reloadNewMoviesView()
+                    self.reloadNewMoviesView()
                 }
                 else {
                     print("error", self.viewModel.error)
@@ -51,7 +52,9 @@ class MainScreenViewController: UIViewController {
     private func setupSubviews() {
         setupPoster()
         setupWatchPosterButton()
-        setupInTrendStackView()
+        setupCollectionsStackView()
+//        setupInTrendStackView()
+//        setupNewStackView()
     }
     
     // MARK: Poster image setup
@@ -78,6 +81,7 @@ class MainScreenViewController: UIViewController {
             make.top.equalTo(view.safeAreaInsets.top)
             make.leading.equalTo(view.safeAreaInsets.left)
             make.trailing.equalTo(view.safeAreaInsets.right)
+            make.height.equalTo(400)
         }
     }
     
@@ -101,6 +105,26 @@ class MainScreenViewController: UIViewController {
         }
     }
     
+    // MARK: - Collections StackView setup
+    
+    private lazy var collectionsStackView: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = 32
+        myStackView.backgroundColor = .blue
+        return myStackView
+    }()
+    private func setupCollectionsStackView() {
+        view.addSubview(collectionsStackView)
+        setupInTrendStackView()
+        setupNewStackView()
+        collectionsStackView.snp.makeConstraints { make in
+            make.top.equalTo(poster.snp.bottom).offset(32)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo((144 + inTrendStack.spacing + inTrendLabel.frame.size.height) * 2)
+        }
+    }
+    
     // MARK: - InTrend StackView setup
     private lazy var inTrendStack: UIStackView = {
         let myStackView = UIStackView()
@@ -110,22 +134,23 @@ class MainScreenViewController: UIViewController {
         return myStackView
     }()
     private func setupInTrendStackView() {
-        view.addSubview(inTrendStack)
+        collectionsStackView.addArrangedSubview(inTrendStack)
         setupInTrendLabel()
         setupInTrendCollectionView()
-        print(144 + inTrendStack.spacing + inTrendLabel.frame.size.height)
+
         inTrendStack.snp.makeConstraints { make in
-            make.top.equalTo(poster.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(144 + inTrendStack.spacing + inTrendLabel.frame.size.height)
         }
+        stackViews.append((inTrendStack, 144 + inTrendStack.spacing + inTrendLabel.frame.size.height))
+        print("InTrendHeight:", 144 + inTrendStack.spacing + inTrendLabel.frame.size.height)
     }
     // MARK: InTrendCollectionView setup
     private lazy var inTrendCollectionView: UICollectionView = {
-        let colle = InTrendCollectionView()
-        colle.viewModel = self.viewModel
-        colle.backgroundColor = .red
-        return colle
+        let myCollectionView = InTrendCollectionView()
+        myCollectionView.viewModel = self.viewModel
+        myCollectionView.backgroundColor = .red
+        return myCollectionView
     }()
     private func setupInTrendCollectionView() {
         inTrendStack.addArrangedSubview(inTrendCollectionView)
@@ -141,6 +166,7 @@ class MainScreenViewController: UIViewController {
         myLabel.textColor = .redColor
         myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         myLabel.sizeToFit()
+//        myLabel.backgroundColor = .red
         return myLabel
     }()
     private func setupInTrendLabel() {
@@ -152,38 +178,92 @@ class MainScreenViewController: UIViewController {
     // MARK: Reload InTrendCollectionView
     private func reloadInTrendMoviesView() {
         if(self.viewModel.inTrendMovies.isEmpty) {
-            inTrendStack.isHidden = true
+//            removeSection(at: 0)
         }
         else {
             inTrendCollectionView.reloadData()
         }
     }
     
-    // MARK: - New label setup
-    
+    // MARK: - New StackView setup
+    private lazy var newStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = 16
+        myStackView.backgroundColor = .purple
+        return myStackView
+    }()
+    private func setupNewStackView() {
+        collectionsStackView.addArrangedSubview(newStack)
+        setupNewLabel()
+        setupNewCollectionView()
+
+        newStack.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(144 + newStack.spacing + newLabel.frame.size.height)
+        }
+        stackViews.append((newStack, 144 + newStack.spacing + newLabel.frame.size.height))
+        print("NewHeight", 144 + newStack.spacing + newLabel.frame.size.height)
+        print("NewFrame", newStack.frame.height)
+    }
+    // MARK: New label setup
     private lazy var newLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.numberOfLines = 0
         myLabel.text = "Новое"
         myLabel.textColor = .redColor
         myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        myLabel.sizeToFit()
         return myLabel
     }()
-    
+    private func setupNewLabel() {
+        newStack.addArrangedSubview(newLabel)
+        newLabel.snp.makeConstraints { make in
+            make.leading.equalTo(newStack.snp.leading).inset(16)
+        }
+    }
     // MARK: - NewCollectionView setup
-    
     private lazy var newCollectionView: UICollectionView = {
         let newMovies = NewCollectionView()
+        newMovies.backgroundColor = .red
         newMovies.viewModel = self.viewModel
         return newMovies
     }()
+    private func setupNewCollectionView() {
+        newStack.addArrangedSubview(newCollectionView)
+        newCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+//            make.height.equalTo(144)
+        }
+    }
     private func reloadNewMoviesView() {
         if(self.viewModel.newMovies.isEmpty) {
-            newLabel.isHidden = true
+            newStack.removeFromSuperview()
         }
         else {
             newCollectionView.reloadData()
             print(viewModel.newMovies.count)
+        }
+    }
+    
+    // MARK: - Создать StackView для всех UICollectionView
+    
+    func removeSection(at index: Int) {
+        stackViews[index].0.removeFromSuperview()
+        stackViews.remove(at: index)
+        var newHeight = 0.0
+        // Пересчитываем констрейнты всех следующих stack view, чтобы они сдвинулись вверх
+        for i in index..<stackViews.count {
+            newHeight += stackViews[i].1
+//            stackViews[i].snp.remakeConstraints { make in
+//                make.leading.trailing.equalToSuperview()
+//                make.height.equalTo(144 + newStack.spacing + newLabel.frame.size.height)
+//            }
+        }
+        collectionsStackView.snp.remakeConstraints { make in
+            make.top.equalTo(poster.snp.bottom).offset(32)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(newHeight)
         }
     }
 }
