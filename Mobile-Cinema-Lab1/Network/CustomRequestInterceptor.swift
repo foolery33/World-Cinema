@@ -48,16 +48,20 @@ class CustomRequestInterceptor: RequestInterceptor {
     
     private func refreshToken(completion: @escaping (() -> Void)) {
         print("refresh")
-        let httpParameters: [String: String] = [
-            "refreshToken": TokenManager.shared.fetchAccessToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(TokenManager.shared.fetchRefreshToken())"
         ]
         let url = "http://107684.web.hosting-russia.ru:8000/api/auth/refresh"
-        AF.request(url, method: .post, parameters: httpParameters, encoder: JSONParameterEncoder.default).responseData { response in
+        AF.request(url, method: .post, headers: headers).responseData { response in
+            if let statusCode = response.response?.statusCode {
+                print("Refresh Status Code:", statusCode)
+            }
             switch response.result {
             case .success(let data):
                 do {
-                    let decodedData = try JSONDecoder().decode(RefreshTokenModel.self, from: data)
-                    TokenManager.shared.saveAccessToken(accessToken: decodedData.refreshToken)
+                    let decodedData = try JSONDecoder().decode(AuthTokenPairModel.self, from: data)
+                    TokenManager.shared.saveAccessToken(accessToken: decodedData.accessToken)
+                    TokenManager.shared.saveRefreshToken(refreshToken: decodedData.refreshToken)
                     print(TokenManager.shared.fetchAccessToken())
                     completion()
                 } catch {

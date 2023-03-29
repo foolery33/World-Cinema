@@ -11,7 +11,6 @@ import SnapKit
 class MainScreenViewController: UIViewController {
 
     var viewModel: MainScreenViewModel!
-    var profiles: [Profile] = []
     var stackViews: [(UIStackView, CGFloat)] = []
     
     private enum Sections {
@@ -68,12 +67,7 @@ class MainScreenViewController: UIViewController {
     }
     
     private func setupSubviews() {
-//        setupPoster()
-//        setupWatchPosterButton()
         setupScrollView()
-//        setupCollectionsStackView()
-//        setupInTrendStackView()
-//        setupNewStackView()
     }
     
     // MARK: - ScrollView setup
@@ -227,7 +221,7 @@ class MainScreenViewController: UIViewController {
         }
     }
     
-    // MARK: - LastSeen StackView setup
+    // MARK: - LastView StackView setup
     private lazy var lastViewStack: UIStackView = {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
@@ -238,28 +232,15 @@ class MainScreenViewController: UIViewController {
     private func setupLastSeenStackView() {
         collectionsStackView.addArrangedSubview(lastViewStack)
         setupLastViewLabel()
-        setupLastViewCollectionView()
+        setupLastViewButton()
 
         lastViewStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(144 + lastViewStack.spacing + lastViewLabel.frame.size.height)
+            make.height.equalTo(240 + lastViewStack.spacing + lastViewLabel.frame.size.height)
         }
         stackViews.append((lastViewStack, 144 + lastViewStack.spacing + lastViewLabel.frame.size.height))
     }
-    // MARK: LastViewCollectionView setup
-    private lazy var lastViewCollectionView: UICollectionView = {
-        let myCollectionView = InTrendCollectionView()
-        myCollectionView.viewModel = self.viewModel
-        myCollectionView.backgroundColor = .red
-        return myCollectionView
-    }()
-    private func setupLastViewCollectionView() {
-        lastViewStack.addArrangedSubview(lastViewCollectionView)
-        lastViewCollectionView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-        }
-    }
-    // MARK: LastSeen label setup
+    // MARK: LastView label setup
     private lazy var lastViewLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.numberOfLines = 0
@@ -276,11 +257,39 @@ class MainScreenViewController: UIViewController {
             make.leading.equalTo(lastViewStack.snp.leading).inset(16)
         }
     }
+    // MARK: LastViewButton setup
+    private lazy var lastViewButton: UIButton = {
+        let myButton = UIButton(type: .custom)
+        myButton.setImage(UIImage(named: "LastViewFilmPoster"), for: .normal)
+        return myButton
+    }()
+    private func setupLastViewButton() {
+        lastViewStack.addArrangedSubview(lastViewButton)
+        setupLastViewPlayButton()
+        lastViewButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(240)
+        }
+    }
+    // MARK: LastView PlayButton setup
+    private lazy var lastViewPlayButton: UIButton = {
+        let myButton = UIButton(type: .custom)
+        myButton.setImage(UIImage(named: "Polygon"), for: .normal)
+        myButton.addImagePressedEffect()
+        return myButton
+    }()
+    private func setupLastViewPlayButton() {
+        lastViewButton.addSubview(lastViewPlayButton)
+        lastViewPlayButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
     // MARK: Reload LastSeenCollectionView
     private func reloadLastViewMoviesView() {
         if(self.viewModel.lastViewMovies.isEmpty) {
-            lastViewStack.removeFromSuperview()
-            recalculateCollectionsStackView()
+//            lastViewStack.removeFromSuperview()
+//            recalculateCollectionsStackView()
         }
         else {
             inTrendCollectionView.reloadData()
@@ -355,5 +364,20 @@ class MainScreenViewController: UIViewController {
 //            make.height.equalTo(newHeight)
             make.bottom.equalToSuperview()
         }
+    }
+}
+
+extension UIButton {
+    func addImagePressedEffect() {
+        // Добавляем обработчик нажатия на кнопку
+        addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchDown)
+    }
+
+    @objc private func buttonPressed(sender: UIButton) {
+        self.imageView?.alpha = 0.5
+        // Устанавливаем временную прозрачность для изображения кнопки при нажатии
+        UIView.animate(withDuration: 0.2, animations: {
+            self.imageView?.alpha = 1.0
+        })
     }
 }

@@ -19,7 +19,7 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        if(TokenManager.shared.fetchAccessToken().isEmpty) {
+        if(!TokenManager.shared.fetchAccessToken().isEmpty) {
             goToAuth()
         }
         else {
