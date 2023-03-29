@@ -16,7 +16,7 @@ class MainScreenViewController: UIViewController {
     
     private enum Sections {
         static let inTrend = 0
-        static let youWatched = 1
+        static let lastView = 1
         static let new = 2
         static let forYou = 3
     }
@@ -27,6 +27,17 @@ class MainScreenViewController: UIViewController {
             self.viewModel.getInTrendMovies { success in
                 if(success) {
                     self.reloadInTrendMoviesView()
+                }
+                else {
+                    print("error", self.viewModel.error)
+                    let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            self.viewModel.getLastViewMovies { success in
+                if(success) {
+                    self.reloadLastViewMoviesView()
                 }
                 else {
                     print("error", self.viewModel.error)
@@ -145,14 +156,13 @@ class MainScreenViewController: UIViewController {
     private func setupCollectionsStackView() {
         scrollView.addSubview(collectionsStackView)
         setupInTrendStackView()
+        setupLastSeenStackView()
         setupNewStackView()
         collectionsStackView.snp.makeConstraints { make in
             make.top.equalTo(poster.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
 //            make.height.equalTo((144 + inTrendStack.spacing + inTrendLabel.frame.size.height) * 2)
-            print(144 + inTrendStack.spacing + inTrendLabel.frame.size.height)
-            print(144 + newStack.spacing + newLabel.frame.size.height)
             make.bottom.equalToSuperview().offset(-16)
         }
     }
@@ -175,7 +185,6 @@ class MainScreenViewController: UIViewController {
             make.height.equalTo(144 + inTrendStack.spacing + inTrendLabel.frame.size.height)
         }
         stackViews.append((inTrendStack, 144 + inTrendStack.spacing + inTrendLabel.frame.size.height))
-        print("InTrendHeight:", 144 + inTrendStack.spacing + inTrendLabel.frame.size.height)
     }
     // MARK: InTrendCollectionView setup
     private lazy var inTrendCollectionView: UICollectionView = {
@@ -210,7 +219,68 @@ class MainScreenViewController: UIViewController {
     // MARK: Reload InTrendCollectionView
     private func reloadInTrendMoviesView() {
         if(self.viewModel.inTrendMovies.isEmpty) {
-            removeSection(at: 0)
+            inTrendStack.removeFromSuperview()
+            recalculateCollectionsStackView()
+        }
+        else {
+            inTrendCollectionView.reloadData()
+        }
+    }
+    
+    // MARK: - LastSeen StackView setup
+    private lazy var lastViewStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = 16
+        myStackView.backgroundColor = .white
+        return myStackView
+    }()
+    private func setupLastSeenStackView() {
+        collectionsStackView.addArrangedSubview(lastViewStack)
+        setupLastViewLabel()
+        setupLastViewCollectionView()
+
+        lastViewStack.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(144 + lastViewStack.spacing + lastViewLabel.frame.size.height)
+        }
+        stackViews.append((lastViewStack, 144 + lastViewStack.spacing + lastViewLabel.frame.size.height))
+    }
+    // MARK: LastViewCollectionView setup
+    private lazy var lastViewCollectionView: UICollectionView = {
+        let myCollectionView = InTrendCollectionView()
+        myCollectionView.viewModel = self.viewModel
+        myCollectionView.backgroundColor = .red
+        return myCollectionView
+    }()
+    private func setupLastViewCollectionView() {
+        lastViewStack.addArrangedSubview(lastViewCollectionView)
+        lastViewCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+        }
+    }
+    // MARK: LastSeen label setup
+    private lazy var lastViewLabel: UILabel = {
+        let myLabel = UILabel()
+        myLabel.numberOfLines = 0
+        myLabel.text = "Вы смотрели"
+        myLabel.textColor = .redColor
+        myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        myLabel.sizeToFit()
+//        myLabel.backgroundColor = .red
+        return myLabel
+    }()
+    private func setupLastViewLabel() {
+        lastViewStack.addArrangedSubview(lastViewLabel)
+        lastViewLabel.snp.makeConstraints { make in
+            make.leading.equalTo(lastViewStack.snp.leading).inset(16)
+        }
+    }
+    // MARK: Reload LastSeenCollectionView
+    private func reloadLastViewMoviesView() {
+        if(self.viewModel.lastViewMovies.isEmpty) {
+            lastViewStack.removeFromSuperview()
+            recalculateCollectionsStackView()
         }
         else {
             inTrendCollectionView.reloadData()
@@ -235,8 +305,6 @@ class MainScreenViewController: UIViewController {
             make.height.equalTo(144 + newStack.spacing + newLabel.frame.size.height)
         }
         stackViews.append((newStack, 144 + newStack.spacing + newLabel.frame.size.height))
-        print("NewHeight", 144 + newStack.spacing + newLabel.frame.size.height)
-        print("NewFrame", newStack.frame.height)
     }
     // MARK: New label setup
     private lazy var newLabel: UILabel = {
@@ -271,27 +339,16 @@ class MainScreenViewController: UIViewController {
     private func reloadNewMoviesView() {
         if(self.viewModel.newMovies.isEmpty) {
             newStack.removeFromSuperview()
+            recalculateCollectionsStackView()
         }
         else {
             newCollectionView.reloadData()
-            print(viewModel.newMovies.count)
         }
     }
     
     // MARK: - Создать StackView для всех UICollectionView
     
-    func removeSection(at index: Int) {
-        stackViews[index].0.removeFromSuperview()
-        stackViews.remove(at: index)
-        var newHeight = 0.0
-        // Пересчитываем констрейнты всех следующих stack view, чтобы они сдвинулись вверх
-        for i in index..<stackViews.count {
-            newHeight += stackViews[i].1
-//            stackViews[i].snp.remakeConstraints { make in
-//                make.leading.trailing.equalToSuperview()
-//                make.height.equalTo(144 + newStack.spacing + newLabel.frame.size.height)
-//            }
-        }
+    func recalculateCollectionsStackView() {
         collectionsStackView.snp.remakeConstraints { make in
             make.top.equalTo(poster.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()

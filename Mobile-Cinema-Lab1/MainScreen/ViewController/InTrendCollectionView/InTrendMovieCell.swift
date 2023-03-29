@@ -21,7 +21,6 @@ final class InTrendMovieCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        print("cell init")
         setupViews()
         setupPosterImageView()
     }
@@ -32,7 +31,6 @@ final class InTrendMovieCell: UICollectionViewCell {
     }
 
     private func setupPosterImageView() {
-        print("setup poster")
         contentView.addSubview(posterImageView)
         posterImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -45,8 +43,8 @@ final class InTrendMovieCell: UICollectionViewCell {
     }
 
     func setup(with movie: MovieModel) {
-        print("setup")
-        posterImageView.image = UIImage(named: "InTrendFilmPoster")?.resizeImage(newWidth: 100, newHeight: 144)
+//        posterImageView.image = UIImage(named: "InTrendFilmPoster")?.resizeImage(newWidth: 100, newHeight: 144)
+        posterImageView.loadImageWithURL(movie.poster)
     }
 }
 

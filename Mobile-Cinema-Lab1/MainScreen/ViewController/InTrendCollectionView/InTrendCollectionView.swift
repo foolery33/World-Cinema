@@ -41,16 +41,13 @@ class InTrendCollectionView: UICollectionView {
 
 extension InTrendCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("count in trend", viewModel.inTrendMovies.count)
-//        return viewModel.inTrendMovies.count
-        return movies.count
+        return viewModel.inTrendMovies.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print(indexPath)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InTrendMovieCell.identifier, for: indexPath) as! InTrendMovieCell
 
 //        let movie = viewModel.inTrendMovies[indexPath.row]
-        let movie = movies[indexPath.row]
+        let movie = viewModel.inTrendMovies[indexPath.row]
         cell.setup(with: movie)
         cell.contentView.backgroundColor = .red
         return cell

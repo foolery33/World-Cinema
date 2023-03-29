@@ -21,6 +21,15 @@ class MainScreenViewModel {
         }
     }
     
+    var lastViewMovies: [MovieModel] {
+        get {
+            model.lastViewMovies
+        }
+        set {
+            model.lastViewMovies = newValue
+        }
+    }
+    
     var newMovies: [MovieModel] {
         get {
             model.newMovies
@@ -44,6 +53,19 @@ class MainScreenViewModel {
             switch result {
             case .success(let data):
                 self?.inTrendMovies = data
+                completion(true)
+            case .failure(let error):
+                self?.error = error.errorDescription
+                completion(false)
+            }
+        }
+    }
+    
+    func getLastViewMovies(completion: @escaping (Bool) -> Void) {
+        MovieViewModel.shared.getMovies(queryParameter: "lastView") { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.lastViewMovies = data
                 completion(true)
             case .failure(let error):
                 self?.error = error.errorDescription
