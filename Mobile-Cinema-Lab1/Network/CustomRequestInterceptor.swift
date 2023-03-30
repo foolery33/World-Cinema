@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 class CustomRequestInterceptor: RequestInterceptor {
-    private let retryLimit = 0
-    private let retryDelay: TimeInterval = 10
+    private let retryLimit = 5
+    private let retryDelay: TimeInterval = 1
     
     func adapt(_ urlRequest: URLRequest,
                for session: Session,
@@ -49,7 +49,8 @@ class CustomRequestInterceptor: RequestInterceptor {
     private func refreshToken(completion: @escaping (() -> Void)) {
         print("refresh")
         let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(TokenManager.shared.fetchRefreshToken())"
+            "Authorization": "Bearer \(TokenManager.shared.fetchRefreshToken())",
+            "Content-Type": "application/json"
         ]
         let url = "http://107684.web.hosting-russia.ru:8000/api/auth/refresh"
         AF.request(url, method: .post, headers: headers).responseData { response in

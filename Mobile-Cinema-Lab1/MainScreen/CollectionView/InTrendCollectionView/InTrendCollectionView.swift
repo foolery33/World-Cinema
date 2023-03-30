@@ -18,7 +18,7 @@ class InTrendCollectionView: UICollectionView {
         viewLayout.scrollDirection = .horizontal
         self.init(frame: .zero, collectionViewLayout: viewLayout)
         showsHorizontalScrollIndicator = false
-        backgroundColor = .clear
+//        backgroundColor = .clear
         dataSource = self
         delegate = self
         print("registered")
@@ -29,13 +29,13 @@ class InTrendCollectionView: UICollectionView {
 
 extension InTrendCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.inTrendMovies.count
+        return viewModel.inTrendMoviesViewModel.inTrendMovies.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InTrendMovieCell.identifier, for: indexPath) as! InTrendMovieCell
 
 //        let movie = viewModel.inTrendMovies[indexPath.row]
-        let movie = viewModel.inTrendMovies[indexPath.row]
+        let movie = viewModel.inTrendMoviesViewModel.inTrendMovies[indexPath.row]
         cell.setup(with: movie)
         cell.contentView.backgroundColor = .red
         return cell

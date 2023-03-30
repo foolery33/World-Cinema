@@ -28,7 +28,7 @@ class AppCoordinator: Coordinator {
     }
     
     func goToAuth() {
-        let authCoordinator = AuthCoordinator(navigationController: self.navigationController, loginViewModel: LoginScreenViewModel(), registerViewModel: RegisterScreenViewModel())
+        let authCoordinator = AuthCoordinator(navigationController: self.navigationController, loginViewModel: LoginScreenViewModel(authRepository: AuthRepositoryImplementation()), registerViewModel: RegisterScreenViewModel(authRepository: AuthRepositoryImplementation()))
         authCoordinator.parentCoordinator = self
         children.append(authCoordinator)
         authCoordinator.start()

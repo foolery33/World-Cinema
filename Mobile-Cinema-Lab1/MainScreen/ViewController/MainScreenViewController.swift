@@ -11,58 +11,17 @@ import SnapKit
 class MainScreenViewController: UIViewController {
 
     var viewModel: MainScreenViewModel!
-    var stackViews: [(UIStackView, CGFloat)] = []
-    
-    private enum Sections {
-        static let inTrend = 0
-        static let lastView = 1
-        static let new = 2
-        static let forYou = 3
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            self.viewModel.getInTrendMovies { success in
-                if(success) {
-                    self.reloadInTrendMoviesView()
-                }
-                else {
-                    print("error", self.viewModel.error)
-                    let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.error, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-            self.viewModel.getLastViewMovies { success in
-                if(success) {
-                    self.reloadLastViewMoviesView()
-                }
-                else {
-                    print("error", self.viewModel.error)
-                    let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.error, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-            self.viewModel.getNewMovies { success in
-                if(success) {
-                    self.reloadNewMoviesView()
-                }
-                else {
-                    print("error", self.viewModel.error)
-                    let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.error, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-        }
+        self.loadSections()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationItem.hidesBackButton = true
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         setupSubviews()
     }
     
@@ -74,7 +33,7 @@ class MainScreenViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let myScrollView = UIScrollView()
-        myScrollView.backgroundColor = .grayColor
+//        myScrollView.backgroundColor = .grayColor
         myScrollView.showsVerticalScrollIndicator = false
         myScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return myScrollView
@@ -85,8 +44,8 @@ class MainScreenViewController: UIViewController {
         setupWatchPosterButton()
         setupCollectionsStackView()
         scrollView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-            make.edges.equalTo(view.safeAreaInsets)
+            make.edges.equalToSuperview()
+//            make.trailing.leading.bottom.equalToSuperview()
         }
     }
     
@@ -111,7 +70,7 @@ class MainScreenViewController: UIViewController {
     private func setupPoster() {
         scrollView.addSubview(poster)
         poster.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaInsets.top)
+            make.top.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.height.equalTo(400)
@@ -144,7 +103,8 @@ class MainScreenViewController: UIViewController {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
         myStackView.spacing = 32
-        myStackView.backgroundColor = .blue
+//        myStackView.backgroundColor = .blue
+        myStackView.isHidden = true
         return myStackView
     }()
     private func setupCollectionsStackView() {
@@ -152,6 +112,8 @@ class MainScreenViewController: UIViewController {
         setupInTrendStackView()
         setupLastSeenStackView()
         setupNewStackView()
+        setupForYouStackView()
+//        setupSetInterestsButton()
         collectionsStackView.snp.makeConstraints { make in
             make.top.equalTo(poster.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()
@@ -166,7 +128,7 @@ class MainScreenViewController: UIViewController {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
         myStackView.spacing = 16
-        myStackView.backgroundColor = .white
+//        myStackView.backgroundColor = .white
         return myStackView
     }()
     private func setupInTrendStackView() {
@@ -178,13 +140,12 @@ class MainScreenViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(144 + inTrendStack.spacing + inTrendLabel.frame.size.height)
         }
-        stackViews.append((inTrendStack, 144 + inTrendStack.spacing + inTrendLabel.frame.size.height))
     }
     // MARK: InTrendCollectionView setup
     private lazy var inTrendCollectionView: UICollectionView = {
         let myCollectionView = InTrendCollectionView()
         myCollectionView.viewModel = self.viewModel
-        myCollectionView.backgroundColor = .red
+//        myCollectionView.backgroundColor = .red
         return myCollectionView
     }()
     private func setupInTrendCollectionView() {
@@ -212,7 +173,7 @@ class MainScreenViewController: UIViewController {
     }
     // MARK: Reload InTrendCollectionView
     private func reloadInTrendMoviesView() {
-        if(self.viewModel.inTrendMovies.isEmpty) {
+        if(self.viewModel.inTrendMoviesViewModel.inTrendMovies.isEmpty) {
             inTrendStack.removeFromSuperview()
             recalculateCollectionsStackView()
         }
@@ -226,7 +187,7 @@ class MainScreenViewController: UIViewController {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
         myStackView.spacing = 16
-        myStackView.backgroundColor = .white
+//        myStackView.backgroundColor = .white
         return myStackView
     }()
     private func setupLastSeenStackView() {
@@ -238,7 +199,6 @@ class MainScreenViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(240 + lastViewStack.spacing + lastViewLabel.frame.size.height)
         }
-        stackViews.append((lastViewStack, 144 + lastViewStack.spacing + lastViewLabel.frame.size.height))
     }
     // MARK: LastView label setup
     private lazy var lastViewLabel: UILabel = {
@@ -287,9 +247,9 @@ class MainScreenViewController: UIViewController {
     }
     // MARK: Reload LastSeenCollectionView
     private func reloadLastViewMoviesView() {
-        if(self.viewModel.lastViewMovies.isEmpty) {
-//            lastViewStack.removeFromSuperview()
-//            recalculateCollectionsStackView()
+        if(self.viewModel.lastViewMoviesViewModel.lastViewMovies.isEmpty) {
+            lastViewStack.removeFromSuperview()
+            recalculateCollectionsStackView()
         }
         else {
             inTrendCollectionView.reloadData()
@@ -301,7 +261,7 @@ class MainScreenViewController: UIViewController {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
         myStackView.spacing = 16
-        myStackView.backgroundColor = .purple
+//        myStackView.backgroundColor = .purple
         return myStackView
     }()
     private func setupNewStackView() {
@@ -313,7 +273,6 @@ class MainScreenViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(144 + newStack.spacing + newLabel.frame.size.height)
         }
-        stackViews.append((newStack, 144 + newStack.spacing + newLabel.frame.size.height))
     }
     // MARK: New label setup
     private lazy var newLabel: UILabel = {
@@ -334,7 +293,7 @@ class MainScreenViewController: UIViewController {
     // MARK: - NewCollectionView setup
     private lazy var newCollectionView: UICollectionView = {
         let newMovies = NewCollectionView()
-        newMovies.backgroundColor = .red
+//        newMovies.backgroundColor = .red
         newMovies.viewModel = self.viewModel
         return newMovies
     }()
@@ -346,7 +305,7 @@ class MainScreenViewController: UIViewController {
         }
     }
     private func reloadNewMoviesView() {
-        if(self.viewModel.newMovies.isEmpty) {
+        if(self.viewModel.newMoviesViewModel.newMovies.isEmpty) {
             newStack.removeFromSuperview()
             recalculateCollectionsStackView()
         }
@@ -355,7 +314,79 @@ class MainScreenViewController: UIViewController {
         }
     }
     
-    // MARK: - Создать StackView для всех UICollectionView
+    // MARK: - ForYou StackView setup
+    private lazy var forYouStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = 16
+//        myStackView.backgroundColor = .white
+        return myStackView
+    }()
+    private func setupForYouStackView() {
+        collectionsStackView.addArrangedSubview(forYouStack)
+        setupForYouLabel()
+        setupForYouCollectionView()
+
+        forYouStack.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(144 + forYouStack.spacing + forYouLabel.frame.size.height)
+        }
+    }
+    // MARK: InTrendCollectionView setup
+    private lazy var forYouCollectionView: UICollectionView = {
+        let myCollectionView = InTrendCollectionView()
+        myCollectionView.viewModel = self.viewModel
+//        myCollectionView.backgroundColor = .red
+        return myCollectionView
+    }()
+    private func setupForYouCollectionView() {
+        inTrendStack.addArrangedSubview(inTrendCollectionView)
+        inTrendCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+        }
+    }
+    // MARK: InTrend label setup
+    private lazy var forYouLabel: UILabel = {
+        let myLabel = UILabel()
+        myLabel.numberOfLines = 0
+        myLabel.text = "Для вас"
+        myLabel.textColor = .redColor
+        myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        myLabel.sizeToFit()
+//        myLabel.backgroundColor = .red
+        return myLabel
+    }()
+    private func setupForYouLabel() {
+        forYouStack.addArrangedSubview(forYouLabel)
+        forYouLabel.snp.makeConstraints { make in
+            make.leading.equalTo(forYouStack.snp.leading).inset(16)
+        }
+    }
+    // MARK: Reload InTrendCollectionView
+    private func reloadForYouMoviesView() {
+        if(self.viewModel.inTrendMoviesViewModel.inTrendMovies.isEmpty) {
+            forYouStack.removeFromSuperview()
+            recalculateCollectionsStackView()
+        }
+        else {
+            forYouCollectionView.reloadData()
+        }
+    }
+    
+    // MARK: - SetInterests button setup
+    private lazy var setInterestsButton: UIButton = {
+        let myButton = FilledButton()
+        return myButton.getFilledButton(label: "Указать интересы", selector: nil)
+    }()
+    private func setupSetInterestsButton() {
+        view.addSubview(setInterestsButton)
+        setInterestsButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-44)
+        }
+    }
+    
+    // MARK: - Функция пересчета CollectionsStackView, если какая-то секция пуста
     
     func recalculateCollectionsStackView() {
         collectionsStackView.snp.remakeConstraints { make in
@@ -364,7 +395,64 @@ class MainScreenViewController: UIViewController {
 //            make.height.equalTo(newHeight)
             make.bottom.equalToSuperview()
         }
+        setupSetInterestsButton()
     }
+    
+    func loadSections() {
+        let activityIndicator = ActivityIndicator()
+        view.addSubview(activityIndicator)
+        activityIndicator.setupEdges()
+        activityIndicator.startAnimating()
+        DispatchQueue.main.async {
+            self.viewModel.inTrendMoviesViewModel.getInTrendMovies { success in
+                if(success) {
+//                    self.reloadInTrendMoviesView()
+                }
+                else {
+                    print("error", self.viewModel.inTrendMoviesViewModel.error)
+                    let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.inTrendMoviesViewModel.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            self.viewModel.lastViewMoviesViewModel.getLastViewMovies { success in
+                if(success) {
+//                    self.reloadLastViewMoviesView()
+                }
+                else {
+                    print("error", self.viewModel.lastViewMoviesViewModel.error)
+                    let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.lastViewMoviesViewModel.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            self.viewModel.newMoviesViewModel.getNewMovies { success in
+                if(success) {
+//                    self.reloadNewMoviesView()
+                }
+                else {
+                    print("error", self.viewModel.newMoviesViewModel.error)
+                    let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.newMoviesViewModel.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            self.viewModel.forMeMoviesViewModel.getForMeMovies { success in
+                if(success) {
+//                    self.reloadForYouMoviesView()
+                }
+                else {
+                    print("error", self.viewModel.forMeMoviesViewModel.error)
+                    let alert = UIAlertController(title: "Movies Loading Failed", message: self.viewModel.forMeMoviesViewModel.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                activityIndicator.stopAnimating()
+                self.collectionsStackView.isHidden = false
+            }
+        }
+    }
+    
 }
 
 extension UIButton {

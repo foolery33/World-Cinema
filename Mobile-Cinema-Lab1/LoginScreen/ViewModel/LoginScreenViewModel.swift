@@ -8,36 +8,17 @@
 import Foundation
 
 class LoginScreenViewModel {
-    
-    private var model: LoginScreenModel = LoginScreenModel()
+
     weak var coordinator: AuthCoordinator!
+    private var authRepository: AuthRepository
     
-    var email: String {
-        get {
-            model.email
-        }
-        set {
-            model.email = newValue
-        }
+    init(authRepository: AuthRepository) {
+        self.authRepository = authRepository
     }
     
-    var password: String {
-        get {
-            model.password
-        }
-        set {
-            model.password = newValue
-        }
-    }
-    
-    var error: String {
-        get {
-            model.error
-        }
-        set {
-            model.error = newValue
-        }
-    }
+    var email: String = ""
+    var password: String = ""
+    var error: String = ""
     
     func registerButtonTapped() {
         coordinator.goToRegisterScreen()
@@ -53,7 +34,7 @@ class LoginScreenViewModel {
             return
         }
 
-        AuthViewModel.shared.login(email: email, password: password) { [weak self] result in
+        authRepository.login(email: email, password: password) { [weak self] result in
             switch result {
             case .success(let data):
                 TokenManager.shared.saveAccessToken(accessToken: data.accessToken)

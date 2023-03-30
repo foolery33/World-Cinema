@@ -46,7 +46,7 @@ class LoginScreenView: UIView {
     
     // MARK: Global setup
     
-    func setupSubviews() {
+    private func setupSubviews() {
         setupLogo()
         setupTextFieldsStackView()
         setupButtonsStackView()

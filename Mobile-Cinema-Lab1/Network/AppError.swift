@@ -16,8 +16,8 @@ enum ViewModelType {
 
 enum AppError: Error, LocalizedError, Identifiable, Equatable {
     
-    case authError(AuthViewModel.AuthError)
-    case movieError(MovieViewModel.MovieError)
+    case authError(AuthRepositoryImplementation.AuthError)
+    case movieError(MovieRepositoryImplementation.MovieError)
     
     var id: String {
         self.errorDescription

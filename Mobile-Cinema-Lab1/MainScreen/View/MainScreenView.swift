@@ -98,7 +98,7 @@ class MainScreenView: UIView {
     private lazy var inTrendCollectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
-        collectionView.backgroundColor = .white
+//        collectionView.backgroundColor = .white
         return collectionView
     }()
     

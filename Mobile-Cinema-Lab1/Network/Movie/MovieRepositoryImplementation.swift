@@ -8,9 +8,7 @@
 import Foundation
 import Alamofire
 
-class MovieViewModel {
-    
-    static let shared: MovieViewModel = MovieViewModel()
+class MovieRepositoryImplementation: MovieRepository {
     
     private let baseURL = "http://107684.web.hosting-russia.ru:8000/api"
     private let interceptor = CustomRequestInterceptor()

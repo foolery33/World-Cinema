@@ -9,7 +9,7 @@ import UIKit
 
 class FilledButton: UIButton {
 
-    func getFilledButton(label: String, selector: Selector) -> FilledButton {
+    func getFilledButton(label: String, selector: Selector?) -> FilledButton {
         let button = FilledButton(type: .system)
         button.layer.backgroundColor = CGColor.redColor
         button.setTitle(label, for: .normal)
@@ -17,7 +17,9 @@ class FilledButton: UIButton {
         button.titleLabel?.font = UIFont.systemFont(ofSize: Scales.fontSize, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = Scales.cornerRadius
-        button.addTarget(self, action: selector, for: .touchUpInside)
+        if let selector {
+            button.addTarget(self, action: selector, for: .touchUpInside)
+        }
         return button
     }
 

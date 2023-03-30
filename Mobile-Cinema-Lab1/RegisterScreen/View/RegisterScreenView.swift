@@ -87,7 +87,7 @@ class RegisterScreenView: UIView {
     
     private lazy var scrollView: UIScrollView = {
         let myScrollView = UIScrollView()
-        myScrollView.backgroundColor = .white
+//        myScrollView.backgroundColor = .white
         return myScrollView
     }()
     private func setupScrollView() {

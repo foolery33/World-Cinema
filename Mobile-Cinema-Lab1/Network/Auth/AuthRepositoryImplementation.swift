@@ -8,9 +8,9 @@
 import Foundation
 import Alamofire
 
-class AuthViewModel {
+class AuthRepositoryImplementation: AuthRepository {
     
-    static let shared: AuthViewModel = AuthViewModel()
+    static let shared: AuthRepositoryImplementation = AuthRepositoryImplementation()
     
     private let baseURL = "http://107684.web.hosting-russia.ru:8000/api"
     private let interceptor = CustomRequestInterceptor()
@@ -31,6 +31,7 @@ class AuthViewModel {
                     do {
                         let decodedData = try JSONDecoder().decode(AuthTokenPairModel.self, from: data)
                         TokenManager.shared.saveAccessToken(accessToken: decodedData.accessToken)
+                        TokenManager.shared.saveRefreshToken(refreshToken: decodedData.refreshToken)
                         completion(.success(decodedData))
                     } catch(_) {
                         completion(.failure(.authError(.modelError)))
@@ -70,6 +71,7 @@ class AuthViewModel {
                     do {
                         let decodedData = try JSONDecoder().decode(AuthTokenPairModel.self, from: data)
                         TokenManager.shared.saveAccessToken(accessToken: decodedData.accessToken)
+                        TokenManager.shared.saveRefreshToken(refreshToken: decodedData.refreshToken)
                         completion(.success(decodedData))
                     } catch(_) {
                         completion(.failure(.authError(.modelError)))

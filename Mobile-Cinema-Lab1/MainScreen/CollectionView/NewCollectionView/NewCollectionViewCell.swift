@@ -23,7 +23,7 @@ final class NewCollectionViewCell: UICollectionViewCell {
 
     private func setupViews() {
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .clear
     }
 
     private func setupPosterImageView() {

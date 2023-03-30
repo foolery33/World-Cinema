@@ -18,7 +18,7 @@ class NewCollectionView: UICollectionView {
         viewLayout.scrollDirection = .horizontal
         self.init(frame: .zero, collectionViewLayout: viewLayout)
         showsHorizontalScrollIndicator = false
-        backgroundColor = .white
+        backgroundColor = .clear
         dataSource = self
         delegate = self
         register(NewCollectionViewCell.self, forCellWithReuseIdentifier: NewCollectionViewCell.identifier)
@@ -28,12 +28,12 @@ class NewCollectionView: UICollectionView {
 
 extension NewCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.newMovies.count
+        return viewModel.newMoviesViewModel.newMovies.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewCollectionViewCell.identifier, for: indexPath) as! NewCollectionViewCell
 
-        let movie = viewModel?.newMovies[indexPath.row]
+        let movie = viewModel?.newMoviesViewModel.newMovies[indexPath.row]
         cell.setup(with: movie ?? MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: []))
         cell.contentView.backgroundColor = .red
         return cell

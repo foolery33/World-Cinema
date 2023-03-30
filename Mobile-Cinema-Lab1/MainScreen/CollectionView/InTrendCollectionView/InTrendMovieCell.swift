@@ -27,7 +27,7 @@ final class InTrendMovieCell: UICollectionViewCell {
 
     private func setupViews() {
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .white
+//        contentView.backgroundColor = .white
     }
 
     private func setupPosterImageView() {

@@ -9,8 +9,9 @@ import Foundation
 
 struct MainScreenModel {
     
-    var inTrendMovies: [MovieModel] = [MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: [])]
-    var lastViewMovies: [MovieModel] = [MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: [])]
-    var newMovies: [MovieModel] = [MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: [])]
+    var inTrendMovies: [MovieModel] = []
+    var lastViewMovies: [MovieModel] = []
+    var newMovies: [MovieModel] = []
+    var forYouMovies: [MovieModel] = []
     var error: String = ""
 }
