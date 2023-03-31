@@ -9,7 +9,7 @@ import UIKit
 
 class NewCollectionView: UICollectionView {
 
-    var viewModel: MainScreenViewModel!
+    var viewModel: NewMoviesViewModel!
     
     // MARK: - InTrendCollectionView setup
     
@@ -28,12 +28,12 @@ class NewCollectionView: UICollectionView {
 
 extension NewCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.newMoviesViewModel.newMovies.count
+        return viewModel.newMovies.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewCollectionViewCell.identifier, for: indexPath) as! NewCollectionViewCell
 
-        let movie = viewModel?.newMoviesViewModel.newMovies[indexPath.row]
+        let movie = viewModel?.newMovies[indexPath.row]
         cell.setup(with: movie ?? MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: []))
         cell.contentView.backgroundColor = .red
         return cell

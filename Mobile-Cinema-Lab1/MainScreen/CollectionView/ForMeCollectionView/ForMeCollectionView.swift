@@ -2,14 +2,14 @@
 //  NewCollectionView.swift
 //  Mobile-Cinema-Lab1
 //
-//  Created by admin on 28.03.2023.
+//  Created by admin on 31.03.2023.
 //
 
 import UIKit
 
-class InTrendCollectionView: UICollectionView {
+class ForMeCollectionView: UICollectionView {
     
-    var viewModel: InTrendMoviesViewModel!
+    var viewModel: ForMeMoviesViewModel!
     
     // MARK: - InTrendCollectionView setup
     
@@ -21,26 +21,26 @@ class InTrendCollectionView: UICollectionView {
         backgroundColor = .clear
         dataSource = self
         delegate = self
-        register(InTrendMovieCell.self, forCellWithReuseIdentifier: InTrendMovieCell.identifier)
+        register(ForMeCollectionViewCell.self, forCellWithReuseIdentifier: ForMeCollectionViewCell.identifier)
     }
     
 }
 
-extension InTrendCollectionView: UICollectionViewDataSource {
+extension ForMeCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.inTrendMovies.count
+        return viewModel.forMeMovies.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InTrendMovieCell.identifier, for: indexPath) as! InTrendMovieCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForMeCollectionViewCell.identifier, for: indexPath) as! ForMeCollectionViewCell
 
-        let movie = viewModel.inTrendMovies[indexPath.row]
+        let movie = viewModel.forMeMovies[indexPath.row]
         cell.setup(with: movie)
         cell.contentView.backgroundColor = .red
         return cell
     }
 }
 
-extension InTrendCollectionView: UICollectionViewDelegateFlowLayout {
+extension ForMeCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 144)
     }

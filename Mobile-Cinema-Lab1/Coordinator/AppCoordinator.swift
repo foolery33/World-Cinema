@@ -19,11 +19,11 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        if(!TokenManager.shared.fetchAccessToken().isEmpty) {
+        if(TokenManager.shared.fetchAccessToken().isEmpty) {
             goToAuth()
         }
         else {
-            goToMain()
+            goToHome()
         }
     }
     
@@ -39,6 +39,13 @@ class AppCoordinator: Coordinator {
         mainCoordinator.parentCoordinator = self
         children.append(mainCoordinator)
         mainCoordinator.start()
+    }
+    
+    func goToHome() {
+        let homeCoordinator = MainTabBarCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel())
+        children.append(homeCoordinator)
+        homeCoordinator.parentCoordinator = self
+        homeCoordinator.start()
     }
     
 }

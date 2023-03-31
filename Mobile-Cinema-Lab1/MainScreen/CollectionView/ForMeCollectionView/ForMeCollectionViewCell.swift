@@ -8,11 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol ReusableView: AnyObject {
-    static var identifier: String { get }
-}
-
-final class InTrendMovieCell: UICollectionViewCell {
+final class ForMeCollectionViewCell: UICollectionViewCell {
     private let posterImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFill
@@ -48,7 +44,7 @@ final class InTrendMovieCell: UICollectionViewCell {
 }
 
 
-extension InTrendMovieCell: ReusableView {
+extension ForMeCollectionViewCell: ReusableView {
     static var identifier: String {
         return String(describing: self)
     }
