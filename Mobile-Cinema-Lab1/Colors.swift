@@ -22,5 +22,6 @@ extension UIColor {
     public static let grayColor: UIColor = UIColor(red: 168/255, green: 168/255, blue: 168/255, alpha: 1.0)
     public static let grayTextColor: UIColor = UIColor(red: 175/255, green: 175/255, blue: 175/255, alpha: 1.0)
     public static let redColor: UIColor = UIColor(red: 239/255, green: 58/255, blue: 1/255, alpha: 1.0)
+    public static let tabbarColor: UIColor = UIColor(red: 28/255, green: 26/255, blue: 25/255, alpha: 1)
     
 }

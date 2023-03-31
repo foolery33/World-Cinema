@@ -8,14 +8,13 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
-
-    var viewModel: RegisterScreenViewModel!
     
-//    private let registerScreenView = RegisterScreenView()
+    var viewModel: RegisterScreenViewModel!
     
     override func loadView() {
         let registerScreenView = RegisterScreenView(viewModel: self.viewModel)
         view = registerScreenView
+        navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
         view.backgroundColor = UIColor(named: "BackgroundColor")
     }
@@ -23,5 +22,5 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
 }

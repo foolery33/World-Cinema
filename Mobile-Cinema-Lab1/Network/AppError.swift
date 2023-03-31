@@ -10,18 +10,23 @@ import Foundation
 enum ViewModelType {
     
     case auth
+    case movie
     
 }
 
 enum AppError: Error, LocalizedError, Identifiable, Equatable {
     
-    case authError(AuthViewModel.AuthError)
+    case authError(AuthRepositoryImplementation.AuthError)
+    case movieError(MovieRepositoryImplementation.MovieError)
+    
     var id: String {
         self.errorDescription
     }
     var errorDescription: String {
         switch self {
         case .authError(let error):
+            return error.errorDescription
+        case .movieError(let error):
             return error.errorDescription
         }
     }

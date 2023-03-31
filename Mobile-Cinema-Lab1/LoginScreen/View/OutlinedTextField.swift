@@ -9,8 +9,6 @@ import UIKit
 
 class OutlinedTextField: UITextField {
     
-    let textFieldPadding = UITextFieldPaddings.textField
-    let securedTextFieldPaddins = UITextFieldPaddings.securedTextField
     let isSecured: Bool
     let passwordEye: UIButton?
     
@@ -25,35 +23,20 @@ class OutlinedTextField: UITextField {
     }
     
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
-        if(isSecured) {
-            return bounds.inset(by: securedTextFieldPaddins)
-        }
-        else {
-            return bounds.inset(by: textFieldPadding)
-        }
+        return bounds.inset(by: self.isSecured ? Paddings.securedTextField : Paddings.textField)
     }
     override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        if(isSecured) {
-            return bounds.inset(by: securedTextFieldPaddins)
-        }
-        else {
-            return bounds.inset(by: textFieldPadding)
-        }
+        return bounds.inset(by: self.isSecured ? Paddings.securedTextField : Paddings.textField)
     }
     override open func editingRect(forBounds bounds: CGRect) -> CGRect {
-        if(isSecured) {
-            return bounds.inset(by: securedTextFieldPaddins)
-        }
-        else {
-            return bounds.inset(by: textFieldPadding)
-        }
+        return bounds.inset(by: self.isSecured ? Paddings.securedTextField : Paddings.textField)
     }
     override open func rightViewRect(forBounds bounds: CGRect) -> CGRect {
-        let offset = UITextFieldPaddings.padding
-        let width  = UITextFieldPaddings.passwordEyeSize
+        let offset = Paddings.offset
+        let width  = RegisterScreenView.Scales.passwordEyeSize
         let height = width
         let x = CGFloat(Int(bounds.width) - Int(width) - Int(offset))
-        let y = CGFloat(Int(bounds.height / 4))
+        let y = self.bounds.height / 2 - RegisterScreenView.Scales.passwordEyeSize / 2
         let rightViewBounds = CGRect(x: x, y: y, width: width, height: height)
         return rightViewBounds
     }
@@ -64,14 +47,14 @@ class OutlinedTextField: UITextField {
         textField.text = text
         textField.autocapitalizationType = .none
         textField.textColor = UIColor.redColor
-        textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        textField.font = UIFont.systemFont(ofSize: Scales.fontSize, weight: .regular)
         textField.isSecureTextEntry = self.isSecured
-        
+
         textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor: UIColor.grayTextColor])
         
         textField.layer.borderColor = CGColor.grayColor
-        textField.layer.borderWidth = 1
-        textField.layer.cornerRadius = 4
+        textField.layer.borderWidth = Scales.borderWidth
+        textField.layer.cornerRadius = Scales.cornerRadius
         
         if(isSecured) {
             textField.rightView = passwordEye
@@ -81,6 +64,18 @@ class OutlinedTextField: UITextField {
         textField.addTarget(self, action: selector, for: .editingChanged)
         
         return textField
+    }
+    
+    private enum Paddings {
+        static let offset = 16.0
+        static let securedTextField = UIEdgeInsets(top: 14.0, left: 16.0, bottom: 13.0, right: 48.0)
+        static let textField = UIEdgeInsets(top: 14.0, left: 16.0, bottom: 13.0, right: 16.0)
+    }
+    
+    private enum Scales {
+        static let fontSize = 14.0
+        static let borderWidth = 1.0
+        static let cornerRadius = 4.0
     }
     
 }

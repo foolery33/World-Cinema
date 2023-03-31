@@ -19,14 +19,33 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        goToAuth()
+        if(TokenManager.shared.fetchAccessToken().isEmpty) {
+            goToAuth()
+        }
+        else {
+            goToHome()
+        }
     }
     
     func goToAuth() {
-        let authCoordinator = AuthCoordinator(navigationController: self.navigationController, loginViewModel: LoginScreenViewModel(), registerViewModel: RegisterScreenViewModel())
+        let authCoordinator = AuthCoordinator(navigationController: self.navigationController, loginViewModel: LoginScreenViewModel(authRepository: AuthRepositoryImplementation()), registerViewModel: RegisterScreenViewModel(authRepository: AuthRepositoryImplementation()))
         authCoordinator.parentCoordinator = self
         children.append(authCoordinator)
         authCoordinator.start()
+    }
+    
+    func goToMain() {
+        let mainCoordinator = MainCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel())
+        mainCoordinator.parentCoordinator = self
+        children.append(mainCoordinator)
+        mainCoordinator.start()
+    }
+    
+    func goToHome() {
+        let homeCoordinator = MainTabBarCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel())
+        children.append(homeCoordinator)
+        homeCoordinator.parentCoordinator = self
+        homeCoordinator.start()
     }
     
 }

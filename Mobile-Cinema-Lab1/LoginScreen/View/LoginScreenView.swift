@@ -22,6 +22,7 @@ class LoginScreenView: UIView {
     private enum Scales {
         static let textFieldHeight = 44.0
         static let buttonHeight = 44.0
+        static let passwordEyeSize = 22.0
     }
     private enum Strings {
         static let email = "E-mail"
@@ -45,12 +46,10 @@ class LoginScreenView: UIView {
     
     // MARK: Global setup
     
-    func setupSubviews() {
+    private func setupSubviews() {
         setupLogo()
-        setupEmailTextField()
-        setupPasswordTextField()
-        setupRegisterButton()
-        setupLoginButton()
+        setupTextFieldsStackView()
+        setupButtonsStackView()
     }
     
     // MARK: Keyboard dismiss
@@ -80,20 +79,30 @@ class LoginScreenView: UIView {
         }
     }
     
+    // MARK: TextField's StackView setup
+    
+    private lazy var textFieldsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = Paddings.defaultPadding
+        stackView.addArrangedSubview(emailTextField)
+        stackView.addArrangedSubview(passwordTextField)
+        return stackView
+    }()
+    private func setupTextFieldsStackView() {
+        addSubview(textFieldsStackView)
+        textFieldsStackView.snp.makeConstraints { make in
+            make.top.equalTo(logotype.snp.bottom).offset(Paddings.betweenLogoAndEmail)
+            make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
+        }
+    }
+    
     // MARK: Email setup
     
     private lazy var emailTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: false)
         return textField.getOutlinedTextField(text: viewModel.email, placeholderText: Strings.email, selector: #selector(updateEmail(_:)))
     }()
-    private func setupEmailTextField() {
-        addSubview(emailTextField)
-        emailTextField.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
-            make.height.equalTo(Scales.textFieldHeight)
-            make.top.equalTo(logotype.snp.bottom).offset(Paddings.betweenLogoAndEmail)
-        }
-    }
     @objc
     private func updateEmail(_ textField: OutlinedTextField) {
         self.viewModel.email = textField.text ?? ""
@@ -105,18 +114,10 @@ class LoginScreenView: UIView {
         let passwordTextField = OutlinedTextField(isSecured: true, passwordEye: passwordEye)
         return passwordTextField.getOutlinedTextField(text: viewModel.password, placeholderText: Strings.password, selector: #selector(updatePassword(_:)))
     }()
-    private func setupPasswordTextField() {
-        addSubview(passwordTextField)
-        passwordTextField.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
-            make.height.equalTo(Scales.textFieldHeight)
-            make.top.equalTo(emailTextField.snp.bottom).offset(Paddings.defaultPadding)
-        }
-    }
     private lazy var passwordEye: UIButton = {
         let eye = UIButton(type: .custom)
-        eye.setImage(UIImage(systemName: "eye.slash")!.resizeImage(newWidth: 24, newHeight: 24).withTintColor(.redColor), for: .normal)
-        eye.setImage(UIImage(systemName: "eye")!.resizeImage(newWidth: 24, newHeight: 24).withTintColor(.redColor), for: .selected)
+        eye.setImage(UIImage(systemName: "eye.slash")!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .normal)
+        eye.setImage(UIImage(systemName: "eye")!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .selected)
         eye.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         return eye
     }()
@@ -130,22 +131,21 @@ class LoginScreenView: UIView {
         self.viewModel.password = textField.text ?? ""
     }
     
-    // MARK: Register setup
+    // MARK: Button's StackView setup
     
-    private lazy var registerButton: OutlinedButton = {
-        let button = OutlinedButton()
-        return button.getOutlinedButton(label: Strings.register, selector: #selector(goToRegisterScreen))
+    private lazy var buttonsStackView: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = Paddings.defaultPadding
+        myStackView.addArrangedSubview(loginButton)
+        myStackView.addArrangedSubview(registerButton)
+        return myStackView
     }()
-    @objc
-    private func goToRegisterScreen() {
-        viewModel.registerButtonTapped()
-    }
-    private func setupRegisterButton() {
-        addSubview(registerButton)
-        registerButton.snp.makeConstraints { make in
+    private func setupButtonsStackView() {
+        addSubview(buttonsStackView)
+        buttonsStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-Paddings.betweenBottomAndRegister)
             make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
-            make.height.equalTo(Scales.buttonHeight)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(Paddings.betweenBottomAndRegister)
         }
     }
     
@@ -166,24 +166,23 @@ class LoginScreenView: UIView {
         self.viewModel.login { success in
             activityIndicator.stopAnimating()
             if(success) {
-//                self.viewModel.coordinator.goToMainScreen()
+                self.viewModel.coordinator.goToMainScreen()
             }
             else {
-                let alert = UIAlertController(title: Strings.loginFailed, message: self.viewModel.error, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: Strings.ok, style: .default))
-                if let viewController = self.next as? UIViewController {
-                    viewController.present(alert, animated: true, completion: nil)
-                }
+                self.showAlert(title: Strings.loginFailed, message: self.viewModel.error)
             }
         }
     }
-    private func setupLoginButton() {
-        addSubview(loginButton)
-        loginButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
-            make.height.equalTo(Scales.buttonHeight)
-            make.bottom.equalTo(registerButton.snp.top).offset(-Paddings.defaultPadding)
-        }
+    
+    // MARK: Register setup
+    
+    private lazy var registerButton: OutlinedButton = {
+        let button = OutlinedButton()
+        return button.getOutlinedButton(label: Strings.register, selector: #selector(goToRegisterScreen))
+    }()
+    @objc
+    private func goToRegisterScreen() {
+        viewModel.registerButtonTapped()
     }
     
     func getActivityIndicator() -> UIView {
