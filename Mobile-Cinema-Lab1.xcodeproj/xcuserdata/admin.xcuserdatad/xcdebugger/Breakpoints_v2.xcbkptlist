@@ -14,8 +14,8 @@
             filePath = "Mobile-Cinema-Lab1/LoginScreen/View/LoginScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "goToRegisterScreen()"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,22 +55,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "65F9D122-64B8-4FCB-BC7D-49BE50ECC35D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mobile-Cinema-Lab1/MainScreen/ViewController/MainScreenViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "setupCollectionsStackView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1415923D-90E1-4D85-9E63-8B766CF606B1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -78,8 +62,8 @@
             filePath = "Mobile-Cinema-Lab1/Network/Auth/AuthRepositoryImplementation.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "login(email:password:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -88,19 +72,19 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "9342C458-2AF6-4CE6-9E59-FC733E308399"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mobile-Cinema-Lab1/Network/Auth/AuthRepositoryImplementation.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "login(email:password:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "9342C458-2AF6-4CE6-9E59-FC733E308399 - ee4b6cf953aeae2d"
+                  uuid = "9342C458-2AF6-4CE6-9E59-FC733E308399 - ee4b6cf953aeae8e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -110,12 +94,12 @@
                   urlString = "file:///Users/admin/Desktop/Mobile-Cinema-Lab1/Mobile-Cinema-Lab1/Network/Auth/AuthRepositoryImplementation.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
                   offsetFromSymbolStart = "1136">
                </Location>
                <Location
-                  uuid = "9342C458-2AF6-4CE6-9E59-FC733E308399 - ee4b6cf953aeae2d"
+                  uuid = "9342C458-2AF6-4CE6-9E59-FC733E308399 - ee4b6cf953aeae8e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -125,8 +109,8 @@
                   urlString = "file:///Users/admin/Desktop/Mobile-Cinema-Lab1/Mobile-Cinema-Lab1/Network/Auth/AuthRepositoryImplementation.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
                   offsetFromSymbolStart = "1284">
                </Location>
             </Locations>
@@ -161,6 +145,54 @@
             startingLineNumber = "57"
             endingLineNumber = "57"
             landmarkName = "refreshToken(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D36EDB96-51EF-4A5C-A8CF-C3DDE6506A66"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mobile-Cinema-Lab1/Network/CustomRequestInterceptor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "retry(_:for:dueTo:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B6C76E7-98B3-406C-920E-6EC8C7E2E84D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mobile-Cinema-Lab1/RegisterScreen/ViewModel/RegisterScreenViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "register(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "51779929-E390-4477-A4BB-F00DC8C7CD66"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mobile-Cinema-Lab1/RegisterScreen/Model/UseCase/GetRegisterErrorUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "getError(name:surname:email:password:confirmPassword:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -10,8 +10,6 @@ import Alamofire
 
 class AuthRepositoryImplementation: AuthRepository {
     
-    static let shared: AuthRepositoryImplementation = AuthRepositoryImplementation()
-    
     private let baseURL = "http://107684.web.hosting-russia.ru:8000/api"
     private let interceptor = CustomRequestInterceptor()
     
@@ -21,8 +19,11 @@ class AuthRepositoryImplementation: AuthRepository {
             "email": email,
             "password": password
         ]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
         DispatchQueue.main.async {
-            AF.request(url, method: .post, parameters: httpParameters, encoder: JSONParameterEncoder.default, interceptor: self.interceptor).validate().responseData { response in
+            AF.request(url, method: .post, parameters: httpParameters, encoder: JSONParameterEncoder.default, headers: headers).validate().responseData { response in
                 if let requestStatusCode = response.response?.statusCode {
                     print("Login Status Code: ", requestStatusCode)
                 }
@@ -39,6 +40,8 @@ class AuthRepositoryImplementation: AuthRepository {
                 case .failure(_):
                     if let requestStatusCode = response.response?.statusCode {
                         switch requestStatusCode {
+                        case 401:
+                            completion(.failure(.authError(.invalidCredentials)))
                         case 422:
                             completion(.failure(.authError(.loginValidationError)))
                         case 500:
@@ -60,9 +63,12 @@ class AuthRepositoryImplementation: AuthRepository {
             "firstName": firstName,
             "lastName": lastName
         ]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
         print(httpParameters)
         DispatchQueue.main.async {
-            AF.request(url, method: .post, parameters: httpParameters, encoder: JSONParameterEncoder.default, interceptor: self.interceptor).validate().responseData { response in
+            AF.request(url, method: .post, parameters: httpParameters, encoder: JSONParameterEncoder.default, headers: headers).validate().responseData { response in
                 if let requestStatusCode = response.response?.statusCode {
                     print("Register Status Code: ", requestStatusCode)
                 }
@@ -79,6 +85,8 @@ class AuthRepositoryImplementation: AuthRepository {
                 case .failure(_):
                     if let requestStatusCode = response.response?.statusCode {
                         switch requestStatusCode {
+                        case 401:
+                            completion(.failure(.authError(.invalidCredentials)))
                         case 422:
                             completion(.failure(.authError(.loginValidationError)))
                         case 500:

@@ -169,11 +169,7 @@ class LoginScreenView: UIView {
                 self.viewModel.coordinator.goToMainScreen()
             }
             else {
-                let alert = UIAlertController(title: Strings.loginFailed, message: self.viewModel.error, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: Strings.ok, style: .default))
-                if let viewController = self.next as? UIViewController {
-                    viewController.present(alert, animated: true, completion: nil)
-                }
+                self.showAlert(title: Strings.loginFailed, message: self.viewModel.error)
             }
         }
     }

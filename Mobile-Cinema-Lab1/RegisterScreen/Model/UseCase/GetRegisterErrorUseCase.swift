@@ -11,23 +11,28 @@ class GetRegisterErrorUseCase {
     
     func getError(name: String, surname: String, email: String, password: String, confirmPassword: String) -> String? {
         
+        var error = ""
+        
         // MARK: Empty fields validation
         if(EmptyFieldValidation().isEmptyField(name) ||
            EmptyFieldValidation().isEmptyField(surname) ||
            EmptyFieldValidation().isEmptyField(email) ||
            EmptyFieldValidation().isEmptyField(password) ||
            EmptyFieldValidation().isEmptyField(confirmPassword)) {
-            return AppError.authError(.emptyField).errorDescription
+            error = AppError.authError(.emptyField).errorDescription
+            return error
         }
         
         // MARK: Passwords equality validation
         if(!PasswordsEquality().areEqualPasswords(password, confirmPassword)) {
-            return AppError.authError(.differentPasswords).errorDescription
+            error = AppError.authError(.differentPasswords).errorDescription
+            return error
         }
         
         // MARK: Email pattern validation
         if(!EmailValidation().isValidEmail(email)) {
-            return AppError.authError(.invalidEmail).errorDescription
+            error = AppError.authError(.invalidEmail).errorDescription
+            return error
         }
         
         return nil

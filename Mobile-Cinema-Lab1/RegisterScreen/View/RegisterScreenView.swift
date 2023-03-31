@@ -12,6 +12,17 @@ class RegisterScreenView: UIView {
 
     var viewModel: RegisterScreenViewModel
 
+    init(viewModel: RegisterScreenViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: CGRect.zero)
+        setupSubviews()
+        addKeyboardDidmiss()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     private enum Paddings {
         static let betweenTopAndLogo = 88.0
         static let betweenLogoAndName = 64.0
@@ -36,21 +47,9 @@ class RegisterScreenView: UIView {
         static let ok = "OK"
     }
 
-    init(viewModel: RegisterScreenViewModel) {
-        self.viewModel = viewModel
-        super.init(frame: CGRect.zero)
-        setupSubviews()
-        addKeyboardDidmiss()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // MARK: Global setup
-
     func setupSubviews() {
         setupLogo()
+        setupButtonsStackView()
         setupScrollView()
 //        setupTextFieldsStackView()
 //        setupButtonsStackView()
@@ -60,11 +59,11 @@ class RegisterScreenView: UIView {
 
     func addKeyboardDidmiss() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.addGestureRecognizer(tapGesture)
+        addGestureRecognizer(tapGesture)
     }
     @objc
     func dismissKeyboard() {
-        self.endEditing(true)
+        endEditing(true)
     }
 
     // MARK: Logotype setup
@@ -82,12 +81,12 @@ class RegisterScreenView: UIView {
 
         }
     }
-    
+
     // MARK: - ScrollView setup
-    
+
     private lazy var scrollView: UIScrollView = {
         let myScrollView = UIScrollView()
-//        myScrollView.backgroundColor = .white
+        myScrollView.showsVerticalScrollIndicator = false
         return myScrollView
     }()
     private func setupScrollView() {
@@ -95,17 +94,16 @@ class RegisterScreenView: UIView {
         setupTextFieldsStackView()
         scrollView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.width.equalToSuperview()
             make.top.equalTo(logotype.snp.bottom).offset(Paddings.betweenLogoAndName)
-            make.bottom.equalToSuperview()
+            make.bottom.greaterThanOrEqualTo(buttonsStackView.snp.top).offset(-16)
+            make.width.equalToSuperview()
         }
     }
-    
+
     // MARK: - TextFields StackView setup
-    
+
     private lazy var textFieldsStackView: UIStackView = {
         let myStackView = UIStackView()
-        myStackView.backgroundColor = .red
         myStackView.axis = .vertical
         myStackView.spacing = Paddings.defaultPadding
         myStackView.addArrangedSubview(nameTextField)
@@ -115,27 +113,14 @@ class RegisterScreenView: UIView {
         myStackView.addArrangedSubview(confirmPasswordTextField)
         return myStackView
     }()
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.text = "aldsfjahlskdjfhlaksjdfhlkjasdlfkjahsldkfhlaksjdfhkdfhlkashdfkjashldjfhlkasjdhfadfasdfasdf"
-        return label
-    }()
     private func setupTextFieldsStackView() {
-//        scrollView.addSubview(textField)
-//        scrollView.addSubview(textFieldsStackView)
-//
-//        textFieldsStackView.snp.makeConstraints { make in
-//            make.top.equalTo(logotype.snp.bottom).offset(Paddings.betweenTopAndLogo)
-//            make.leading.equalTo(scrollView.snp.leading)
-//            make.trailing.equalTo(scrollView.snp.trailing)
-//            make.width.equalTo(scrollView.snp.width).offset(32)
-//        }
-        scrollView.addSubview(label)
-        label.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(16)
+        scrollView.addSubview(textFieldsStackView)
+        textFieldsStackView.snp.makeConstraints { make in
             make.top.equalToSuperview()
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.width.equalToSuperview().offset(-32)
         }
     }
 
@@ -219,7 +204,7 @@ class RegisterScreenView: UIView {
     }
 
     // MARK: Buttons StackView setup
-    
+
     private lazy var buttonsStackView: UIStackView = {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
@@ -231,12 +216,11 @@ class RegisterScreenView: UIView {
     private func setupButtonsStackView() {
         addSubview(buttonsStackView)
         buttonsStackView.snp.makeConstraints { make in
-            make.top.greaterThanOrEqualTo(textFieldsStackView.snp.bottom).offset(16)
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-Paddings.betweenBottomAndLogin)
             make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
         }
     }
-    
+
     // MARK: Back to login screen button setup
 
     private lazy var backToLoginScreenButton: OutlinedButton = {
@@ -266,13 +250,19 @@ class RegisterScreenView: UIView {
                 self.viewModel.coordinator.goToMainScreen()
             }
             else {
-                let alert = UIAlertController(title: Strings.registerFailed, message: self.viewModel.error, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: Strings.ok, style: .default))
-                if let viewController = self.next as? UIViewController {
-                    viewController.present(alert, animated: true, completion: nil)
-                }
+                self.showAlert(title: Strings.registerFailed, message: self.viewModel.error)
             }
         }
     }
 
+}
+
+extension UIView {
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        if let viewController = self.next as? UIViewController {
+            viewController.present(alert, animated: true, completion: nil)
+        }
+    }
 }
