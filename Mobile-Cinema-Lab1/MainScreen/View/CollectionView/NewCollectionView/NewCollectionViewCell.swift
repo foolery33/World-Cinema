@@ -74,6 +74,7 @@ extension UIImageView {
                     }
                 }.resume()
             }
+            contentMode = .scaleAspectFill
         }
     }
 }

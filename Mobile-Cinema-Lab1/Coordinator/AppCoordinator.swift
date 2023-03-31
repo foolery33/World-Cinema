@@ -34,13 +34,6 @@ class AppCoordinator: Coordinator {
         authCoordinator.start()
     }
     
-    func goToMain() {
-        let mainCoordinator = MainCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel())
-        mainCoordinator.parentCoordinator = self
-        children.append(mainCoordinator)
-        mainCoordinator.start()
-    }
-    
     func goToHome() {
         let homeCoordinator = MainTabBarCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel())
         children.append(homeCoordinator)

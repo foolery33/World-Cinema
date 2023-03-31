@@ -30,9 +30,8 @@ class MainScreenView: UIView {
     
     private lazy var scrollView: UIScrollView = {
         let myScrollView = UIScrollView()
-//        myScrollView.backgroundColor = .grayColor
         myScrollView.showsVerticalScrollIndicator = false
-        myScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//        myScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return myScrollView
     }()
     private func setupScrollView() {
@@ -67,6 +66,7 @@ class MainScreenView: UIView {
     private lazy var poster: UIImageView = {
         let myPoster = UIImageView()
         myPoster.image = UIImage(named: "TheMagicians")
+        myPoster.clipsToBounds = true
         return myPoster
     }()
     private lazy var gradient: CAGradientLayer = {
@@ -86,6 +86,7 @@ class MainScreenView: UIView {
         poster.snp.makeConstraints { make in
             make.width.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(-topInset)
+            make.height.equalTo(400)
         }
     }
     

@@ -11,9 +11,9 @@ class MainScreenViewModel {
     
     weak var coordinator: MainCoordinator!
     
-    lazy var inTrendMoviesViewModel = InTrendMoviesViewModel(movieRepository: MovieRepositoryImplementation())
+    lazy var inTrendMoviesViewModel = InTrendMoviesViewModel(coordinator: self.coordinator, movieRepository: MovieRepositoryImplementation())
     lazy var lastViewMoviesViewModel = LastViewMoviesViewModel(movieRepository: MovieRepositoryImplementation())
-    lazy var newMoviesViewModel = NewMoviesViewModel(movieRepository: MovieRepositoryImplementation())
-    lazy var forMeMoviesViewModel = ForMeMoviesViewModel(movieRepository: MovieRepositoryImplementation())
+    lazy var newMoviesViewModel = NewMoviesViewModel(coordinator: self.coordinator, movieRepository: MovieRepositoryImplementation())
+    lazy var forMeMoviesViewModel = ForMeMoviesViewModel(coordinator: self.coordinator, movieRepository: MovieRepositoryImplementation())
     
 }

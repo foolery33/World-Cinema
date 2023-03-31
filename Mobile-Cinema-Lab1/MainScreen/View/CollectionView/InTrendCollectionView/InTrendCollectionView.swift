@@ -7,9 +7,9 @@
 
 import UIKit
 
-class NewCollectionView: UICollectionView {
-
-    var viewModel: NewMoviesViewModel!
+class InTrendCollectionView: UICollectionView {
+    
+    var viewModel: InTrendMoviesViewModel!
     
     // MARK: - InTrendCollectionView setup
     
@@ -21,33 +21,38 @@ class NewCollectionView: UICollectionView {
         backgroundColor = .clear
         dataSource = self
         delegate = self
-        register(NewCollectionViewCell.self, forCellWithReuseIdentifier: NewCollectionViewCell.identifier)
+        register(InTrendMovieCell.self, forCellWithReuseIdentifier: InTrendMovieCell.identifier)
     }
-
+    
 }
 
-extension NewCollectionView: UICollectionViewDataSource {
+extension InTrendCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.newMovies.count
+        return viewModel.inTrendMovies.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewCollectionViewCell.identifier, for: indexPath) as! NewCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InTrendMovieCell.identifier, for: indexPath) as! InTrendMovieCell
 
-        let movie = viewModel?.newMovies[indexPath.row]
-        cell.setup(with: movie ?? MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: []))
-        cell.contentView.backgroundColor = .red
+        let movie = viewModel.inTrendMovies[indexPath.row]
+        cell.setup(with: movie)
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.coordinator?.goToMovieScreen(movie: viewModel?.inTrendMovies[indexPath.row] ?? MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: []))
     }
 }
 
-extension NewCollectionView: UICollectionViewDelegateFlowLayout {
+extension InTrendCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 240.0, height: 144.0)
+        return CGSize(width: 100, height: 144)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16.0
+        return 16
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
     }
 }

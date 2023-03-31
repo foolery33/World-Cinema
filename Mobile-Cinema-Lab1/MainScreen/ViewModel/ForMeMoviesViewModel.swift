@@ -9,10 +9,12 @@ import Foundation
 
 class ForMeMoviesViewModel {
     
+    weak var coordinator: MainCoordinator?
     private var model = ForMeMoviesModel()
     private var movieRepository: MovieRepository
     
-    init(movieRepository: MovieRepository) {
+    init(coordinator: MainCoordinator, movieRepository: MovieRepository) {
+        self.coordinator = coordinator
         self.movieRepository = movieRepository
     }
     
