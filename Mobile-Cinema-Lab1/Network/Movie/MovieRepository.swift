@@ -10,5 +10,6 @@ import Foundation
 protocol MovieRepository {
     
     func getMovies(queryParameter: String, completion: @escaping (Result<[MovieModel], AppError>) -> Void)
+    func getMovieEpisodesById(movieId: String, completion: @escaping(Result<[EpisodeModel], AppError>) -> Void)
     
 }

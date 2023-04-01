@@ -395,7 +395,7 @@ class MainScreenView: UIView {
     func loadSections() {
         let activityIndicator = ActivityIndicator()
         addSubview(activityIndicator)
-        activityIndicator.setupEdges()
+        activityIndicator.setupAnimation()
         activityIndicator.startAnimating()
         DispatchQueue.main.async {
             self.viewModel.inTrendMoviesViewModel.getInTrendMovies { success in
@@ -430,7 +430,7 @@ class MainScreenView: UIView {
                 else {
                     self.showAlert(title: "Movies Loading Failed", message: self.viewModel.inTrendMoviesViewModel.error)
                 }
-                activityIndicator.stopAnimating()
+                activityIndicator.stopAnimation()
                 self.contentView.isHidden = false
             }
         }

@@ -242,10 +242,9 @@ class RegisterScreenView: UIView {
     func goToMainScreen() {
         let activityIndicator = ActivityIndicator()
         addSubview(activityIndicator)
-        activityIndicator.setupEdges()
-        activityIndicator.startAnimating()
+        activityIndicator.setupAnimation()
         viewModel.register { success in
-            activityIndicator.stopAnimating()
+            activityIndicator.stopAnimation()
             if(success) {
                 self.viewModel.coordinator.goToMainScreen()
             }

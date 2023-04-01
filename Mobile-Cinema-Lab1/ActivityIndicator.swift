@@ -52,7 +52,7 @@ class ActivityIndicator: UIView {
             self.alpha = 1.0
         }
     }
-    func stopAnimating() {
+    func stopAnimation() {
         indicator.stopAnimating()
         self.alpha = 0.0
         self.removeFromSuperview()

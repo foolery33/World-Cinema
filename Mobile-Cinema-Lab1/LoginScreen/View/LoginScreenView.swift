@@ -160,11 +160,11 @@ class LoginScreenView: UIView {
         
         let activityIndicator = ActivityIndicator()
         addSubview(activityIndicator)
-        activityIndicator.setupEdges()
+        activityIndicator.setupAnimation()
         activityIndicator.startAnimating()
         
         self.viewModel.login { success in
-            activityIndicator.stopAnimating()
+            activityIndicator.stopAnimation()
             if(success) {
                 self.viewModel.coordinator.goToMainScreen()
             }
@@ -208,7 +208,7 @@ class LoginScreenView: UIView {
 }
 
 extension ActivityIndicator {
-    func setupEdges() {
+    func setupAnimation() {
         self.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

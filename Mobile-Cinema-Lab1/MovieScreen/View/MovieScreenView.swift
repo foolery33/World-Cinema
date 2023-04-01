@@ -130,11 +130,7 @@ class MovieScreenView: UIView {
     // MARK: Age limit setup
     
     private lazy var ageLimit: UILabel = {
-        let myLabel = UILabel()
-        myLabel.text = viewModel.movie.age
-        myLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        myLabel.textColor = .redColor
-        return myLabel
+        return GetAgeLimitLabelUseCase().getLabel(ageLimit: viewModel.movie.age)
     }()
     private func setupAgeLimit() {
         underPosterStack.addArrangedSubview(ageLimit)
@@ -162,9 +158,12 @@ class MovieScreenView: UIView {
     private func setupStackView() {
         contentView.addSubview(stackView)
         setupGenresCollectionView()
+        setupDescriptionStackView()
+        setupShotsStackView()
+        setupEpisodesStackView()
         stackView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(underPosterStack.snp.bottom).offset(32)
         }
     }
@@ -185,7 +184,7 @@ class MovieScreenView: UIView {
     private func setupGenresCollectionView() {
         stackView.addArrangedSubview(genresCollectionView)
         genresCollectionView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16)
 //            make.height.equalTo(genresCollectionView.collectionViewLayout.collectionViewContentSize.height)
             make.height.equalTo(genresCollectionView.calculateContentHeight())
         }
@@ -193,6 +192,183 @@ class MovieScreenView: UIView {
         print(genresCollectionView.numberOfSections)
 //        stackView.addArrangedSubview(label)
 //        genresCollectionView.reloadData()
+    }
+    
+    // MARK: - Description StackView setup
+    
+    private lazy var descriptionStackView: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = 8
+        return myStackView
+    }()
+    private func setupDescriptionStackView() {
+        stackView.addArrangedSubview(descriptionStackView)
+        setupDescriptionSectionLabel()
+        setupDescriptionLabel()
+        descriptionStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+    }
+    
+    // MARK: Description section label setup
+    
+    private lazy var descriptionSectionLabel: UILabel = {
+        let myLabel = UILabel()
+        myLabel.text = "Описание"
+        myLabel.textColor = .white
+        myLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        return myLabel
+    }()
+    private func setupDescriptionSectionLabel() {
+        descriptionStackView.addArrangedSubview(descriptionSectionLabel)
+        descriptionSectionLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+        }
+    }
+    
+    // MARK: Description label setup
+    
+    private lazy var descriptionLabel: UILabel = {
+        let myLabel = UILabel()
+        myLabel.text = viewModel.movie.description
+        myLabel.textColor = .white
+        myLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        myLabel.numberOfLines = 0
+        return myLabel
+    }()
+    private func setupDescriptionLabel() {
+        descriptionStackView.addArrangedSubview(descriptionLabel)
+        descriptionSectionLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+        }
+    }
+    
+    // MARK: - Shots StackView setup
+    
+    private lazy var shotsStackView: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = 16
+        return myStackView
+    }()
+    private func setupShotsStackView() {
+        stackView.addArrangedSubview(shotsStackView)
+        setupShotsLabel()
+        setupShotsCollectionView()
+        shotsStackView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(72 + shotsStackView.spacing + shotsLabel.frame.size.height)
+        }
+    }
+    
+    // MARK: Shots label setup
+    
+    private lazy var shotsLabel: UILabel = {
+        let myLabel = UILabel()
+        myLabel.text = "Кадры"
+        myLabel.textColor = .white
+        myLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        myLabel.sizeToFit()
+        return myLabel
+    }()
+    private func setupShotsLabel() {
+        shotsStackView.addArrangedSubview(shotsLabel)
+        shotsLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(16)
+        }
+    }
+    
+    // MARK: ShotsCollectionView setup
+    
+    private lazy var shotsCollectionView: ShotsCollectionView = {
+        let myCollectionView = ShotsCollectionView()
+        myCollectionView.images = viewModel.movie.imageUrls
+        return myCollectionView
+    }()
+    private func setupShotsCollectionView() {
+        shotsStackView.addArrangedSubview(shotsCollectionView)
+        shotsCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+        }
+    }
+    
+    // MARK: - Episodes StackView setup
+    
+    private lazy var episodesStackView: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = 16
+        return myStackView
+    }()
+    private func setupEpisodesStackView() {
+        stackView.addArrangedSubview(episodesStackView)
+        setupEpisodesLabel()
+        setupEpisodesTableView()
+        episodesStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+    }
+    
+    // MARK: Episodes label setup
+    
+    private lazy var episodesLabel: UILabel = {
+        let myLabel = UILabel()
+        myLabel.text = "Эпизоды"
+        myLabel.textColor = .white
+        myLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        return myLabel
+    }()
+    private func setupEpisodesLabel() {
+        episodesStackView.addArrangedSubview(episodesLabel)
+        episodesLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+        }
+    }
+    
+    private lazy var episodesTablveView: EpisodesTableView = {
+        let myTableView = EpisodesTableView()
+        myTableView.viewModel = self.viewModel
+        return myTableView
+    }()
+    private func setupEpisodesTableView() {
+        episodesStackView.addArrangedSubview(episodesTablveView)
+        episodesTablveView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(episodesTablveView.countHeight())
+        }
+    }
+    private func reloadEpisodesView() {
+        if(self.viewModel.episodes.isEmpty) {
+            episodesStackView.removeFromSuperview()
+            ()
+        }
+        else {
+            episodesTablveView.reloadData()
+        }
+    }
+    
+    
+    func getEpisodes() {
+        let activityIndicator = ActivityIndicator()
+        addSubview(activityIndicator)
+        activityIndicator.setupAnimation()
+        viewModel.getMovieEpisodesById(movieId: viewModel.movie.movieId) { success in
+            activityIndicator.stopAnimation()
+            if(success) {
+                self.episodesTablveView.snp.remakeConstraints { make in
+                    make.leading.trailing.equalToSuperview()
+                    make.height.equalTo(self.episodesTablveView.countHeight())
+                    print("newHeight", self.episodesTablveView.countHeight())
+                }
+                self.reloadEpisodesView()
+                
+            }
+            else {
+                self.showAlert(title: "Episodes loading error", message: self.viewModel.error)
+            }
+        }
     }
     
 }
