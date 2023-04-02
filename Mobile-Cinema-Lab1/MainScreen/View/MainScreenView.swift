@@ -52,6 +52,7 @@ class MainScreenView: UIView {
     private func setupContentView() {
         scrollView.addSubview(contentView)
         setupPoster()
+        setupForegroundPoster()
         setupWatchPosterButton()
         setupCollectionsStackView()
         contentView.snp.makeConstraints { make in
@@ -64,7 +65,6 @@ class MainScreenView: UIView {
     
     private lazy var poster: UIImageView = {
         let myPoster = UIImageView()
-        myPoster.image = UIImage(named: "TheMagicians")
         myPoster.clipsToBounds = true
         return myPoster
     }()
@@ -74,6 +74,11 @@ class MainScreenView: UIView {
         myGradient.startPoint = CGPoint(x: 0, y: 0.7)
         myGradient.endPoint = CGPoint(x: 0, y: 1)
         return myGradient
+    }()
+    private lazy var foregroundPoster: UIImageView = {
+        let myForegroundPoster = UIImageView()
+        myForegroundPoster.clipsToBounds = true
+        return myForegroundPoster
     }()
     override func layoutSubviews() {
         gradient.frame = poster.bounds
@@ -86,6 +91,15 @@ class MainScreenView: UIView {
             make.width.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(-topInset)
             make.height.equalTo(400)
+        }
+    }
+    private func setupForegroundPoster() {
+        contentView.addSubview(foregroundPoster)
+        foregroundPoster.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(poster.snp.bottom).offset(-100)
+            make.height.equalTo(98)
+            make.width.equalTo(240)
         }
     }
     
@@ -404,11 +418,24 @@ class MainScreenView: UIView {
         return myButton.getFilledButton(label: "Указать интересы", selector: nil)
     }()
     
+    func loadCover() {
+        DispatchQueue.main.async {
+            self.viewModel.getCover { succes in
+                if(succes) {
+                    self.poster.loadImageWithURL(self.viewModel.cover.backgroundImage)
+                    self.foregroundPoster.loadImageWithURL(self.viewModel.cover.foregroundImage)
+                }
+                else {
+                    self.showAlert(title: "Cover Loading Failed", message: self.viewModel.error)
+                }
+            }
+        }
+    }
+    
     func loadSections() {
         let activityIndicator = ActivityIndicator()
         addSubview(activityIndicator)
         activityIndicator.setupAnimation()
-        activityIndicator.startAnimating()
         DispatchQueue.main.async {
             self.viewModel.inTrendMoviesViewModel.getInTrendMovies { success in
                 if(success) {

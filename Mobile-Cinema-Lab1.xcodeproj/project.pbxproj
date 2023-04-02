@@ -80,6 +80,9 @@
 		84E4C7E929CAD6F80004732C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4C7E829CAD6F80004732C /* AppDelegate.swift */; };
 		84E4C7F229CAD6F90004732C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E4C7F129CAD6F90004732C /* Assets.xcassets */; };
 		84E4C7F529CAD6F90004732C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E4C7F329CAD6F90004732C /* LaunchScreen.storyboard */; };
+		84EB775A29D99472002F5137 /* CoverRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB775929D99472002F5137 /* CoverRepository.swift */; };
+		84EB775D29D994CB002F5137 /* CoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB775C29D994CB002F5137 /* CoverModel.swift */; };
+		84EB775F29D99534002F5137 /* CoverRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB775E29D99534002F5137 /* CoverRepositoryImplementation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +158,9 @@
 		84E4C7F129CAD6F90004732C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84E4C7F429CAD6F90004732C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84E4C7F629CAD6F90004732C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84EB775929D99472002F5137 /* CoverRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverRepository.swift; sourceTree = "<group>"; };
+		84EB775C29D994CB002F5137 /* CoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverModel.swift; sourceTree = "<group>"; };
+		84EB775E29D99534002F5137 /* CoverRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverRepositoryImplementation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +332,7 @@
 		84B6049829CDEEC10047A603 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				84EB775829D9945C002F5137 /* Cover */,
 				846E48AE29D201AD006B5F59 /* Movie */,
 				84B6049929CDEEC80047A603 /* Auth */,
 				84B604A229CDF1810047A603 /* CustomRequestInterceptor.swift */,
@@ -561,6 +568,24 @@
 			path = "Mobile-Cinema-Lab1";
 			sourceTree = "<group>";
 		};
+		84EB775829D9945C002F5137 /* Cover */ = {
+			isa = PBXGroup;
+			children = (
+				84EB775B29D994C3002F5137 /* Model */,
+				84EB775929D99472002F5137 /* CoverRepository.swift */,
+				84EB775E29D99534002F5137 /* CoverRepositoryImplementation.swift */,
+			);
+			path = Cover;
+			sourceTree = "<group>";
+		};
+		84EB775B29D994C3002F5137 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84EB775C29D994CB002F5137 /* CoverModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -668,6 +693,7 @@
 				84B604A329CDF1810047A603 /* CustomRequestInterceptor.swift in Sources */,
 				84E49CF129D2ABEB00BCCA8B /* InTrendMovieCell.swift in Sources */,
 				84B604AC29CDF8E40047A603 /* AppError.swift in Sources */,
+				84EB775D29D994CB002F5137 /* CoverModel.swift in Sources */,
 				849FA1E129D5804E0097223A /* ForMeMoviesViewModel.swift in Sources */,
 				84BE5C3729CF02D20051B6D0 /* MainCoordinator.swift in Sources */,
 				84B604A529CDF1DA0047A603 /* TokenManager.swift in Sources */,
@@ -676,6 +702,7 @@
 				84D7860529CC5D5D004D518D /* LoginScreenModel.swift in Sources */,
 				843C9B9829D71AAE00E370EC /* MovieScreenView.swift in Sources */,
 				84D785FA29CC54FB004D518D /* AppCoordinator.swift in Sources */,
+				84EB775F29D99534002F5137 /* CoverRepositoryImplementation.swift in Sources */,
 				846E48B329D202CC006B5F59 /* TagModel.swift in Sources */,
 				849FA1DD29D57F9E0097223A /* NewMoviesModel.swift in Sources */,
 				843C9B9629D71A1300E370EC /* MovieScreenViewModel.swift in Sources */,
@@ -707,6 +734,7 @@
 				84BE5C3129CF011D0051B6D0 /* MainScreenModel.swift in Sources */,
 				843C9B9429D717D600E370EC /* MovieScreenViewController.swift in Sources */,
 				84E49CF829D2CE3500BCCA8B /* NewCollectionViewCell.swift in Sources */,
+				84EB775A29D99472002F5137 /* CoverRepository.swift in Sources */,
 				844A26BC29D80E5C00395B0C /* ShotsCollectionView.swift in Sources */,
 				843C9B8A29D6F1BC00E370EC /* MainTabBarController.swift in Sources */,
 			);

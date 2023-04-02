@@ -9,9 +9,6 @@ import Foundation
 
 struct MainScreenModel {
     
-    var inTrendMovies: [MovieModel] = []
-    var lastViewMovies: [MovieModel] = []
-    var newMovies: [MovieModel] = []
-    var forYouMovies: [MovieModel] = []
-    var error: String = ""
+    var cover: CoverModel = CoverModel(backgroundImage: "", foregroundImage: "")
+    
 }

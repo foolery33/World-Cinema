@@ -18,6 +18,7 @@ enum AppError: Error, LocalizedError, Identifiable, Equatable {
     
     case authError(AuthRepositoryImplementation.AuthError)
     case movieError(MovieRepositoryImplementation.MovieError)
+    case coverError(CoverRepositoryImplementation.CoverError)
     
     var id: String {
         self.errorDescription
@@ -27,6 +28,8 @@ enum AppError: Error, LocalizedError, Identifiable, Equatable {
         case .authError(let error):
             return error.errorDescription
         case .movieError(let error):
+            return error.errorDescription
+        case .coverError(let error):
             return error.errorDescription
         }
     }

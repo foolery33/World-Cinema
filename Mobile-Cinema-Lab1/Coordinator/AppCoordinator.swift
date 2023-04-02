@@ -35,7 +35,7 @@ class AppCoordinator: Coordinator {
     }
     
     func goToHome() {
-        let homeCoordinator = MainTabBarCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel())
+        let homeCoordinator = MainTabBarCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()))
         children.append(homeCoordinator)
         homeCoordinator.parentCoordinator = self
         homeCoordinator.start()

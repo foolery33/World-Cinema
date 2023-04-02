@@ -15,6 +15,7 @@ class MainScreenViewController: UIViewController {
     override func loadView() {
         let mainScreenView = MainScreenView(viewModel: self.viewModel)
         view = mainScreenView
+        mainScreenView.loadCover()
         mainScreenView.loadSections()
         navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
