@@ -37,6 +37,10 @@ class MovieScreenViewModel {
         self.movieRepository = movieRepository
     }
     
+    func backToMainScreen() {
+        self.coordinator.navigationController.popViewController(animated: true)
+    }
+    
     func getMovieEpisodesById(movieId: String, completion: @escaping (Bool) -> Void) {
         movieRepository.getMovieEpisodesById(movieId: movieId) { [weak self] result in
             switch result {

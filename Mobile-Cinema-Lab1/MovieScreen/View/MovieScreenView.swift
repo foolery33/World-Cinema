@@ -24,6 +24,7 @@ class MovieScreenView: UIView {
     
     private func setupSubviews() {
         setupScrollView()
+        setupBackButton()
     }
     
     // MARK: - ScrollView setup
@@ -89,6 +90,27 @@ class MovieScreenView: UIView {
         }
     }
     
+    // MARK: Back button
+    
+    private lazy var backButton: UIButton = {
+        let myButton = UIButton(type: .system)
+        myButton.setImage(UIImage(named: "BackArrow"), for: .normal)
+        myButton.tintColor = .white
+        myButton.addTarget(self, action: #selector(backToMainScreen), for: .touchUpInside)
+        myButton.contentEdgeInsets = UIEdgeInsets(top: 11.5, left: 6.5, bottom: 14, right: 14)
+        return myButton
+    }()
+    private func setupBackButton() {
+        addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+        }
+    }
+    @objc private func backToMainScreen() {
+        viewModel.backToMainScreen()
+    }
+    
     // MARK: Watch poster button setup
     
     private lazy var watchPosterButton: UIButton = {
@@ -150,14 +172,14 @@ class MovieScreenView: UIView {
     // MARK: - StackView setup
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 32
-        return stackView
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = 32
+        return myStackView
     }()
     private func setupStackView() {
         contentView.addSubview(stackView)
-        setupGenresCollectionView()
+        setupGenresCollectionStack()
         setupDescriptionStackView()
         setupShotsStackView()
         setupEpisodesStackView()
@@ -167,12 +189,24 @@ class MovieScreenView: UIView {
             make.top.equalTo(underPosterStack.snp.bottom).offset(32)
         }
     }
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.text = "asdasdasdasd"
-        label.textColor = .red
-        return label
+    
+    // MARK: - GenresCollection StackView setup
+    
+    private lazy var genresCollectionStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.axis = .vertical
+        myStackView.spacing = 32
+        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        myStackView.isLayoutMarginsRelativeArrangement = true
+        return myStackView
     }()
+    private func setupGenresCollectionStack() {
+        stackView.addArrangedSubview(genresCollectionStack)
+        genresCollectionStack.addArrangedSubview(genresCollectionView)
+        genresCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(genresCollectionView.calculateContentHeight())
+        }
+    }
     
     // MARK: GenresCollectionView setup
     
@@ -181,18 +215,6 @@ class MovieScreenView: UIView {
         myCollectionView.genres = GetGenresListFromTagsUseCase().getList(viewModel.movie.tags)
         return myCollectionView
     }()
-    private func setupGenresCollectionView() {
-        stackView.addArrangedSubview(genresCollectionView)
-        genresCollectionView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
-//            make.height.equalTo(genresCollectionView.collectionViewLayout.collectionViewContentSize.height)
-            make.height.equalTo(genresCollectionView.calculateContentHeight())
-        }
-        print(genresCollectionView.contentSize)
-        print(genresCollectionView.numberOfSections)
-//        stackView.addArrangedSubview(label)
-//        genresCollectionView.reloadData()
-    }
     
     // MARK: - Description StackView setup
     
@@ -200,15 +222,14 @@ class MovieScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
         myStackView.spacing = 8
+        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
     }()
     private func setupDescriptionStackView() {
         stackView.addArrangedSubview(descriptionStackView)
         setupDescriptionSectionLabel()
         setupDescriptionLabel()
-        descriptionStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
-        }
     }
     
     // MARK: Description section label setup
@@ -222,9 +243,6 @@ class MovieScreenView: UIView {
     }()
     private func setupDescriptionSectionLabel() {
         descriptionStackView.addArrangedSubview(descriptionSectionLabel)
-        descriptionSectionLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-        }
     }
     
     // MARK: Description label setup
@@ -239,9 +257,6 @@ class MovieScreenView: UIView {
     }()
     private func setupDescriptionLabel() {
         descriptionStackView.addArrangedSubview(descriptionLabel)
-        descriptionSectionLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-        }
     }
     
     // MARK: - Shots StackView setup
@@ -254,13 +269,25 @@ class MovieScreenView: UIView {
     }()
     private func setupShotsStackView() {
         stackView.addArrangedSubview(shotsStackView)
-        setupShotsLabel()
+        setupShotsLabelStack()
         setupShotsCollectionView()
         shotsStackView.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(72 + shotsStackView.spacing + shotsLabel.frame.size.height)
         }
+    }
+    
+    // MARK: Shots label stack setup
+    private lazy var shotsLabelStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        myStackView.isLayoutMarginsRelativeArrangement = true
+        return myStackView
+    }()
+    private func setupShotsLabelStack() {
+        shotsStackView.addArrangedSubview(shotsLabelStack)
+        shotsLabelStack.addArrangedSubview(shotsLabel)
     }
     
     // MARK: Shots label setup
@@ -273,12 +300,6 @@ class MovieScreenView: UIView {
         myLabel.sizeToFit()
         return myLabel
     }()
-    private func setupShotsLabel() {
-        shotsStackView.addArrangedSubview(shotsLabel)
-        shotsLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(16)
-        }
-    }
     
     // MARK: ShotsCollectionView setup
     
@@ -289,9 +310,6 @@ class MovieScreenView: UIView {
     }()
     private func setupShotsCollectionView() {
         shotsStackView.addArrangedSubview(shotsCollectionView)
-        shotsCollectionView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-        }
     }
     
     // MARK: - Episodes StackView setup
@@ -300,15 +318,14 @@ class MovieScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
         myStackView.spacing = 16
+        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
     }()
     private func setupEpisodesStackView() {
         stackView.addArrangedSubview(episodesStackView)
         setupEpisodesLabel()
         setupEpisodesTableView()
-        episodesStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
-        }
     }
     
     // MARK: Episodes label setup
@@ -322,30 +339,22 @@ class MovieScreenView: UIView {
     }()
     private func setupEpisodesLabel() {
         episodesStackView.addArrangedSubview(episodesLabel)
-        episodesLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-        }
     }
     
-    private lazy var episodesTablveView: EpisodesTableView = {
+    private lazy var episodesTableView: EpisodesTableView = {
         let myTableView = EpisodesTableView()
         myTableView.viewModel = self.viewModel
         return myTableView
     }()
     private func setupEpisodesTableView() {
-        episodesStackView.addArrangedSubview(episodesTablveView)
-        episodesTablveView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(episodesTablveView.countHeight())
-        }
+        episodesStackView.addArrangedSubview(episodesTableView)
     }
     private func reloadEpisodesView() {
         if(self.viewModel.episodes.isEmpty) {
             episodesStackView.removeFromSuperview()
-            ()
         }
         else {
-            episodesTablveView.reloadData()
+            episodesTableView.reloadData()
         }
     }
     
@@ -357,10 +366,9 @@ class MovieScreenView: UIView {
         viewModel.getMovieEpisodesById(movieId: viewModel.movie.movieId) { success in
             activityIndicator.stopAnimation()
             if(success) {
-                self.episodesTablveView.snp.remakeConstraints { make in
-                    make.leading.trailing.equalToSuperview()
-                    make.height.equalTo(self.episodesTablveView.countHeight())
-                    print("newHeight", self.episodesTablveView.countHeight())
+                self.episodesTableView.snp.remakeConstraints { make in
+                    make.height.equalTo(self.episodesTableView.countHeight())
+                    print("newHeight", self.episodesTableView.countHeight())
                 }
                 self.reloadEpisodesView()
                 

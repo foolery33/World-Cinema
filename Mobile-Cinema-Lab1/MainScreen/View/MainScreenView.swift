@@ -31,7 +31,6 @@ class MainScreenView: UIView {
     private lazy var scrollView: UIScrollView = {
         let myScrollView = UIScrollView()
         myScrollView.showsVerticalScrollIndicator = false
-//        myScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return myScrollView
     }()
     private func setupScrollView() {
@@ -116,16 +115,15 @@ class MainScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
         myStackView.spacing = 32
-//        myStackView.backgroundColor = .blue
         return myStackView
     }()
     private func setupCollectionsStackView() {
         contentView.addSubview(collectionsStackView)
         setupInTrendStackView()
-        setupLastSeenStackView()
+        setupLastViewStackView()
         setupNewStackView()
         setupForMeStackView()
-        setupSetInterestsButton()
+        setupInterestsButtonStack()
         
         collectionsStackView.snp.makeConstraints { make in
             make.top.equalTo(poster.snp.bottom).offset(32)
@@ -143,7 +141,7 @@ class MainScreenView: UIView {
     }()
     private func setupInTrendStackView() {
         collectionsStackView.addArrangedSubview(inTrendStack)
-        setupInTrendLabel()
+        setupInTrendStack()
         setupInTrendCollectionView()
 
         inTrendStack.snp.makeConstraints { make in
@@ -155,7 +153,6 @@ class MainScreenView: UIView {
     private lazy var inTrendCollectionView: UICollectionView = {
         let myCollectionView = InTrendCollectionView()
         myCollectionView.viewModel = self.viewModel.inTrendMoviesViewModel
-//        myCollectionView.backgroundColor = .red
         return myCollectionView
     }()
     private func setupInTrendCollectionView() {
@@ -163,6 +160,17 @@ class MainScreenView: UIView {
         inTrendCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
         }
+    }
+    // MARK: InTrend label stack setup
+    private lazy var inTrendLabelStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        myStackView.isLayoutMarginsRelativeArrangement = true
+        return myStackView
+    }()
+    private func setupInTrendStack() {
+        inTrendStack.addArrangedSubview(inTrendLabelStack)
+        inTrendLabelStack.addArrangedSubview(inTrendLabel)
     }
     // MARK: InTrend label setup
     private lazy var inTrendLabel: UILabel = {
@@ -172,20 +180,12 @@ class MainScreenView: UIView {
         myLabel.textColor = .redColor
         myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         myLabel.sizeToFit()
-//        myLabel.backgroundColor = .red
         return myLabel
     }()
-    private func setupInTrendLabel() {
-        inTrendStack.addArrangedSubview(inTrendLabel)
-        inTrendLabel.snp.makeConstraints { make in
-            make.leading.equalTo(inTrendStack.snp.leading).inset(16)
-        }
-    }
     // MARK: Reload InTrendCollectionView
     private func reloadInTrendMoviesView() {
         if(self.viewModel.inTrendMoviesViewModel.inTrendMovies.isEmpty) {
             inTrendStack.removeFromSuperview()
-            ()
         }
         else {
             inTrendCollectionView.reloadData()
@@ -199,15 +199,26 @@ class MainScreenView: UIView {
         myStackView.spacing = 16
         return myStackView
     }()
-    private func setupLastSeenStackView() {
+    private func setupLastViewStackView() {
         collectionsStackView.addArrangedSubview(lastViewStack)
-        setupLastViewLabel()
+        setupLastViewStack()
         setupLastViewButton()
 
         lastViewStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(240 + lastViewStack.spacing + lastViewLabel.frame.size.height)
         }
+    }
+    // MARK: InTrend label stack setup
+    private lazy var lastViewLabelStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        myStackView.isLayoutMarginsRelativeArrangement = true
+        return myStackView
+    }()
+    private func setupLastViewStack() {
+        lastViewStack.addArrangedSubview(lastViewLabelStack)
+        lastViewLabelStack.addArrangedSubview(lastViewLabel)
     }
     // MARK: LastView label setup
     private lazy var lastViewLabel: UILabel = {
@@ -217,15 +228,8 @@ class MainScreenView: UIView {
         myLabel.textColor = .redColor
         myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         myLabel.sizeToFit()
-//        myLabel.backgroundColor = .red
         return myLabel
     }()
-    private func setupLastViewLabel() {
-        lastViewStack.addArrangedSubview(lastViewLabel)
-        lastViewLabel.snp.makeConstraints { make in
-            make.leading.equalTo(lastViewStack.snp.leading).inset(16)
-        }
-    }
     // MARK: LastViewButton setup
     private lazy var lastViewButton: UIButton = {
         let myButton = UIButton(type: .custom)
@@ -258,7 +262,6 @@ class MainScreenView: UIView {
     private func reloadLastViewMoviesView() {
         if(self.viewModel.lastViewMoviesViewModel.lastViewMovies.isEmpty) {
             lastViewStack.removeFromSuperview()
-            ()
         }
         else {
             inTrendCollectionView.reloadData()
@@ -270,18 +273,28 @@ class MainScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
         myStackView.spacing = 16
-//        myStackView.backgroundColor = .purple
         return myStackView
     }()
     private func setupNewStackView() {
         collectionsStackView.addArrangedSubview(newStack)
-        setupNewLabel()
+        setupNewLabelStack()
         setupNewCollectionView()
 
         newStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(144 + newStack.spacing + newLabel.frame.size.height)
         }
+    }
+    // MARK: New label stack setup
+    private lazy var newLabelStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        myStackView.isLayoutMarginsRelativeArrangement = true
+        return myStackView
+    }()
+    private func setupNewLabelStack() {
+        newStack.addArrangedSubview(newLabelStack)
+        newLabelStack.addArrangedSubview(newLabel)
     }
     // MARK: New label setup
     private lazy var newLabel: UILabel = {
@@ -293,16 +306,9 @@ class MainScreenView: UIView {
         myLabel.sizeToFit()
         return myLabel
     }()
-    private func setupNewLabel() {
-        newStack.addArrangedSubview(newLabel)
-        newLabel.snp.makeConstraints { make in
-            make.leading.equalTo(newStack.snp.leading).inset(16)
-        }
-    }
     // MARK: - NewCollectionView setup
     private lazy var newCollectionView: UICollectionView = {
         let newMovies = NewCollectionView()
-//        newMovies.backgroundColor = .red
         newMovies.viewModel = self.viewModel.newMoviesViewModel
         return newMovies
     }()
@@ -310,13 +316,11 @@ class MainScreenView: UIView {
         newStack.addArrangedSubview(newCollectionView)
         newCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-//            make.height.equalTo(144)
         }
     }
     private func reloadNewMoviesView() {
         if(self.viewModel.newMoviesViewModel.newMovies.isEmpty) {
             newStack.removeFromSuperview()
-            ()
         }
         else {
             newCollectionView.reloadData()
@@ -332,13 +336,24 @@ class MainScreenView: UIView {
     }()
     private func setupForMeStackView() {
         collectionsStackView.addArrangedSubview(forMeStack)
-        setupForMeLabel()
+        setupForMeStack()
         setupMeYouCollectionView()
 
         forMeStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(144 + forMeStack.spacing + forMeLabel.frame.size.height)
         }
+    }
+    // MARK: ForMe label stack setup
+    private lazy var forMeLabelStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        myStackView.isLayoutMarginsRelativeArrangement = true
+        return myStackView
+    }()
+    private func setupForMeStack() {
+        forMeStack.addArrangedSubview(forMeLabelStack)
+        forMeLabelStack.addArrangedSubview(forMeLabel)
     }
     // MARK: ForYou label setup
     private lazy var forMeLabel: UILabel = {
@@ -350,12 +365,6 @@ class MainScreenView: UIView {
         myLabel.sizeToFit()
         return myLabel
     }()
-    private func setupForMeLabel() {
-        forMeStack.addArrangedSubview(forMeLabel)
-        forMeLabel.snp.makeConstraints { make in
-            make.leading.equalTo(forMeStack.snp.leading).inset(16)
-        }
-    }
     // MARK: ForMeCollectionView setup
     private lazy var forMeCollectionView: UICollectionView = {
         let myCollectionView = ForMeCollectionView()
@@ -372,25 +381,28 @@ class MainScreenView: UIView {
     private func reloadForYouMoviesView() {
         if(self.viewModel.inTrendMoviesViewModel.inTrendMovies.isEmpty) {
             forMeStack.removeFromSuperview()
-            ()
         }
         else {
             forMeCollectionView.reloadData()
         }
     }
     
-    // MARK: - SetInterests button setup
+    // MARK: - SetInterests button stack setup
+    private lazy var setInretestsButtonStack: UIStackView = {
+        let myStackView = UIStackView()
+        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        myStackView.isLayoutMarginsRelativeArrangement = true
+        return myStackView
+    }()
+    private func setupInterestsButtonStack() {
+        collectionsStackView.addArrangedSubview(setInretestsButtonStack)
+        setInretestsButtonStack.addArrangedSubview(setInterestsButton)
+    }
+    // MARK: SetInterests button setup
     private lazy var setInterestsButton: UIButton = {
         let myButton = FilledButton()
         return myButton.getFilledButton(label: "Указать интересы", selector: nil)
     }()
-    private func setupSetInterestsButton() {
-        collectionsStackView.addArrangedSubview(setInterestsButton)
-        setInterestsButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview()
-        }
-    }
     
     func loadSections() {
         let activityIndicator = ActivityIndicator()

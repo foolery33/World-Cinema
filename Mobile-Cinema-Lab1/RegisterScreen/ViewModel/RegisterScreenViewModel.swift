@@ -24,7 +24,7 @@ class RegisterScreenViewModel {
     var error: String = ""
     
     func loginButtonTapped() {
-        coordinator.navigationController.popViewController(animated: true)
+        self.coordinator.navigationController.popViewController(animated: true)
     }
     
     func register(completion: @escaping (Bool) -> Void) {

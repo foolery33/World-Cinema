@@ -222,26 +222,10 @@
             filePath = "Mobile-Cinema-Lab1/MovieScreen/View/MovieScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "genresCollectionView"
             landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D64FB0EF-2CD5-469A-8C46-2ACEAFE16DF7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mobile-Cinema-Lab1/MovieScreen/View/MovieScreenView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
-            landmarkName = "setupGenresCollectionView()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -434,8 +418,8 @@
             filePath = "Mobile-Cinema-Lab1/MovieScreen/View/MovieScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
             landmarkName = "getEpisodes()"
             landmarkType = "7">
             <Locations>
@@ -482,8 +466,8 @@
             filePath = "Mobile-Cinema-Lab1/MovieScreen/ViewModel/MovieScreenViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "getMovieEpisodesById(movieId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -498,8 +482,8 @@
             filePath = "Mobile-Cinema-Lab1/MovieScreen/ViewModel/MovieScreenViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "getMovieEpisodesById(movieId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
