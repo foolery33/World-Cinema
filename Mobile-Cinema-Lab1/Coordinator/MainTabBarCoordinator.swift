@@ -36,7 +36,11 @@ class MainTabBarCoordinator: Coordinator {
         // MARK: - MainScreen
         
         let mainNavigationController = UINavigationController()
-        let mainCoordinator = MainCoordinator(navigationController: mainNavigationController, mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()), movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()))
+        let mainCoordinator = MainCoordinator(
+            navigationController: mainNavigationController,
+            mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()),
+            movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
+            episodeViewModel: EpisodeScreenViewModel())
         mainCoordinator.parentCoordinator = parentCoordinator
         
         let mainItem = UITabBarItem()

@@ -40,16 +40,17 @@ extension EpisodesTableView: UITableViewDataSource {
         cell.setup(with: episode, isLast: indexPath.row == (viewModel?.episodes.count ?? 0) - 1)
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("clicked")
+        viewModel?.coordinator.goToEpisodeScreen(
+            yearRange: GetYearRangeForEpisodesUseCase().getRange(episodes: viewModel?.episodes ?? []),
+            episode: viewModel?.episodes[indexPath.row] ?? EpisodeModel(episodeId: "", name: "", description: "", director: "", stars: [], year: 0, images: [], runtime: 0, preview: "", filePath: ""),
+            movie: viewModel?.movie ?? MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: []))
+    }
 }
 
 extension EpisodesTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if(indexPath.row != viewModel?.episodes.count - 1) {
-//            return 72 + 16
-//        }
-//        else {
-//            return 72
-//        }
         return 72 + 16
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

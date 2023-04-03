@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieScreenViewModel {
+final class MovieScreenViewModel {
     
     weak var coordinator: MainCoordinator!
     private var model = MovieScreenModel()

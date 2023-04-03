@@ -17,16 +17,17 @@ class MainCoordinator: Coordinator {
     // MARK: ViewModels
     var mainViewModel: MainScreenViewModel
     var movieViewModel: MovieScreenViewModel
+    var episodeViewModel: EpisodeScreenViewModel
     
-    init(navigationController: UINavigationController, mainViewModel: MainScreenViewModel, movieViewModel: MovieScreenViewModel) {
+    init(navigationController: UINavigationController, mainViewModel: MainScreenViewModel, movieViewModel: MovieScreenViewModel, episodeViewModel: EpisodeScreenViewModel) {
         self.navigationController = navigationController
         self.mainViewModel = mainViewModel
         self.movieViewModel = movieViewModel
+        self.episodeViewModel = episodeViewModel
     }
     
     func start() {
         goToMainScreen()
-//        goToMovieScreen(movie: MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: []))
     }
     
     func goToMainScreen() {
@@ -42,6 +43,16 @@ class MainCoordinator: Coordinator {
         movieViewModel.movie = movie
         movieViewController.viewModel = self.movieViewModel
         navigationController.pushViewController(movieViewController, animated: true)
+    }
+    
+    func goToEpisodeScreen(yearRange: String, episode: EpisodeModel, movie: MovieModel) {
+        let episodeViewController = EpisodeScreenViewController()
+        self.episodeViewModel.coordinator = self
+        episodeViewModel.episode = episode
+        episodeViewModel.movie = movie
+        episodeViewModel.yearRange = yearRange
+        episodeViewController.viewModel = self.episodeViewModel
+        navigationController.pushViewController(episodeViewController, animated: true)
     }
     
 }
