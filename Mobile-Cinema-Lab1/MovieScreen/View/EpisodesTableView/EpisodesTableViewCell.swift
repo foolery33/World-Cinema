@@ -128,7 +128,6 @@ class EpisodesTableViewCell: UITableViewCell {
     }
 
     func setup(with episode: EpisodeModel, isLast: Bool) {
-        print("setup")
         image.loadImageWithURL(episode.preview)
         episodeNameLabel.text = episode.name
         episodeDescription.text = episode.description

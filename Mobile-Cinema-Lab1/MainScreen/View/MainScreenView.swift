@@ -420,8 +420,8 @@ class MainScreenView: UIView {
     
     func loadCover() {
         DispatchQueue.main.async {
-            self.viewModel.getCover { succes in
-                if(succes) {
+            self.viewModel.getCover { success in
+                if(success) {
                     self.poster.loadImageWithURL(self.viewModel.cover.backgroundImage)
                     self.foregroundPoster.loadImageWithURL(self.viewModel.cover.foregroundImage)
                 }

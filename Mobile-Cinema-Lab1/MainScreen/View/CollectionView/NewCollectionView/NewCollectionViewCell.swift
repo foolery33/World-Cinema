@@ -77,4 +77,11 @@ extension UIImageView {
             contentMode = .scaleAspectFill
         }
     }
+    func makeRounded() {
+        layer.borderWidth = 1
+        layer.masksToBounds = false
+        layer.borderColor = UIColor.black.cgColor
+        layer.cornerRadius = self.frame.height / 2
+        clipsToBounds = true
+    }
 }

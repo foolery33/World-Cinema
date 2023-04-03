@@ -57,7 +57,6 @@ class AuthCoordinator: Coordinator {
     
     func goToMainScreen() {
         let appCoordinator = parentCoordinator as! AppCoordinator
-//        appCoordinator.goToMain()
         appCoordinator.goToHome()
         parentCoordinator?.childDidFinish(self)
     }
