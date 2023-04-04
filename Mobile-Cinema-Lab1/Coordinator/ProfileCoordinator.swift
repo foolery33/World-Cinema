@@ -26,7 +26,7 @@ final class ProfileCoordinator: Coordinator {
     }
     
     private func goToProfileScreen() {
-        var profileViewController = ProfileScreenViewController()
+        let profileViewController = ProfileScreenViewController()
         self.profileViewModel.coordinator = self
         profileViewController.viewModel = self.profileViewModel
         navigationController.pushViewController(profileViewController, animated: true)
