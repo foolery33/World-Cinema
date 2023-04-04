@@ -31,7 +31,7 @@ class MainTabBarCoordinator: Coordinator {
     
     private func initializeMainTabBar() {
         let viewController = MainTabBarController()
-        viewController.view.backgroundColor = UIColor(named: "BackgroundColor")
+        
         // MARK: - MainScreen
         
         let mainNavigationController = UINavigationController()
@@ -58,20 +58,21 @@ class MainTabBarCoordinator: Coordinator {
 //        compilationItem.title = "Подборка"
 //        compilationItem.image = UIImage(named: "Compilation")
 //        
-//        // MARK: - Collections
-//        
-//        let collectionsNavigationController = UINavigationController()
-//        let collectionsCoordinator = CollectionsCoordinator(navigationController: collectionsNavigationController, collectionsViewModel: CollectionsViewModel())
-//        collectionsCoordinator.parentCoordinator = parentCoordinator
-//        
-//        let collectionsItem = UITabBarItem()
-//        collectionsItem.title = "Коллекции"
-//        collectionsItem.image = UIImage(named: "Collections")
-//        
+        // MARK: - Collections
+        
+        let collectionsNavigationController = UINavigationController()
+        collectionsNavigationController.setNavigationBarHidden(true, animated: false)
+        let collectionsCoordinator = CollectionsCoordinator(navigationController: collectionsNavigationController, collectionsViewModel: CollectionsScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation()))
+        collectionsCoordinator.parentCoordinator = parentCoordinator
+        
+        let collectionsItem = UITabBarItem()
+        collectionsItem.title = "Коллекции"
+        collectionsItem.image = UIImage(named: "Collections")
+        collectionsNavigationController.tabBarItem = collectionsItem
+
         // MARK: - Profile
         
         let profileNavigationController = UINavigationController()
-        profileNavigationController.setNavigationBarHidden(true, animated: false)
         let profileCoordinator = ProfileCoordinator(navigationController: profileNavigationController, profileViewModel: ProfileScreenViewModel(profileRepository: ProfileRepositoryImplementation()))
         profileCoordinator.parentCoordinator = parentCoordinator
         
@@ -81,18 +82,18 @@ class MainTabBarCoordinator: Coordinator {
         profileNavigationController.tabBarItem = profileItem
         
 //        viewController.viewControllers = [mainNavigationController, compilationNavigationController, collectionsNavigationController, profileNavigationController]
-        viewController.viewControllers = [mainNavigationController, profileNavigationController]
+        viewController.viewControllers = [mainNavigationController, collectionsNavigationController, profileNavigationController]
         navigationController.pushViewController(viewController, animated: true)
         navigationController.setNavigationBarHidden(true, animated: false)
         
         parentCoordinator?.children.append(mainCoordinator)
 //        parentCoordinator?.children.append(compilationCoordinator)
-//        parentCoordinator?.children.append(collectionsCoordinator)
+        parentCoordinator?.children.append(collectionsCoordinator)
         parentCoordinator?.children.append(profileCoordinator)
         
         mainCoordinator.start()
 //        compilationCoordinator.start()
-//        collectionsCoordinator.start()
+        collectionsCoordinator.start()
         profileCoordinator.start()
         
     }

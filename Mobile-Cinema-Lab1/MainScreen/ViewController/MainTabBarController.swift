@@ -53,6 +53,7 @@ class MainTabBarController: UITabBarController {
 //        tabBarFrame.origin.y = view.frame.size.height - customTabBarHeight
 //        tabBar.frame = tabBarFrame
         navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.navigationBar.barTintColor = .white
         tabBar.backgroundColor = .tabbarColor
         tabBar.tintColor = .redColor
         tabBar.barTintColor = .tabbarColor

@@ -9,8 +9,6 @@ import UIKit
 
 class ProfileSectionsTableView: UITableView {
 
-    var viewModel: ProfileScreenViewModel?
-    
     private let sections: [(UIImage, String)] = [(UIImage(named: "Chat")!, "Обсуждения"), (UIImage(named: "Clock")!, "История"), (UIImage(named: "Settings")!, "Настройки")]
     
     init() {

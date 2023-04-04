@@ -31,8 +31,7 @@ class TokenManager {
     }
     
     func clearAllData() {
-        KeychainWrapper.standard.set("", forKey: KeysName.accessToken)
-        KeychainWrapper.standard.set("", forKey: KeysName.refreshToken)
+        KeychainWrapper.standard.removeAllKeys()
     }
     
 }
