@@ -39,7 +39,7 @@ class AuthCoordinator: Coordinator {
         let loginViewController = LoginViewController()
         self.loginViewModel.coordinator = self
         loginViewController.viewModel = self.loginViewModel
-        navigationController.pushViewController(loginViewController, animated: true)
+        navigationController.pushViewController(loginViewController, animated: false)
     }
     
     func goToRegisterScreen() {
@@ -57,7 +57,9 @@ class AuthCoordinator: Coordinator {
     
     func goToMainScreen() {
         let appCoordinator = parentCoordinator as! AppCoordinator
-        appCoordinator.goToHome()
+//        self.loginViewModel = LoginScreenViewModel(authRepository: AuthRepositoryImplementation())
+//        self.registerViewModel = RegisterScreenViewModel(authRepository: AuthRepositoryImplementation())
+        appCoordinator.goToMain()
         parentCoordinator?.childDidFinish(self)
     }
     

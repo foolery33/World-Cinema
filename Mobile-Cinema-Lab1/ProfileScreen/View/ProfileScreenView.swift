@@ -97,14 +97,29 @@ class ProfileScreenView: UIView {
     private lazy var avatarImage: UIImageView = {
         let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 88, height: 88))
         myImageView.layer.cornerRadius = myImageView.frame.height / 2
-        myImageView.image = UIImage(named: "TheMagicians")
         myImageView.clipsToBounds = true
+        myImageView.contentMode = .scaleAspectFit
         return myImageView
     }()
     private func setupAvatarImage() {
         avatarStack.addArrangedSubview(avatarImage)
         avatarImage.snp.makeConstraints { make in
             make.width.height.equalTo(88)
+        }
+    }
+    
+    // MARK: ImagePicker setup
+    
+    private lazy var imagePicker: UIImagePickerController = {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        return vc
+    }()
+    @objc private func showImagePicker() {
+        if let viewController = self.next as? UIViewController {
+            viewController.present(imagePicker, animated: true)
         }
     }
     
@@ -115,6 +130,7 @@ class ProfileScreenView: UIView {
         myButton.setTitle("Изменить", for: .normal)
         myButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         myButton.setTitleColor(.redColor, for: .normal)
+        myButton.addTarget(self, action: #selector(showImagePicker), for: .touchUpInside)
         return myButton
     }()
     
@@ -157,7 +173,6 @@ class ProfileScreenView: UIView {
     
     private lazy var sectionsTableView: ProfileSectionsTableView = {
         let myTableView = ProfileSectionsTableView()
-//        myTableView.backgroundColor = .white
         return myTableView
     }()
     private func setupSectionsTableView() {
@@ -176,7 +191,13 @@ class ProfileScreenView: UIView {
         return OutlinedButton().getOutlinedButton(label: "Выход", selector: #selector(leaveAccount))
     }()
     @objc private func leaveAccount() {
-//        viewModel.leaveAccount()
+        let activityIndicator = ActivityIndicator()
+        addSubview(activityIndicator)
+        activityIndicator.setupAnimation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            activityIndicator.stopAnimation()
+            self.viewModel.leaveAccount()
+        }
     }
     private func setupExitButton() {
         contentView.addSubview(exitButton)
@@ -202,12 +223,54 @@ class ProfileScreenView: UIView {
         }
     }
     
+    func setAvatar(imageData: Data, image: UIImage) {
+        let activityIndicator = ActivityIndicator()
+        addSubview(activityIndicator)
+        activityIndicator.setupAnimation()
+        viewModel.setAvatar(imageData: imageData) { success in
+            activityIndicator.stopAnimation()
+            if(success) {
+                self.avatarImage.image = image
+            }
+            else {
+                self.showAlert(title: "Avatar Setting Failed", message: self.viewModel.error)
+            }
+        }
+    }
+    
     func updateDataOnScreen() {
         usernameLabel.text = "\(viewModel.profile.firstName) \(viewModel.profile.lastName)"
         emailLabel.text = viewModel.profile.email
         if viewModel.profile.avatar != nil {
             avatarImage.loadImageWithURL(viewModel.profile.avatar ?? "")
         }
+    }
+    
+}
+
+extension ProfileScreenView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        
+        if let imageData = image.jpegData(compressionQuality: 0.3) {
+            if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+                self.setAvatar(imageData: imageData, image: image)
+            }
+            else {
+                self.showAlert(title: "Avatar Setting Failed", message: "Your file is corrupted")
+            }
+//            var binaryData = [UInt8](repeating: 0, count: imageData.count)
+//            imageData.copyBytes(to: &binaryData, count: imageData.count)
+//            print(binaryData)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     
 }

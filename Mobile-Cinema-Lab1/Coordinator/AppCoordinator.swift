@@ -23,7 +23,7 @@ class AppCoordinator: Coordinator {
             goToAuth()
         }
         else {
-            goToHome()
+            goToMain()
         }
     }
     
@@ -34,7 +34,7 @@ class AppCoordinator: Coordinator {
         authCoordinator.start()
     }
     
-    func goToHome() {
+    func goToMain() {
         let homeCoordinator = MainTabBarCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()))
         children.append(homeCoordinator)
         homeCoordinator.parentCoordinator = self

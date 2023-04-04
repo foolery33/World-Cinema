@@ -30,4 +30,9 @@ class TokenManager {
         KeychainWrapper.standard.set(refreshToken, forKey: KeysName.refreshToken)
     }
     
+    func clearAllData() {
+        KeychainWrapper.standard.set("", forKey: KeysName.accessToken)
+        KeychainWrapper.standard.set("", forKey: KeysName.refreshToken)
+    }
+    
 }

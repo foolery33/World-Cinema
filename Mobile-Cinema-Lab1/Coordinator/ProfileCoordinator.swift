@@ -32,4 +32,10 @@ final class ProfileCoordinator: Coordinator {
         navigationController.pushViewController(profileViewController, animated: true)
     }
     
+    func goToLoginScreen() {
+        let appCoordinator = parentCoordinator as! AppCoordinator
+        appCoordinator.goToAuth()
+        parentCoordinator?.childDidFinish(self)
+    }
+    
 }

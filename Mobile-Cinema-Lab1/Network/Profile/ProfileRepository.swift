@@ -10,5 +10,6 @@ import Foundation
 protocol ProfileRepository {
     
     func getProfile(completion: @escaping (Result<UserModel, AppError>) -> Void)
+    func setAvatar(imageData: Data, completion: @escaping (Result<Bool, AppError>) -> Void)
     
 }
