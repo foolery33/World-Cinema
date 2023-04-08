@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
-class MainCoordinator: Coordinator {
+protocol MovieToEpisodeNavigationProtocol: AnyObject {
+    func goToMovieScreen(movie: MovieModel) -> Void
+    func goToEpisodeScreen(yearRange: String, episode: EpisodeModel, movie: MovieModel) -> Void
+}
+
+class MainCoordinator: Coordinator, MovieToEpisodeNavigationProtocol {
     
     var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
@@ -53,6 +58,14 @@ class MainCoordinator: Coordinator {
         episodeViewModel.yearRange = yearRange
         episodeViewController.viewModel = self.episodeViewModel
         navigationController.pushViewController(episodeViewController, animated: true)
+    }
+    
+    func goBackToMainScreen() {
+        navigationController.popViewController(animated: true)
+    }
+    
+    func goBackToMovieScreen() {
+        navigationController.popViewController(animated: true)
     }
     
 }

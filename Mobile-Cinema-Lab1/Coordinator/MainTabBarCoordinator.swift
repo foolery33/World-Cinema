@@ -18,12 +18,14 @@ class MainTabBarCoordinator: Coordinator {
     // MARK: ViewModels
     var mainViewModel: MainScreenViewModel
 //    var compilationViewModel : CompilationScreenViewModel
-//    var collectionsViewModel: CollectionsScreenViewModel
-//    var profileViewModel: ProfileScreenViewModel
+    var collectionsViewModel: CollectionsScreenViewModel
+    var profileViewModel: ProfileScreenViewModel
     
-    init(navigationController: UINavigationController, mainViewModel: MainScreenViewModel, collectionsDatabase: CollectionsDatabase) {
+    init(navigationController: UINavigationController, mainViewModel: MainScreenViewModel, collectionsViewModel: CollectionsScreenViewModel, profileViewModel: ProfileScreenViewModel, collectionsDatabase: CollectionsDatabase) {
         self.navigationController = navigationController
         self.mainViewModel = mainViewModel
+        self.collectionsViewModel = collectionsViewModel
+        self.profileViewModel = profileViewModel
         self.collectionsDatabase = collectionsDatabase
     }
     
@@ -65,7 +67,18 @@ class MainTabBarCoordinator: Coordinator {
         
         let collectionsNavigationController = UINavigationController()
         collectionsNavigationController.setNavigationBarHidden(true, animated: false)
-        let collectionsCoordinator = CollectionsCoordinator(navigationController: collectionsNavigationController, collectionsViewModel: CollectionsScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase), createCollectionViewModel: CreateCollectionScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
+        let collectionsCoordinator = CollectionsCoordinator(
+            navigationController: collectionsNavigationController,
+            collectionsViewModel: self.collectionsViewModel,
+            collectionViewModel: CollectionScreenViewModel(
+                collectionsRepository: CollectionsRepositoryImplementation(),
+                collection: CollectionModel(collectionId: "", name: "")),
+            createCollectionViewModel: CreateCollectionScreenViewModel(
+                collectionsRepository: CollectionsRepositoryImplementation(),
+                collectionsDatabase: self.collectionsDatabase),
+            movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
+            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase)
+        )
         collectionsCoordinator.parentCoordinator = parentCoordinator
         
         let collectionsItem = UITabBarItem()
@@ -76,7 +89,7 @@ class MainTabBarCoordinator: Coordinator {
         // MARK: - Profile
         
         let profileNavigationController = UINavigationController()
-        let profileCoordinator = ProfileCoordinator(navigationController: profileNavigationController, profileViewModel: ProfileScreenViewModel(profileRepository: ProfileRepositoryImplementation()))
+        let profileCoordinator = ProfileCoordinator(navigationController: profileNavigationController, profileViewModel: self.profileViewModel)
         profileCoordinator.parentCoordinator = parentCoordinator
         
         let profileItem = UITabBarItem()

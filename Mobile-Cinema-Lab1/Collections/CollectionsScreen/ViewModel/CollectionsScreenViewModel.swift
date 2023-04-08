@@ -50,6 +50,10 @@ final class CollectionsScreenViewModel {
         }
     }
     
+    func goToCollectionScreen(collection: CollectionModel) {
+        coordinator.goToCollectionScreen(collection: collection)
+    }
+    
     func goToCreateCollectionScreen() {
         coordinator.goToCreateCollectionScreen()
     }

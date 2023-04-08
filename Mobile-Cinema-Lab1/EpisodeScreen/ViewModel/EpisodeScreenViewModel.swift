@@ -9,7 +9,7 @@ import Foundation
 
 final class EpisodeScreenViewModel {
     
-    weak var coordinator: MainCoordinator!
+    weak var coordinator: MovieToEpisodeNavigationProtocol!
     var movie: MovieModel!
     var yearRange: String?
     private var model = EpisodeScreenModel()
@@ -33,6 +33,7 @@ final class EpisodeScreenViewModel {
     }
     
     func backToMovieScreen() {
+        let coordinator = self.coordinator as! Coordinator
         coordinator.navigationController.popViewController(animated: true)
     }
     

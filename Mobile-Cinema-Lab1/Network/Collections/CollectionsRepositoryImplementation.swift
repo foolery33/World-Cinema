@@ -32,6 +32,8 @@ final class CollectionsRepositoryImplementation: CollectionsRepository {
                     switch requestStatusCode {
                     case 401:
                         completion(.failure(.collectionsError(.unauthorized)))
+                    case 404:
+                        completion(.failure(.collectionsError(.wrongEndpoint)))
                     case 500:
                         completion(.failure(.collectionsError(.serverError)))
                     default:
@@ -107,6 +109,39 @@ final class CollectionsRepositoryImplementation: CollectionsRepository {
                         completion(.failure(.collectionsError(.wrongCollectionId)))
                     case 500:
                         completion(.failure(.collectionsError(.alreadyInThisCollection)))
+                    default:
+                        completion(.failure(.collectionsError(.unexpectedError)))
+                    }
+                }
+            }
+        }
+    }
+    
+    func getMoviesFromCollection(collectionId: String, completion: @escaping (Result<[MovieModel], AppError>) -> Void) {
+        let url = baseURL + "/collections/\(collectionId)/movies"
+        AF.request(url, interceptor: self.interceptor).validate().responseData { response in
+            if let requestStatusCode = response.response?.statusCode {
+                print("Get movies from collection Status Code: ", requestStatusCode)
+            }
+            switch response.result {
+            case .success(let data):
+                do {
+                    let decodedData = try JSONDecoder().decode([MovieModel].self, from: data)
+                    completion(.success(decodedData))
+                } catch {
+                    completion(.failure(.collectionsError(.modelError)))
+                }
+            case .failure(_):
+                if let requestStatusCode = response.response?.statusCode {
+                    switch requestStatusCode {
+                    case 401:
+                        completion(.failure(.collectionsError(.unauthorized)))
+                    case 404:
+                        completion(.failure(.collectionsError(.wrongEndpoint)))
+                    case 422:
+                        completion(.failure(.collectionsError(.wrongCollectionId)))
+                    case 500:
+                        completion(.failure(.collectionsError(.serverError)))
                     default:
                         completion(.failure(.collectionsError(.unexpectedError)))
                     }

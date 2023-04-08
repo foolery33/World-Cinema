@@ -9,7 +9,7 @@ import Foundation
 
 final class MovieScreenViewModel {
     
-    weak var coordinator: MainCoordinator!
+    weak var coordinator: MovieToEpisodeNavigationProtocol!
     private var model = MovieScreenModel()
     private var movieRepository: MovieRepository
     
@@ -38,7 +38,8 @@ final class MovieScreenViewModel {
     }
     
     func backToMainScreen() {
-        self.coordinator.navigationController.popViewController(animated: true)
+        let coordinator = self.coordinator as! Coordinator
+        coordinator.navigationController.popViewController(animated: true)
     }
     
     func getMovieEpisodesById(movieId: String, completion: @escaping (Bool) -> Void) {

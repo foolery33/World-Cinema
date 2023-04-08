@@ -11,6 +11,11 @@ class CollectionsScreenViewController: UIViewController {
     
     var viewModel: CollectionsScreenViewModel!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let view = self.view as? CollectionsScreenView {
