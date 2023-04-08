@@ -248,6 +248,7 @@ class EpisodeScreenView: UIView {
         let myButton = UIButton(type: .system)
         myButton.setImage(UIImage(named: "Plus"), for: .normal)
         myButton.tintColor = .redColor
+        myButton.addTarget(self, action: #selector(self.showAddToCollectionActionSheet), for: .touchUpInside)
         return myButton
     }()
     // MARK: Heart button setup
@@ -295,4 +296,34 @@ class EpisodeScreenView: UIView {
         myLabel.font = .systemFont(ofSize: 14, weight: .regular)
         return myLabel
     }()
+}
+
+extension EpisodeScreenView {
+    @objc func showAddToCollectionActionSheet() {
+        let collectionNames = viewModel.getCollectionsList()
+        
+        let alert = UIAlertController(title: "Добавить в коллекцию", message: nil, preferredStyle: .actionSheet)
+        
+        for collection in collectionNames {
+            alert.addAction(UIAlertAction(title: collection.name, style: .default, handler: {_ in
+                let activityIndicator = ActivityIndicator()
+                self.addSubview(activityIndicator)
+                activityIndicator.setupAnimation()
+                self.viewModel.addToCollection(collectionId: collection.id, movieId: self.viewModel.movie.movieId) { success in
+                    activityIndicator.stopAnimation()
+                    if(success) {
+                        self.showAlert(title: "Success", message: "You've successfully added the movie to the colleciton \(collection.name)")
+                    }
+                    else {
+                        self.showAlert(title: "Adding to collection error", message: self.viewModel.error)
+                        return
+                    }
+                }
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        if let viewController = self.next as? UIViewController {
+            viewController.present(alert, animated: true, completion: nil)
+        }
+    }
 }

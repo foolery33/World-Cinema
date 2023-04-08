@@ -35,7 +35,8 @@ extension CollectionsTableView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CollectionsTableViewCell.identifier, for: indexPath) as! CollectionsTableViewCell
         let section = viewModel?.collections[indexPath.row]
         
-        let image: UIImage = UIImage(named: CollectionsManager.shared.fetchCollection(collectionName: section?.name ?? "")) ?? UIImage(named: "Group 1")!
+        let image: UIImage = UIImage(named: viewModel?.collectionsDatabase.getCollectionById(id: section?.collectionId ?? "")?.imageName ?? "Group 1")!
+//        let image: UIImage = UIImage(named: CollectionsManager.shared.fetchCollection(collectionId: section?.collectionId ?? "")) ?? UIImage(named: "Group 1")!
         if(indexPath.row == 0) {
             cell.setup(image: image.resizeImage(newWidth: Scales.firstIconScale, newHeight: Scales.firstIconScale), sectionName: section?.name ?? "")
         }

@@ -68,8 +68,8 @@ class OutlinedTextField: UITextField {
     
     private enum Paddings {
         static let offset = 16.0
-        static let securedTextField = UIEdgeInsets(top: 14.0, left: 16.0, bottom: 13.0, right: 48.0)
-        static let textField = UIEdgeInsets(top: 14.0, left: 16.0, bottom: 13.0, right: 16.0)
+        static let securedTextField = UIEdgeInsets(top: 13.0, left: 16.0, bottom: 13.0, right: 48.0)
+        static let textField = UIEdgeInsets(top: 13.0, left: 16.0, bottom: 13.0, right: 16.0)
     }
     
     private enum Scales {

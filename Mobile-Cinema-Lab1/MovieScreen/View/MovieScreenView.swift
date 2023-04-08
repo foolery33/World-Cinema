@@ -363,7 +363,7 @@ class MovieScreenView: UIView {
         let activityIndicator = ActivityIndicator()
         addSubview(activityIndicator)
         activityIndicator.setupAnimation()
-        viewModel.getMovieEpisodesById(movieId: viewModel.movie.movieId) { success in
+        viewModel.getMovieEpisodesById(movieId: viewModel.movie.movieId) {  success in
             activityIndicator.stopAnimation()
             if(success) {
                 self.episodesTableView.snp.remakeConstraints { make in

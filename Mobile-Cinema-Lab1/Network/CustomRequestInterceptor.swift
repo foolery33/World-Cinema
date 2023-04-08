@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class CustomRequestInterceptor: RequestInterceptor {
-    private let retryLimit = 5
+    private let retryLimit = 2
     private let retryDelay: TimeInterval = 1
     
     func adapt(_ urlRequest: URLRequest,
@@ -35,12 +35,16 @@ class CustomRequestInterceptor: RequestInterceptor {
         case 401:
             refreshToken { [weak self] in
                 guard let self,
-                      request.retryCount < self.retryLimit else { return }
+                  request.retryCount < self.retryLimit else {
+                // Если уже попытались повторить запрос максимальное количество раз, то прекращаем попытки
+                completion(.doNotRetry)
+                return
+            }
                 completion(.retryWithDelay(self.retryDelay))
             }
-//        case (501...599):
-//            guard request.retryCount < retryLimit else { return }
-//            completion(.retryWithDelay(retryDelay))
+        case (501...599):
+            guard request.retryCount < retryLimit else { return }
+            completion(.retryWithDelay(retryDelay))
         default:
             completion(.doNotRetry)
         }

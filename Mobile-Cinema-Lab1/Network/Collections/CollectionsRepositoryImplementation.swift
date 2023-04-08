@@ -42,12 +42,77 @@ final class CollectionsRepositoryImplementation: CollectionsRepository {
         }
     }
     
-    func createCollection(completion: @escaping (Result<Bool, AppError>) -> Void) {
-        
+    func createCollection(collectionName: String, completion: @escaping (Result<CollectionModel, AppError>) -> Void) {
+        let url = baseURL + "/collections"
+        let httpsParameters = [
+            "name": collectionName
+        ]
+        AF.request(url, method: .post, parameters: httpsParameters, encoder: JSONParameterEncoder.default, interceptor: self.interceptor).validate().responseData { response in
+            if let requestStatusCode = response.response?.statusCode {
+                print("Create collection Status Code: ", requestStatusCode)
+            }
+            switch response.result {
+            case .success(let data):
+                do {
+                    let decodedData = try JSONDecoder().decode(CollectionModel.self, from: data)
+                    completion(.success(decodedData))
+                } catch {
+                    completion(.failure(.collectionsError(.modelError)))
+                }
+            case .failure(_):
+                if let requestStatusCode = response.response?.statusCode {
+                    switch requestStatusCode {
+                    case 400:
+                        completion(.failure(.collectionsError(.somethingWentWrong)))
+                    case 401:
+                        completion(.failure(.collectionsError(.unauthorized)))
+                    case 404:
+                        completion(.failure(.collectionsError(.wrongEndpoint)))
+                    case 500:
+                        completion(.failure(.collectionsError(.wrongEndpoint)))
+                    default:
+                        completion(.failure(.collectionsError(.unexpectedError)))
+                    }
+                }
+            }
+        }
     }
     
     func deleteCollection(completion: @escaping (Result<Bool, AppError>) -> Void) {
         
+    }
+    
+    func addToCollection(collectionId: String, movieId: String, completion: @escaping (Result<Bool, AppError>) -> Void) {
+        let url = baseURL + "/collections/\(collectionId)/movies"
+        let httpParameters = [
+            "movieId": movieId
+        ]
+        AF.request(url, method: .post, parameters: httpParameters, encoder: JSONParameterEncoder.default, interceptor: self.interceptor).validate().responseData { response in
+            if let requestStatusCode = response.response?.statusCode {
+                print("Add to collection Status Code: ", requestStatusCode)
+            }
+            switch response.result {
+            case .success:
+                completion(.success(true))
+            case .failure(_):
+                if let requestStatusCode = response.response?.statusCode {
+                    switch requestStatusCode {
+                    case 400:
+                        completion(.failure(.collectionsError(.somethingWentWrong)))
+                    case 401:
+                        completion(.failure(.collectionsError(.unauthorized)))
+                    case 404:
+                        completion(.failure(.collectionsError(.wrongEndpoint)))
+                    case 422:
+                        completion(.failure(.collectionsError(.wrongCollectionId)))
+                    case 500:
+                        completion(.failure(.collectionsError(.alreadyInThisCollection)))
+                    default:
+                        completion(.failure(.collectionsError(.unexpectedError)))
+                    }
+                }
+            }
+        }
     }
     
     enum CollectionsError: Error, LocalizedError, Identifiable {
@@ -57,6 +122,8 @@ final class CollectionsRepositoryImplementation: CollectionsRepository {
         case serverError
         case unauthorized
         case unexpectedError
+        case wrongCollectionId
+        case alreadyInThisCollection
         var id: String {
             self.errorDescription
         }
@@ -74,6 +141,10 @@ final class CollectionsRepositoryImplementation: CollectionsRepository {
                 return NSLocalizedString("Your authentication token is expired. Please login again", comment: "")
             case .unexpectedError:
                 return NSLocalizedString("Some unexpected error occured. Please contact developer", comment: "")
+            case .wrongCollectionId:
+                return NSLocalizedString("Provided collectionId is not valid. Please contact developer", comment: "")
+            case .alreadyInThisCollection:
+                return NSLocalizedString("This film is already in the collection", comment: "")
             }
         }
     }

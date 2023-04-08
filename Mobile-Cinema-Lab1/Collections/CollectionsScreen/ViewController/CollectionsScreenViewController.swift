@@ -8,12 +8,21 @@
 import UIKit
 
 class CollectionsScreenViewController: UIViewController {
-
+    
     var viewModel: CollectionsScreenViewModel!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let view = self.view as? CollectionsScreenView {
+            view.reloadCollectionsTableView()
+            print("appeared")
+        }
+    }
     
     override func loadView() {
         let collectionsScreenView = CollectionsScreenView(viewModel: self.viewModel)
         view = collectionsScreenView
+        view.backgroundColor = UIColor(named: "BackgroundColor")
         setupNavigationBarAppearence()
         collectionsScreenView.loadCollections()
     }
@@ -30,23 +39,23 @@ class CollectionsScreenViewController: UIViewController {
             navBarAppearance.titleTextAttributes = navigationBarTitleAttributes
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-            navigationController?.navigationBar.topItem?.title = "Коллекции"
         }
-        
-        setupNavigationBarRightItem()
+        self.title = "Коллекции"
+        self.navigationItem.rightBarButtonItem = getNavigationBarRightItem()
     }
     
-    private func setupNavigationBarRightItem() {
-        let backItem = UIBarButtonItem()
+    private func getNavigationBarRightItem() -> UIBarButtonItem {
+        let backItem = UIBarButtonItem(image: UIImage(named: "Plus"), style: .plain, target: self, action: #selector(goToCreateCollectionScreen))
         backItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
-        backItem.image = UIImage(named: "Plus")
         backItem.tintColor = .white
-        navigationItem.rightBarButtonItem = backItem
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        return backItem
+    }
+    @objc private func goToCreateCollectionScreen() {
+        viewModel.goToCreateCollectionScreen()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
 }

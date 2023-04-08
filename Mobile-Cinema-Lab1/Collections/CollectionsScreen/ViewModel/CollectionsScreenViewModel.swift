@@ -12,9 +12,11 @@ final class CollectionsScreenViewModel {
     private var model = CollectionsScreenModel()
     weak var coordinator: CollectionsCoordinator!
     private var collectionsRepository: CollectionsRepository
+    var collectionsDatabase: CollectionsDatabase
     
-    init(collectionsRepository: CollectionsRepository) {
+    init(collectionsRepository: CollectionsRepository, collectionsDatabase: CollectionsDatabase) {
         self.collectionsRepository = collectionsRepository
+        self.collectionsDatabase = collectionsDatabase
     }
     
     var collections: [CollectionModel] {
@@ -28,6 +30,13 @@ final class CollectionsScreenViewModel {
     
     var error: String = ""
     
+    func startListeningForChanges(on createCollectionScreenViewModel: CreateCollectionScreenViewModel) {
+        createCollectionScreenViewModel.onCollectionCreated = { [weak self] newCollection in
+            self?.model.addNewCollection(newCollection: newCollection)
+            print(newCollection)
+        }
+    }
+    
     func getCollections(completion: @escaping (Bool) -> Void) {
         collectionsRepository.getCollections { [weak self] result in
             switch result {
@@ -39,6 +48,10 @@ final class CollectionsScreenViewModel {
                 completion(false)
             }
         }
+    }
+    
+    func goToCreateCollectionScreen() {
+        coordinator.goToCreateCollectionScreen()
     }
     
 }

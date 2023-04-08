@@ -47,12 +47,16 @@ class CollectionsScreenView: UIView {
         viewModel.getCollections { success in
             activityIndicator.stopAnimation()
             if(success) {
-                self.collectionsTableView.reloadData()
+                self.reloadCollectionsTableView()
             }
             else {
                 self.showAlert(title: "Collections Loading Error", message: self.viewModel.error)
             }
         }
+    }
+    
+    func reloadCollectionsTableView() {
+        self.collectionsTableView.reloadData()
     }
     
 }

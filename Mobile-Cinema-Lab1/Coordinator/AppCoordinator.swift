@@ -13,9 +13,11 @@ class AppCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     var navigationController: UINavigationController
+    var collectionsDatabase: CollectionsDatabase
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, collectionsDatabase: CollectionsDatabase) {
         self.navigationController = navigationController
+        self.collectionsDatabase = collectionsDatabase
     }
     
     func start() {
@@ -35,7 +37,7 @@ class AppCoordinator: Coordinator {
     }
     
     func goToMain() {
-        let homeCoordinator = MainTabBarCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()))
+        let homeCoordinator = MainTabBarCoordinator(navigationController: self.navigationController, mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()), collectionsDatabase: self.collectionsDatabase)
         children.append(homeCoordinator)
         homeCoordinator.parentCoordinator = self
         homeCoordinator.start()

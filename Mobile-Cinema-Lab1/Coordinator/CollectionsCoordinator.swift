@@ -15,11 +15,12 @@ final class CollectionsCoordinator: Coordinator {
     
     // MARK: ViewModels
     var collectionsViewModel: CollectionsScreenViewModel
+    var createCollectionViewModel: CreateCollectionScreenViewModel
     
-    
-    init(navigationController: UINavigationController, collectionsViewModel: CollectionsScreenViewModel) {
+    init(navigationController: UINavigationController, collectionsViewModel: CollectionsScreenViewModel, createCollectionViewModel: CreateCollectionScreenViewModel) {
         self.navigationController = navigationController
         self.collectionsViewModel = collectionsViewModel
+        self.createCollectionViewModel = createCollectionViewModel
     }
     
     func start() {
@@ -31,6 +32,14 @@ final class CollectionsCoordinator: Coordinator {
         self.collectionsViewModel.coordinator = self
         collectionsViewController.viewModel = self.collectionsViewModel
         navigationController.pushViewController(collectionsViewController, animated: true)
+    }
+    
+    func goToCreateCollectionScreen() {
+        let createCollectionViewController = CreateCollectionScreenViewController()
+        self.createCollectionViewModel.coordinator = self
+        createCollectionViewController.viewModel = self.createCollectionViewModel
+        self.collectionsViewModel.startListeningForChanges(on: createCollectionViewModel)
+        navigationController.pushViewController(createCollectionViewController, animated: true)
     }
     
 }

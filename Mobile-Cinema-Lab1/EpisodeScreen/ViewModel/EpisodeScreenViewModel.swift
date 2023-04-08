@@ -13,6 +13,15 @@ final class EpisodeScreenViewModel {
     var movie: MovieModel!
     var yearRange: String?
     private var model = EpisodeScreenModel()
+    private var collectionsRepository: CollectionsRepository
+    private var collectionsDatabase: CollectionsDatabase
+    
+    init(collectionsRepository: CollectionsRepository, collectionsDatabase: CollectionsDatabase) {
+        self.collectionsRepository = collectionsRepository
+        self.collectionsDatabase = collectionsDatabase
+    }
+    
+    var error: String = ""
     
     var episode: EpisodeModel {
         get {
@@ -25,6 +34,22 @@ final class EpisodeScreenViewModel {
     
     func backToMovieScreen() {
         coordinator.navigationController.popViewController(animated: true)
+    }
+    
+    func getCollectionsList() -> [MovieCollection] {
+        return collectionsDatabase.getAllCollections()
+    }
+    
+    func addToCollection(collectionId: String, movieId: String, completion: @escaping (Bool) -> Void) {
+        collectionsRepository.addToCollection(collectionId: collectionId, movieId: movieId) { [weak self] result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure(let error):
+                self?.error = error.errorDescription
+                completion(false)
+            }
+        }
     }
     
 }

@@ -16,8 +16,8 @@ class LoginScreenViewModel {
         self.authRepository = authRepository
     }
     
-    var email: String = ""
-    var password: String = ""
+    var email: String = "usov107@gmail.com"
+    var password: String = "us2003ne"
     var error: String = ""
     
     func registerButtonTapped() {

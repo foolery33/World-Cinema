@@ -13,14 +13,14 @@ class CollectionsManager {
     
     static let shared: CollectionsManager = CollectionsManager()
     
-    func setCollection(collectionName: String, imageName: String) {
-        keychain.set(imageName, forKey: collectionName)
+    func setCollection(collectionId: String, imageName: String) {
+        keychain.set(imageName, forKey: collectionId)
     }
-    func fetchCollection(collectionName: String) -> String {
-        keychain.string(forKey: collectionName) ?? ""
+    func fetchCollection(collectionId: String) -> String {
+        keychain.string(forKey: collectionId) ?? ""
     }
-    func removeCollection(collectionName: String) {
-        keychain.remove(forKey: KeychainWrapper.Key(rawValue: collectionName))
+    func removeCollection(collectionId: String) {
+        keychain.remove(forKey: KeychainWrapper.Key(rawValue: collectionId))
     }
     func clearData() {
         keychain.removeAllKeys()

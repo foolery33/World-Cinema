@@ -13,6 +13,7 @@ class MainTabBarCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     var navigationController: UINavigationController
+    var collectionsDatabase: CollectionsDatabase
     
     // MARK: ViewModels
     var mainViewModel: MainScreenViewModel
@@ -20,9 +21,10 @@ class MainTabBarCoordinator: Coordinator {
 //    var collectionsViewModel: CollectionsScreenViewModel
 //    var profileViewModel: ProfileScreenViewModel
     
-    init(navigationController: UINavigationController, mainViewModel: MainScreenViewModel) {
+    init(navigationController: UINavigationController, mainViewModel: MainScreenViewModel, collectionsDatabase: CollectionsDatabase) {
         self.navigationController = navigationController
         self.mainViewModel = mainViewModel
+        self.collectionsDatabase = collectionsDatabase
     }
     
     func start() {
@@ -31,6 +33,7 @@ class MainTabBarCoordinator: Coordinator {
     
     private func initializeMainTabBar() {
         let viewController = MainTabBarController()
+        viewController.view.backgroundColor = UIColor(named: "BackgroundColor")
         
         // MARK: - MainScreen
         
@@ -40,7 +43,7 @@ class MainTabBarCoordinator: Coordinator {
             navigationController: mainNavigationController,
             mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()),
             movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
-            episodeViewModel: EpisodeScreenViewModel())
+            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
         mainCoordinator.parentCoordinator = parentCoordinator
         
         let mainItem = UITabBarItem()
@@ -62,7 +65,7 @@ class MainTabBarCoordinator: Coordinator {
         
         let collectionsNavigationController = UINavigationController()
         collectionsNavigationController.setNavigationBarHidden(true, animated: false)
-        let collectionsCoordinator = CollectionsCoordinator(navigationController: collectionsNavigationController, collectionsViewModel: CollectionsScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation()))
+        let collectionsCoordinator = CollectionsCoordinator(navigationController: collectionsNavigationController, collectionsViewModel: CollectionsScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase), createCollectionViewModel: CreateCollectionScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
         collectionsCoordinator.parentCoordinator = parentCoordinator
         
         let collectionsItem = UITabBarItem()

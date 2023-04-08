@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,14 +18,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        let collectionsDatabase = CollectionsDatabase(realm: setupRealm())
+        
         let navigationController = UINavigationController()
-        appCoordinator = AppCoordinator(navigationController: navigationController)
+        appCoordinator = AppCoordinator(navigationController: navigationController, collectionsDatabase: collectionsDatabase)
         appCoordinator?.start()
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 
         return true
+    }
+    
+    func setupRealm() -> Realm {
+        do {
+            return try Realm()
+        } catch let error {
+            fatalError("Failed to create Realm: \(error.localizedDescription)")
+        }
     }
 
 }
