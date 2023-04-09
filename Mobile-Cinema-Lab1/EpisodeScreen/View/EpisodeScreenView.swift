@@ -306,11 +306,9 @@ extension EpisodeScreenView {
         
         for collection in collectionNames {
             alert.addAction(UIAlertAction(title: collection.name, style: .default, handler: {_ in
-                let activityIndicator = ActivityIndicator()
-                self.addSubview(activityIndicator)
-                activityIndicator.setupAnimation()
+                self.setupActivityIndicator()
                 self.viewModel.addToCollection(collectionId: collection.id, movieId: self.viewModel.movie.movieId) { success in
-                    activityIndicator.stopAnimation()
+                    self.stopActivityIndicator()
                     if(success) {
                         self.showAlert(title: "Success", message: "You've successfully added the movie to the colleciton \(collection.name)")
                     }

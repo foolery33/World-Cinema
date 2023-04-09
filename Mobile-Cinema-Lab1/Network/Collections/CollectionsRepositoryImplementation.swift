@@ -80,8 +80,32 @@ final class CollectionsRepositoryImplementation: CollectionsRepository {
         }
     }
     
-    func deleteCollection(completion: @escaping (Result<Bool, AppError>) -> Void) {
-        
+    func deleteCollection(collectionId: String, completion: @escaping (Result<Bool, AppError>) -> Void) {
+        let url = baseURL + "/collections/\(collectionId)"
+        AF.request(url, method: .delete, interceptor: self.interceptor).validate().responseData { response in
+            if let requestStatusCode = response.response?.statusCode {
+                print("Delete collection Status Code: ", requestStatusCode)
+            }
+            switch response.result {
+            case .success:
+                completion(.success(true))
+            case .failure(_):
+                if let requestStatusCode = response.response?.statusCode {
+                    switch requestStatusCode {
+                    case 401:
+                        completion(.failure(.collectionsError(.unauthorized)))
+                    case 404:
+                        completion(.failure(.collectionsError(.wrongEndpoint)))
+                    case 422:
+                        completion(.failure(.collectionsError(.wrongCollectionId)))
+                    case 500:
+                        completion(.failure(.collectionsError(.serverError)))
+                    default:
+                        completion(.failure(.collectionsError(.unexpectedError)))
+                    }
+                }
+            }
+        }
     }
     
     func addToCollection(collectionId: String, movieId: String, completion: @escaping (Result<Bool, AppError>) -> Void) {

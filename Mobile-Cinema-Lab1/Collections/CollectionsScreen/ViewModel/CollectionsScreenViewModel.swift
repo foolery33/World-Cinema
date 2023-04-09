@@ -42,6 +42,9 @@ final class CollectionsScreenViewModel {
             switch result {
             case .success(let data):
                 self?.collections = data
+                for i in 0..<(self?.collections.count ?? 0) {
+                    self?.collections[i].name = self?.collectionsDatabase.getCollectionById(id: self?.collections[i].collectionId ?? "")?.name ?? "Favourites"
+                }
                 completion(true)
             case .failure(let error):
                 self?.error = error.errorDescription
@@ -58,4 +61,27 @@ final class CollectionsScreenViewModel {
         coordinator.goToCreateCollectionScreen()
     }
     
+}
+
+extension CollectionsScreenViewModel: DeleteCollectionDelegate {
+    func deleteCollection(collectionId: String) {
+        for (index, collection) in self.collections.enumerated() {
+            if collection.collectionId == collectionId {
+                self.collections.remove(at: index)
+                break
+            }
+        }
+        self.collectionsDatabase.deleteCollection(withId: collectionId)
+    }
+}
+
+extension CollectionsScreenViewModel: ChangeCollectionNameDelegate {
+    func changeName(collectionId: String, newName: String) {
+        for i in 0..<self.collections.count {
+            if(collections[i].collectionId == collectionId) {
+                self.collections[i].name = newName
+                break
+            }
+        }
+    }
 }

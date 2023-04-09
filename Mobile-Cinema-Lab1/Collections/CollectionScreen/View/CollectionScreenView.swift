@@ -36,17 +36,12 @@ class CollectionScreenView: UIView {
     }()
     private func setupCollectionMoviesTableView() {
         addSubview(collectionMoviesTableView)
-//        collectionMoviesTableView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
     }
     
     func getMoviesFromCollection() {
-        let activityIndicator = ActivityIndicator()
-        addSubview(activityIndicator)
-        activityIndicator.setupAnimation()
+        self.setupActivityIndicator()
         self.viewModel.getMoviesFromCollection(collectionId: self.viewModel.collection.collectionId) { success in
-            activityIndicator.stopAnimation()
+            self.stopActivityIndicator()
             if(success) {
                 self.collectionMoviesTableView.reloadData()
                 self.collectionMoviesTableView.snp.remakeConstraints { make in

@@ -52,10 +52,24 @@ class ActivityIndicator: UIView {
             self.alpha = 1.0
         }
     }
+//    func stopAnimation() {
+//        indicator.stopAnimating()
+//        self.alpha = 0.0
+//        self.removeFromSuperview()
+//    }
+    
+}
+
+extension ActivityIndicator {
+    func setupAnimation() {
+        self.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        self.startAnimating()
+    }
     func stopAnimation() {
         indicator.stopAnimating()
         self.alpha = 0.0
         self.removeFromSuperview()
     }
-    
 }

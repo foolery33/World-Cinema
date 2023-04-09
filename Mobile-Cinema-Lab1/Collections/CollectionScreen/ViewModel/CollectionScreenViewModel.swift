@@ -38,6 +38,10 @@ final class CollectionScreenViewModel {
         self.coordinator?.navigationController.popViewController(animated: true)
     }
     
+    func goToChangeCollectionScreen(collection: CollectionModel) {
+        self.coordinator?.goToChangeCollectionScreen(collection: self.collection)
+    }
+    
     func getMoviesFromCollection(collectionId: String, completion: @escaping (Bool) -> Void) {
         collectionsRepository.getMoviesFromCollection(collectionId: collectionId) { [weak self] result in
             switch result {

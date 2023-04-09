@@ -360,11 +360,9 @@ class MovieScreenView: UIView {
     
     
     func getEpisodes() {
-        let activityIndicator = ActivityIndicator()
-        addSubview(activityIndicator)
-        activityIndicator.setupAnimation()
+        self.setupActivityIndicator()
         viewModel.getMovieEpisodesById(movieId: viewModel.movie.movieId) {  success in
-            activityIndicator.stopAnimation()
+            self.stopActivityIndicator()
             if(success) {
                 self.episodesTableView.snp.remakeConstraints { make in
                     make.height.equalTo(self.episodesTableView.countHeight())

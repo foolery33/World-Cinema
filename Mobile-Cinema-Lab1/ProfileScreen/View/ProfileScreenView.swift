@@ -191,11 +191,9 @@ class ProfileScreenView: UIView {
         return OutlinedButton().getOutlinedButton(label: "Выход", selector: #selector(leaveAccount))
     }()
     @objc private func leaveAccount() {
-        let activityIndicator = ActivityIndicator()
-        addSubview(activityIndicator)
-        activityIndicator.setupAnimation()
+        self.setupActivityIndicator()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            activityIndicator.stopAnimation()
+            self.stopActivityIndicator()
             self.viewModel.leaveAccount()
         }
     }
@@ -209,11 +207,9 @@ class ProfileScreenView: UIView {
     }
     
     func loadProfile() {
-        let activityIndicator = ActivityIndicator()
-        addSubview(activityIndicator)
-        activityIndicator.setupAnimation()
+        self.setupActivityIndicator()
         viewModel.getProfile { success in
-            activityIndicator.stopAnimation()
+            self.stopActivityIndicator()
             if(success) {
                 self.updateDataOnScreen()
             }
@@ -224,11 +220,9 @@ class ProfileScreenView: UIView {
     }
     
     func setAvatar(imageData: Data, image: UIImage) {
-        let activityIndicator = ActivityIndicator()
-        addSubview(activityIndicator)
-        activityIndicator.setupAnimation()
+        self.setupActivityIndicator()
         viewModel.setAvatar(imageData: imageData) { success in
-            activityIndicator.stopAnimation()
+            self.stopActivityIndicator()
             if(success) {
                 self.avatarImage.image = image
             }
@@ -262,9 +256,6 @@ extension ProfileScreenView: UIImagePickerControllerDelegate, UINavigationContro
             else {
                 self.showAlert(title: "Avatar Setting Failed", message: "Your file is corrupted")
             }
-//            var binaryData = [UInt8](repeating: 0, count: imageData.count)
-//            imageData.copyBytes(to: &binaryData, count: imageData.count)
-//            print(binaryData)
         }
         picker.dismiss(animated: true, completion: nil)
     }

@@ -43,8 +43,9 @@ class CollectionMoviesTableViewCell: UITableViewCell {
         setupMovieInfoStack()
         setupNextImage()
         hStackView.snp.makeConstraints { make in
+//            make.horizontalEdges.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(96)
+//            make.height.equalTo(96)
         }
     }
     
@@ -60,6 +61,7 @@ class CollectionMoviesTableViewCell: UITableViewCell {
         hStackView.addArrangedSubview(image)
         image.snp.makeConstraints { make in
             make.height.equalTo(80)
+            make.width.equalTo(56)
         }
     }
     
@@ -82,8 +84,10 @@ class CollectionMoviesTableViewCell: UITableViewCell {
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 14, weight: .bold)
         myLabel.numberOfLines = 1
-        myLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
-        myLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        myLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        myLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+//        myLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+//        myLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return myLabel
     }()
     
@@ -92,8 +96,10 @@ class CollectionMoviesTableViewCell: UITableViewCell {
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 14, weight: .regular)
         myLabel.numberOfLines = 3
-        myLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        myLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        myLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        myLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+//        myLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+//        myLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         return myLabel
     }()
     

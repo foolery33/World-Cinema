@@ -158,13 +158,10 @@ class LoginScreenView: UIView {
     @objc
     private func goToMainScreen() {
         
-        let activityIndicator = ActivityIndicator()
-        addSubview(activityIndicator)
-        activityIndicator.setupAnimation()
-        activityIndicator.startAnimating()
+        self.setupActivityIndicator()
         
         self.viewModel.login { success in
-            activityIndicator.stopAnimation()
+            self.stopActivityIndicator()
             if(success) {
                 self.viewModel.coordinator.goToMainScreen()
             }
@@ -205,15 +202,6 @@ class LoginScreenView: UIView {
         return newView
     }
     
-}
-
-extension ActivityIndicator {
-    func setupAnimation() {
-        self.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        self.startAnimating()
-    }
 }
 
 extension UIImage {

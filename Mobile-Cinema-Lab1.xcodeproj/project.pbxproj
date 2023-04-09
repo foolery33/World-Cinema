@@ -13,6 +13,9 @@
 		8413392929DE7C8A00A394D4 /* IconSelectionScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392829DE7C8A00A394D4 /* IconSelectionScreenViewModel.swift */; };
 		8413392C29DE7EFB00A394D4 /* IconSelectionCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392B29DE7EFB00A394D4 /* IconSelectionCollectionView.swift */; };
 		8413392E29DE7F2400A394D4 /* IconSelectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392D29DE7F2400A394D4 /* IconSelectionCollectionViewCell.swift */; };
+		8427A3CE29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3CD29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift */; };
+		8427A3D029E274FE007E4B2F /* ChangeCollectionScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3CF29E274FE007E4B2F /* ChangeCollectionScreenViewController.swift */; };
+		8427A3D229E27615007E4B2F /* ChangeCollectionScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3D129E27615007E4B2F /* ChangeCollectionScreenView.swift */; };
 		8428978229DC1DD00096D409 /* CollectionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428978129DC1DD00096D409 /* CollectionsCoordinator.swift */; };
 		8428978429DC1E750096D409 /* CollectionsScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428978329DC1E750096D409 /* CollectionsScreenModel.swift */; };
 		8428978629DC1E8D0096D409 /* CollectionsScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428978529DC1E8D0096D409 /* CollectionsScreenViewModel.swift */; };
@@ -138,6 +141,9 @@
 		8413392829DE7C8A00A394D4 /* IconSelectionScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionScreenViewModel.swift; sourceTree = "<group>"; };
 		8413392B29DE7EFB00A394D4 /* IconSelectionCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionCollectionView.swift; sourceTree = "<group>"; };
 		8413392D29DE7F2400A394D4 /* IconSelectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		8427A3CD29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCollectionScreenViewModel.swift; sourceTree = "<group>"; };
+		8427A3CF29E274FE007E4B2F /* ChangeCollectionScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCollectionScreenViewController.swift; sourceTree = "<group>"; };
+		8427A3D129E27615007E4B2F /* ChangeCollectionScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCollectionScreenView.swift; sourceTree = "<group>"; };
 		8428978129DC1DD00096D409 /* CollectionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsCoordinator.swift; sourceTree = "<group>"; };
 		8428978329DC1E750096D409 /* CollectionsScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsScreenModel.swift; sourceTree = "<group>"; };
 		8428978529DC1E8D0096D409 /* CollectionsScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsScreenViewModel.swift; sourceTree = "<group>"; };
@@ -322,6 +328,40 @@
 			path = IconSelectionCollectionView;
 			sourceTree = "<group>";
 		};
+		8427A3C929E27224007E4B2F /* ChangeCollectionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8427A3CC29E2728E007E4B2F /* ViewModel */,
+				8427A3CB29E27287007E4B2F /* ViewController */,
+				8427A3CA29E2727A007E4B2F /* View */,
+			);
+			path = ChangeCollectionScreen;
+			sourceTree = "<group>";
+		};
+		8427A3CA29E2727A007E4B2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8427A3D129E27615007E4B2F /* ChangeCollectionScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8427A3CB29E27287007E4B2F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8427A3CF29E274FE007E4B2F /* ChangeCollectionScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8427A3CC29E2728E007E4B2F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8427A3CD29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8428977C29DC1D7B0096D409 /* CollectionsScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +437,7 @@
 		8428979A29DC92BA0096D409 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				8427A3C929E27224007E4B2F /* ChangeCollectionScreen */,
 				84E5701829E1386A00A10579 /* CollectionScreen */,
 				8413391D29DE770700A394D4 /* IconSelectionScreen */,
 				8428979B29DC92C10096D409 /* CreateCollectionScreen */,
@@ -1164,6 +1205,7 @@
 				84E5702229E13E9400A10579 /* CollectionScreenView.swift in Sources */,
 				84C3315329DAEA9700904FEA /* UserModel.swift in Sources */,
 				84C3313B29DAC1E600904FEA /* ProfileCoordinator.swift in Sources */,
+				8427A3CE29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift in Sources */,
 				849FA1D929D57EED0097223A /* LastViewMoviesModel.swift in Sources */,
 				84B604B329CE10BC0047A603 /* PasswordsEquality.swift in Sources */,
 				84D785F829CC5445004D518D /* Coordinator.swift in Sources */,
@@ -1174,6 +1216,7 @@
 				84E5702829E1473200A10579 /* CollectionMoviesTableView.swift in Sources */,
 				8428979929DC845D0096D409 /* CollectionsManager.swift in Sources */,
 				84B604AC29CDF8E40047A603 /* AppError.swift in Sources */,
+				8427A3D229E27615007E4B2F /* ChangeCollectionScreenView.swift in Sources */,
 				84EB775D29D994CB002F5137 /* CoverModel.swift in Sources */,
 				849FA1E129D5804E0097223A /* ForMeMoviesViewModel.swift in Sources */,
 				84BE5C3729CF02D20051B6D0 /* MainCoordinator.swift in Sources */,
@@ -1208,6 +1251,7 @@
 				84E5701E29E13D0500A10579 /* CollectionScreenViewController.swift in Sources */,
 				84969C8729E06F4500D98A56 /* MovieCollection.swift in Sources */,
 				84E49CED29D29D0C00BCCA8B /* InTrendCollectionView.swift in Sources */,
+				8427A3D029E274FE007E4B2F /* ChangeCollectionScreenViewController.swift in Sources */,
 				84E5702A29E1474400A10579 /* CollectionMoviesTableViewCell.swift in Sources */,
 				84E49CF629D2CE2600BCCA8B /* NewCollectionView.swift in Sources */,
 				84D7861E29CCAFA8004D518D /* RegisterViewController.swift in Sources */,

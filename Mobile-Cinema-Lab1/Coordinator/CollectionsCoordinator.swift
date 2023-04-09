@@ -19,22 +19,17 @@ final class CollectionsCoordinator: Coordinator, MovieToEpisodeNavigationProtoco
     private var createCollectionViewModel: CreateCollectionScreenViewModel
     private var movieViewModel: MovieScreenViewModel
     private var episodeViewModel: EpisodeScreenViewModel
+    private var changeCollectionViewModel: ChangeCollectionScreenViewModel
 
-    init(navigationController: UINavigationController, collectionsViewModel: CollectionsScreenViewModel, collectionViewModel: CollectionScreenViewModel, createCollectionViewModel: CreateCollectionScreenViewModel, movieViewModel: MovieScreenViewModel, episodeViewModel: EpisodeScreenViewModel) {
+    init(navigationController: UINavigationController, collectionsViewModel: CollectionsScreenViewModel, collectionViewModel: CollectionScreenViewModel, createCollectionViewModel: CreateCollectionScreenViewModel, movieViewModel: MovieScreenViewModel, episodeViewModel: EpisodeScreenViewModel, changeCollectinViewModel: ChangeCollectionScreenViewModel) {
         self.navigationController = navigationController
         self.collectionsViewModel = collectionsViewModel
         self.collectionViewModel = collectionViewModel
         self.createCollectionViewModel = createCollectionViewModel
         self.movieViewModel = movieViewModel
         self.episodeViewModel = episodeViewModel
+        self.changeCollectionViewModel = changeCollectinViewModel
     }
-  
-//    init(navigationController: UINavigationController, collectionsViewModel: CollectionsScreenViewModel, collectionViewModel: CollectionScreenViewModel, createCollectionViewModel: CreateCollectionScreenViewModel) {
-//        self.navigationController = navigationController
-//        self.collectionsViewModel = collectionsViewModel
-//        self.collectionViewModel = collectionViewModel
-//        self.createCollectionViewModel = createCollectionViewModel
-//    }
     
     func start() {
         goToCollectionsScreen()
@@ -79,6 +74,15 @@ final class CollectionsCoordinator: Coordinator, MovieToEpisodeNavigationProtoco
         episodeViewModel.yearRange = yearRange
         episodeViewController.viewModel = self.episodeViewModel
         navigationController.pushViewController(episodeViewController, animated: true)
+    }
+    
+    func goToChangeCollectionScreen(collection: CollectionModel) {
+        let changeCollectionViewController = ChangeCollectionScreenViewController()
+        self.changeCollectionViewModel.coordinator = self
+        changeCollectionViewModel.collection = collection
+        changeCollectionViewModel.collectionName = collection.name
+        changeCollectionViewController.viewModel = changeCollectionViewModel
+        navigationController.pushViewController(changeCollectionViewController, animated: true)
     }
     
 }

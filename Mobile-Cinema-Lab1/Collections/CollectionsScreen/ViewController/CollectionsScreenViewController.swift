@@ -14,14 +14,13 @@ class CollectionsScreenViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        if let view = self.view as? CollectionsScreenView {
+            view.reloadCollectionsTableView()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let view = self.view as? CollectionsScreenView {
-            view.reloadCollectionsTableView()
-            print("appeared")
-        }
     }
     
     override func loadView() {

@@ -41,11 +41,9 @@ class CollectionsScreenView: UIView {
     }
     
     func loadCollections() {
-        let activityIndicator = ActivityIndicator()
-        addSubview(activityIndicator)
-        activityIndicator.setupAnimation()
+        self.setupActivityIndicator()
         viewModel.getCollections { success in
-            activityIndicator.stopAnimation()
+            self.stopActivityIndicator()
             if(success) {
                 self.reloadCollectionsTableView()
             }

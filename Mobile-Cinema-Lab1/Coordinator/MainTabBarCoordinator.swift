@@ -77,7 +77,9 @@ class MainTabBarCoordinator: Coordinator {
                 collectionsRepository: CollectionsRepositoryImplementation(),
                 collectionsDatabase: self.collectionsDatabase),
             movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
-            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase)
+            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase), changeCollectinViewModel: ChangeCollectionScreenViewModel(
+                collection: CollectionModel(collectionId: "", name: ""),
+                collectionsDatabase: self.collectionsDatabase, collectionsRepository: CollectionsRepositoryImplementation(), deleteCollectionDelegate: self.collectionsViewModel, changeCollectionNameDelegate: self.collectionsViewModel)
         )
         collectionsCoordinator.parentCoordinator = parentCoordinator
         
