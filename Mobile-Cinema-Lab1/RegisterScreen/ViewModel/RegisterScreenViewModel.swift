@@ -10,10 +10,14 @@ import Foundation
 class RegisterScreenViewModel {
 
     private var authRepository: AuthRepository
+    private var collectionsRepository: CollectionsRepository
+    private var collectionsDatabase: CollectionsDatabase
     weak var coordinator: AuthCoordinator!
     
-    init(authRepository: AuthRepository) {
+    init(authRepository: AuthRepository, collectionsRepository: CollectionsRepository, collectionsDatabase: CollectionsDatabase) {
         self.authRepository = authRepository
+        self.collectionsRepository = collectionsRepository
+        self.collectionsDatabase = collectionsDatabase
     }
     
     var name: String = ""
@@ -46,6 +50,19 @@ class RegisterScreenViewModel {
             }
         }
         
+    }
+    
+    func createFavouritesCollection(completion: @escaping (Bool) -> Void) {
+        collectionsRepository.createCollection(collectionName: "Избранное") { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.collectionsDatabase.createCollection(id: data.collectionId, name: "Избранное", imageName: "Group 1")
+                completion(true)
+            case .failure(let error):
+                self?.error = error.errorDescription
+                completion(false)
+            }
+        }
     }
     
 }

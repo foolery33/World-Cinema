@@ -43,8 +43,9 @@ class RegisterScreenView: UIView {
         static let confirmPassword = "Повторите пароль"
         static let register = "Зарегистрироваться"
         static let alreadyHaveAccount = "У меня уже есть аккаунт"
-        static let registerFailed = "Registration failed"
+        static let registerFailed = "Registration Failed"
         static let ok = "OK"
+        static let createFavouritesFailed = "Create Favourites Failed"
     }
 
     func setupSubviews() {
@@ -242,9 +243,16 @@ class RegisterScreenView: UIView {
     func goToMainScreen() {
         self.setupActivityIndicator()
         viewModel.register { success in
-            self.stopActivityIndicator()
             if(success) {
-                self.viewModel.coordinator.goToMainScreen()
+                self.viewModel.createFavouritesCollection { success in
+                    self.stopActivityIndicator()
+                    if(success) {
+                        self.viewModel.coordinator.goToMainScreen()
+                    }
+                    else {
+                        self.showAlert(title: Strings.createFavouritesFailed, message: self.viewModel.error)
+                    }
+                }
             }
             else {
                 self.showAlert(title: Strings.registerFailed, message: self.viewModel.error)

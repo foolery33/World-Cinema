@@ -43,7 +43,8 @@ final class CollectionsScreenViewModel {
             case .success(let data):
                 self?.collections = data
                 for i in 0..<(self?.collections.count ?? 0) {
-                    self?.collections[i].name = self?.collectionsDatabase.getCollectionById(id: self?.collections[i].collectionId ?? "")?.name ?? "Favourites"
+                    let collectionName = self?.collectionsDatabase.getCollectionById(id: self?.collections[i].collectionId ?? "")?.name ?? "Избранное"
+                    self?.collections[i].name = collectionName
                 }
                 completion(true)
             case .failure(let error):
