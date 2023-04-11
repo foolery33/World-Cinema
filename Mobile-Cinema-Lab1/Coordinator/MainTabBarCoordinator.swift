@@ -17,13 +17,14 @@ class MainTabBarCoordinator: Coordinator {
     
     // MARK: ViewModels
     var mainViewModel: MainScreenViewModel
-//    var compilationViewModel : CompilationScreenViewModel
+    var compilationViewModel : CompilationScreenViewModel
     var collectionsViewModel: CollectionsScreenViewModel
     var profileViewModel: ProfileScreenViewModel
     
-    init(navigationController: UINavigationController, mainViewModel: MainScreenViewModel, collectionsViewModel: CollectionsScreenViewModel, profileViewModel: ProfileScreenViewModel, collectionsDatabase: CollectionsDatabase) {
+    init(navigationController: UINavigationController, mainViewModel: MainScreenViewModel, compilationViewModel: CompilationScreenViewModel, collectionsViewModel: CollectionsScreenViewModel, profileViewModel: ProfileScreenViewModel, collectionsDatabase: CollectionsDatabase) {
         self.navigationController = navigationController
         self.mainViewModel = mainViewModel
+        self.compilationViewModel = compilationViewModel
         self.collectionsViewModel = collectionsViewModel
         self.profileViewModel = profileViewModel
         self.collectionsDatabase = collectionsDatabase
@@ -41,9 +42,14 @@ class MainTabBarCoordinator: Coordinator {
         
         let mainNavigationController = UINavigationController()
         mainNavigationController.setNavigationBarHidden(true, animated: false)
+//        let mainCoordinator = MainCoordinator(
+//            navigationController: mainNavigationController,
+//            mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()),
+//            movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
+//            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
         let mainCoordinator = MainCoordinator(
             navigationController: mainNavigationController,
-            mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()),
+            mainViewModel: self.mainViewModel,
             movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
             episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
         mainCoordinator.parentCoordinator = parentCoordinator
@@ -53,16 +59,17 @@ class MainTabBarCoordinator: Coordinator {
         mainItem.image = UIImage(named: "Main")
         mainNavigationController.tabBarItem = mainItem
         
-//        // MARK: - CompilationScreen
-//        
-//        let compilationNavigationController = UINavigationController()
-//        let compilationCoordinator = CompilationCoordinator(navigationController: compilationNavigationController, compilationViewModel: CompilationViewModel())
-//        compilationCoordinator.parentCoordinator = parentCoordinator
-//        
-//        let compilationItem = UITabBarItem()
-//        compilationItem.title = "Подборка"
-//        compilationItem.image = UIImage(named: "Compilation")
-//        
+        // MARK: - CompilationScreen
+        
+        let compilationNavigationController = UINavigationController()
+        let compilationCoordinator = CompilationCoordinator(navigationController: compilationNavigationController, compilationViewModel: self.compilationViewModel, movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()), episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
+        compilationCoordinator.parentCoordinator = parentCoordinator
+        
+        let compilationItem = UITabBarItem()
+        compilationItem.title = "Подборка"
+        compilationItem.image = UIImage(named: "Compilation")
+        compilationNavigationController.tabBarItem = compilationItem
+        
         // MARK: - Collections
         
         let collectionsNavigationController = UINavigationController()
@@ -99,18 +106,18 @@ class MainTabBarCoordinator: Coordinator {
         profileItem.image = UIImage(named: "Profile")
         profileNavigationController.tabBarItem = profileItem
         
-//        viewController.viewControllers = [mainNavigationController, compilationNavigationController, collectionsNavigationController, profileNavigationController]
-        viewController.viewControllers = [mainNavigationController, collectionsNavigationController, profileNavigationController]
+        viewController.viewControllers = [mainNavigationController, compilationNavigationController, collectionsNavigationController, profileNavigationController]
+        
         navigationController.pushViewController(viewController, animated: true)
         navigationController.setNavigationBarHidden(true, animated: false)
         
         parentCoordinator?.children.append(mainCoordinator)
-//        parentCoordinator?.children.append(compilationCoordinator)
+        parentCoordinator?.children.append(compilationCoordinator)
         parentCoordinator?.children.append(collectionsCoordinator)
         parentCoordinator?.children.append(profileCoordinator)
         
         mainCoordinator.start()
-//        compilationCoordinator.start()
+        compilationCoordinator.start()
         collectionsCoordinator.start()
         profileCoordinator.start()
         

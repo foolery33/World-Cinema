@@ -94,10 +94,9 @@ class MainScreenView: UIView {
         }
     }
     private func setupForegroundPoster() {
-        contentView.addSubview(foregroundPoster)
+        poster.addSubview(foregroundPoster)
         foregroundPoster.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(poster.snp.bottom).offset(-100)
+            make.center.equalToSuperview()
             make.height.equalTo(98)
             make.width.equalTo(240)
         }

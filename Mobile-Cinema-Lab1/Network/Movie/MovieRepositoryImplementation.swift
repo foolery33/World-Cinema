@@ -68,7 +68,37 @@ class MovieRepositoryImplementation: MovieRepository {
                     switch requestStatusCode {
                     case 401:
                         completion(.failure(.movieError(.unauthorized)))
-                    case 404, 422:
+                    case 404:
+                        completion(.failure(.movieError(.wrongEndpoint)))
+                    case 422:
+                        completion(.failure(.movieError(.unknownRequestParameter)))
+                    case 500:
+                        completion(.failure(.movieError(.serverError)))
+                    default:
+                        completion(.failure(.movieError(.unexpectedError)))
+                    }
+                }
+            }
+        }
+    }
+    
+    func dislikeMovie(movieId: String, completion: @escaping (Result<Bool, AppError>) -> Void) {
+        let url = baseURL + "/movies/\(movieId)/dislike"
+        AF.request(url, method: .post, interceptor: self.interceptor).validate().responseData { response in
+            if let requestStatusCode = response.response?.statusCode {
+                print("Dislike movie Status Code: ", requestStatusCode)
+            }
+            switch response.result {
+            case .success:
+                completion(.success(true))
+            case .failure(_):
+                if let requestStatusCode = response.response?.statusCode {
+                    switch requestStatusCode {
+                    case 401:
+                        completion(.failure(.movieError(.unauthorized)))
+                    case 404:
+                        completion(.failure(.movieError(.wrongEndpoint)))
+                    case 422:
                         completion(.failure(.movieError(.unknownRequestParameter)))
                     case 500:
                         completion(.failure(.movieError(.serverError)))
@@ -81,6 +111,7 @@ class MovieRepositoryImplementation: MovieRepository {
     }
                             
     enum MovieError: Error, LocalizedError, Identifiable {
+        case wrongEndpoint
         case modelError
         case serverError
         case unknownRequestParameter
@@ -92,6 +123,8 @@ class MovieRepositoryImplementation: MovieRepository {
         }
         var errorDescription: String {
             switch self {
+            case .wrongEndpoint:
+                return NSLocalizedString("Endpoint provided in request is not valid. Please contact developer", comment: "")
             case .modelError:
                 return NSLocalizedString("Internal application error. Please contact developer", comment: "")
             case .serverError:
