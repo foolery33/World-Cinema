@@ -14,10 +14,12 @@ final class EpisodeScreenViewModel {
     var yearRange: String?
     private var model = EpisodeScreenModel()
     private var collectionsRepository: CollectionsRepository
+    private var episodesRepository: EpisodesRepository
     private var collectionsDatabase: CollectionsDatabase
     
-    init(collectionsRepository: CollectionsRepository, collectionsDatabase: CollectionsDatabase) {
+    init(collectionsRepository: CollectionsRepository, episodesRepository: EpisodesRepository, collectionsDatabase: CollectionsDatabase) {
         self.collectionsRepository = collectionsRepository
+        self.episodesRepository = episodesRepository
         self.collectionsDatabase = collectionsDatabase
     }
     
@@ -43,6 +45,18 @@ final class EpisodeScreenViewModel {
     
     func addToCollection(collectionId: String, movieId: String, completion: @escaping (Bool) -> Void) {
         collectionsRepository.addToCollection(collectionId: collectionId, movieId: movieId) { [weak self] result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure(let error):
+                self?.error = error.errorDescription
+                completion(false)
+            }
+        }
+    }
+    
+    func saveEpisodeTime(episodeId: String, timeInSeconds: Int, completion: @escaping (Bool) -> Void) {
+        episodesRepository.saveEpisodeTime(episodeId: episodeId, timeInSeconds: timeInSeconds) { [weak self] result in
             switch result {
             case .success:
                 completion(true)

@@ -46,12 +46,6 @@ class MainTabBarController: UITabBarController {
     }
     
     override func viewDidLayoutSubviews() {
-//        print(view.safeAreaInsets.bottom)
-//        let customTabBarHeight: CGFloat = 51
-//        var tabBarFrame = tabBar.frame
-//        tabBarFrame.size.height = customTabBarHeight
-//        tabBarFrame.origin.y = view.frame.size.height - customTabBarHeight
-//        tabBar.frame = tabBarFrame
         navigationController?.setNavigationBarHidden(true, animated: false)
         navigationController?.navigationBar.barTintColor = .white
         tabBar.backgroundColor = .tabbarColor

@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import AVKit
+import AVFoundation
 
 class EpisodeScreenView: UIView {
     
@@ -61,33 +62,20 @@ class EpisodeScreenView: UIView {
             make.width.equalToSuperview()
         }
     }
+
+    // MARK: - VideoPlayerView setup
     
-    // MARK: - VideoPlayer setup
-    
-    private lazy var videoPlayerView: UIView = {
-        let myView = UIView()
-        myView.backgroundColor = .purple
+    lazy var videoPlayerView: UIView = {
+        let myView = VideoPlayerView(filePath: self.viewModel.episode.filePath, duration: self.viewModel.episode.runtime, frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 210))
         return myView
     }()
     private func setupVideoPlayerView() {
         contentView.addSubview(videoPlayerView)
-//        setupVideoPlayer()
         videoPlayerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.width.equalToSuperview()
             make.height.equalTo(210)
         }
-    }
-    private lazy var videoPlayer: AVPlayerLayer = {
-        let myVideoPlayerLayer = AVPlayerLayer()
-        let player = AVPlayer(url: URL(string: viewModel.episode.filePath)!)
-        myVideoPlayerLayer.player = player
-        return myVideoPlayerLayer
-    }()
-    private func setupVideoPlayer() {
-        videoPlayer.frame = videoPlayerView.bounds
-        videoPlayerView.layer.addSublayer(videoPlayer)
-        videoPlayer.player?.play()
     }
     
     // MARK: Back button

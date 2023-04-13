@@ -7,13 +7,6 @@
 
 import Foundation
 
-enum ViewModelType {
-    
-    case auth
-    case movie
-    
-}
-
 enum AppError: Error, LocalizedError, Identifiable, Equatable {
     
     case authError(AuthRepositoryImplementation.AuthError)
@@ -21,6 +14,7 @@ enum AppError: Error, LocalizedError, Identifiable, Equatable {
     case coverError(CoverRepositoryImplementation.CoverError)
     case profileError(ProfileRepositoryImplementation.ProfileError)
     case collectionsError(CollectionsRepositoryImplementation.CollectionsError)
+    case episodesError(EpisodesRepositoryImplementation.EpisodesError)
     
     var id: String {
         self.errorDescription
@@ -36,6 +30,8 @@ enum AppError: Error, LocalizedError, Identifiable, Equatable {
         case .profileError(let error):
             return error.errorDescription
         case .collectionsError(let error):
+            return error.errorDescription
+        case .episodesError(let error):
             return error.errorDescription
         }
     }

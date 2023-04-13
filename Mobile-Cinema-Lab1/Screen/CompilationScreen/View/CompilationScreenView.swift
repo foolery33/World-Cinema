@@ -67,7 +67,7 @@ class CompilationScreenView: UIView {
     
     lazy var filmLabel: UILabel = {
         let myLabel = UILabel()
-        myLabel.text = "Altered Carbon"
+//        myLabel.text = "Altered Carbon"
         myLabel.font = .systemFont(ofSize: 24, weight: .bold)
         myLabel.textColor = .white
         myLabel.numberOfLines = 1

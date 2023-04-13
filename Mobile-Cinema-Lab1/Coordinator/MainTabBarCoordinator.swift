@@ -51,7 +51,7 @@ class MainTabBarCoordinator: Coordinator {
             navigationController: mainNavigationController,
             mainViewModel: self.mainViewModel,
             movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
-            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
+            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), episodesRepository: EpisodesRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
         mainCoordinator.parentCoordinator = parentCoordinator
         
         let mainItem = UITabBarItem()
@@ -62,7 +62,7 @@ class MainTabBarCoordinator: Coordinator {
         // MARK: - CompilationScreen
         
         let compilationNavigationController = UINavigationController()
-        let compilationCoordinator = CompilationCoordinator(navigationController: compilationNavigationController, compilationViewModel: self.compilationViewModel, movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()), episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
+        let compilationCoordinator = CompilationCoordinator(navigationController: compilationNavigationController, compilationViewModel: self.compilationViewModel, movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()), episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), episodesRepository: EpisodesRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
         compilationCoordinator.parentCoordinator = parentCoordinator
         
         let compilationItem = UITabBarItem()
@@ -84,7 +84,7 @@ class MainTabBarCoordinator: Coordinator {
                 collectionsRepository: CollectionsRepositoryImplementation(),
                 collectionsDatabase: self.collectionsDatabase),
             movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
-            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase), changeCollectinViewModel: ChangeCollectionScreenViewModel(
+            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), episodesRepository: EpisodesRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase), changeCollectinViewModel: ChangeCollectionScreenViewModel(
                 collection: CollectionModel(collectionId: "", name: ""),
                 collectionsDatabase: self.collectionsDatabase, collectionsRepository: CollectionsRepositoryImplementation(), deleteCollectionDelegate: self.collectionsViewModel, changeCollectionNameDelegate: self.collectionsViewModel)
         )
