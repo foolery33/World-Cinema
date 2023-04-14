@@ -50,4 +50,11 @@ class AppCoordinator: Coordinator {
         homeCoordinator.start()
     }
     
+    func goToChats() {
+        let chatsCoordinator = ChatsCoordinator(navigationController: self.navigationController, chatListViewModel: ChatListScreenViewModel(chatsRepository: ChatsRepositoryImplementation()), chatViewModel: ChatScreenViewModel(profileRepository: ProfileRepositoryImplementation(), chatManager: ChatManager()))
+        children.append(chatsCoordinator)
+        chatsCoordinator.parentCoordinator = self
+        chatsCoordinator.start()
+    }
+    
 }

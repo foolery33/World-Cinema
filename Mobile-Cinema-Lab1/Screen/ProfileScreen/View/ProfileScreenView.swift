@@ -173,6 +173,7 @@ class ProfileScreenView: UIView {
     
     private lazy var sectionsTableView: ProfileSectionsTableView = {
         let myTableView = ProfileSectionsTableView()
+        myTableView.viewModel = self.viewModel
         return myTableView
     }()
     private func setupSectionsTableView() {

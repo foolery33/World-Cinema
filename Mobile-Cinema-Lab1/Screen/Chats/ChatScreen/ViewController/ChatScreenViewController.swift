@@ -1,23 +1,24 @@
 //
-//  CreateCollectionScreenViewController.swift
+//  ChatScreenViewController.swift
 //  Mobile-Cinema-Lab1
 //
-//  Created by admin on 05.04.2023.
+//  Created by admin on 14.04.2023.
 //
 
 import UIKit
 
-class CreateCollectionScreenViewController: UIViewController {
+class ChatScreenViewController: UIViewController, ChatUpdateProtocol {
 
-    var viewModel: CreateCollectionScreenViewModel!
+    var viewModel: ChatScreenViewModel!
     
     override func loadView() {
-        let collectionsScreenView = CreateCollectionScreenView(viewModel: self.viewModel)
-        view = collectionsScreenView
+        let chatScreenView = ChatScreenView(viewModel: self.viewModel)
+        view = chatScreenView
+        self.title = self.viewModel.chat?.chatName ?? "Some chat"
         view.backgroundColor = UIColor(named: "BackgroundColor")
-        self.title = "Создать коллекцию"
-        navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = getNavigationLeftItem()
+        chatScreenView.connectToWebSocket()
+        chatScreenView.getUserId()
     }
     
     private func getNavigationLeftItem() -> UIBarButtonItem {
@@ -27,20 +28,18 @@ class CreateCollectionScreenViewController: UIViewController {
         return backItem
     }
     @objc private func goBackToCreateCollectionScreen() {
-        viewModel.goBackToCreateCollectionScreen()
+        print("go back")
+        self.viewModel.goToPreviousScreen()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-}
-
-extension CreateCollectionScreenViewController: ChooseIconDelegate {
-    func choose(iconName: String) {
-        if let myView = self.view as? CreateCollectionScreenView {
-            myView.changeIcon(iconName: iconName)
-            viewModel.iconName = iconName
+    
+    func updateChat() {
+        if let myView = view as? ChatScreenView {
+            myView.updateChat()
         }
     }
+
 }

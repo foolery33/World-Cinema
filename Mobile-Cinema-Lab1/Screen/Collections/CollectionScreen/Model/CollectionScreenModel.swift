@@ -8,5 +8,5 @@
 import Foundation
 
 struct CollectionScreenModel {
-    var movies: [MovieModel] = []
+    var movies: [MovieModel] = [MovieModel(movieId: "", name: "asdfasdf", description: "asdfasdaf", age: "asdfasdf", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "asdfasdf", tags: [])]
 }

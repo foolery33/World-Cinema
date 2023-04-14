@@ -8,7 +8,7 @@
 import Foundation
 import SwiftKeychainWrapper
 
-class TokenManager {
+final class TokenManager {
     
     private enum KeysName {
         static let accessToken = "accessToken"

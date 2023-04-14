@@ -1,34 +1,26 @@
 //
-//  CollectionsScreenViewController.swift
+//  ChatListScreenViewController.swift
 //  Mobile-Cinema-Lab1
 //
-//  Created by admin on 04.04.2023.
+//  Created by admin on 13.04.2023.
 //
 
 import UIKit
 
-class CollectionsScreenViewController: UIViewController {
-    
-    var viewModel: CollectionsScreenViewModel!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        if let view = self.view as? CollectionsScreenView {
-            view.reloadCollectionsTableView()
-        }
-    }
+class ChatListScreenViewController: UIViewController {
+
+    var viewModel: ChatListScreenViewModel!
     
     override func loadView() {
-        let collectionsScreenView = CollectionsScreenView(viewModel: self.viewModel)
-        view = collectionsScreenView
+        let chatListScreenView = ChatListScreenView(viewModel: self.viewModel)
+        view = chatListScreenView
+        chatListScreenView.loadChatList()
         view.backgroundColor = UIColor(named: "BackgroundColor")
         setupNavigationBarAppearence()
-        collectionsScreenView.loadCollections()
     }
     
     private func setupNavigationBarAppearence() {
-        navigationController?.isNavigationBarHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         let navigationBarTitleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
             .foregroundColor: UIColor.white
@@ -40,22 +32,23 @@ class CollectionsScreenViewController: UIViewController {
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         }
-        self.title = "Коллекции"
-        self.navigationItem.rightBarButtonItem = getNavigationBarRightItem()
+        self.title = "Обсуждения"
+        self.navigationItem.leftBarButtonItem = getNavigationLeftItem()
     }
     
-    private func getNavigationBarRightItem() -> UIBarButtonItem {
-        let backItem = UIBarButtonItem(image: UIImage(named: "Plus"), style: .plain, target: self, action: #selector(goToCreateCollectionScreen))
+    private func getNavigationLeftItem() -> UIBarButtonItem {
+        let backItem = UIBarButtonItem(image: UIImage(named: "BackArrow"), style: .plain, target: self, action: #selector(goBackToCreateCollectionScreen))
         backItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
         backItem.tintColor = .white
         return backItem
     }
-    @objc private func goToCreateCollectionScreen() {
-        viewModel.goToCreateCollectionScreen()
+    @objc private func goBackToCreateCollectionScreen() {
+        print("go back")
+        self.viewModel.goToPreviousScreen()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
 }

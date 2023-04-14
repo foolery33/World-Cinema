@@ -57,6 +57,21 @@
 		848BC51329E451030022242B /* CompilationScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BC51229E451030022242B /* CompilationScreenViewModel.swift */; };
 		848BC51529E451E80022242B /* CompilationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BC51429E451E80022242B /* CompilationScreenViewController.swift */; };
 		848BC51729E452420022242B /* CompilationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BC51629E452420022242B /* CompilationScreenView.swift */; };
+		848ED65D29E7BFEC005655D0 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 848ED65C29E7BFEC005655D0 /* Starscream */; };
+		848ED66029E7C021005655D0 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED65F29E7C021005655D0 /* ChatManager.swift */; };
+		848ED66329E7C087005655D0 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED66229E7C087005655D0 /* MessageModel.swift */; };
+		848ED66629E7DCAB005655D0 /* ChatScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED66529E7DCAB005655D0 /* ChatScreenViewModel.swift */; };
+		848ED66829E7DDE2005655D0 /* ChatScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED66729E7DDE2005655D0 /* ChatScreenModel.swift */; };
+		848ED66A29E7E94F005655D0 /* ChatsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED66929E7E94F005655D0 /* ChatsCoordinator.swift */; };
+		848ED67129E7ED20005655D0 /* ChatListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED67029E7ED20005655D0 /* ChatListScreenViewModel.swift */; };
+		848ED67329E7EDD7005655D0 /* ChatListScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED67229E7EDD7005655D0 /* ChatListScreenViewController.swift */; };
+		848ED67529E7EFC0005655D0 /* ChatListScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED67429E7EFC0005655D0 /* ChatListScreenView.swift */; };
+		848ED67829E81DC5005655D0 /* ChatListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED67729E81DC5005655D0 /* ChatListTableView.swift */; };
+		848ED67A29E81EC0005655D0 /* ChatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED67929E81EC0005655D0 /* ChatsRepository.swift */; };
+		848ED67C29E81EED005655D0 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED67B29E81EED005655D0 /* ChatModel.swift */; };
+		848ED67E29E82BCD005655D0 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED67D29E82BCD005655D0 /* ChatListTableViewCell.swift */; };
+		848ED68029E84257005655D0 /* ChatsRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED67F29E84257005655D0 /* ChatsRepositoryImplementation.swift */; };
+		848ED68229E84462005655D0 /* ChatListScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ED68129E84462005655D0 /* ChatListScreenModel.swift */; };
 		84969C8429E06ED600D98A56 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 84969C8329E06ED600D98A56 /* RealmSwift */; };
 		84969C8729E06F4500D98A56 /* MovieCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84969C8629E06F4500D98A56 /* MovieCollection.swift */; };
 		84969C8929E0741A00D98A56 /* CollectionsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84969C8829E0741A00D98A56 /* CollectionsDatabase.swift */; };
@@ -71,6 +86,17 @@
 		849FA1DF29D580330097223A /* ForMeMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FA1DE29D580330097223A /* ForMeMoviesModel.swift */; };
 		849FA1E129D5804E0097223A /* ForMeMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FA1E029D5804E0097223A /* ForMeMoviesViewModel.swift */; };
 		849FA1E329D5B50D0097223A /* GetRegisterErrorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FA1E229D5B50D0097223A /* GetRegisterErrorUseCase.swift */; };
+		84AF453629E8FAC10028C17E /* ChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF453529E8FAC10028C17E /* ChatScreenViewController.swift */; };
+		84AF453829E8FAF50028C17E /* ChatScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF453729E8FAF50028C17E /* ChatScreenView.swift */; };
+		84AF453B29E9182B0028C17E /* GroupMessagesByDateAndTimeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF453A29E9182B0028C17E /* GroupMessagesByDateAndTimeUseCase.swift */; };
+		84AF453E29E921150028C17E /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF453D29E921150028C17E /* ChatTableView.swift */; };
+		84AF454029E9211F0028C17E /* ChatMyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF453F29E9211F0028C17E /* ChatMyMessageTableViewCell.swift */; };
+		84AF454229E928340028C17E /* RecognizeChatCellsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454129E928340028C17E /* RecognizeChatCellsUseCase.swift */; };
+		84AF454429E92AEA0028C17E /* ChatDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454329E92AEA0028C17E /* ChatDateTableViewCell.swift */; };
+		84AF454629E93A000028C17E /* GetDayAndMonthFromStringDateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454529E93A000028C17E /* GetDayAndMonthFromStringDateUseCase.swift */; };
+		84AF454829E957F20028C17E /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454729E957F20028C17E /* UserDataManager.swift */; };
+		84AF454A29E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454929E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift */; };
+		84AF454C29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454B29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift */; };
 		84B6049329CD9BCB0047A603 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6049229CD9BCB0047A603 /* AuthCoordinator.swift */; };
 		84B6049B29CDEEF00047A603 /* AuthRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6049A29CDEEF00047A603 /* AuthRepositoryImplementation.swift */; };
 		84B604A329CDF1810047A603 /* CustomRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B604A229CDF1810047A603 /* CustomRequestInterceptor.swift */; };
@@ -126,7 +152,6 @@
 		84E49CF329D2C09D00BCCA8B /* MovieRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E49CF229D2C09D00BCCA8B /* MovieRepositoryImplementation.swift */; };
 		84E49CF629D2CE2600BCCA8B /* NewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E49CF529D2CE2600BCCA8B /* NewCollectionView.swift */; };
 		84E49CF829D2CE3500BCCA8B /* NewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E49CF729D2CE3500BCCA8B /* NewCollectionViewCell.swift */; };
-		84E49CFA29D2D0B200BCCA8B /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E49CF929D2D0B200BCCA8B /* ChatModel.swift */; };
 		84E4C7E929CAD6F80004732C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4C7E829CAD6F80004732C /* AppDelegate.swift */; };
 		84E4C7F229CAD6F90004732C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E4C7F129CAD6F90004732C /* Assets.xcassets */; };
 		84E4C7F529CAD6F90004732C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E4C7F329CAD6F90004732C /* LaunchScreen.storyboard */; };
@@ -195,6 +220,20 @@
 		848BC51229E451030022242B /* CompilationScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompilationScreenViewModel.swift; sourceTree = "<group>"; };
 		848BC51429E451E80022242B /* CompilationScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompilationScreenViewController.swift; sourceTree = "<group>"; };
 		848BC51629E452420022242B /* CompilationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompilationScreenView.swift; sourceTree = "<group>"; };
+		848ED65F29E7C021005655D0 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		848ED66229E7C087005655D0 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		848ED66529E7DCAB005655D0 /* ChatScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenViewModel.swift; sourceTree = "<group>"; };
+		848ED66729E7DDE2005655D0 /* ChatScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenModel.swift; sourceTree = "<group>"; };
+		848ED66929E7E94F005655D0 /* ChatsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCoordinator.swift; sourceTree = "<group>"; };
+		848ED67029E7ED20005655D0 /* ChatListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListScreenViewModel.swift; sourceTree = "<group>"; };
+		848ED67229E7EDD7005655D0 /* ChatListScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListScreenViewController.swift; sourceTree = "<group>"; };
+		848ED67429E7EFC0005655D0 /* ChatListScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListScreenView.swift; sourceTree = "<group>"; };
+		848ED67729E81DC5005655D0 /* ChatListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableView.swift; sourceTree = "<group>"; };
+		848ED67929E81EC0005655D0 /* ChatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsRepository.swift; sourceTree = "<group>"; };
+		848ED67B29E81EED005655D0 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		848ED67D29E82BCD005655D0 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
+		848ED67F29E84257005655D0 /* ChatsRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsRepositoryImplementation.swift; sourceTree = "<group>"; };
+		848ED68129E84462005655D0 /* ChatListScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListScreenModel.swift; sourceTree = "<group>"; };
 		84969C8629E06F4500D98A56 /* MovieCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollection.swift; sourceTree = "<group>"; };
 		84969C8829E0741A00D98A56 /* CollectionsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsDatabase.swift; sourceTree = "<group>"; };
 		849FA1CE29D57BC90097223A /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
@@ -208,6 +247,17 @@
 		849FA1DE29D580330097223A /* ForMeMoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForMeMoviesModel.swift; sourceTree = "<group>"; };
 		849FA1E029D5804E0097223A /* ForMeMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForMeMoviesViewModel.swift; sourceTree = "<group>"; };
 		849FA1E229D5B50D0097223A /* GetRegisterErrorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRegisterErrorUseCase.swift; sourceTree = "<group>"; };
+		84AF453529E8FAC10028C17E /* ChatScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenViewController.swift; sourceTree = "<group>"; };
+		84AF453729E8FAF50028C17E /* ChatScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenView.swift; sourceTree = "<group>"; };
+		84AF453A29E9182B0028C17E /* GroupMessagesByDateAndTimeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMessagesByDateAndTimeUseCase.swift; sourceTree = "<group>"; };
+		84AF453D29E921150028C17E /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
+		84AF453F29E9211F0028C17E /* ChatMyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMyMessageTableViewCell.swift; sourceTree = "<group>"; };
+		84AF454129E928340028C17E /* RecognizeChatCellsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizeChatCellsUseCase.swift; sourceTree = "<group>"; };
+		84AF454329E92AEA0028C17E /* ChatDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDateTableViewCell.swift; sourceTree = "<group>"; };
+		84AF454529E93A000028C17E /* GetDayAndMonthFromStringDateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDayAndMonthFromStringDateUseCase.swift; sourceTree = "<group>"; };
+		84AF454729E957F20028C17E /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
+		84AF454929E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNotMyMessageTableViewCell.swift; sourceTree = "<group>"; };
+		84AF454B29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoTimeToHHMMUseCase.swift; sourceTree = "<group>"; };
 		84B6049229CD9BCB0047A603 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		84B6049A29CDEEF00047A603 /* AuthRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryImplementation.swift; sourceTree = "<group>"; };
 		84B604A229CDF1810047A603 /* CustomRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestInterceptor.swift; sourceTree = "<group>"; };
@@ -263,7 +313,6 @@
 		84E49CF229D2C09D00BCCA8B /* MovieRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryImplementation.swift; sourceTree = "<group>"; };
 		84E49CF529D2CE2600BCCA8B /* NewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionView.swift; sourceTree = "<group>"; };
 		84E49CF729D2CE3500BCCA8B /* NewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionViewCell.swift; sourceTree = "<group>"; };
-		84E49CF929D2D0B200BCCA8B /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		84E4C7E529CAD6F80004732C /* Mobile-Cinema-Lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile-Cinema-Lab1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E4C7E829CAD6F80004732C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84E4C7F129CAD6F90004732C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -294,6 +343,7 @@
 				84969C8429E06ED600D98A56 /* RealmSwift in Frameworks */,
 				844A26B829D7F9C700395B0C /* Alamofire in Frameworks */,
 				844A26B529D7F9B700395B0C /* SwiftKeychainWrapper in Frameworks */,
+				848ED65D29E7BFEC005655D0 /* Starscream in Frameworks */,
 				844A26B229D7F9A200395B0C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -640,8 +690,8 @@
 		846E48AF29D201C7006B5F59 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				846E48B029D201D2006B5F59 /* MovieModel.swift */,
 				846E48B229D202CC006B5F59 /* TagModel.swift */,
-				84E49CF929D2D0B200BCCA8B /* ChatModel.swift */,
 				844A26C229D828B300395B0C /* EpisodeModel.swift */,
 			);
 			path = Model;
@@ -650,6 +700,7 @@
 		848BC50A29E44E730022242B /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				848ED66429E7DC9C005655D0 /* Chats */,
 				848BC50B29E44EA40022242B /* CompilationScreen */,
 				8428979A29DC92BA0096D409 /* Collections */,
 				84C3313929DAC1D900904FEA /* ProfileScreen */,
@@ -707,6 +758,88 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		848ED65E29E7C00D005655D0 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				848ED66129E7C071005655D0 /* Model */,
+				848ED65F29E7C021005655D0 /* ChatManager.swift */,
+				848ED67929E81EC0005655D0 /* ChatsRepository.swift */,
+				848ED67F29E84257005655D0 /* ChatsRepositoryImplementation.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		848ED66129E7C071005655D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				848ED66229E7C087005655D0 /* MessageModel.swift */,
+				848ED67B29E81EED005655D0 /* ChatModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		848ED66429E7DC9C005655D0 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				84AF453029E8F6170028C17E /* ChatScreen */,
+				848ED66B29E7EB37005655D0 /* ChatListScreen */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		848ED66B29E7EB37005655D0 /* ChatListScreen */ = {
+			isa = PBXGroup;
+			children = (
+				848ED66F29E7EB6A005655D0 /* ViewController */,
+				848ED66E29E7EB63005655D0 /* ViewModel */,
+				848ED66D29E7EB5F005655D0 /* View */,
+				848ED66C29E7EB42005655D0 /* Model */,
+			);
+			path = ChatListScreen;
+			sourceTree = "<group>";
+		};
+		848ED66C29E7EB42005655D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				848ED68129E84462005655D0 /* ChatListScreenModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		848ED66D29E7EB5F005655D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				848ED67629E81DA7005655D0 /* ChatListTableView */,
+				848ED67429E7EFC0005655D0 /* ChatListScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		848ED66E29E7EB63005655D0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				848ED67029E7ED20005655D0 /* ChatListScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		848ED66F29E7EB6A005655D0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				848ED67229E7EDD7005655D0 /* ChatListScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		848ED67629E81DA7005655D0 /* ChatListTableView */ = {
+			isa = PBXGroup;
+			children = (
+				848ED67729E81DC5005655D0 /* ChatListTableView.swift */,
+				848ED67D29E82BCD005655D0 /* ChatListTableViewCell.swift */,
+			);
+			path = ChatListTableView;
+			sourceTree = "<group>";
+		};
 		84969C8529E06F2100D98A56 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -716,10 +849,76 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		84AF453029E8F6170028C17E /* ChatScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84AF453429E8F6320028C17E /* ViewController */,
+				84AF453329E8F62D0028C17E /* ViewModel */,
+				84AF453229E8F62A0028C17E /* View */,
+				84AF453129E8F6260028C17E /* Model */,
+			);
+			path = ChatScreen;
+			sourceTree = "<group>";
+		};
+		84AF453129E8F6260028C17E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84AF453929E918120028C17E /* UseCase */,
+				848ED66729E7DDE2005655D0 /* ChatScreenModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84AF453229E8F62A0028C17E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84AF453C29E920FC0028C17E /* ChatTableView */,
+				84AF453729E8FAF50028C17E /* ChatScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84AF453329E8F62D0028C17E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				848ED66529E7DCAB005655D0 /* ChatScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		84AF453429E8F6320028C17E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84AF453529E8FAC10028C17E /* ChatScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84AF453929E918120028C17E /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				84AF453A29E9182B0028C17E /* GroupMessagesByDateAndTimeUseCase.swift */,
+				84AF454129E928340028C17E /* RecognizeChatCellsUseCase.swift */,
+				84AF454529E93A000028C17E /* GetDayAndMonthFromStringDateUseCase.swift */,
+				84AF454B29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		84AF453C29E920FC0028C17E /* ChatTableView */ = {
+			isa = PBXGroup;
+			children = (
+				84AF453D29E921150028C17E /* ChatTableView.swift */,
+				84AF453F29E9211F0028C17E /* ChatMyMessageTableViewCell.swift */,
+				84AF454329E92AEA0028C17E /* ChatDateTableViewCell.swift */,
+				84AF454929E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift */,
+			);
+			path = ChatTableView;
+			sourceTree = "<group>";
+		};
 		84B6049429CD9DC40047A603 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				846E48B029D201D2006B5F59 /* MovieModel.swift */,
 				84D785F929CC54FB004D518D /* AppCoordinator.swift */,
 				84B6049229CD9BCB0047A603 /* AuthCoordinator.swift */,
 				84BE5C3629CF02D20051B6D0 /* MainCoordinator.swift */,
@@ -727,6 +926,7 @@
 				84C3313A29DAC1E600904FEA /* ProfileCoordinator.swift */,
 				8428978129DC1DD00096D409 /* CollectionsCoordinator.swift */,
 				848BC51029E450810022242B /* CompilationCoordinator.swift */,
+				848ED66929E7E94F005655D0 /* ChatsCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -734,6 +934,7 @@
 		84B6049829CDEEC10047A603 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				848ED65E29E7C00D005655D0 /* Chats */,
 				84D319E029E70DAF0049F18D /* Episodes */,
 				8428979029DC7C090096D409 /* Collections */,
 				84C3314A29DAD49900904FEA /* Profile */,
@@ -742,6 +943,7 @@
 				84B6049929CDEEC80047A603 /* Auth */,
 				84B604A229CDF1810047A603 /* CustomRequestInterceptor.swift */,
 				84B604A429CDF1DA0047A603 /* TokenManager.swift */,
+				84AF454729E957F20028C17E /* UserDataManager.swift */,
 				84B604AB29CDF8E40047A603 /* AppError.swift */,
 			);
 			path = Network;
@@ -1232,6 +1434,7 @@
 				844A26B429D7F9B700395B0C /* SwiftKeychainWrapper */,
 				844A26B729D7F9C700395B0C /* Alamofire */,
 				84969C8329E06ED600D98A56 /* RealmSwift */,
+				848ED65C29E7BFEC005655D0 /* Starscream */,
 			);
 			productName = "Mobile-Cinema-Lab1";
 			productReference = 84E4C7E529CAD6F80004732C /* Mobile-Cinema-Lab1.app */;
@@ -1266,6 +1469,7 @@
 				844A26B329D7F9B700395B0C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				844A26B629D7F9C700395B0C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				84969C8229E06ED600D98A56 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				848ED65B29E7BFEC005655D0 /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			productRefGroup = 84E4C7E629CAD6F80004732C /* Products */;
 			projectDirPath = "";
@@ -1296,9 +1500,11 @@
 				84D7860E29CC7A0C004D518D /* OutlinedTextField.swift in Sources */,
 				844A26C929D88B9400395B0C /* GetAgeLimitLabelUseCase.swift in Sources */,
 				8413392C29DE7EFB00A394D4 /* IconSelectionCollectionView.swift in Sources */,
+				84AF454229E928340028C17E /* RecognizeChatCellsUseCase.swift in Sources */,
 				84BE5C3329CF012E0051B6D0 /* MainScreenViewModel.swift in Sources */,
 				84B604AA29CDF5C20047A603 /* AuthTokenPairModel.swift in Sources */,
 				843C9B8C29D6F96300E370EC /* MainTabBarCoordinator.swift in Sources */,
+				848ED67329E7EDD7005655D0 /* ChatListScreenViewController.swift in Sources */,
 				84D7861C29CCAF00004D518D /* RegisterScreenViewModel.swift in Sources */,
 				84B604B129CE0FFC0047A603 /* EmailValidation.swift in Sources */,
 				84BE5C2829CEF27D0051B6D0 /* ActivityIndicator.swift in Sources */,
@@ -1310,22 +1516,26 @@
 				848BC51329E451030022242B /* CompilationScreenViewModel.swift in Sources */,
 				84C3315829DB355900904FEA /* ProfileSectionTableViewCell.swift in Sources */,
 				8428978829DC1ECD0096D409 /* CollectionsScreenViewController.swift in Sources */,
+				848ED66A29E7E94F005655D0 /* ChatsCoordinator.swift in Sources */,
 				84EB777229D9B373002F5137 /* GetYearRangeForEpisodesUseCase.swift in Sources */,
 				84D7861029CC8534004D518D /* FilledButton.swift in Sources */,
 				849FA1D129D57C310097223A /* AuthRepository.swift in Sources */,
+				84AF454429E92AEA0028C17E /* ChatDateTableViewCell.swift in Sources */,
 				84EB776A29D9A03F002F5137 /* EpisodeScreenViewController.swift in Sources */,
 				8428978D29DC34DB0096D409 /* CollectionsTableView.swift in Sources */,
+				848ED67C29E81EED005655D0 /* ChatModel.swift in Sources */,
 				84D7861A29CCAE9F004D518D /* RegisterScreenModel.swift in Sources */,
 				844A26C529D82E1100395B0C /* EpisodesTableViewCell.swift in Sources */,
+				84AF453B29E9182B0028C17E /* GroupMessagesByDateAndTimeUseCase.swift in Sources */,
 				84B7DBB129E544D300861D4A /* CompilationCardView.swift in Sources */,
 				849FA1DB29D57F8F0097223A /* NewMoviesViewModel.swift in Sources */,
 				84BE5C3929CF05CD0051B6D0 /* MainScreenView.swift in Sources */,
 				8413392729DE7A1100A394D4 /* ChooseIconDelegate.swift in Sources */,
 				84D319EC29E71B970049F18D /* EpisodesServerFunctions.swift in Sources */,
 				849FA1DF29D580330097223A /* ForMeMoviesModel.swift in Sources */,
-				84E49CFA29D2D0B200BCCA8B /* ChatModel.swift in Sources */,
 				84E5702229E13E9400A10579 /* CollectionScreenView.swift in Sources */,
 				84C3315329DAEA9700904FEA /* UserModel.swift in Sources */,
+				848ED67A29E81EC0005655D0 /* ChatsRepository.swift in Sources */,
 				84C3313B29DAC1E600904FEA /* ProfileCoordinator.swift in Sources */,
 				8427A3CE29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift in Sources */,
 				849FA1D929D57EED0097223A /* LastViewMoviesModel.swift in Sources */,
@@ -1345,11 +1555,15 @@
 				84C3314E29DAE9A400904FEA /* ProfileRepositoryImplementation.swift in Sources */,
 				8428979729DC7D050096D409 /* CollectionsRepositoryImplementation.swift in Sources */,
 				8428978A29DC1EDC0096D409 /* CollectionsScreenView.swift in Sources */,
+				84AF453E29E921150028C17E /* ChatTableView.swift in Sources */,
+				84AF454029E9211F0028C17E /* ChatMyMessageTableViewCell.swift in Sources */,
 				8428978F29DC34E90096D409 /* CollectionsTableViewCell.swift in Sources */,
 				8428978629DC1E8D0096D409 /* CollectionsScreenViewModel.swift in Sources */,
 				84E5702D29E15D7400A10579 /* MovieHandlerDelegate.swift in Sources */,
+				84AF453629E8FAC10028C17E /* ChatScreenViewController.swift in Sources */,
 				84B604A529CDF1DA0047A603 /* TokenManager.swift in Sources */,
 				84D7861229CC8767004D518D /* OutlinedButton.swift in Sources */,
+				848ED67829E81DC5005655D0 /* ChatListTableView.swift in Sources */,
 				8413392229DE77B500A394D4 /* IconSelectionScreenViewController.swift in Sources */,
 				846AF3D629DD1B53001453A1 /* CreateCollectionScreenViewModel.swift in Sources */,
 				84B6049B29CDEEF00047A603 /* AuthRepositoryImplementation.swift in Sources */,
@@ -1359,21 +1573,26 @@
 				84EB776C29D9A09B002F5137 /* EpisodeScreenView.swift in Sources */,
 				843C9B9829D71AAE00E370EC /* MovieScreenView.swift in Sources */,
 				84D785FA29CC54FB004D518D /* AppCoordinator.swift in Sources */,
+				84AF454A29E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift in Sources */,
 				84EB775F29D99534002F5137 /* CoverRepositoryImplementation.swift in Sources */,
 				8428978429DC1E750096D409 /* CollectionsScreenModel.swift in Sources */,
 				84C3314129DAC4AF00904FEA /* ProfileScreenViewModel.swift in Sources */,
 				846E48B329D202CC006B5F59 /* TagModel.swift in Sources */,
+				84AF453829E8FAF50028C17E /* ChatScreenView.swift in Sources */,
 				849FA1DD29D57F9E0097223A /* NewMoviesModel.swift in Sources */,
 				843C9B9629D71A1300E370EC /* MovieScreenViewModel.swift in Sources */,
 				8413392929DE7C8A00A394D4 /* IconSelectionScreenViewModel.swift in Sources */,
 				8428978229DC1DD00096D409 /* CollectionsCoordinator.swift in Sources */,
 				844A26BE29D80F8D00395B0C /* ShotsCollectionViewCell.swift in Sources */,
+				848ED68029E84257005655D0 /* ChatsRepositoryImplementation.swift in Sources */,
 				843C9B8829D6E94F00E370EC /* ForMeCollectionViewCell.swift in Sources */,
 				848BC51129E450810022242B /* CompilationCoordinator.swift in Sources */,
 				84E5701E29E13D0500A10579 /* CollectionScreenViewController.swift in Sources */,
+				84AF454629E93A000028C17E /* GetDayAndMonthFromStringDateUseCase.swift in Sources */,
 				84969C8729E06F4500D98A56 /* MovieCollection.swift in Sources */,
 				84E49CED29D29D0C00BCCA8B /* InTrendCollectionView.swift in Sources */,
 				8427A3D029E274FE007E4B2F /* ChangeCollectionScreenViewController.swift in Sources */,
+				848ED66829E7DDE2005655D0 /* ChatScreenModel.swift in Sources */,
 				84E5702A29E1474400A10579 /* CollectionMoviesTableViewCell.swift in Sources */,
 				84E49CF629D2CE2600BCCA8B /* NewCollectionView.swift in Sources */,
 				84D7861E29CCAFA8004D518D /* RegisterViewController.swift in Sources */,
@@ -1381,9 +1600,12 @@
 				84D7860A29CC6240004D518D /* LoginScreenView.swift in Sources */,
 				843C9B9A29D72A6200E370EC /* GenresCollectionView.swift in Sources */,
 				84D319DF29E658600049F18D /* VideoPlayerView.swift in Sources */,
+				848ED66629E7DCAB005655D0 /* ChatScreenViewModel.swift in Sources */,
 				84969C8929E0741A00D98A56 /* CollectionsDatabase.swift in Sources */,
 				84D7860729CC5D8F004D518D /* LoginScreenViewModel.swift in Sources */,
 				844A26C329D828B300395B0C /* EpisodeModel.swift in Sources */,
+				848ED67E29E82BCD005655D0 /* ChatListTableViewCell.swift in Sources */,
+				848ED68229E84462005655D0 /* ChatListScreenModel.swift in Sources */,
 				849FA1D729D57EAA0097223A /* LastViewMovesViewModel.swift in Sources */,
 				84B7DBB929E55AF500861D4A /* CompilationUIFunctions.swift in Sources */,
 				84C3314329DAC54E00904FEA /* ProfileScreenModel.swift in Sources */,
@@ -1398,17 +1620,22 @@
 				843C9B9F29D72F5300E370EC /* GetGenresListFromTagsUseCase.swift in Sources */,
 				84E4C7E929CAD6F80004732C /* AppDelegate.swift in Sources */,
 				8413392429DE77DD00A394D4 /* IconSelectionScreenView.swift in Sources */,
+				848ED66329E7C087005655D0 /* MessageModel.swift in Sources */,
 				8428979429DC7C8E0096D409 /* CollectionModel.swift in Sources */,
 				844A26C729D862D300395B0C /* MovieScreenModel.swift in Sources */,
 				846AF3D329DD16FD001453A1 /* CreateCollectionScreenView.swift in Sources */,
+				84AF454829E957F20028C17E /* UserDataManager.swift in Sources */,
 				849FA1D329D57D800097223A /* InTrendMoviesViewModel.swift in Sources */,
+				848ED66029E7C021005655D0 /* ChatManager.swift in Sources */,
 				84C3314729DAC5FC00904FEA /* ProfileScreenViewController.swift in Sources */,
 				84D319E929E710800049F18D /* EpisodesRepositoryImplementation.swift in Sources */,
 				84B7DBB629E5599E00861D4A /* CompilationServerFunctions.swift in Sources */,
+				84AF454C29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift in Sources */,
 				84B6049329CD9BCB0047A603 /* AuthCoordinator.swift in Sources */,
 				84D319E229E70DC90049F18D /* EpisodesRepository.swift in Sources */,
 				84D319E729E70FAA0049F18D /* EpisodeTimeModel.swift in Sources */,
 				846AF3D129DD16E3001453A1 /* CreateCollectionScreenViewController.swift in Sources */,
+				848ED67529E7EFC0005655D0 /* ChatListScreenView.swift in Sources */,
 				84D7862029CCB331004D518D /* RegisterScreenView.swift in Sources */,
 				8413392E29DE7F2400A394D4 /* IconSelectionCollectionViewCell.swift in Sources */,
 				84D319E529E70E080049F18D /* CommentModel.swift in Sources */,
@@ -1418,6 +1645,7 @@
 				848BC51529E451E80022242B /* CompilationScreenViewController.swift in Sources */,
 				84B7DBB429E558F800861D4A /* CompilationScreenModel.swift in Sources */,
 				843C9B9429D717D600E370EC /* MovieScreenViewController.swift in Sources */,
+				848ED67129E7ED20005655D0 /* ChatListScreenViewModel.swift in Sources */,
 				84E49CF829D2CE3500BCCA8B /* NewCollectionViewCell.swift in Sources */,
 				84EB775A29D99472002F5137 /* CoverRepository.swift in Sources */,
 				844A26BC29D80E5C00395B0C /* ShotsCollectionView.swift in Sources */,
@@ -1664,6 +1892,14 @@
 				kind = branch;
 			};
 		};
+		848ED65B29E7BFEC005655D0 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		84969C8229E06ED600D98A56 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -1689,6 +1925,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 844A26B629D7F9C700395B0C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		848ED65C29E7BFEC005655D0 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 848ED65B29E7BFEC005655D0 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
 		};
 		84969C8329E06ED600D98A56 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;

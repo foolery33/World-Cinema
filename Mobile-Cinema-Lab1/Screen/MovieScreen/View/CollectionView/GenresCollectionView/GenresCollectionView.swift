@@ -42,7 +42,7 @@ extension GenresCollectionView: UICollectionViewDataSource {
 
 extension GenresCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return genres?[indexPath.row].calculateLabelWidth(font: UIFont.systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 10) ?? CGSize(width: 0, height: 0)
+        return genres?[indexPath.row].calculateLabelSize(font: UIFont.systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 10) ?? CGSize(width: 0, height: 0)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -58,16 +58,16 @@ extension GenresCollectionView: UICollectionViewDelegateFlowLayout {
 extension GenresCollectionView {
     func calculateContentHeight() -> CGFloat {
         if let genres {
-            var height: CGFloat = genres[0].calculateLabelWidth(font: UIFont.systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 10).height
+            var height: CGFloat = genres[0].calculateLabelSize(font: UIFont.systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 10).height
             let screenWidth = UIScreen.main.bounds.width - 32
             var numberOfSections = 1
             var currentWidthSum: CGFloat = 0.0
             var currentGenreIndex = 0
             while currentGenreIndex < genres.count{
                 let string = genres[currentGenreIndex]
-                let stringWidth = string.calculateLabelWidth(font: UIFont.systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 10).width
+                let stringWidth = string.calculateLabelSize(font: UIFont.systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 10).width
                 if(currentWidthSum + stringWidth > screenWidth) {
-                    height += genres[0].calculateLabelWidth(font: UIFont.systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 10).height + 8
+                    height += genres[0].calculateLabelSize(font: UIFont.systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 10).height + 8
                     currentWidthSum = stringWidth + 8
                     numberOfSections += 1
                 }
@@ -85,7 +85,7 @@ extension GenresCollectionView {
 }
 
 extension String {
-    func calculateLabelWidth(font: UIFont, widthInset: CGFloat, heightInset: CGFloat) -> CGSize {
+    func calculateLabelSize(font: UIFont, widthInset: CGFloat, heightInset: CGFloat) -> CGSize {
         let label = UILabel()
         label.font = font
         label.text = self

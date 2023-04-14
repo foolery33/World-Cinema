@@ -28,5 +28,7 @@ extension UIColor {
     public static let color12: UIColor = UIColor(red: 244/255, green: 169/255, blue: 146/255, alpha: 1)
     public static let color6: UIColor = UIColor(red: 250/255, green: 213/255, blue: 201/255, alpha: 1)
     public static let color0: UIColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+    public static let chatElementBackground: UIColor = UIColor(red: 46/255, green: 43/255, blue: 42/255, alpha: 1)
+    public static let myMessageSenderColor: UIColor = UIColor(red: 255/255, green: 191/255, blue: 171/255, alpha: 1)
     
 }

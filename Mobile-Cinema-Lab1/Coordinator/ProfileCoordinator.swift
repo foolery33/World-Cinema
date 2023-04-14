@@ -38,4 +38,9 @@ final class ProfileCoordinator: Coordinator {
         parentCoordinator?.childDidFinish(self)
     }
     
+    func goToChatListScreen() {
+        let appCoordinator = parentCoordinator as! AppCoordinator
+        appCoordinator.goToChats()
+    }
+    
 }

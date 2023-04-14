@@ -19,15 +19,14 @@ final class GenresCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
-//        setupViews()
-        setupPosterImageView()
+        setupGenreLabel()
     }
 
     private func setupViews() {
         contentView.clipsToBounds = true
     }
 
-    private func setupPosterImageView() {
+    private func setupGenreLabel() {
         contentView.addSubview(genreLabel)
         contentView.backgroundColor = .redColor
         contentView.layer.cornerRadius = 4

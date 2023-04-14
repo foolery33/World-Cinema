@@ -9,7 +9,7 @@ import Foundation
 
 struct MovieScreenModel {
     
-    var movie: MovieModel = MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: [])
+    var movie: MovieModel = MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: "", lastMessage: MessageModel(messageId: "", creationDateTime: "", authorName: "", text: "")), imageUrls: [], poster: "", tags: [])
     var episodes: [EpisodeModel] = []
     
 }

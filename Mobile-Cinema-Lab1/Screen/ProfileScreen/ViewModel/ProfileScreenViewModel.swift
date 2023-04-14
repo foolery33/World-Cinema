@@ -59,4 +59,8 @@ final class ProfileScreenViewModel {
         }
     }
     
+    func goToChatListScreen() {
+        self.coordinator.goToChatListScreen()
+    }
+    
 }

@@ -15,6 +15,7 @@ enum AppError: Error, LocalizedError, Identifiable, Equatable {
     case profileError(ProfileRepositoryImplementation.ProfileError)
     case collectionsError(CollectionsRepositoryImplementation.CollectionsError)
     case episodesError(EpisodesRepositoryImplementation.EpisodesError)
+    case chatsError(ChatsRepositoryImplementation.ChatsError)
     
     var id: String {
         self.errorDescription
@@ -32,6 +33,8 @@ enum AppError: Error, LocalizedError, Identifiable, Equatable {
         case .collectionsError(let error):
             return error.errorDescription
         case .episodesError(let error):
+            return error.errorDescription
+        case .chatsError(let error):
             return error.errorDescription
         }
     }

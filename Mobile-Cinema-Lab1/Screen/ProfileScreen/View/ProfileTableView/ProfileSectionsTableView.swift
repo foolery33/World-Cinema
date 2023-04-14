@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileSectionsTableView: UITableView {
 
+    var viewModel: ProfileScreenViewModel!
     private let sections: [(UIImage, String)] = [(UIImage(named: "Chat")!, "Обсуждения"), (UIImage(named: "Clock")!, "История"), (UIImage(named: "Settings")!, "Настройки")]
     
     init() {
@@ -39,7 +40,9 @@ extension ProfileSectionsTableView: UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("clicked")
+        if(indexPath.row == 0) {
+            self.viewModel.goToChatListScreen()
+        }
     }
 }
 

@@ -45,7 +45,7 @@ extension EpisodesTableView: UITableViewDataSource {
         viewModel?.coordinator.goToEpisodeScreen(
             yearRange: GetYearRangeForEpisodesUseCase().getRange(episodes: viewModel?.episodes ?? []),
             episode: viewModel?.episodes[indexPath.row] ?? EpisodeModel(episodeId: "", name: "", description: "", director: "", stars: [], year: 0, images: [], runtime: 0, preview: "", filePath: ""),
-            movie: viewModel?.movie ?? MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: []))
+            movie: viewModel?.movie ?? MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: "", lastMessage: MessageModel(messageId: "", creationDateTime: "", authorName: "", text: "")), imageUrls: [], poster: "", tags: []))
     }
 }
 

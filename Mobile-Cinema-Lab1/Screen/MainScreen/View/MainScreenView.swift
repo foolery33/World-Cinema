@@ -52,7 +52,7 @@ class MainScreenView: UIView {
     private func setupContentView() {
         scrollView.addSubview(contentView)
         setupPoster()
-        setupForegroundPoster()
+//        setupForegroundPoster()
         setupWatchPosterButton()
         setupCollectionsStackView()
         contentView.snp.makeConstraints { make in
@@ -75,11 +75,11 @@ class MainScreenView: UIView {
         myGradient.endPoint = CGPoint(x: 0, y: 1)
         return myGradient
     }()
-    private lazy var foregroundPoster: UIImageView = {
-        let myForegroundPoster = UIImageView()
-        myForegroundPoster.clipsToBounds = true
-        return myForegroundPoster
-    }()
+//    private lazy var foregroundPoster: UIImageView = {
+//        let myForegroundPoster = UIImageView()
+//        myForegroundPoster.clipsToBounds = true
+//        return myForegroundPoster
+//    }()
     override func layoutSubviews() {
         gradient.frame = poster.bounds
         poster.layer.addSublayer(gradient)
@@ -93,14 +93,14 @@ class MainScreenView: UIView {
             make.height.equalTo(400)
         }
     }
-    private func setupForegroundPoster() {
-        poster.addSubview(foregroundPoster)
-        foregroundPoster.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.height.equalTo(98)
-            make.width.equalTo(240)
-        }
-    }
+//    private func setupForegroundPoster() {
+//        poster.addSubview(foregroundPoster)
+//        foregroundPoster.snp.makeConstraints { make in
+//            make.center.equalToSuperview()
+//            make.height.equalTo(98)
+//            make.width.equalTo(240)
+//        }
+//    }
     
     // MARK: Watch poster button setup
     
@@ -422,7 +422,7 @@ class MainScreenView: UIView {
             self.viewModel.getCover { success in
                 if(success) {
                     self.poster.loadImageWithURL(self.viewModel.cover.backgroundImage)
-                    self.foregroundPoster.loadImageWithURL(self.viewModel.cover.foregroundImage)
+//                    self.foregroundPoster.loadImageWithURL(self.viewModel.cover.foregroundImage)
                 }
                 else {
                     self.showAlert(title: "Cover Loading Failed", message: self.viewModel.error)
