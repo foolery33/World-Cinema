@@ -44,7 +44,7 @@ class ChatListScreenViewController: UIViewController {
     }
     @objc private func goBackToCreateCollectionScreen() {
         print("go back")
-        self.viewModel.goToPreviousScreen()
+        self.viewModel.goBackToProfileScreen()
     }
     
     override func viewDidLoad() {

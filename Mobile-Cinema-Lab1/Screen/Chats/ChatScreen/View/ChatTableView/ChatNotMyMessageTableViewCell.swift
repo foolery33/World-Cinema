@@ -1,5 +1,5 @@
 //
-//  ChatTableViewCell.swift
+//  ChatNotMyMessageTableViewCell.swift
 //  Mobile-Cinema-Lab1
 //
 //  Created by admin on 14.04.2023.
@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class ChatMyMessageTableViewCell: UITableViewCell {
-    
+class ChatNotMyMessageTableViewCell: UITableViewCell {
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -61,8 +61,10 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         setupBlankView()
         messageView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview()
-            make.leading.greaterThanOrEqualToSuperview().inset(56)
-            make.trailing.equalToSuperview().inset(16)
+            make.trailing.lessThanOrEqualToSuperview().inset(56)
+//             MARK: -
+//            make.trailing.greaterThanOrEqualToSuperview().inset(56)
+            make.leading.equalToSuperview().inset(16)
         }
     }
     
@@ -70,9 +72,9 @@ class ChatMyMessageTableViewCell: UITableViewCell {
     
     private lazy var messageBackgroundView: UIView = {
         let myView = UIView()
-        myView.backgroundColor = .redColor
+        myView.backgroundColor = .chatElementBackground
         myView.layer.cornerRadius = 8
-        myView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
+        myView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         myView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 //        myView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 4, trailing: 16)
         return myView
@@ -85,7 +87,7 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         messageBackgroundView.snp.makeConstraints { make in
 //            make.bottom.equalToSuperview()
             make.top.equalToSuperview()
-            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
         }
     }
     
@@ -120,8 +122,10 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         setupSenderNameLabel()
         setupMessageTimeLabel()
         senderInfoStack.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(16)
-            make.leading.greaterThanOrEqualToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.lessThanOrEqualToSuperview().inset(16)
+            // MARK: -
+//            make.trailing.greaterThanOrEqualToSuperview().inset(16)
             make.bottom.equalToSuperview().offset(-4)
             make.top.equalTo(messageLabel.snp.bottom).offset(4)
         }
@@ -132,7 +136,7 @@ class ChatMyMessageTableViewCell: UITableViewCell {
     private lazy var senderNameLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.numberOfLines = 1
-        myLabel.textColor = .myMessageSenderColor
+        myLabel.textColor = .notMyMessageInfoColor
         myLabel.font = .systemFont(ofSize: 12, weight: .regular)
         myLabel.textAlignment = .right
         return myLabel
@@ -146,7 +150,7 @@ class ChatMyMessageTableViewCell: UITableViewCell {
     private lazy var messageTimeLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.numberOfLines = 1
-        myLabel.textColor = .myMessageSenderColor
+        myLabel.textColor = .notMyMessageInfoColor
         myLabel.font = .systemFont(ofSize: 12, weight: .regular)
         myLabel.textAlignment = .right
         myLabel.setContentHuggingPriority(.required, for: .horizontal)
@@ -171,9 +175,9 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         messageView.addSubview(userAvatarImageView)
         userAvatarImageView.snp.makeConstraints { make in
             make.height.width.equalTo(32)
-            make.leading.equalTo(messageBackgroundView.snp.trailing).offset(8)
+            make.trailing.equalTo(messageBackgroundView.snp.leading).inset(-8)
             make.bottom.equalTo(messageBackgroundView.snp.bottom)
-            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
         }
     }
     
@@ -187,10 +191,10 @@ class ChatMyMessageTableViewCell: UITableViewCell {
     private func setupBlankView() {
         messageView.addSubview(blankView)
     }
-
+    
 }
 
-extension ChatMyMessageTableViewCell: ReusableView {
+extension ChatNotMyMessageTableViewCell: ReusableView {
     static var identifier: String {
         return String(describing: self)
     }

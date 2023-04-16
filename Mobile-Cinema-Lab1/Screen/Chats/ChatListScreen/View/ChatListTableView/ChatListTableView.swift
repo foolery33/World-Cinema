@@ -39,7 +39,6 @@ extension ChatListTableView: UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("clicked")
         viewModel?.goToChatScreen(chat: self.viewModel?.chats[indexPath.row] ?? ChatModel(chatId: "", chatName: ""))
     }
 }
@@ -59,5 +58,5 @@ extension ChatListTableView {
 }
 
 private enum Scales {
-    static let cellHeight: CGFloat = 64
+    static let cellHeight: CGFloat = 73
 }

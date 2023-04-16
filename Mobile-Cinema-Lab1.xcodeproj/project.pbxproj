@@ -147,6 +147,7 @@
 		84D7861C29CCAF00004D518D /* RegisterScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7861B29CCAF00004D518D /* RegisterScreenViewModel.swift */; };
 		84D7861E29CCAFA8004D518D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7861D29CCAFA8004D518D /* RegisterViewController.swift */; };
 		84D7862029CCB331004D518D /* RegisterScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7861F29CCB331004D518D /* RegisterScreenView.swift */; };
+		84D816BA29EAFA5F001BEF05 /* GetFirstTwoLettersOfChatNameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D816B929EAFA5F001BEF05 /* GetFirstTwoLettersOfChatNameUseCase.swift */; };
 		84E49CED29D29D0C00BCCA8B /* InTrendCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E49CEC29D29D0C00BCCA8B /* InTrendCollectionView.swift */; };
 		84E49CF129D2ABEB00BCCA8B /* InTrendMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E49CF029D2ABEB00BCCA8B /* InTrendMovieCell.swift */; };
 		84E49CF329D2C09D00BCCA8B /* MovieRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E49CF229D2C09D00BCCA8B /* MovieRepositoryImplementation.swift */; };
@@ -308,6 +309,7 @@
 		84D7861B29CCAF00004D518D /* RegisterScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenViewModel.swift; sourceTree = "<group>"; };
 		84D7861D29CCAFA8004D518D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		84D7861F29CCB331004D518D /* RegisterScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenView.swift; sourceTree = "<group>"; };
+		84D816B929EAFA5F001BEF05 /* GetFirstTwoLettersOfChatNameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirstTwoLettersOfChatNameUseCase.swift; sourceTree = "<group>"; };
 		84E49CEC29D29D0C00BCCA8B /* InTrendCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTrendCollectionView.swift; sourceTree = "<group>"; };
 		84E49CF029D2ABEB00BCCA8B /* InTrendMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTrendMovieCell.swift; sourceTree = "<group>"; };
 		84E49CF229D2C09D00BCCA8B /* MovieRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryImplementation.swift; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 		848ED66C29E7EB42005655D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84D816B829EAFA50001BEF05 /* UseCase */,
 				848ED68129E84462005655D0 /* ChatListScreenModel.swift */,
 			);
 			path = Model;
@@ -1237,6 +1240,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		84D816B829EAFA50001BEF05 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				84D816B929EAFA5F001BEF05 /* GetFirstTwoLettersOfChatNameUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 		84E49CF429D2CE0A00BCCA8B /* NewCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1650,6 +1661,7 @@
 				84EB775A29D99472002F5137 /* CoverRepository.swift in Sources */,
 				844A26BC29D80E5C00395B0C /* ShotsCollectionView.swift in Sources */,
 				84EB776629D99F5E002F5137 /* EpisodeScreenViewModel.swift in Sources */,
+				84D816BA29EAFA5F001BEF05 /* GetFirstTwoLettersOfChatNameUseCase.swift in Sources */,
 				84C3314929DAC7A200904FEA /* ProfileScreenView.swift in Sources */,
 				843C9B8A29D6F1BC00E370EC /* MainTabBarController.swift in Sources */,
 				848BC51729E452420022242B /* CompilationScreenView.swift in Sources */,

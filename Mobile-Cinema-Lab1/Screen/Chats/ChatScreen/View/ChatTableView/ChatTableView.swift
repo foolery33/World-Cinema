@@ -36,48 +36,70 @@ extension ChatTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let dateIndicies = RecognizeChatCellsUseCase().recognize(groupedMessages: self.viewModel?.groupedMessages ?? [[]])
-        
-        if(dateIndicies[indexPath.row] is String) {
+        if(viewModel?.dateIndicies[indexPath.row] is String) {
             let cell = tableView.dequeueReusableCell(withIdentifier: ChatDateTableViewCell.identifier, for: indexPath) as! ChatDateTableViewCell
-            cell.setup(date: dateIndicies[indexPath.row] as! String)
+            cell.setup(date: viewModel?.dateIndicies[indexPath.row] as! String)
             return cell
         }
         else {
-            let message = dateIndicies[indexPath.row] as! MessageModel
+            let message = viewModel?.dateIndicies[indexPath.row] as! MessageModel
+            
             if(message.authorId == UserDataManager.shared.fetchUserId()) {
                 
                 // Если следующее сообщение написано тем же человеком, то надо сделать маленькое пространство между сообщениями:
-                if indexPath.row + 1 < dateIndicies.count {
-                    if(dateIndicies[indexPath.row + 1] is MessageModel) {
-                        let nextMessage = dateIndicies[indexPath.row + 1] as! MessageModel
+                if indexPath.row + 1 < viewModel?.dateIndicies.count ?? 0 {
+                    if(viewModel!.dateIndicies[indexPath.row + 1] is MessageModel) {
+                        let nextMessage = viewModel?.dateIndicies[indexPath.row + 1] as! MessageModel
                         if(message.authorId == nextMessage.authorId) {
                             let cell = tableView.dequeueReusableCell(withIdentifier: ChatMyMessageTableViewCell.identifier, for: indexPath) as! ChatMyMessageTableViewCell
-                            cell.setup(message: dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 4, isAvatarHidden: true)
+                            cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 4)
                             return cell
                         }
                         else {
                             let cell = tableView.dequeueReusableCell(withIdentifier: ChatMyMessageTableViewCell.identifier, for: indexPath) as! ChatMyMessageTableViewCell
-                            cell.setup(message: dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16, isAvatarHidden: false)
+                            cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16)
                             return cell
                         }
                     }
                     else {
                         let cell = tableView.dequeueReusableCell(withIdentifier: ChatMyMessageTableViewCell.identifier, for: indexPath) as! ChatMyMessageTableViewCell
-                        cell.setup(message: dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 24, isAvatarHidden: false)
+                        cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 24)
                         return cell
                     }
                 }
                 else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: ChatMyMessageTableViewCell.identifier, for: indexPath) as! ChatMyMessageTableViewCell
-                    cell.setup(message: dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16, isAvatarHidden: false)
+                    cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16)
                     return cell
                 }
             }
             else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: ChatNotMyMessageTableViewCell.identifier, for: indexPath) as! ChatNotMyMessageTableViewCell
-    //            cell.setup(message: dateIndicies[indexPath.row]! as! MessageModel)
-                return cell
+                // Если следующее сообщение написано не тем же человеком, то надо сделать маленькое пространство между сообщениями:
+                if indexPath.row + 1 < viewModel?.dateIndicies.count ?? 0 {
+                    if(viewModel?.dateIndicies[indexPath.row + 1] is MessageModel) {
+                        let nextMessage = viewModel?.dateIndicies[indexPath.row + 1] as! MessageModel
+                        if(message.authorId == nextMessage.authorId) {
+                            let cell = tableView.dequeueReusableCell(withIdentifier: ChatNotMyMessageTableViewCell.identifier, for: indexPath) as! ChatNotMyMessageTableViewCell
+                            cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 4)
+                            return cell
+                        }
+                        else {
+                            let cell = tableView.dequeueReusableCell(withIdentifier: ChatNotMyMessageTableViewCell.identifier, for: indexPath) as! ChatNotMyMessageTableViewCell
+                            cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16)
+                            return cell
+                        }
+                    }
+                    else {
+                        let cell = tableView.dequeueReusableCell(withIdentifier: ChatNotMyMessageTableViewCell.identifier, for: indexPath) as! ChatNotMyMessageTableViewCell
+                        cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 24)
+                        return cell
+                    }
+                }
+                else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: ChatNotMyMessageTableViewCell.identifier, for: indexPath) as! ChatNotMyMessageTableViewCell
+                    cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16)
+                    return cell
+                }
             }
         }
     }
@@ -88,18 +110,17 @@ extension ChatTableView: UITableViewDataSource {
 
 extension ChatTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let dateIndicies = RecognizeChatCellsUseCase().recognize(groupedMessages: self.viewModel?.groupedMessages ?? [[]])
         
-        if(dateIndicies[indexPath.row] is String) {
-            let data = dateIndicies[indexPath.row] as! String
+        if(viewModel?.dateIndicies[indexPath.row] is String) {
+            let data = viewModel?.dateIndicies[indexPath.row] as! String
             return data.calculateLabelSize(font: .systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 14).height + 24
         }
         else {
-            let message = dateIndicies[indexPath.row] as! MessageModel
+            let message = viewModel?.dateIndicies[indexPath.row] as! MessageModel
             if(message.authorId == UserDataManager.shared.fetchUserId()) {
-                if indexPath.row + 1 < dateIndicies.count {
-                    if(dateIndicies[indexPath.row + 1] is MessageModel) {
-                        let nextMessage = dateIndicies[indexPath.row + 1] as! MessageModel
+                if indexPath.row + 1 < viewModel?.dateIndicies.count ?? 0 {
+                    if(viewModel?.dateIndicies[indexPath.row + 1] is MessageModel) {
+                        let nextMessage = viewModel?.dateIndicies[indexPath.row + 1] as! MessageModel
                         if(message.authorId == nextMessage.authorId) {
                             print(ChatTableView.automaticDimension)
                             print(rowHeight)
@@ -110,7 +131,7 @@ extension ChatTableView: UITableViewDelegate {
                 return ChatTableView.automaticDimension
             }
             else {
-                return 0
+                return ChatTableView.automaticDimension
             }
         }
     }

@@ -19,6 +19,7 @@ class ChatScreenViewController: UIViewController, ChatUpdateProtocol {
         self.navigationItem.leftBarButtonItem = getNavigationLeftItem()
         chatScreenView.connectToWebSocket()
         chatScreenView.getUserId()
+        chatScreenView.updateChat()
     }
     
     private func getNavigationLeftItem() -> UIBarButtonItem {
