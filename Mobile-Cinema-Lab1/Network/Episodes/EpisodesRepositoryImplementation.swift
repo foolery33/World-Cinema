@@ -22,7 +22,37 @@ final class EpisodesRepositoryImplementation: EpisodesRepository {
     }
     
     func getEpisodeTime(episodeId: String, completion: @escaping (Result<EpisodeTimeModel, AppError>) -> Void) {
-        
+        let url = baseURL + "/episodes/\(episodeId)/time"
+        AF.request(url, interceptor: self.interceptor).validate().responseData { response in
+            if let requestStatusCode = response.response?.statusCode {
+                print("Get episode time Status Code: ", requestStatusCode)
+            }
+            switch response.result {
+            case .success(let data):
+                do {
+                    let decodedData = try JSONDecoder().decode(EpisodeTimeModel.self, from: data)
+                    print("timeInSeconds:", decodedData.timeInSeconds)
+                    completion(.success(decodedData))
+                } catch {
+                    completion(.failure(.episodesError(.modelError)))
+                }
+            case .failure(_):
+                if let requestStatusCode = response.response?.statusCode {
+                    switch requestStatusCode {
+                    case 401:
+                        completion(.failure(.episodesError(.unauthorized)))
+                    case 404:
+                        completion(.failure(.episodesError(.wrongEndpoint)))
+                    case 422:
+                        completion(.failure(.episodesError(.unknownRequestParameter)))
+                    case 500:
+                        completion(.failure(.episodesError(.serverError)))
+                    default:
+                        completion(.failure(.episodesError(.unexpectedError)))
+                    }
+                }
+            }
+        }
     }
     
     func saveEpisodeTime(episodeId: String, timeInSeconds: Int, completion: @escaping (Result<Bool, AppError>) -> Void) {
@@ -32,7 +62,7 @@ final class EpisodesRepositoryImplementation: EpisodesRepository {
         ]
         AF.request(url, method: .post, parameters: httpParameters, encoder: JSONParameterEncoder.default, interceptor: self.interceptor).validate().responseData { response in
             if let requestStatusCode = response.response?.statusCode {
-                print("Save episode Status Code: ", requestStatusCode)
+                print("Save episode time Status Code: ", requestStatusCode)
             }
             switch response.result {
             case .success:
@@ -80,7 +110,7 @@ final class EpisodesRepositoryImplementation: EpisodesRepository {
             case .serverError:
                 return NSLocalizedString("Some server error occured. Please try again later", comment: "")
             case .unknownRequestParameter:
-                return NSLocalizedString("Unknown request parameter was provided. Please contact developer", comment: "")
+                return NSLocalizedString("Wrong episode id was provided. Please contact developer", comment: "")
             case .unauthorized:
                 return NSLocalizedString("Your authentication token is expired. Please login again", comment: "")
             case .unexpectedError:

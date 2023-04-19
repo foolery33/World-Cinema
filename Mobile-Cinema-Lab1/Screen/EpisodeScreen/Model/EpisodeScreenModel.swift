@@ -10,5 +10,6 @@ import Foundation
 struct EpisodeScreenModel {
     
     var episode: EpisodeModel = EpisodeModel(episodeId: "", name: "", description: "", director: "", stars: [], year: 0, images: [], runtime: 0, preview: "", filePath: "")
+    var episodeTime: EpisodeTimeModel = EpisodeTimeModel(timeInSeconds: 0)
     
 }

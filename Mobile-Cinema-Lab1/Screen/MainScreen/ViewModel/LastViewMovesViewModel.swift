@@ -9,10 +9,12 @@ import Foundation
 
 class LastViewMoviesViewModel {
     
+    weak var coordinator: MainCoordinator?
     private var model = LastViewMoviesModel()
     private var movieRepository: MovieRepository
     
-    init(movieRepository: MovieRepository) {
+    init(coordinator: MainCoordinator, movieRepository: MovieRepository) {
+        self.coordinator = coordinator
         self.movieRepository = movieRepository
     }
     
@@ -26,6 +28,10 @@ class LastViewMoviesViewModel {
     }
     
     var error: String = ""
+    
+    func goToMovieScreen(movie: MovieModel) {
+        self.coordinator?.goToMovieScreen(movie: movie)
+    }
     
     func getLastViewMovies(completion: @escaping (Bool) -> Void) {
         movieRepository.getMovies(queryParameter: "lastView") { [weak self] result in

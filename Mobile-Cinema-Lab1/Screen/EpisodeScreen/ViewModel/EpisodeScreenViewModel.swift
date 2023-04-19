@@ -34,6 +34,15 @@ final class EpisodeScreenViewModel {
         }
     }
     
+    var episodeTime: EpisodeTimeModel {
+        get {
+            model.episodeTime
+        }
+        set {
+            model.episodeTime = newValue
+        }
+    }
+    
     func backToMovieScreen() {
         let coordinator = self.coordinator as! Coordinator
         coordinator.navigationController.popViewController(animated: true)
@@ -59,6 +68,19 @@ final class EpisodeScreenViewModel {
         episodesRepository.saveEpisodeTime(episodeId: episodeId, timeInSeconds: timeInSeconds) { [weak self] result in
             switch result {
             case .success:
+                completion(true)
+            case .failure(let error):
+                self?.error = error.errorDescription
+                completion(false)
+            }
+        }
+    }
+    
+    func getEpisodeTime(episodeId: String, completion: @escaping (Bool) -> Void) {
+        episodesRepository.getEpisodeTime(episodeId: episodeId) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.episodeTime = data
                 completion(true)
             case .failure(let error):
                 self?.error = error.errorDescription

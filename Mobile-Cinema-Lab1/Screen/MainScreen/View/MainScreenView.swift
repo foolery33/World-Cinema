@@ -246,7 +246,8 @@ class MainScreenView: UIView {
     // MARK: LastViewButton setup
     private lazy var lastViewButton: UIButton = {
         let myButton = UIButton(type: .custom)
-        myButton.setImage(UIImage(named: "LastViewFilmPoster"), for: .normal)
+        myButton.addTarget(self, action: #selector(onLastViewMovieButtonClicked), for: .touchUpInside)
+//        myButton.setImage(UIImage(named: "LastViewFilmPoster"), for: .normal)
         return myButton
     }()
     private func setupLastViewButton() {
@@ -262,6 +263,7 @@ class MainScreenView: UIView {
         let myButton = UIButton(type: .custom)
         myButton.setImage(UIImage(named: "Polygon"), for: .normal)
         myButton.addImagePressedEffect()
+        myButton.addTarget(self, action: #selector(onLastViewMovieButtonClicked), for: .touchUpInside)
         return myButton
     }()
     private func setupLastViewPlayButton() {
@@ -277,8 +279,14 @@ class MainScreenView: UIView {
             lastViewStack.removeFromSuperview()
         }
         else {
-            inTrendCollectionView.reloadData()
+            let myImageView = UIImageView()
+            myImageView.loadImageWithURL(self.viewModel.lastViewMoviesViewModel.lastViewMovies[0].poster)
+            self.lastViewButton.setImage(myImageView.image, for: .normal)
+            self.lastViewButton.imageView?.contentMode = .scaleAspectFill
         }
+    }
+    @objc private func onLastViewMovieButtonClicked() {
+        self.viewModel.lastViewMoviesViewModel.goToMovieScreen(movie: self.viewModel.lastViewMoviesViewModel.lastViewMovies[0])
     }
     
     // MARK: - New StackView setup
@@ -448,7 +456,7 @@ class MainScreenView: UIView {
                     self.reloadLastViewMoviesView()
                 }
                 else {
-                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.inTrendMoviesViewModel.error)
+                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.lastViewMoviesViewModel.error)
                 }
             }
             self.viewModel.newMoviesViewModel.getNewMovies { success in
@@ -456,7 +464,7 @@ class MainScreenView: UIView {
                     self.reloadNewMoviesView()
                 }
                 else {
-                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.inTrendMoviesViewModel.error)
+                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.newMoviesViewModel.error)
                 }
             }
             self.viewModel.forMeMoviesViewModel.getForMeMovies { success in
@@ -464,7 +472,7 @@ class MainScreenView: UIView {
                     self.reloadForYouMoviesView()
                 }
                 else {
-                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.inTrendMoviesViewModel.error)
+                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.forMeMoviesViewModel.error)
                 }
                 self.stopActivityIndicator()
                 self.contentView.isHidden = false

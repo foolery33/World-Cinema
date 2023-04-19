@@ -65,8 +65,8 @@ class EpisodeScreenView: UIView {
 
     // MARK: - VideoPlayerView setup
     
-    lazy var videoPlayerView: UIView = {
-        let myView = VideoPlayerView(filePath: self.viewModel.episode.filePath, duration: self.viewModel.episode.runtime, frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 210))
+    lazy var videoPlayerView: VideoPlayerView = {
+        let myView = VideoPlayerView(filePath: self.viewModel.episode.filePath, startValue: self.viewModel.episodeTime.timeInSeconds ?? 0, duration: self.viewModel.episode.runtime, frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 210))
         return myView
     }()
     private func setupVideoPlayerView() {

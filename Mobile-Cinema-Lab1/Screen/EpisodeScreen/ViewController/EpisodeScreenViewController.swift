@@ -11,8 +11,19 @@ class EpisodeScreenViewController: UIViewController {
 
     var viewModel: EpisodeScreenViewModel!
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParent {
+            if let myView = self.view as? EpisodeScreenView {
+                myView.videoPlayerView.pause()
+                myView.saveEpisodeTime()
+            }
+        }
+    }
+    
     override func loadView() {
         let episodeScreenView = EpisodeScreenView(viewModel: self.viewModel)
+        episodeScreenView.getEpisodeTime()
         view = episodeScreenView
         navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true

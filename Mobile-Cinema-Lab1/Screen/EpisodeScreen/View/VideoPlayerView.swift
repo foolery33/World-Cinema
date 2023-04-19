@@ -13,11 +13,13 @@ import SnapKit
 class VideoPlayerView: UIView {
     
     var filePath: String
+    var startValue: Int
     var duration: Int
     var hideControlsTimer: Timer?
     
-    init(filePath: String, duration: Int, frame: CGRect) {
+    init(filePath: String, startValue: Int, duration: Int, frame: CGRect) {
         self.filePath = filePath
+        self.startValue = startValue
         self.duration = duration
         super.init(frame: frame)
         setupSubviews()
@@ -49,6 +51,7 @@ class VideoPlayerView: UIView {
     lazy var videoPlayer: AVPlayer = {
         let asset = AVAsset(url: URL(string: self.filePath)!)
         let playerItem = AVPlayerItem(asset: asset)
+        playerItem.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.old, .new], context: nil)
         let player = AVPlayer(playerItem: playerItem)
         
         let playerLayer = AVPlayerLayer(player: player)
@@ -61,6 +64,34 @@ class VideoPlayerView: UIView {
     private func setupVideoPlayer() {
         play()
         setupVideoPlayerControlsView()
+    }
+    // Обработка изменения состояния плеера
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+
+        if keyPath == #keyPath(AVPlayerItem.status) {
+            let status: AVPlayerItem.Status
+
+            if let statusNumber = change?[.newKey] as? NSNumber {
+                status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
+            } else {
+                status = .unknown
+            }
+
+            switch status {
+            case .readyToPlay:
+                print("Ready to play")
+                
+                // Контент готов к воспроизведению
+            case .failed:
+                print("Failed")
+                // Произошла ошибка загрузки контента
+            case .unknown:
+                print("Unknown")
+                // Состояние плеера неизвестно
+            @unknown default:
+                fatalError()
+            }
+        }
     }
     
     // MARK: - VideoPlayerControlsView setup
@@ -187,9 +218,9 @@ class VideoPlayerView: UIView {
     
     // MARK:  VideoTimer setup
     
-    private lazy var videoSlider: UISlider = {
+    lazy var videoSlider: UISlider = {
         let mySlider = UISlider()
-        mySlider.minimumValue = 0
+        mySlider.minimumValue = Float(startValue)
         mySlider.maximumValue = Float(duration)
         mySlider.value = 0
         mySlider.tintColor = .redColor
