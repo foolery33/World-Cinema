@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8406704F29F0E61E00E0AE8E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8406704E29F0E61E00E0AE8E /* Kingfisher */; };
+		8406705229F1078500E0AE8E /* SaveCollectionListInDBUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406705129F1078500E0AE8E /* SaveCollectionListInDBUseCase.swift */; };
 		8413392229DE77B500A394D4 /* IconSelectionScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392129DE77B500A394D4 /* IconSelectionScreenViewController.swift */; };
 		8413392429DE77DD00A394D4 /* IconSelectionScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392329DE77DD00A394D4 /* IconSelectionScreenView.swift */; };
 		8413392729DE7A1100A394D4 /* ChooseIconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392629DE7A1100A394D4 /* ChooseIconDelegate.swift */; };
@@ -175,6 +176,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8406705129F1078500E0AE8E /* SaveCollectionListInDBUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCollectionListInDBUseCase.swift; sourceTree = "<group>"; };
 		8413392129DE77B500A394D4 /* IconSelectionScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionScreenViewController.swift; sourceTree = "<group>"; };
 		8413392329DE77DD00A394D4 /* IconSelectionScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionScreenView.swift; sourceTree = "<group>"; };
 		8413392629DE7A1100A394D4 /* ChooseIconDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseIconDelegate.swift; sourceTree = "<group>"; };
@@ -355,6 +357,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8406705029F1076200E0AE8E /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				8406705129F1078500E0AE8E /* SaveCollectionListInDBUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 		8413391D29DE770700A394D4 /* IconSelectionScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -1332,6 +1342,7 @@
 		84E5702329E144CB00A10579 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8406705029F1076200E0AE8E /* UseCase */,
 				84E5702429E144DA00A10579 /* CollectionScreenModel.swift */,
 			);
 			path = Model;
@@ -1553,6 +1564,7 @@
 				848ED67A29E81EC0005655D0 /* ChatsRepository.swift in Sources */,
 				84C3313B29DAC1E600904FEA /* ProfileCoordinator.swift in Sources */,
 				8427A3CE29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift in Sources */,
+				8406705229F1078500E0AE8E /* SaveCollectionListInDBUseCase.swift in Sources */,
 				849FA1D929D57EED0097223A /* LastViewMoviesModel.swift in Sources */,
 				84B604B329CE10BC0047A603 /* PasswordsEquality.swift in Sources */,
 				84D785F829CC5445004D518D /* Coordinator.swift in Sources */,

@@ -11,7 +11,7 @@ class RegisterScreenViewModel {
 
     private var authRepository: AuthRepository
     private var collectionsRepository: CollectionsRepository
-    private var collectionsDatabase: CollectionsDatabase
+    private(set) var collectionsDatabase: CollectionsDatabase
     weak var coordinator: AuthCoordinator!
     
     init(authRepository: AuthRepository, collectionsRepository: CollectionsRepository, collectionsDatabase: CollectionsDatabase) {

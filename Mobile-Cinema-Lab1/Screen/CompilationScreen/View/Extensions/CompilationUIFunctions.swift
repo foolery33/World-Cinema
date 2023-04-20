@@ -66,6 +66,8 @@ extension CompilationScreenView {
                     card.center = CGPoint(x: card.center.x + 200, y: card.center.y + 75)
                     card.alpha = 0
                 })
+                self.dislikeMovie()
+                self.addToFavourites()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     if(self.currentMovieIndex < self.viewModel.movies.count - 1) {
                         card.center = self.initialFrontCardCenter
@@ -175,6 +177,8 @@ extension CompilationScreenView {
                 self.showEmptyScreen()
             }
         }
+        self.dislikeMovie()
+        self.addToFavourites()
     }
     
     @objc func dislikeAnimation() {
@@ -211,7 +215,7 @@ extension CompilationScreenView {
                 self.showEmptyScreen()
             }
         }
-        dislikeMovie()
+        self.dislikeMovie()
     }
     
 }

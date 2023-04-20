@@ -235,10 +235,15 @@ class EpisodeScreenView: UIView {
     private lazy var plusButton: UIButton = {
         let myButton = UIButton(type: .system)
         myButton.setImage(UIImage(named: "Plus"), for: .normal)
-        myButton.tintColor = .redColor
+        myButton.tintColor = .grayColor
+        myButton.isEnabled = false
         myButton.addTarget(self, action: #selector(self.showAddToCollectionActionSheet), for: .touchUpInside)
         return myButton
     }()
+    func enablePlusButton() {
+        plusButton.tintColor = .redColor
+        plusButton.isEnabled = true
+    }
     // MARK: Heart button setup
     private lazy var favouriteButton: UIButton = {
         let myButton = UIButton(type: .system)

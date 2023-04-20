@@ -12,6 +12,7 @@ final class CompilationScreenViewModel {
     weak var coordinator: CompilationCoordinator?
     private var model = CompilationScreenModel()
     private var movieRepository: MovieRepository
+    private var collectionsRepository: CollectionsRepository
     
     var movies: [MovieModel] {
         get {
@@ -24,8 +25,9 @@ final class CompilationScreenViewModel {
     
     var error: String = ""
     
-    init(movieRepository: MovieRepository) {
+    init(movieRepository: MovieRepository, collectionsRepository: CollectionsRepository) {
         self.movieRepository = movieRepository
+        self.collectionsRepository = collectionsRepository
     }
     
     func goToMovieScreen(movie: MovieModel) {
@@ -47,6 +49,18 @@ final class CompilationScreenViewModel {
     
     func dislikeMovie(movieId: String, completion: @escaping (Bool) -> Void) {
         movieRepository.dislikeMovie(movieId: movieId) { [weak self] result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure(let error):
+                self?.error = error.errorDescription
+                completion(false)
+            }
+        }
+    }
+    
+    func addToFavourites(collectionId: String, movieId: String, completion: @escaping (Bool) -> Void) {
+        collectionsRepository.addToCollection(collectionId: collectionId, movieId: movieId) { [weak self] result in
             switch result {
             case .success:
                 completion(true)

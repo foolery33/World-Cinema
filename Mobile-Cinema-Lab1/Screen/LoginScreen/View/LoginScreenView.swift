@@ -161,7 +161,6 @@ class LoginScreenView: UIView {
         self.setupActivityIndicator()
         
         self.viewModel.login { success in
-            self.stopActivityIndicator()
             if(success) {
                 self.viewModel.coordinator.goToMainScreen()
             }

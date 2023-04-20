@@ -15,6 +15,7 @@ class ChangeCollectionScreenView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         setupSubviews()
+        addKeyboardDidmiss()
     }
     
     required init?(coder: NSCoder) {
@@ -23,6 +24,17 @@ class ChangeCollectionScreenView: UIView {
     
     private func setupSubviews() {
         setupScrollView()
+    }
+    
+    // MARK: Keyboard dismiss
+    
+    func addKeyboardDidmiss() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.addGestureRecognizer(tapGesture)
+    }
+    @objc
+    func dismissKeyboard() {
+        self.endEditing(true)
     }
     
     // MARK: - ScrollView setup

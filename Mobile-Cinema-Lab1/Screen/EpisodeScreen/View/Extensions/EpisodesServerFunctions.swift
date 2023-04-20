@@ -34,4 +34,18 @@ extension EpisodeScreenView {
         }
     }
     
+    func getCollectionsNames() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let updateDBUseCase = SaveCollectionListInDBUseCase(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.viewModel.collectionsDatabase)
+            updateDBUseCase.updateCollections { [weak self] success in
+                if success {
+                    self?.enablePlusButton()
+                }
+                else {
+                    self?.showAlert(title: "Movie Collections Loading Error", message: "Failed to update movie collections in database. Please contact developer")
+                }
+            }
+        }
+    }
+    
 }

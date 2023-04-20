@@ -24,6 +24,7 @@ class EpisodeScreenViewController: UIViewController {
     override func loadView() {
         let episodeScreenView = EpisodeScreenView(viewModel: self.viewModel)
         episodeScreenView.getEpisodeTime()
+        episodeScreenView.getCollectionsNames()
         view = episodeScreenView
         navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true

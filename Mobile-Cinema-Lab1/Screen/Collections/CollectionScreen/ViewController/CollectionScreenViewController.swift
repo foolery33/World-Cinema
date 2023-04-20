@@ -39,6 +39,7 @@ class CollectionScreenViewController: UIViewController {
     
     private func getNavigationRightItem() -> UIBarButtonItem {
         let backItem = UIBarButtonItem(image: UIImage(named: "Pencil"), style: .plain, target: self, action: #selector(goToChangeCollectionScreen))
+        backItem.image = backItem.image?.resizeImage(newWidth: 20, newHeight: 20)
         backItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         backItem.tintColor = .white
         return backItem

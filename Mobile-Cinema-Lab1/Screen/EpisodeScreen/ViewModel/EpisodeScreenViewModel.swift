@@ -15,7 +15,7 @@ final class EpisodeScreenViewModel {
     private var model = EpisodeScreenModel()
     private var collectionsRepository: CollectionsRepository
     private var episodesRepository: EpisodesRepository
-    private var collectionsDatabase: CollectionsDatabase
+    private(set) var collectionsDatabase: CollectionsDatabase
     
     init(collectionsRepository: CollectionsRepository, episodesRepository: EpisodesRepository, collectionsDatabase: CollectionsDatabase) {
         self.collectionsRepository = collectionsRepository
