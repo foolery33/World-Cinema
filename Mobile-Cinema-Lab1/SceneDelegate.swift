@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let collectionsDatabase = CollectionsDatabase(realm: setupRealm())
         
         let navigationController = UINavigationController()
+        
         appCoordinator = AppCoordinator(navigationController: navigationController, collectionsDatabase: collectionsDatabase)
         appCoordinator?.start()
         
