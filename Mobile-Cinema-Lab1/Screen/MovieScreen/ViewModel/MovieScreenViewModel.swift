@@ -55,6 +55,8 @@ final class MovieScreenViewModel {
         }
     }
     
-    
+    func goToChatScreen(chat: ChatModel) {
+        self.coordinator.goToChatScreen(chat: chat)
+    }
     
 }

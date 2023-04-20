@@ -26,7 +26,7 @@ final class ChatManager {
         }
         var request = URLRequest(url: url)
         request.setValue("Bearer \(TokenManager.shared.fetchAccessToken())", forHTTPHeaderField: "Authorization")
-        request.timeoutInterval = 5
+        request.timeoutInterval = 0
         
         var socket = WebSocket(request: request)
         return socket
@@ -38,7 +38,7 @@ final class ChatManager {
     }
     
     func unsubscribe() {
-        self.socket?.disconnect()
+        self.socket?.forceDisconnect()
     }
     
     func sendMessage(_ message: String) {
@@ -46,7 +46,8 @@ final class ChatManager {
     }
     
     deinit {
-        self.socket?.disconnect()
+        print("deinited")
+        self.socket?.forceDisconnect()
         self.socket = nil
     }
     
@@ -97,6 +98,7 @@ extension ChatManager: WebSocketDelegate {
     }
     
     private func handleError(error: Error?) {
+        print("Error")
         if let e = error {
             self.delegate?.didReceive(result: .failure(e))
         }

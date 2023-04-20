@@ -54,5 +54,9 @@ final class CompilationCoordinator: Coordinator, MovieToEpisodeNavigationProtoco
         navigationController.pushViewController(episodeViewController, animated: true)
     }
     
+    func goToChatScreen(chat: ChatModel) {
+        let appCoordinator = parentCoordinator as! AppCoordinator
+        appCoordinator.goToChatScreen(chat: chat)
+    }
     
 }

@@ -58,5 +58,5 @@ extension ChatListTableView {
 }
 
 private enum Scales {
-    static let cellHeight: CGFloat = 73
+    static let cellHeight: CGFloat = 80
 }

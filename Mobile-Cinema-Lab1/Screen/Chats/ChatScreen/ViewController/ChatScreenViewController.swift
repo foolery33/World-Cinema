@@ -14,8 +14,9 @@ class ChatScreenViewController: UIViewController, ChatUpdateProtocol {
     override func loadView() {
         let chatScreenView = ChatScreenView(viewModel: self.viewModel)
         view = chatScreenView
-        self.title = self.viewModel.chat?.chatName ?? "Some chat"
         view.backgroundColor = UIColor(named: "BackgroundColor")
+        self.setupNavigationBarAppearence()
+        self.title = self.viewModel.chat?.chatName ?? "Some chat"
         self.navigationItem.leftBarButtonItem = getNavigationLeftItem()
         chatScreenView.connectToWebSocket()
         chatScreenView.getUserId()
@@ -23,13 +24,12 @@ class ChatScreenViewController: UIViewController, ChatUpdateProtocol {
     }
     
     private func getNavigationLeftItem() -> UIBarButtonItem {
-        let backItem = UIBarButtonItem(image: UIImage(named: "BackArrow"), style: .plain, target: self, action: #selector(goBackToCreateCollectionScreen))
+        let backItem = UIBarButtonItem(image: UIImage(named: "BackArrow"), style: .plain, target: self, action: #selector(goBackToChatListScreen))
         backItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
         backItem.tintColor = .white
         return backItem
     }
-    @objc private func goBackToCreateCollectionScreen() {
-        print("go back")
+    @objc private func goBackToChatListScreen() {
         self.viewModel.goToPreviousScreen()
     }
     
@@ -43,4 +43,21 @@ class ChatScreenViewController: UIViewController, ChatUpdateProtocol {
         }
     }
 
+}
+
+extension UIViewController {
+    func setupNavigationBarAppearence() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        let navigationBarTitleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
+            .foregroundColor: UIColor.white
+        ]
+        if let navBarAppearance = navigationController?.navigationBar.standardAppearance {
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = UIColor(named: "BackgroundColor")
+            navBarAppearance.titleTextAttributes = navigationBarTitleAttributes
+            navigationController?.navigationBar.standardAppearance = navBarAppearance
+            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+    }
 }

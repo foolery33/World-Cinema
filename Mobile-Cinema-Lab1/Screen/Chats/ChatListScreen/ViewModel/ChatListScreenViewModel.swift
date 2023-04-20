@@ -12,11 +12,9 @@ final class ChatListScreenViewModel {
     weak var coordinator: ChatsCoordinator?
     private var model = ChatListScreenModel()
     private var chatsRepository: ChatsRepository
-    private var chatManager: ChatManager
     
-    init(chatsRepository: ChatsRepository, chatManager: ChatManager) {
+    init(chatsRepository: ChatsRepository) {
         self.chatsRepository = chatsRepository
-        self.chatManager = chatManager
     }
     
     var chats: [ChatModel] {
@@ -32,11 +30,10 @@ final class ChatListScreenViewModel {
     
     func goBackToProfileScreen() {
         self.coordinator?.goBackToProfileScreen()
-        self.chatManager.unsubscribe()
     }
     
     func goToChatScreen(chat: ChatModel) {
-        self.coordinator?.goToChatScreen(chat: chat, chatManager: self.chatManager)
+        self.coordinator?.goToChatScreen(chat: chat)
     }
     
     func getChatList(completion: @escaping (Bool) -> Void) {

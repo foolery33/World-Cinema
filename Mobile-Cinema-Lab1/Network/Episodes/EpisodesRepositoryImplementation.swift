@@ -31,7 +31,6 @@ final class EpisodesRepositoryImplementation: EpisodesRepository {
             case .success(let data):
                 do {
                     let decodedData = try JSONDecoder().decode(EpisodeTimeModel.self, from: data)
-                    print("timeInSeconds:", decodedData.timeInSeconds)
                     completion(.success(decodedData))
                 } catch {
                     completion(.failure(.episodesError(.modelError)))

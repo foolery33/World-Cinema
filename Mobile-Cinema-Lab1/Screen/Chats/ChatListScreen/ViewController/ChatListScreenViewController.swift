@@ -16,22 +16,7 @@ class ChatListScreenViewController: UIViewController {
         view = chatListScreenView
         chatListScreenView.loadChatList()
         view.backgroundColor = UIColor(named: "BackgroundColor")
-        setupNavigationBarAppearence()
-    }
-    
-    private func setupNavigationBarAppearence() {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        let navigationBarTitleAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
-            .foregroundColor: UIColor.white
-        ]
-        if let navBarAppearance = navigationController?.navigationBar.standardAppearance {
-            navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.backgroundColor = UIColor(named: "BackgroundColor")
-            navBarAppearance.titleTextAttributes = navigationBarTitleAttributes
-            navigationController?.navigationBar.standardAppearance = navBarAppearance
-            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-        }
+        self.setupNavigationBarAppearence()
         self.title = "Обсуждения"
         self.navigationItem.leftBarButtonItem = getNavigationLeftItem()
     }

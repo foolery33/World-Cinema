@@ -163,10 +163,14 @@ class MovieScreenView: UIView {
     private lazy var chatButton: UIButton = {
         let myButton = UIButton(type: .custom)
         myButton.setImage(UIImage(named: "Chat"), for: .normal)
+        myButton.addTarget(self, action: #selector(goToChatScreen), for: .touchUpInside)
         return myButton
     }()
     private func setupChatButton() {
         underPosterStack.addArrangedSubview(chatButton)
+    }
+    @objc private func goToChatScreen() {
+        self.viewModel.goToChatScreen(chat: self.viewModel.movie.chatInfo)
     }
     
     // MARK: - StackView setup

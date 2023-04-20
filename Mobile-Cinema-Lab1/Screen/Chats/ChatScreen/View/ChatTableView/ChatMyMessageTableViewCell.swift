@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class ChatMyMessageTableViewCell: UITableViewCell {
     
@@ -33,7 +34,7 @@ class ChatMyMessageTableViewCell: UITableViewCell {
             self.userAvatarImageView.alpha = 0
         }
         else {
-            self.userAvatarImageView.loadImageWithURL(message.authorAvatar ?? "")
+            self.userAvatarImageView.loadImageWithURL(message.authorAvatar ?? "", contentMode: .scaleAspectFill)
             self.userAvatarImageView.alpha = 1
         }
         blankView.snp.remakeConstraints { make in
@@ -164,7 +165,7 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         myImageView.layer.cornerRadius = myImageView.frame.height / 2
         myImageView.clipsToBounds = true
-        myImageView.contentMode = .scaleAspectFit
+        myImageView.contentMode = .scaleAspectFill
         return myImageView
     }()
     private func setupUserAvatarImageView() {

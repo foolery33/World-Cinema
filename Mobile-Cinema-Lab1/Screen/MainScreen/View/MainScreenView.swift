@@ -215,7 +215,8 @@ class MainScreenView: UIView {
     private func setupLastViewStackView() {
         collectionsStackView.addArrangedSubview(lastViewStack)
         setupLastViewStack()
-        setupLastViewButton()
+//        setupLastViewButton()
+        setupLastViewImageView()
 
         lastViewStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
@@ -243,17 +244,19 @@ class MainScreenView: UIView {
         myLabel.sizeToFit()
         return myLabel
     }()
-    // MARK: LastViewButton setup
-    private lazy var lastViewButton: UIButton = {
-        let myButton = UIButton(type: .custom)
-        myButton.addTarget(self, action: #selector(onLastViewMovieButtonClicked), for: .touchUpInside)
-//        myButton.setImage(UIImage(named: "LastViewFilmPoster"), for: .normal)
-        return myButton
+    // MARK: LastViewImageView setup
+    private lazy var lastViewImageView: UIImageView = {
+        let myImageView = UIImageView()
+        myImageView.contentMode = .scaleAspectFit
+        myImageView.clipsToBounds = true
+        myImageView.isUserInteractionEnabled = true
+        myImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onLastViewMovieButtonClicked)))
+        return myImageView
     }()
-    private func setupLastViewButton() {
-        lastViewStack.addArrangedSubview(lastViewButton)
+    private func setupLastViewImageView() {
+        lastViewStack.addArrangedSubview(lastViewImageView)
         setupLastViewPlayButton()
-        lastViewButton.snp.makeConstraints { make in
+        lastViewImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(240)
         }
@@ -267,7 +270,7 @@ class MainScreenView: UIView {
         return myButton
     }()
     private func setupLastViewPlayButton() {
-        lastViewButton.addSubview(lastViewPlayButton)
+        lastViewImageView.addSubview(lastViewPlayButton)
         lastViewPlayButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
@@ -279,10 +282,7 @@ class MainScreenView: UIView {
             lastViewStack.removeFromSuperview()
         }
         else {
-            let myImageView = UIImageView()
-            myImageView.loadImageWithURL(self.viewModel.lastViewMoviesViewModel.lastViewMovies[0].poster)
-            self.lastViewButton.setImage(myImageView.image, for: .normal)
-            self.lastViewButton.imageView?.contentMode = .scaleAspectFill
+            self.lastViewImageView.loadImageWithURL(self.viewModel.lastViewMoviesViewModel.lastViewMovies[0].poster, contentMode: .scaleAspectFill)
         }
     }
     @objc private func onLastViewMovieButtonClicked() {

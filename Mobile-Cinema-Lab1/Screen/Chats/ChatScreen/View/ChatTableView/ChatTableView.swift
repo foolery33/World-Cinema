@@ -122,8 +122,6 @@ extension ChatTableView: UITableViewDelegate {
                     if(viewModel?.dateIndicies[indexPath.row + 1] is MessageModel) {
                         let nextMessage = viewModel?.dateIndicies[indexPath.row + 1] as! MessageModel
                         if(message.authorId == nextMessage.authorId) {
-                            print(ChatTableView.automaticDimension)
-                            print(rowHeight)
                             return ChatTableView.automaticDimension
                         }
                     }
@@ -136,17 +134,3 @@ extension ChatTableView: UITableViewDelegate {
         }
     }
 }
-
-
-extension ChatTableView {
-//    func countHeight() -> CGFloat {
-//        print(CGFloat(viewModel?.chats.count ?? 0) * Scales.cellHeight)
-//        return CGFloat(viewModel?.chats.count ?? 0) * Scales.cellHeight
-//    }
-}
-
-//private enum Scales {
-////    static let dateCellHeight: CGFloat = self.viewModel..calculateLabelSize(font: .systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 14).height
-//    static let dateCellHeight: CGFloat = self.
-//    static let messageCellHeight: CGFloat = 100
-//}

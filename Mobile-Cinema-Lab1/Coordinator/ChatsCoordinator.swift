@@ -36,12 +36,12 @@ final class ChatsCoordinator: Coordinator {
         navigationController.pushViewController(chatListViewController, animated: true)
     }
     
-    func goToChatScreen(chat: ChatModel, chatManager: ChatManager) {
+    func goToChatScreen(chat: ChatModel) {
         let chatViewController = ChatScreenViewController()
         self.chatViewModel.coordinator = self
         self.chatViewModel.chatUpdater = chatViewController
-        self.chatViewModel.chatManager = chatManager
-        self.chatViewModel.chatManager.delegate = self.chatViewModel
+        self.chatViewModel.chatManager = ChatManager()
+        self.chatViewModel.chatManager?.delegate = self.chatViewModel
         self.chatViewModel.chat = chat
         chatViewController.viewModel = self.chatViewModel
         navigationController.pushViewController(chatViewController, animated: true)

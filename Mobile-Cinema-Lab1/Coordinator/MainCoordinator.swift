@@ -11,6 +11,7 @@ import UIKit
 protocol MovieToEpisodeNavigationProtocol: AnyObject {
     func goToMovieScreen(movie: MovieModel) -> Void
     func goToEpisodeScreen(yearRange: String, episode: EpisodeModel, movie: MovieModel) -> Void
+    func goToChatScreen(chat: ChatModel) -> Void
 }
 
 class MainCoordinator: Coordinator, MovieToEpisodeNavigationProtocol {
@@ -66,6 +67,11 @@ class MainCoordinator: Coordinator, MovieToEpisodeNavigationProtocol {
     
     func goBackToMovieScreen() {
         navigationController.popViewController(animated: true)
+    }
+    
+    func goToChatScreen(chat: ChatModel) {
+        let appCoordinator = parentCoordinator as! AppCoordinator
+        appCoordinator.goToChatScreen(chat: chat)
     }
     
 }

@@ -18,7 +18,7 @@ final class ChatScreenViewModel {
     private var profileRepository: ProfileRepository
     var chat: ChatModel?
     weak var chatUpdater: ChatUpdateProtocol?
-    var chatManager: ChatManager!
+    var chatManager: ChatManager?
     var dateIndicies: [Int : Any] = [:]
     
     init(profileRepository: ProfileRepository) {
@@ -46,18 +46,23 @@ final class ChatScreenViewModel {
     var error: String = ""
     
     func subscribe(chat: ChatModel) {
-        if !chatManager.isConnected {
-            self.chat = chat
-            chatManager.chatId = self.chat?.chatId
-            chatManager.subscribe()
-        }
+        self.chat = chat
+        chatManager?.chatId = self.chat?.chatId
+        chatManager?.subscribe()
     }
     func unsubscribe() {
-        chatManager.chatId = nil
-        chatManager.unsubscribe()
+        self.dateIndicies = [:]
+        self.groupedMessages = [[]]
+        self.messages = []
+        chatManager?.unsubscribe()
+        chatManager?.chatId = nil
+        chatManager = nil
     }
     
     func goToPreviousScreen() {
+        unsubscribe()
+        print("unsubbed")
+//        self.chatManager.socket = nil
         self.coordinator?.goToPreviousScreen()
     }
     
@@ -85,9 +90,13 @@ final class ChatScreenViewModel {
             completion(false)
         }
         else {
-            self.chatManager.sendMessage(message)
+            self.chatManager?.sendMessage(message)
             completion(true)
         }
+    }
+    
+    deinit {
+        print("deinited")
     }
     
 }

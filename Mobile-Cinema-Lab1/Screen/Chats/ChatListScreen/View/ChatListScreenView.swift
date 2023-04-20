@@ -31,7 +31,7 @@ class ChatListScreenView: UIView {
     private lazy var chatListTableView: ChatListTableView = {
         let myTableView = ChatListTableView()
         myTableView.viewModel = self.viewModel
-        myTableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        myTableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 16, right: 0)
         return myTableView
     }()
     private func setupCollectionMoviesTableView() {

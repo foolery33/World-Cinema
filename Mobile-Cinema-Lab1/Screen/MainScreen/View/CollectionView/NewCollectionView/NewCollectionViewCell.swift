@@ -51,7 +51,12 @@ extension NewCollectionViewCell: ReusableView {
 }
 
 extension UIImageView {
-    func loadImageWithURL(_ url: String) {
+    func loadImageWithURL(_ url: String, contentMode: ContentMode = ContentMode.scaleAspectFill) {
+        let url = URL(string: url)
+        self.kf.setImage(with: url, placeholder: UIImage(named: "LastViewFilmPoster"))
+        self.contentMode = contentMode
+    }
+    func loadImageOnMainThread(_ url: String) {
         if let url = URL(string: url) {
             // Проверяем, есть ли данные в кэше
             if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
@@ -76,12 +81,5 @@ extension UIImageView {
             }
             contentMode = .scaleAspectFill
         }
-    }
-    func makeRounded() {
-        layer.borderWidth = 1
-        layer.masksToBounds = false
-        layer.borderColor = UIColor.black.cgColor
-        layer.cornerRadius = self.frame.height / 2
-        clipsToBounds = true
     }
 }
