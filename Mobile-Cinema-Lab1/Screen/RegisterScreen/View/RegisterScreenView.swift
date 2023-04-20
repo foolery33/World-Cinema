@@ -280,8 +280,8 @@ extension UIView {
         UserDataManager.shared.clearAllData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.stopActivityIndicator()
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.appCoordinator?.goToAuth()
+            if let sceneDelegate = UIApplication.shared.delegate as? SceneDelegate {
+                sceneDelegate.appCoordinator?.goToAuth()
                 if let viewController = self.next as? UIViewController {
                     viewController.navigationController?.setViewControllers([], animated: true)
                 }

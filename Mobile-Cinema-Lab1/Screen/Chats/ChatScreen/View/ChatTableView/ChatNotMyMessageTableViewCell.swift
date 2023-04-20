@@ -34,7 +34,6 @@ class ChatNotMyMessageTableViewCell: UITableViewCell {
             self.userAvatarImageView.alpha = 0
         }
         else {
-//            self.userAvatarImageView.loadImageWithURL(message.authorAvatar ?? "")
             self.userAvatarImageView.loadImageWithURL(message.authorAvatar ?? "", contentMode: .scaleAspectFill)
             self.userAvatarImageView.alpha = 1
         }

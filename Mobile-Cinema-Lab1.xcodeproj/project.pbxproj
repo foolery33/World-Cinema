@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8406704F29F0E61E00E0AE8E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8406704E29F0E61E00E0AE8E /* Kingfisher */; };
 		8406705229F1078500E0AE8E /* SaveCollectionListInDBUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406705129F1078500E0AE8E /* SaveCollectionListInDBUseCase.swift */; };
+		8406705429F1984700E0AE8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406705329F1984700E0AE8E /* SceneDelegate.swift */; };
 		8413392229DE77B500A394D4 /* IconSelectionScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392129DE77B500A394D4 /* IconSelectionScreenViewController.swift */; };
 		8413392429DE77DD00A394D4 /* IconSelectionScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392329DE77DD00A394D4 /* IconSelectionScreenView.swift */; };
 		8413392729DE7A1100A394D4 /* ChooseIconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392629DE7A1100A394D4 /* ChooseIconDelegate.swift */; };
@@ -177,6 +178,7 @@
 
 /* Begin PBXFileReference section */
 		8406705129F1078500E0AE8E /* SaveCollectionListInDBUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCollectionListInDBUseCase.swift; sourceTree = "<group>"; };
+		8406705329F1984700E0AE8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8413392129DE77B500A394D4 /* IconSelectionScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionScreenViewController.swift; sourceTree = "<group>"; };
 		8413392329DE77DD00A394D4 /* IconSelectionScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionScreenView.swift; sourceTree = "<group>"; };
 		8413392629DE7A1100A394D4 /* ChooseIconDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseIconDelegate.swift; sourceTree = "<group>"; };
@@ -1299,6 +1301,7 @@
 				84E4C7F629CAD6F90004732C /* Info.plist */,
 				84D7860B29CC7752004D518D /* Colors.swift */,
 				84BE5C2729CEF27D0051B6D0 /* ActivityIndicator.swift */,
+				8406705329F1984700E0AE8E /* SceneDelegate.swift */,
 			);
 			path = "Mobile-Cinema-Lab1";
 			sourceTree = "<group>";
@@ -1657,6 +1660,7 @@
 				84C3314729DAC5FC00904FEA /* ProfileScreenViewController.swift in Sources */,
 				84D319E929E710800049F18D /* EpisodesRepositoryImplementation.swift in Sources */,
 				84B7DBB629E5599E00861D4A /* CompilationServerFunctions.swift in Sources */,
+				8406705429F1984700E0AE8E /* SceneDelegate.swift in Sources */,
 				84AF454C29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift in Sources */,
 				84B6049329CD9BCB0047A603 /* AuthCoordinator.swift in Sources */,
 				84D319E229E70DC90049F18D /* EpisodesRepository.swift in Sources */,
