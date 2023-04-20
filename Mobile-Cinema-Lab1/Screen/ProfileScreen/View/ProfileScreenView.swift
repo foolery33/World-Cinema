@@ -98,7 +98,7 @@ class ProfileScreenView: UIView {
         let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 88, height: 88))
         myImageView.layer.cornerRadius = myImageView.frame.height / 2
         myImageView.clipsToBounds = true
-        myImageView.contentMode = .scaleAspectFit
+        myImageView.contentMode = .scaleAspectFill
         return myImageView
     }()
     private func setupAvatarImage() {
@@ -112,15 +112,12 @@ class ProfileScreenView: UIView {
     
     private lazy var imagePicker: UIImagePickerController = {
         let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
         vc.delegate = self
         vc.allowsEditing = true
         return vc
     }()
     @objc private func showImagePicker() {
-        if let viewController = self.next as? UIViewController {
-            viewController.present(imagePicker, animated: true)
-        }
+        self.showAlertWithChoice()
     }
     
     // MARK: ChangeButton setup
@@ -259,6 +256,30 @@ extension ProfileScreenView: UIImagePickerControllerDelegate, UINavigationContro
             }
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func showAlertWithChoice() {
+        let alert = UIAlertController(title: "Выберите источник изображения", message: nil, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Камера", style: .default, handler: { _ in
+            self.imagePicker.sourceType = .camera
+            if let viewController = self.next as? UIViewController {
+                viewController.present(self.imagePicker, animated: true)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Фото", style: .default, handler: { _ in
+            self.imagePicker.sourceType = .photoLibrary
+            if let viewController = self.next as? UIViewController {
+                viewController.present(self.imagePicker, animated: true)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
+        if let viewController = self.next as? UIViewController {
+            viewController.present(alert, animated: true, completion: nil)
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
