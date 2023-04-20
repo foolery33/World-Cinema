@@ -43,6 +43,10 @@ final class CollectionsScreenViewModel {
             case .success(let data):
                 self?.collections = data
                 for i in 0..<(self?.collections.count ?? 0) {
+                    // Сохраняем id коллекции "Избранное"
+                    if i == 0 {
+                        UserDataManager.shared.saveFavouritesCollectionId(id: self?.collections[i].collectionId ?? "")
+                    }
                     let collectionName = self?.collectionsDatabase.getCollectionById(id: self?.collections[i].collectionId ?? "")?.name ?? self?.collections[i].name ?? "Избранное"
                     self?.collections[i].name = collectionName
                 }

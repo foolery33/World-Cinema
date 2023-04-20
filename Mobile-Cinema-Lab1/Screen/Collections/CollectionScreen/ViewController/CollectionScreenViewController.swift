@@ -24,7 +24,13 @@ class CollectionScreenViewController: UIViewController {
         collectionScreenView.getMoviesFromCollection()
         view.backgroundColor = UIColor(named: "BackgroundColor")
         self.navigationItem.leftBarButtonItem = getNavigationLeftItem()
-        self.navigationItem.rightBarButtonItem = getNavigationRightItem()
+        
+        // Блокируем возможность редактировать "Избранное"
+        if UserDataManager.shared.fetchFavouritesCollectionId() != self.viewModel.collection.collectionId {
+            print(UserDataManager.shared.fetchFavouritesCollectionId())
+            print(self.viewModel.collection.collectionId)
+            self.navigationItem.rightBarButtonItem = getNavigationRightItem()
+        }
     }
     
     private func getNavigationLeftItem() -> UIBarButtonItem {

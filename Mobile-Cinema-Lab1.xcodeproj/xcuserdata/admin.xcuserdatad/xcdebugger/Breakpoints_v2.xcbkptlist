@@ -1680,8 +1680,8 @@
             filePath = "Mobile-Cinema-Lab1/Screen/Collections/CollectionsScreen/ViewModel/CollectionsScreenViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "getCollections(completion:)"
             landmarkType = "7">
             <Locations>
@@ -1731,6 +1731,22 @@
             startingLineNumber = "270"
             endingLineNumber = "270"
             landmarkName = "showAlert(title:message:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FE411789-3FD9-453B-B3CE-CBFF1BF8EAAB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mobile-Cinema-Lab1/Screen/Collections/CollectionScreen/ViewController/CollectionScreenViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "loadView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
