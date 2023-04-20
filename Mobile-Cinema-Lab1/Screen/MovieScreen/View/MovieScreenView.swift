@@ -268,17 +268,18 @@ class MovieScreenView: UIView {
     private lazy var shotsStackView: UIStackView = {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
-        myStackView.spacing = 16
+        myStackView.spacing = 0
         return myStackView
     }()
     private func setupShotsStackView() {
         stackView.addArrangedSubview(shotsStackView)
+        stackView.setCustomSpacing(16, after: shotsStackView)
         setupShotsLabelStack()
         setupShotsCollectionView()
         shotsStackView.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(72 + shotsStackView.spacing + shotsLabel.frame.size.height)
+            make.height.equalTo(72 + shotsStackView.spacing + shotsLabel.frame.size.height + 32)
         }
     }
     

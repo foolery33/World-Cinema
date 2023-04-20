@@ -39,7 +39,6 @@ final class NewCollectionViewCell: UICollectionViewCell {
     }
 
     func setup(with movie: MovieModel) {
-//        posterImageView.image = UIImage(named: "NewFilmPoster")
         posterImageView.loadImageWithURL(movie.poster)
     }
 }
@@ -53,7 +52,7 @@ extension NewCollectionViewCell: ReusableView {
 extension UIImageView {
     func loadImageWithURL(_ url: String, contentMode: ContentMode = ContentMode.scaleAspectFill) {
         let url = URL(string: url)
-        self.kf.setImage(with: url, placeholder: UIImage(named: "LastViewFilmPoster"))
+        self.kf.setImage(with: url)
         self.contentMode = contentMode
     }
     func loadImageOnMainThread(_ url: String) {
