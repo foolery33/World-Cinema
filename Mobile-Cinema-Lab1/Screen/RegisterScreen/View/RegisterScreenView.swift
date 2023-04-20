@@ -9,20 +9,20 @@ import UIKit
 import SnapKit
 
 class RegisterScreenView: UIView {
-
+    
     var viewModel: RegisterScreenViewModel
-
+    
     init(viewModel: RegisterScreenViewModel) {
         self.viewModel = viewModel
         super.init(frame: CGRect.zero)
         setupSubviews()
         addKeyboardDidmiss()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private enum Paddings {
         static let betweenTopAndLogo = 88.0
         static let betweenLogoAndName = 64.0
@@ -47,17 +47,17 @@ class RegisterScreenView: UIView {
         static let ok = "OK"
         static let createFavouritesFailed = "Create Favourites Failed"
     }
-
+    
     func setupSubviews() {
         setupLogo()
         setupButtonsStackView()
         setupScrollView()
-//        setupTextFieldsStackView()
-//        setupButtonsStackView()
+        //        setupTextFieldsStackView()
+        //        setupButtonsStackView()
     }
-
+    
     // MARK: Keyboard dismiss
-
+    
     func addKeyboardDidmiss() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         addGestureRecognizer(tapGesture)
@@ -66,9 +66,9 @@ class RegisterScreenView: UIView {
     func dismissKeyboard() {
         endEditing(true)
     }
-
+    
     // MARK: Logotype setup
-
+    
     private lazy var logotype: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "LogoWithName")!
@@ -79,12 +79,12 @@ class RegisterScreenView: UIView {
         logotype.snp.makeConstraints { make in
             make.top.equalTo(safeAreaInsets.top).offset(Paddings.betweenTopAndLogo)
             make.centerX.equalTo(self)
-
+            
         }
     }
-
+    
     // MARK: - ScrollView setup
-
+    
     private lazy var scrollView: UIScrollView = {
         let myScrollView = UIScrollView()
         myScrollView.showsVerticalScrollIndicator = false
@@ -100,9 +100,9 @@ class RegisterScreenView: UIView {
             make.width.equalToSuperview()
         }
     }
-
+    
     // MARK: - TextFields StackView setup
-
+    
     private lazy var textFieldsStackView: UIStackView = {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
@@ -124,9 +124,9 @@ class RegisterScreenView: UIView {
             make.width.equalToSuperview().offset(-32)
         }
     }
-
+    
     // MARK: Name setup
-
+    
     private lazy var nameTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: false)
         return textField.getOutlinedTextField(text: viewModel.name, placeholderText: Strings.name, selector: #selector(updateName(_:)))
@@ -135,9 +135,9 @@ class RegisterScreenView: UIView {
     private func updateName(_ textField: OutlinedTextField) {
         self.viewModel.name = textField.text ?? ""
     }
-
+    
     // MARK: Surname setup
-
+    
     private lazy var surnameTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: false)
         return textField.getOutlinedTextField(text: viewModel.surname, placeholderText: Strings.surname, selector: #selector(updateSurname(_:)))
@@ -146,9 +146,9 @@ class RegisterScreenView: UIView {
     private func updateSurname(_ textField: OutlinedTextField) {
         self.viewModel.surname = textField.text ?? ""
     }
-
+    
     // MARK: Email setup
-
+    
     private lazy var emailTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: false)
         return textField.getOutlinedTextField(text: viewModel.email, placeholderText: Strings.email, selector: #selector(updateEmail(_:)))
@@ -157,9 +157,9 @@ class RegisterScreenView: UIView {
     func updateEmail(_ textField: OutlinedTextField) {
         self.viewModel.email = textField.text ?? ""
     }
-
+    
     // MARK: Password setup
-
+    
     private lazy var passwordTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: true, passwordEye: passwordEye)
         return textField.getOutlinedTextField(text: viewModel.password, placeholderText: Strings.password, selector: #selector(updatePassword(_:)))
@@ -180,9 +180,9 @@ class RegisterScreenView: UIView {
     func updatePassword(_ textField: OutlinedTextField) {
         self.viewModel.password = textField.text ?? ""
     }
-
+    
     // MARK: Confirm password setup
-
+    
     private lazy var confirmPasswordTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: true, passwordEye: confirmPasswordEye)
         return textField.getOutlinedTextField(text: viewModel.confirmPassword, placeholderText: Strings.confirmPassword, selector: #selector(updateConfirmPassword(_:)))
@@ -203,9 +203,9 @@ class RegisterScreenView: UIView {
     func updateConfirmPassword(_ textField: OutlinedTextField) {
         self.viewModel.confirmPassword = textField.text ?? ""
     }
-
+    
     // MARK: Buttons StackView setup
-
+    
     private lazy var buttonsStackView: UIStackView = {
         let myStackView = UIStackView()
         myStackView.axis = .vertical
@@ -221,9 +221,9 @@ class RegisterScreenView: UIView {
             make.leading.trailing.equalToSuperview().inset(Paddings.defaultPadding)
         }
     }
-
+    
     // MARK: Back to login screen button setup
-
+    
     private lazy var backToLoginScreenButton: OutlinedButton = {
         let button = OutlinedButton()
         return button.getOutlinedButton(label: Strings.alreadyHaveAccount, selector: #selector(goToLoginScreen))
@@ -232,9 +232,9 @@ class RegisterScreenView: UIView {
     func goToLoginScreen() {
         self.viewModel.loginButtonTapped()
     }
-
+    
     // MARK: Register setup
-
+    
     private lazy var registerButton: FilledButton = {
         let button = FilledButton()
         return button.getFilledButton(label: Strings.register, selector: #selector(goToMainScreen))
@@ -259,15 +259,33 @@ class RegisterScreenView: UIView {
             }
         }
     }
-
+    
 }
 
 extension UIView {
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            if message == AppError.collectionsError(.unauthorized).errorDescription {
+                self.validateUser()
+            }
+        }))
         if let viewController = self.next as? UIViewController {
             viewController.present(alert, animated: true, completion: nil)
+        }
+    }
+    func validateUser() {
+        self.setupActivityIndicator()
+        TokenManager.shared.clearAllData()
+        UserDataManager.shared.clearAllData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.stopActivityIndicator()
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.appCoordinator?.goToAuth()
+                if let viewController = self.next as? UIViewController {
+                    viewController.navigationController?.setViewControllers([], animated: true)
+                }
+            }
         }
     }
 }

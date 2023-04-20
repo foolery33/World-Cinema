@@ -13,11 +13,11 @@ class EpisodeScreenViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if self.isMovingFromParent {
-            if let myView = self.view as? EpisodeScreenView {
-                myView.videoPlayerView.pause()
+        if let myView = self.view as? EpisodeScreenView {
+            if self.isMovingFromParent {
                 myView.saveEpisodeTime()
             }
+            myView.videoPlayerView.pause()
         }
     }
     

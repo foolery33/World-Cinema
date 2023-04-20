@@ -30,6 +30,7 @@ final class ProfileScreenViewModel {
     
     func leaveAccount() {
         TokenManager.shared.clearAllData()
+        UserDataManager.shared.clearAllData()
         coordinator.goToLoginScreen()
     }
     
