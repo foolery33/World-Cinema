@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 class ProfileScreenView: UIView {
 
@@ -96,6 +97,7 @@ class ProfileScreenView: UIView {
     
     private lazy var avatarImage: UIImageView = {
         let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 88, height: 88))
+        myImageView.isSkeletonable = true
         myImageView.layer.cornerRadius = myImageView.frame.height / 2
         myImageView.clipsToBounds = true
         myImageView.contentMode = .scaleAspectFill
@@ -135,6 +137,7 @@ class ProfileScreenView: UIView {
     
     private lazy var userInfoStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
         myStackView.spacing = 4
         return myStackView
@@ -150,6 +153,7 @@ class ProfileScreenView: UIView {
     
     private lazy var usernameLabel: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.numberOfLines = 0
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 24, weight: .bold)
@@ -160,6 +164,7 @@ class ProfileScreenView: UIView {
     
     private lazy var emailLabel: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.numberOfLines = 0
         myLabel.textColor = .grayColor
         myLabel.font = .systemFont(ofSize: 14, weight: .regular)
@@ -205,10 +210,14 @@ class ProfileScreenView: UIView {
     }
     
     func loadProfile() {
-        self.setupActivityIndicator()
+        userInfoStack.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        avatarImage.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+//        self.setupActivityIndicator()
         viewModel.getProfile { success in
-            self.stopActivityIndicator()
+//            self.stopActivityIndicator()
             if(success) {
+                self.userInfoStack.hideSkeleton()
+                self.avatarImage.hideSkeleton()
                 self.updateDataOnScreen()
             }
             else {

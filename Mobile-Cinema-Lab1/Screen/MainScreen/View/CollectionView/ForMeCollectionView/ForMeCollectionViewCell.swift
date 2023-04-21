@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class ForMeCollectionViewCell: UICollectionViewCell {
     private let posterImageView: UIImageView = {
@@ -17,6 +18,8 @@ final class ForMeCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
         setupViews()
         setupPosterImageView()
     }

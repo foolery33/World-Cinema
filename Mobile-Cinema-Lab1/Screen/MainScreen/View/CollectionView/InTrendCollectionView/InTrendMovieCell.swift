@@ -7,20 +7,23 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 protocol ReusableView: AnyObject {
     static var identifier: String { get }
 }
 
 final class InTrendMovieCell: UICollectionViewCell {
-    private let posterImageView: UIImageView = {
-        let imageView = UIImageView(frame: .zero)
+    private lazy var posterImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
         setupViews()
         setupPosterImageView()
     }
@@ -42,11 +45,9 @@ final class InTrendMovieCell: UICollectionViewCell {
     }
 
     func setup(with movie: MovieModel) {
-//        posterImageView.image = UIImage(named: "InTrendFilmPoster")?.resizeImage(newWidth: 100, newHeight: 144)
         posterImageView.loadImageWithURL(movie.poster)
     }
 }
-
 
 extension InTrendMovieCell: ReusableView {
     static var identifier: String {

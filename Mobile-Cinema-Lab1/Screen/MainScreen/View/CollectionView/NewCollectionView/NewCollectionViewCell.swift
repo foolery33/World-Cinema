@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SnapKit
+import SkeletonView
 
 final class NewCollectionViewCell: UICollectionViewCell {
     
-    private let posterImageView: UIImageView = {
+    private lazy var posterImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -17,6 +19,8 @@ final class NewCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
         setupViews()
         setupPosterImageView()
     }
@@ -50,10 +54,14 @@ extension NewCollectionViewCell: ReusableView {
 }
 
 extension UIImageView {
-    func loadImageWithURL(_ url: String, contentMode: ContentMode = ContentMode.scaleAspectFill) {
+    func loadImageWithURL(_ url: String, contentMode: ContentMode = ContentMode.scaleAspectFill, completion: (() -> Void)? = nil) {
         let url = URL(string: url)
-        self.kf.setImage(with: url)
         self.contentMode = contentMode
+        self.kf.setImage(with: url) { _ in
+            if completion != nil {
+                completion!()
+            }
+        }
     }
     func loadImageOnMainThread(_ url: String) {
         if let url = URL(string: url) {

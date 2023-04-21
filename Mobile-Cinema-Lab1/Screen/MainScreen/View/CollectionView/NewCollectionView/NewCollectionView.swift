@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class NewCollectionView: UICollectionView {
 
@@ -26,7 +27,19 @@ class NewCollectionView: UICollectionView {
 
 }
 
-extension NewCollectionView: UICollectionViewDataSource {
+extension NewCollectionView: SkeletonCollectionViewDataSource {
+    
+    // MARK: - SkeletonCollectionViewDataSource
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return NewCollectionViewCell.identifier
+    }
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+
+    // MARK: - UICollectionViewDataSource
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.newMovies.count
     }
@@ -38,7 +51,6 @@ extension NewCollectionView: UICollectionViewDataSource {
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(GetGenresListFromTagsUseCase().getList(viewModel.newMovies[indexPath.row].tags))
         viewModel.coordinator?.goToMovieScreen(movie: viewModel?.newMovies[indexPath.row] ?? MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: "", lastMessage: MessageModel(messageId: "", creationDateTime: "", authorName: "", text: "")), imageUrls: [], poster: "", tags: []))
     }
 }

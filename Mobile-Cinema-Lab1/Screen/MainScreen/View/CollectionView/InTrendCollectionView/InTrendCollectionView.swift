@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class InTrendCollectionView: UICollectionView {
     
@@ -22,21 +23,44 @@ class InTrendCollectionView: UICollectionView {
         dataSource = self
         delegate = self
         register(InTrendMovieCell.self, forCellWithReuseIdentifier: InTrendMovieCell.identifier)
+        isSkeletonable = true
     }
     
 }
 
-extension InTrendCollectionView: UICollectionViewDataSource {
+//extension InTrendCollectionView: SkeletonCollectionViewDataSource, SkeletonCollectionViewDelegate {
+//    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+//        return InTrendMovieCell.identifier
+//    }
+extension InTrendCollectionView: SkeletonCollectionViewDataSource {
+    
+    // MARK: - SkeletonCollectionViewDataSource
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return InTrendMovieCell.identifier
+    }
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+
+    // MARK: - UICollectionViewDataSource
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.inTrendMovies.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InTrendMovieCell.identifier, for: indexPath) as! InTrendMovieCell
-
-        let movie = viewModel.inTrendMovies[indexPath.row]
+        
+        var movie = MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: ""), imageUrls: [], poster: "", tags: [])
+        
+        if viewModel.inTrendMovies.isEmpty == false {
+            movie = viewModel.inTrendMovies[indexPath.row]
+        }
         cell.setup(with: movie)
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.coordinator?.goToMovieScreen(movie: viewModel?.inTrendMovies[indexPath.row] ?? MovieModel(movieId: "", name: "", description: "", age: "", chatInfo: ChatModel(chatId: "", chatName: "", lastMessage: MessageModel(messageId: "", creationDateTime: "", authorName: "", text: "")), imageUrls: [], poster: "", tags: []))
     }

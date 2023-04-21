@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ForMeCollectionView: UICollectionView {
     
@@ -26,7 +27,19 @@ class ForMeCollectionView: UICollectionView {
     
 }
 
-extension ForMeCollectionView: UICollectionViewDataSource {
+extension ForMeCollectionView: SkeletonCollectionViewDataSource {
+    
+    // MARK: - SkeletonCollectionViewDataSource
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return ForMeCollectionViewCell.identifier
+    }
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+
+    // MARK: - UICollectionViewDataSource
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.forMeMovies.count
     }

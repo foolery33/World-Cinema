@@ -46,7 +46,7 @@ class MainScreenView: UIView {
     
     private lazy var contentView: UIView = {
         let myContentView = UIView()
-        myContentView.isHidden = true
+        myContentView.isSkeletonable = true
         return myContentView
     }()
     private func setupContentView() {
@@ -66,6 +66,7 @@ class MainScreenView: UIView {
     private lazy var poster: UIImageView = {
         let myPoster = UIImageView()
         myPoster.clipsToBounds = true
+        myPoster.isSkeletonable = true
         return myPoster
     }()
     private lazy var gradient: CAGradientLayer = {
@@ -126,6 +127,7 @@ class MainScreenView: UIView {
     
     private lazy var collectionsStackView: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
         myStackView.spacing = 32
         return myStackView
@@ -148,6 +150,7 @@ class MainScreenView: UIView {
     // MARK: - InTrend StackView setup
     private lazy var inTrendStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
         myStackView.spacing = 16
         return myStackView
@@ -165,6 +168,7 @@ class MainScreenView: UIView {
     // MARK: InTrendCollectionView setup
     private lazy var inTrendCollectionView: UICollectionView = {
         let myCollectionView = InTrendCollectionView()
+        myCollectionView.isSkeletonable = true
         myCollectionView.viewModel = self.viewModel.inTrendMoviesViewModel
         return myCollectionView
     }()
@@ -177,6 +181,7 @@ class MainScreenView: UIView {
     // MARK: InTrend label stack setup
     private lazy var inTrendLabelStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
@@ -188,6 +193,7 @@ class MainScreenView: UIView {
     // MARK: InTrend label setup
     private lazy var inTrendLabel: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.numberOfLines = 0
         myLabel.text = "В тренде"
         myLabel.textColor = .redColor
@@ -202,12 +208,14 @@ class MainScreenView: UIView {
         }
         else {
             inTrendCollectionView.reloadData()
+            self.inTrendStack.hideSkeleton()
         }
     }
     
     // MARK: - LastView StackView setup
     private lazy var lastViewStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
         myStackView.spacing = 16
         return myStackView
@@ -215,7 +223,6 @@ class MainScreenView: UIView {
     private func setupLastViewStackView() {
         collectionsStackView.addArrangedSubview(lastViewStack)
         setupLastViewStack()
-//        setupLastViewButton()
         setupLastViewImageView()
 
         lastViewStack.snp.makeConstraints { make in
@@ -226,6 +233,7 @@ class MainScreenView: UIView {
     // MARK: InTrend label stack setup
     private lazy var lastViewLabelStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
@@ -237,6 +245,7 @@ class MainScreenView: UIView {
     // MARK: LastView label setup
     private lazy var lastViewLabel: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.numberOfLines = 0
         myLabel.text = "Вы смотрели"
         myLabel.textColor = .redColor
@@ -247,6 +256,7 @@ class MainScreenView: UIView {
     // MARK: LastViewImageView setup
     private lazy var lastViewImageView: UIImageView = {
         let myImageView = UIImageView()
+        myImageView.isSkeletonable = true
         myImageView.contentMode = .scaleAspectFit
         myImageView.clipsToBounds = true
         myImageView.isUserInteractionEnabled = true
@@ -283,6 +293,7 @@ class MainScreenView: UIView {
         }
         else {
             self.lastViewImageView.loadImageWithURL(self.viewModel.lastViewMoviesViewModel.lastViewMovies[0].poster, contentMode: .scaleAspectFill)
+            self.lastViewStack.hideSkeleton()
         }
     }
     @objc private func onLastViewMovieButtonClicked() {
@@ -292,6 +303,7 @@ class MainScreenView: UIView {
     // MARK: - New StackView setup
     private lazy var newStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
         myStackView.spacing = 16
         return myStackView
@@ -309,6 +321,7 @@ class MainScreenView: UIView {
     // MARK: New label stack setup
     private lazy var newLabelStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
@@ -320,6 +333,7 @@ class MainScreenView: UIView {
     // MARK: New label setup
     private lazy var newLabel: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.numberOfLines = 0
         myLabel.text = "Новое"
         myLabel.textColor = .redColor
@@ -330,6 +344,7 @@ class MainScreenView: UIView {
     // MARK: - NewCollectionView setup
     private lazy var newCollectionView: UICollectionView = {
         let newMovies = NewCollectionView()
+        newMovies.isSkeletonable = true
         newMovies.viewModel = self.viewModel.newMoviesViewModel
         return newMovies
     }()
@@ -345,12 +360,14 @@ class MainScreenView: UIView {
         }
         else {
             newCollectionView.reloadData()
+            self.newStack.hideSkeleton()
         }
     }
     
     // MARK: - ForYou StackView setup
     private lazy var forMeStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
         myStackView.spacing = 16
         return myStackView
@@ -368,6 +385,7 @@ class MainScreenView: UIView {
     // MARK: ForMe label stack setup
     private lazy var forMeLabelStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
@@ -379,6 +397,7 @@ class MainScreenView: UIView {
     // MARK: ForYou label setup
     private lazy var forMeLabel: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.numberOfLines = 0
         myLabel.text = "Для вас"
         myLabel.textColor = .redColor
@@ -389,6 +408,7 @@ class MainScreenView: UIView {
     // MARK: ForMeCollectionView setup
     private lazy var forMeCollectionView: UICollectionView = {
         let myCollectionView = ForMeCollectionView()
+        myCollectionView.isSkeletonable = true
         myCollectionView.viewModel = self.viewModel.forMeMoviesViewModel
         return myCollectionView
     }()
@@ -405,6 +425,7 @@ class MainScreenView: UIView {
         }
         else {
             forMeCollectionView.reloadData()
+            self.forMeStack.hideSkeleton()
         }
     }
     
@@ -429,7 +450,9 @@ class MainScreenView: UIView {
         DispatchQueue.main.async {
             self.viewModel.getCover { success in
                 if(success) {
-                    self.poster.loadImageWithURL(self.viewModel.cover.backgroundImage)
+                    self.poster.loadImageWithURL(self.viewModel.cover.backgroundImage) {
+                        self.poster.hideSkeleton()
+                    }
 //                    self.foregroundPoster.loadImageWithURL(self.viewModel.cover.foregroundImage)
                 }
                 else {
@@ -440,7 +463,7 @@ class MainScreenView: UIView {
     }
     
     func loadSections() {
-        self.setupActivityIndicator()
+        self.setupSkeleton()
         DispatchQueue.main.async {
             self.viewModel.inTrendMoviesViewModel.getInTrendMovies { success in
                 if(success) {
@@ -474,10 +497,20 @@ class MainScreenView: UIView {
                 else {
                     self.showAlert(title: "Movies Loading Failed", message: self.viewModel.forMeMoviesViewModel.error)
                 }
-                self.stopActivityIndicator()
-                self.contentView.isHidden = false
+                self.stopSkeleton()
             }
         }
+    }
+    
+}
+
+extension MainScreenView {
+    func setupSkeleton() {
+        self.contentView.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+    }
+    
+    func stopSkeleton() {
+        self.contentView.hideSkeleton()
     }
     
 }
