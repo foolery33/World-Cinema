@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ChatListTableView: UITableView {
     
@@ -19,6 +20,7 @@ class ChatListTableView: UITableView {
         separatorStyle = .none
         backgroundColor = .clear
         self.register(ChatListTableViewCell.self, forCellReuseIdentifier: ChatListTableViewCell.identifier)
+        self.isSkeletonable = true
     }
     
     required init?(coder: NSCoder) {
@@ -27,7 +29,21 @@ class ChatListTableView: UITableView {
 
 }
 
-extension ChatListTableView: UITableViewDataSource {
+extension ChatListTableView: SkeletonTableViewDataSource {
+    
+    // MARK: - SkeletonCollectionViewDataSource
+//    
+//    func numSections(in collectionSkeletonView: UITableView) -> Int {
+//        return 1
+//    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return ChatListTableViewCell.identifier
+    }
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.chats.count ?? 0
     }

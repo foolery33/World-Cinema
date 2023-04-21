@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ChatTableView: UITableView {
 
@@ -30,6 +31,7 @@ class ChatTableView: UITableView {
 }
 
 extension ChatTableView: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (viewModel?.groupedMessages.count ?? 0) + (viewModel?.messages.count ?? 0)
     }

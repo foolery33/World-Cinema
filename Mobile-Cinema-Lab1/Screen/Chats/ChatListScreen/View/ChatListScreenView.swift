@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 class ChatListScreenView: UIView {
 
@@ -15,7 +16,9 @@ class ChatListScreenView: UIView {
     init(viewModel: ChatListScreenViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
+        self.isSkeletonable = true
         setupSubviews()
+        setupSkeleton()
     }
     
     required init?(coder: NSCoder) {
@@ -30,21 +33,34 @@ class ChatListScreenView: UIView {
     
     private lazy var chatListTableView: ChatListTableView = {
         let myTableView = ChatListTableView()
+        myTableView.isSkeletonable = true
         myTableView.viewModel = self.viewModel
         myTableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 16, right: 0)
         return myTableView
     }()
     private func setupCollectionMoviesTableView() {
         addSubview(chatListTableView)
+        chatListTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
 }
 
 extension ChatListScreenView {
+    
+    func setupSkeleton() {
+        self.isSkeletonable = true
+        self.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+    }
+    func stopSkeleton() {
+        self.hideSkeleton()
+    }
+    
     func loadChatList() {
-        self.setupActivityIndicator()
+//        setupSkeleton()
         self.viewModel.getChatList { success in
-            self.stopActivityIndicator()
+            self.stopSkeleton()
             if(success) {
                 self.chatListTableView.reloadData()
                 self.chatListTableView.snp.remakeConstraints { make in

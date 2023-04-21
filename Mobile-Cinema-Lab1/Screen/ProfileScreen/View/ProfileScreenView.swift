@@ -154,6 +154,7 @@ class ProfileScreenView: UIView {
     private lazy var usernameLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.isSkeletonable = true
+        myLabel.skeletonTextNumberOfLines = 2
         myLabel.numberOfLines = 0
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 24, weight: .bold)
@@ -217,7 +218,6 @@ class ProfileScreenView: UIView {
 //            self.stopActivityIndicator()
             if(success) {
                 self.userInfoStack.hideSkeleton()
-                self.avatarImage.hideSkeleton()
                 self.updateDataOnScreen()
             }
             else {
@@ -243,7 +243,9 @@ class ProfileScreenView: UIView {
         usernameLabel.text = "\(viewModel.profile.firstName) \(viewModel.profile.lastName)"
         emailLabel.text = viewModel.profile.email
         if viewModel.profile.avatar != nil {
-            avatarImage.loadImageWithURL(viewModel.profile.avatar ?? "")
+            avatarImage.loadImageWithURL(viewModel.profile.avatar ?? "") {
+                self.avatarImage.hideSkeleton()
+            }
         }
     }
     

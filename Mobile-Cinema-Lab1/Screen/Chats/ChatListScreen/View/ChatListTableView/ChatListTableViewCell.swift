@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 class ChatListTableViewCell: UITableViewCell {
 
@@ -15,6 +16,8 @@ class ChatListTableViewCell: UITableViewCell {
         setupHStackView()
         self.selectionStyle = .none
         self.backgroundColor = .clear
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
     }
     
     required init?(coder: NSCoder) {
@@ -28,11 +31,9 @@ class ChatListTableViewCell: UITableViewCell {
     }
     
     func setup(chat: ChatModel) {
-//        self.image.loadImageWithURL(chat.lastMessage?.authorAvatar ?? "")
-//        self.image.image = self.image.image?.resizeImage(newWidth: 64, newHeight: 64)
+        self.undoneSkeletonView()
         
         self.letters.text = GetFirstTwoLettersOfChatNameUseCase().getLetters(chatName: chat.chatName)
-        
         self.chatNameLabel.text = chat.chatName
         
         let attributedString = NSMutableAttributedString(string: "\(chat.lastMessage?.authorName ?? ""): ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.grayTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)])
@@ -44,6 +45,8 @@ class ChatListTableViewCell: UITableViewCell {
     
     private lazy var hStackView: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
+        myStackView.alignment = .center
         myStackView.axis = .horizontal
         myStackView.spacing = 16
         return myStackView
@@ -63,6 +66,7 @@ class ChatListTableViewCell: UITableViewCell {
     
     private lazy var chatPicture: UIView = {
         let myView = UIView(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
+        myView.isSkeletonable = true
         myView.layer.cornerRadius = myView.frame.height / 2
         myView.clipsToBounds = true
         myView.backgroundColor = .redColor
@@ -93,27 +97,13 @@ class ChatListTableViewCell: UITableViewCell {
         }
     }
     
-    private lazy var image: UIImageView = {
-        let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
-        myImageView.layer.cornerRadius = myImageView.frame.height / 2
-        myImageView.clipsToBounds = true
-        myImageView.contentMode = .scaleAspectFit
-        myImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        return myImageView
-    }()
-    private func setupImageView() {
-        hStackView.addArrangedSubview(image)
-        image.snp.makeConstraints { make in
-            make.height.width.equalTo(64)
-        }
-    }
-    
     // MARK: MovieInfoStack setup
     
     private lazy var chatInfoStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
-        myStackView.spacing = 4
+        myStackView.spacing = 15
         return myStackView
     }()
     private func setupChatInfoStack() {
@@ -126,9 +116,11 @@ class ChatListTableViewCell: UITableViewCell {
     
     private lazy var chatNameLabel: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 14, weight: .bold)
         myLabel.numberOfLines = 1
+        myLabel.skeletonTextNumberOfLines = 1
         myLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return myLabel
     }()
@@ -137,6 +129,7 @@ class ChatListTableViewCell: UITableViewCell {
     
     private lazy var chatLastMessageEmbeddingStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.alignment = .top
         myStackView.axis = .horizontal
         return myStackView
@@ -150,7 +143,10 @@ class ChatListTableViewCell: UITableViewCell {
     
     private lazy var chatLastMessageLabel: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.numberOfLines = 2
+        myLabel.skeletonTextNumberOfLines = 2
+        myLabel.skeletonLineSpacing = 5
         myLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         return myLabel
     }()
@@ -159,6 +155,7 @@ class ChatListTableViewCell: UITableViewCell {
     
     private lazy var separatingLine: UIView = {
         let myView = UIView()
+        myView.isSkeletonable = true
         myView.backgroundColor = .darkGrayColor
         return myView
     }()
@@ -170,6 +167,11 @@ class ChatListTableViewCell: UITableViewCell {
             make.trailing.equalTo(chatInfoStack.snp.trailing)
             make.bottom.equalToSuperview()
         }
+    }
+    
+    private func undoneSkeletonView() {
+        self.hStackView.alignment = .top
+        self.chatInfoStack.spacing = 4
     }
     
 }
