@@ -297,7 +297,16 @@ class MainScreenView: UIView {
         }
     }
     @objc private func onLastViewMovieButtonClicked() {
-        self.viewModel.lastViewMoviesViewModel.goToMovieScreen(movie: self.viewModel.lastViewMoviesViewModel.lastViewMovies[0])
+        self.setupActivityIndicator()
+        self.viewModel.lastViewMoviesViewModel.getEpisode { success in
+            self.stopActivityIndicator()
+            if success {
+                self.viewModel.lastViewMoviesViewModel.goToEpisodeScreen()
+            }
+            else {
+                self.showAlert(title: "Episode Loading Error", message: self.viewModel.lastViewMoviesViewModel.error)
+            }
+        }
     }
     
     // MARK: - New StackView setup
@@ -475,8 +484,15 @@ class MainScreenView: UIView {
                 }
             }
             self.viewModel.lastViewMoviesViewModel.getLastViewMovies { success in
-                if(success) {
-                    self.reloadLastViewMoviesView()
+                if success {
+                    self.viewModel.lastViewMoviesViewModel.getHistory { newSuccess in
+                        if(newSuccess) {
+                            self.reloadLastViewMoviesView()
+                        }
+                        else {
+                            self.showAlert(title: "History Loading Failed", message: self.viewModel.lastViewMoviesViewModel.error)
+                        }
+                    }
                 }
                 else {
                     self.showAlert(title: "Movies Loading Failed", message: self.viewModel.lastViewMoviesViewModel.error)

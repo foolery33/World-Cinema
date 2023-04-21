@@ -121,6 +121,9 @@
 		84BE5C3529CF016E0051B6D0 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE5C3429CF016E0051B6D0 /* MainScreenViewController.swift */; };
 		84BE5C3729CF02D20051B6D0 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE5C3629CF02D20051B6D0 /* MainCoordinator.swift */; };
 		84BE5C3929CF05CD0051B6D0 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE5C3829CF05CD0051B6D0 /* MainScreenView.swift */; };
+		84BF4F9A29F2B1C300C4AA12 /* HistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4F9929F2B1C300C4AA12 /* HistoryRepository.swift */; };
+		84BF4F9C29F2B1D400C4AA12 /* HistoryRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4F9B29F2B1D400C4AA12 /* HistoryRepositoryImplementation.swift */; };
+		84BF4F9F29F2B24300C4AA12 /* EpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4F9E29F2B24300C4AA12 /* EpisodeViewModel.swift */; };
 		84C3313B29DAC1E600904FEA /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3313A29DAC1E600904FEA /* ProfileCoordinator.swift */; };
 		84C3314129DAC4AF00904FEA /* ProfileScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3314029DAC4AF00904FEA /* ProfileScreenViewModel.swift */; };
 		84C3314329DAC54E00904FEA /* ProfileScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3314229DAC54E00904FEA /* ProfileScreenModel.swift */; };
@@ -285,6 +288,9 @@
 		84BE5C3429CF016E0051B6D0 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		84BE5C3629CF02D20051B6D0 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		84BE5C3829CF05CD0051B6D0 /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
+		84BF4F9929F2B1C300C4AA12 /* HistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepository.swift; sourceTree = "<group>"; };
+		84BF4F9B29F2B1D400C4AA12 /* HistoryRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepositoryImplementation.swift; sourceTree = "<group>"; };
+		84BF4F9E29F2B24300C4AA12 /* EpisodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewModel.swift; sourceTree = "<group>"; };
 		84C3313A29DAC1E600904FEA /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		84C3314029DAC4AF00904FEA /* ProfileScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewModel.swift; sourceTree = "<group>"; };
 		84C3314229DAC54E00904FEA /* ProfileScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenModel.swift; sourceTree = "<group>"; };
@@ -953,6 +959,7 @@
 		84B6049829CDEEC10047A603 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				84BF4F9829F2B1B300C4AA12 /* History */,
 				848ED65E29E7C00D005655D0 /* Chats */,
 				84D319E029E70DAF0049F18D /* Episodes */,
 				8428979029DC7C090096D409 /* Collections */,
@@ -1058,6 +1065,24 @@
 				843C9B8929D6F1BC00E370EC /* MainTabBarController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84BF4F9829F2B1B300C4AA12 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4F9D29F2B23900C4AA12 /* Model */,
+				84BF4F9929F2B1C300C4AA12 /* HistoryRepository.swift */,
+				84BF4F9B29F2B1D400C4AA12 /* HistoryRepositoryImplementation.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		84BF4F9D29F2B23900C4AA12 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4F9E29F2B24300C4AA12 /* EpisodeViewModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		84C3313929DAC1D900904FEA /* ProfileScreen */ = {
@@ -1546,6 +1571,7 @@
 				846E48B129D201D2006B5F59 /* MovieModel.swift in Sources */,
 				84E49CF329D2C09D00BCCA8B /* MovieRepositoryImplementation.swift in Sources */,
 				849FA1CF29D57BC90097223A /* MovieRepository.swift in Sources */,
+				84BF4F9F29F2B24300C4AA12 /* EpisodeViewModel.swift in Sources */,
 				848BC51329E451030022242B /* CompilationScreenViewModel.swift in Sources */,
 				84C3315829DB355900904FEA /* ProfileSectionTableViewCell.swift in Sources */,
 				8428978829DC1ECD0096D409 /* CollectionsScreenViewController.swift in Sources */,
@@ -1603,6 +1629,7 @@
 				84B6049B29CDEEF00047A603 /* AuthRepositoryImplementation.swift in Sources */,
 				84C3314C29DAE99300904FEA /* ProfileRepository.swift in Sources */,
 				84E5702529E144DA00A10579 /* CollectionScreenModel.swift in Sources */,
+				84BF4F9C29F2B1D400C4AA12 /* HistoryRepositoryImplementation.swift in Sources */,
 				84D7860529CC5D5D004D518D /* LoginScreenModel.swift in Sources */,
 				84EB776C29D9A09B002F5137 /* EpisodeScreenView.swift in Sources */,
 				843C9B9829D71AAE00E370EC /* MovieScreenView.swift in Sources */,
@@ -1662,6 +1689,7 @@
 				849FA1D329D57D800097223A /* InTrendMoviesViewModel.swift in Sources */,
 				848ED66029E7C021005655D0 /* ChatManager.swift in Sources */,
 				84C3314729DAC5FC00904FEA /* ProfileScreenViewController.swift in Sources */,
+				84BF4F9A29F2B1C300C4AA12 /* HistoryRepository.swift in Sources */,
 				84D319E929E710800049F18D /* EpisodesRepositoryImplementation.swift in Sources */,
 				84B7DBB629E5599E00861D4A /* CompilationServerFunctions.swift in Sources */,
 				8406705429F1984700E0AE8E /* SceneDelegate.swift in Sources */,

@@ -29,7 +29,7 @@ class MainScreenViewModel {
     var error: String = ""
     
     lazy var inTrendMoviesViewModel = InTrendMoviesViewModel(coordinator: self.coordinator, movieRepository: MovieRepositoryImplementation())
-    lazy var lastViewMoviesViewModel = LastViewMoviesViewModel(coordinator: self.coordinator, movieRepository: MovieRepositoryImplementation())
+    lazy var lastViewMoviesViewModel = LastViewMoviesViewModel(coordinator: self.coordinator, movieRepository: MovieRepositoryImplementation(), historyRepository: HistoryRepositoryImplementation())
     lazy var newMoviesViewModel = NewMoviesViewModel(coordinator: self.coordinator, movieRepository: MovieRepositoryImplementation())
     lazy var forMeMoviesViewModel = ForMeMoviesViewModel(coordinator: self.coordinator, movieRepository: MovieRepositoryImplementation())
     
