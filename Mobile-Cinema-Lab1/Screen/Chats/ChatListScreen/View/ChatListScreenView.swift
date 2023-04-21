@@ -16,7 +16,6 @@ class ChatListScreenView: UIView {
     init(viewModel: ChatListScreenViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
-        self.isSkeletonable = true
         setupSubviews()
         setupSkeleton()
     }

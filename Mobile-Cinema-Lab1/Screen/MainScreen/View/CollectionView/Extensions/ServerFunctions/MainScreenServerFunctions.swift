@@ -10,7 +10,7 @@ import Foundation
 extension MainScreenView {
     
     func loadCover() {
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInitiated).async {
             self.viewModel.getCover { success in
                 if(success) {
                     self.poster.loadImageWithURL(self.viewModel.cover.backgroundImage) {
@@ -26,7 +26,11 @@ extension MainScreenView {
     
     func loadSections() {
         self.setupSkeleton()
-        DispatchQueue.main.async {
+        // Создание глобальной очереди для выполнения задач
+        let queue = DispatchQueue.global(qos: .userInteractive)
+
+        // Помещение задач в очередь
+        queue.async {
             self.viewModel.inTrendMoviesViewModel.getInTrendMovies { success in
                 if(success) {
                     self.reloadInTrendMoviesView()
@@ -35,6 +39,9 @@ extension MainScreenView {
                     self.showAlert(title: R.string.mainScreenStrings.movies_loading_failed(), message: self.viewModel.inTrendMoviesViewModel.error)
                 }
             }
+        }
+
+        queue.async {
             self.viewModel.lastViewMoviesViewModel.getLastViewMovies { success in
                 if success {
                     self.viewModel.lastViewMoviesViewModel.getHistory { newSuccess in
@@ -50,6 +57,9 @@ extension MainScreenView {
                     self.showAlert(title: R.string.mainScreenStrings.movies_loading_failed(), message: self.viewModel.lastViewMoviesViewModel.error)
                 }
             }
+        }
+
+        queue.async {
             self.viewModel.newMoviesViewModel.getNewMovies { success in
                 if(success) {
                     self.reloadNewMoviesView()
@@ -58,6 +68,9 @@ extension MainScreenView {
                     self.showAlert(title: R.string.mainScreenStrings.movies_loading_failed(), message: self.viewModel.newMoviesViewModel.error)
                 }
             }
+        }
+
+        queue.async {
             self.viewModel.forMeMoviesViewModel.getForMeMovies { success in
                 if(success) {
                     self.reloadForYouMoviesView()

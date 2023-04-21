@@ -22,7 +22,7 @@ class AuthRepositoryImplementation: AuthRepository {
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInitiated).async {
             AF.request(url, method: .post, parameters: httpParameters, encoder: JSONParameterEncoder.default, headers: headers).validate().responseData { response in
                 if let requestStatusCode = response.response?.statusCode {
                     print("Login Status Code: ", requestStatusCode)
@@ -67,7 +67,7 @@ class AuthRepositoryImplementation: AuthRepository {
             "Content-Type": "application/json"
         ]
         print(httpParameters)
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInitiated).async {
             AF.request(url, method: .post, parameters: httpParameters, encoder: JSONParameterEncoder.default, headers: headers).validate().responseData { response in
                 if let requestStatusCode = response.response?.statusCode {
                     print("Register Status Code: ", requestStatusCode)

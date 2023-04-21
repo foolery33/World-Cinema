@@ -402,8 +402,8 @@
             filePath = "Mobile-Cinema-Lab1/Network/Movie/MovieRepositoryImplementation.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "getMovieEpisodesById(movieId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1056,8 +1056,8 @@
             filePath = "Mobile-Cinema-Lab1/Screen/Chats/ChatListScreen/View/ChatListScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "chatListTableView"
             landmarkType = "24">
          </BreakpointContent>
@@ -1824,8 +1824,8 @@
             filePath = "Mobile-Cinema-Lab1/Screen/Chats/ChatListScreen/View/ChatListScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "loadChatList()"
             landmarkType = "7">
          </BreakpointContent>

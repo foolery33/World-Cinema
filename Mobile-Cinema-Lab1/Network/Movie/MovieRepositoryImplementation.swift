@@ -14,11 +14,8 @@ class MovieRepositoryImplementation: MovieRepository {
     private let interceptor = CustomRequestInterceptor()
     
     func getMovies(queryParameter: String, completion: @escaping (Result<[MovieModel], AppError>) -> Void) {
-        let url = baseURL + "/movies"
-        let htttpParameters = [
-            "filter": queryParameter
-        ]
-        AF.request(url, method: .get, parameters: htttpParameters, encoding: URLEncoding.queryString, interceptor: self.interceptor).validate().responseData { response in
+        let url = baseURL + "/movies?filter=\(queryParameter)"
+        AF.request(url, interceptor: self.interceptor).validate().responseData { response in
             if let requestStatusCode = response.response?.statusCode {
                 print("Get \(queryParameter) movies Status Code: ", requestStatusCode)
             }
