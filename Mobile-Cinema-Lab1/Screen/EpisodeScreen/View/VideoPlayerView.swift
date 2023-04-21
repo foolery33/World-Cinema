@@ -220,7 +220,7 @@ class VideoPlayerView: UIView {
     
     lazy var videoSlider: UISlider = {
         let mySlider = UISlider()
-        mySlider.minimumValue = Float(startValue)
+        mySlider.minimumValue = 0
         mySlider.maximumValue = Float(duration)
         mySlider.value = 0
         mySlider.tintColor = .redColor

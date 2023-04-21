@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class CollectionsTableView: UITableView {
     
@@ -19,6 +20,7 @@ class CollectionsTableView: UITableView {
         separatorStyle = .none
         backgroundColor = .clear
         self.register(CollectionsTableViewCell.self, forCellReuseIdentifier: CollectionsTableViewCell.identifier)
+        self.isSkeletonable = true
     }
     
     required init?(coder: NSCoder) {
@@ -27,7 +29,17 @@ class CollectionsTableView: UITableView {
 
 }
 
-extension CollectionsTableView: UITableViewDataSource {
+extension CollectionsTableView: SkeletonTableViewDataSource {
+    
+    // MARK: - SkeletonCollectionViewDataSource
+
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return CollectionsTableViewCell.identifier
+    }
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.collections.count ?? 0
     }

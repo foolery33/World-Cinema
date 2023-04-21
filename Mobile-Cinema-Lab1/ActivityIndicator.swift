@@ -10,10 +10,15 @@ import SnapKit
 
 class ActivityIndicator: UIView {
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    var withBackground: Bool
+    
+    init(withBackground: Bool) {
+        self.withBackground = withBackground
+        super.init(frame: .zero)
         self.alpha = 0.0
-        setupBackground()
+        if self.withBackground {
+            setupBackground()
+        }
         setupIndicator()
     }
     

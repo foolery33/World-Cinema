@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 class CompilationScreenView: UIView {
 
@@ -67,7 +68,8 @@ class CompilationScreenView: UIView {
     
     lazy var filmLabel: UILabel = {
         let myLabel = UILabel()
-//        myLabel.text = "Altered Carbon"
+        myLabel.isSkeletonable = true
+        myLabel.skeletonTextLineHeight = .relativeToFont
         myLabel.font = .systemFont(ofSize: 24, weight: .bold)
         myLabel.textColor = .white
         myLabel.numberOfLines = 1
@@ -86,6 +88,7 @@ class CompilationScreenView: UIView {
     
     lazy var backCompilationCardView: CompilationCardView = {
         let myCompilationCardView = CompilationCardView()
+        myCompilationCardView.isSkeletonable = true
         return myCompilationCardView
     }()
     private func setupBackCompilationCardView() {
@@ -100,6 +103,7 @@ class CompilationScreenView: UIView {
     
     lazy var frontCompilationCardView: CompilationCardView = {
         let myCompilationCardView = CompilationCardView()
+        myCompilationCardView.isSkeletonable = true
         myCompilationCardView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panCard(_:))))
         return myCompilationCardView
     }()
@@ -113,7 +117,7 @@ class CompilationScreenView: UIView {
 
     // MARK: - ButtonsStack setup
     
-    private lazy var buttonsStack: UIStackView = {
+    lazy var buttonsStack: UIStackView = {
         let myStackView = UIStackView()
         myStackView.axis = .horizontal
         myStackView.spacing = 44

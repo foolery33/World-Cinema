@@ -197,8 +197,8 @@ class ChangeCollectionScreenView: UIView {
 }
 
 extension UIView {
-    func setupActivityIndicator() {
-        let activityIndicator = ActivityIndicator()
+    func setupActivityIndicator(withBackground: Bool = true) {
+        let activityIndicator = ActivityIndicator(withBackground: withBackground)
         self.addSubview(activityIndicator)
         activityIndicator.setupAnimation()
     }

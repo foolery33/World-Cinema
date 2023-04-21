@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 class CollectionsScreenView: UIView {
 
@@ -28,6 +29,7 @@ class CollectionsScreenView: UIView {
     
     private lazy var collectionsTableView: CollectionsTableView = {
         let myTableView = CollectionsTableView()
+        myTableView.isSkeletonable = true
         myTableView.viewModel = self.viewModel
         myTableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
         return myTableView
@@ -41,9 +43,11 @@ class CollectionsScreenView: UIView {
     }
     
     func loadCollections() {
-        self.setupActivityIndicator()
+//        self.setupActivityIndicator()
+        self.collectionsTableView.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
         viewModel.getCollections { success in
-            self.stopActivityIndicator()
+//            self.stopActivityIndicator()
+            self.collectionsTableView.hideSkeleton()
             if(success) {
                 self.reloadCollectionsTableView()
             }

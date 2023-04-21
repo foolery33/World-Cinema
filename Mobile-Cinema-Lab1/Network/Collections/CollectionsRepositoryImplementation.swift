@@ -129,10 +129,12 @@ final class CollectionsRepositoryImplementation: CollectionsRepository {
                         completion(.failure(.collectionsError(.unauthorized)))
                     case 404:
                         completion(.failure(.collectionsError(.wrongEndpoint)))
+                    case 409:
+                        completion(.failure(.collectionsError(.alreadyInThisCollection)))
                     case 422:
                         completion(.failure(.collectionsError(.wrongCollectionId)))
                     case 500:
-                        completion(.failure(.collectionsError(.alreadyInThisCollection)))
+                        completion(.failure(.collectionsError(.serverError)))
                     default:
                         completion(.failure(.collectionsError(.unexpectedError)))
                     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class CollectionsTableViewCell: UITableViewCell {
 
@@ -14,6 +15,8 @@ class CollectionsTableViewCell: UITableViewCell {
         setupHStackView()
         self.selectionStyle = .none
         self.backgroundColor = .clear
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
     }
     
     required init?(coder: NSCoder) {
@@ -21,6 +24,7 @@ class CollectionsTableViewCell: UITableViewCell {
     }
     
     func setup(image: UIImage, sectionName: String) {
+        self.nextImage.tintColor = .nextButtonColor
         self.image.image = image
         self.sectionName.text = sectionName
     }
@@ -29,6 +33,7 @@ class CollectionsTableViewCell: UITableViewCell {
     
     private lazy var hStackView: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .horizontal
         myStackView.spacing = 18
         myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
@@ -49,14 +54,19 @@ class CollectionsTableViewCell: UITableViewCell {
     
     private lazy var imageBox: UIView = {
         let myView = UIView(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
+        myView.layer.cornerRadius = self.frame.height / 2
+        myView.clipsToBounds = true
+        myView.isSkeletonable = true
         return myView
     }()
     private lazy var box: UIView = {
         let myView = UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        myView.isSkeletonable = true
+        myView.layer.cornerRadius = self.frame.height / 2
+        myView.clipsToBounds = true
         return myView
     }()
     private func setupBox() {
-        
         // Устанавливаем box в центре imageBox
         box.frame = imageBox.bounds
         imageBox.addSubview(box)
@@ -77,6 +87,7 @@ class CollectionsTableViewCell: UITableViewCell {
     
     private lazy var image: UIImageView = {
         let myImageView = UIImageView()
+        myImageView.isSkeletonable = true
         myImageView.contentMode = .center
         myImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return myImageView
@@ -89,6 +100,7 @@ class CollectionsTableViewCell: UITableViewCell {
     
     private lazy var sectionName: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 14, weight: .bold)
         myLabel.numberOfLines = 1
@@ -104,6 +116,7 @@ class CollectionsTableViewCell: UITableViewCell {
     
     private lazy var nextImage: UIImageView = {
         let myImageView = UIImageView()
+        myImageView.tintColor = .skeletonViewColor
         myImageView.contentMode = .scaleAspectFit
         myImageView.image = UIImage(named: "ForwardArrow")
         myImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)

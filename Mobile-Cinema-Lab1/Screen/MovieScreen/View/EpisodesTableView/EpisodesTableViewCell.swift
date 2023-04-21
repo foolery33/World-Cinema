@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 class EpisodesTableViewCell: UITableViewCell {
     
@@ -16,6 +17,16 @@ class EpisodesTableViewCell: UITableViewCell {
         setupHStackView()
         self.selectionStyle = .none
         self.backgroundColor = .clear
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
+    }
+    
+    func setup(with episode: EpisodeModel, isLast: Bool) {
+        descriptionStackView.distribution = .equalSpacing
+        image.loadImageWithURL(episode.preview)
+        episodeNameLabel.text = episode.name
+        episodeDescription.text = episode.description
+        episodeYear.text = String(episode.year)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,6 +44,7 @@ class EpisodesTableViewCell: UITableViewCell {
     
     private let hStackView: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .horizontal
         myStackView.spacing = 16
         return myStackView
@@ -48,6 +60,7 @@ class EpisodesTableViewCell: UITableViewCell {
     
     private let image: UIImageView = {
         let myImage = UIImageView()
+        myImage.isSkeletonable = true
         myImage.contentMode = .scaleAspectFill
         myImage.clipsToBounds = true
         return myImage
@@ -63,6 +76,7 @@ class EpisodesTableViewCell: UITableViewCell {
 
     private let descriptionStackView: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
         myStackView.spacing = 10
 //        myStackView.spacing = 12
@@ -79,8 +93,9 @@ class EpisodesTableViewCell: UITableViewCell {
     
     private let descriptionAndYearStackView: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
-        myStackView.distribution = .equalSpacing
+//        myStackView.distribution = .equalSpacing
         return myStackView
     }()
     private func setupDescriptionAndYearStackView() {
@@ -91,6 +106,8 @@ class EpisodesTableViewCell: UITableViewCell {
     
     private let episodeNameLabel: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
+        myLabel.skeletonTextLineHeight = .relativeToFont
         myLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         myLabel.numberOfLines = 1
         myLabel.textColor = .white
@@ -103,6 +120,8 @@ class EpisodesTableViewCell: UITableViewCell {
     
     private let episodeDescription: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
+        myLabel.skeletonTextLineHeight = .relativeToFont
         myLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         myLabel.numberOfLines = 2
         myLabel.textColor = .grayTextColor
@@ -114,6 +133,8 @@ class EpisodesTableViewCell: UITableViewCell {
     
     private let episodeYear: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
+        myLabel.skeletonTextLineHeight = .relativeToFont
         myLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         myLabel.numberOfLines = 1
         myLabel.textColor = .grayTextColor
@@ -125,13 +146,6 @@ class EpisodesTableViewCell: UITableViewCell {
     
     private func setupViews() {
         contentView.clipsToBounds = true
-    }
-
-    func setup(with episode: EpisodeModel, isLast: Bool) {
-        image.loadImageWithURL(episode.preview)
-        episodeNameLabel.text = episode.name
-        episodeDescription.text = episode.description
-        episodeYear.text = String(episode.year)
     }
 }
 

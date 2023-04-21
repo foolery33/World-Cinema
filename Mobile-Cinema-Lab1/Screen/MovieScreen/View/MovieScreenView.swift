@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 class MovieScreenView: UIView {
     
@@ -353,6 +354,9 @@ class MovieScreenView: UIView {
     }()
     private func setupEpisodesTableView() {
         episodesStackView.addArrangedSubview(episodesTableView)
+        episodesTableView.snp.remakeConstraints { make in
+            make.height.equalTo((72 + 16) * 2)
+        }
     }
     private func reloadEpisodesView() {
         if(self.viewModel.episodes.isEmpty) {
@@ -365,13 +369,12 @@ class MovieScreenView: UIView {
     
     
     func getEpisodes() {
-        self.setupActivityIndicator()
+        self.episodesTableView.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
         viewModel.getMovieEpisodesById(movieId: viewModel.movie.movieId) {  success in
-            self.stopActivityIndicator()
+            self.episodesTableView.hideSkeleton()
             if(success) {
                 self.episodesTableView.snp.remakeConstraints { make in
                     make.height.equalTo(self.episodesTableView.countHeight())
-                    print("newHeight", self.episodesTableView.countHeight())
                 }
                 self.reloadEpisodesView()
                 

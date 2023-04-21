@@ -48,6 +48,10 @@ final class EpisodeScreenViewModel {
         coordinator.navigationController.popViewController(animated: true)
     }
     
+    func goToChatScreen(chat: ChatModel) {
+        self.coordinator.goToChatScreen(chat: chat)
+    }
+    
     func getCollectionsList() -> [MovieCollection] {
         return collectionsDatabase.getAllCollections()
     }

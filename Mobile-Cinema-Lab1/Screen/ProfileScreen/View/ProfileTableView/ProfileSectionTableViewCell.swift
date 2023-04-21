@@ -77,6 +77,7 @@ class ProfileSectionTableViewCell: UITableViewCell {
     
     private lazy var nextImage: UIImageView = {
         let myImageView = UIImageView()
+        myImageView.tintColor = .nextButtonColor
         myImageView.contentMode = .scaleAspectFit
         myImageView.image = UIImage(named: "ForwardArrow")
         myImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)

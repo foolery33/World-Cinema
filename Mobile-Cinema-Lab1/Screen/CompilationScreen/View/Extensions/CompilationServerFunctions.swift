@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import SkeletonView
 
 extension CompilationScreenView {
     func loadCompilationMovies() {
-        self.setupActivityIndicator()
+//        self.setupActivityIndicator()
+        self.setupSkeleton()
         DispatchQueue.global(qos: .userInteractive).async {
             self.viewModel.getCompilaiton { success in
-                self.stopActivityIndicator()
+                self.stopSkeleton()
                 if success {
                     if self.viewModel.movies.isEmpty {
                         self.showEmptyScreen()

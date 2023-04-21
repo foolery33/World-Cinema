@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class EpisodesTableView: UITableView {
 
@@ -19,6 +20,7 @@ class EpisodesTableView: UITableView {
         delegate = self
         separatorStyle = .none
         self.register(EpisodesTableViewCell.self, forCellReuseIdentifier: EpisodesTableViewCell.identifier)
+        self.isSkeletonable = true
     }
     
     required init?(coder: NSCoder) {
@@ -28,7 +30,17 @@ class EpisodesTableView: UITableView {
 }
 
 
-extension EpisodesTableView: UITableViewDataSource {
+extension EpisodesTableView: SkeletonTableViewDataSource {
+    
+    // MARK: - SkeletonCollectionViewDataSource
+
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return EpisodesTableViewCell.identifier
+    }
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("episodesCount", viewModel?.episodes.count ?? 0)
         return viewModel?.episodes.count ?? 0

@@ -218,4 +218,16 @@ extension CompilationScreenView {
         self.dislikeMovie()
     }
     
+    func setupSkeleton() {
+        self.frontCompilationCardView.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.filmLabel.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.buttonsStack.isUserInteractionEnabled = false
+    }
+    
+    func stopSkeleton() {
+        self.frontCompilationCardView.hideSkeleton()
+        self.filmLabel.hideSkeleton()
+        self.buttonsStack.isUserInteractionEnabled = true
+    }
+    
 }

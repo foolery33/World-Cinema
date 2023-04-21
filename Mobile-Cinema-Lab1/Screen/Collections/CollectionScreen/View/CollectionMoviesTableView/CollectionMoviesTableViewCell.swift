@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class CollectionMoviesTableViewCell: UITableViewCell {
 
@@ -14,6 +15,8 @@ class CollectionMoviesTableViewCell: UITableViewCell {
         setupHStackView()
         self.selectionStyle = .none
         self.backgroundColor = .clear
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
     }
     
     required init?(coder: NSCoder) {
@@ -21,7 +24,10 @@ class CollectionMoviesTableViewCell: UITableViewCell {
     }
     
     func setup(movie: MovieModel) {
-        self.image.loadImageWithURL(movie.poster)
+        self.nextImage.tintColor = .nextButtonColor
+        self.image.loadImageWithURL(movie.poster) {
+//            self.hideSkeleton()
+        }
         self.image.image = self.image.image?.resizeImage(newWidth: 56, newHeight: 80)
         self.movieName.text = movie.name
         self.movieDescription.text = movie.description
@@ -31,6 +37,7 @@ class CollectionMoviesTableViewCell: UITableViewCell {
     
     private lazy var hStackView: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .horizontal
         myStackView.spacing = 16
         myStackView.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
@@ -53,6 +60,7 @@ class CollectionMoviesTableViewCell: UITableViewCell {
     
     private lazy var image: UIImageView = {
         let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 56, height: 80))
+        myImageView.isSkeletonable = true
         myImageView.contentMode = .scaleAspectFit
         myImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return myImageView
@@ -69,6 +77,7 @@ class CollectionMoviesTableViewCell: UITableViewCell {
     
     private lazy var movieInfoStack: UIStackView = {
         let myStackView = UIStackView()
+        myStackView.isSkeletonable = true
         myStackView.axis = .vertical
         myStackView.distribution = .equalCentering
         return myStackView
@@ -81,6 +90,7 @@ class CollectionMoviesTableViewCell: UITableViewCell {
     
     private lazy var movieName: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 14, weight: .bold)
         myLabel.numberOfLines = 1
@@ -93,6 +103,7 @@ class CollectionMoviesTableViewCell: UITableViewCell {
     
     private lazy var movieDescription: UILabel = {
         let myLabel = UILabel()
+        myLabel.isSkeletonable = true
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 14, weight: .regular)
         myLabel.numberOfLines = 3
@@ -107,6 +118,8 @@ class CollectionMoviesTableViewCell: UITableViewCell {
     
     private lazy var nextImage: UIImageView = {
         let myImageView = UIImageView()
+//        myImageView.isSkeletonable = true
+        myImageView.tintColor = .skeletonViewColor
         myImageView.contentMode = .scaleAspectFit
         myImageView.image = UIImage(named: "ForwardArrow")
         myImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)

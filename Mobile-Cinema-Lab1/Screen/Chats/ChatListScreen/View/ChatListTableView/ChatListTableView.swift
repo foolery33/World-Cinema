@@ -32,11 +32,7 @@ class ChatListTableView: UITableView {
 extension ChatListTableView: SkeletonTableViewDataSource {
     
     // MARK: - SkeletonCollectionViewDataSource
-//    
-//    func numSections(in collectionSkeletonView: UITableView) -> Int {
-//        return 1
-//    }
-    
+
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
         return ChatListTableViewCell.identifier
     }

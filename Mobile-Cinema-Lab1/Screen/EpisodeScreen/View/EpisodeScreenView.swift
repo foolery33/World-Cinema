@@ -229,8 +229,12 @@ class EpisodeScreenView: UIView {
         let myButton = UIButton(type: .system)
         myButton.setImage(UIImage(named: "Chat"), for: .normal)
         myButton.tintColor = .redColor
+        myButton.addTarget(self, action: #selector(goToChatScreen), for: .touchUpInside)
         return myButton
     }()
+    @objc private func goToChatScreen() {
+        self.viewModel.goToChatScreen(chat: self.viewModel.movie.chatInfo)
+    }
     // MARK: Plus button setup
     private lazy var plusButton: UIButton = {
         let myButton = UIButton(type: .system)
@@ -249,8 +253,21 @@ class EpisodeScreenView: UIView {
         let myButton = UIButton(type: .system)
         myButton.setImage(UIImage(named: "Heart"), for: .normal)
         myButton.tintColor = .redColor
+        myButton.addTarget(self, action: #selector(self.addToFavourites), for: .touchUpInside)
         return myButton
     }()
+    @objc private func addToFavourites() {
+        setupActivityIndicator()
+        self.viewModel.addToCollection(collectionId: UserDataManager.shared.fetchFavouritesCollectionId(), movieId: self.viewModel.movie.movieId) { success in
+            self.stopActivityIndicator()
+            if success {
+                self.showAlert(title: "Success", message: "You've successfully added the movie to Favourites")
+            }
+            else {
+                self.showAlert(title: "Error", message: self.viewModel.error)
+            }
+        }
+    }
     
     // MARK: Description StackView setup
     

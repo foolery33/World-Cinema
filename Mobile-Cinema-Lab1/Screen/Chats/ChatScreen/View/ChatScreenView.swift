@@ -19,6 +19,7 @@ class ChatScreenView: UIView {
         super.init(frame: .zero)
         setupSubviews()
         addKeyboardDidmiss()
+        setupActivityIndicator(withBackground: false)
     }
     
     required init?(coder: NSCoder) {
@@ -43,7 +44,7 @@ class ChatScreenView: UIView {
     }
     
     // MARK: - MessageTextField setup
-    //        Посмотреть решение, которое написал бот
+
     private lazy var messageTextField: UITextView = {
         let myTextView = UITextView()
         myTextView.delegate = self
@@ -51,7 +52,6 @@ class ChatScreenView: UIView {
         myTextView.font = .systemFont(ofSize: 14, weight: .regular)
         myTextView.textColor = .grayColor
         myTextView.isScrollEnabled = false
-        //        myTextView.backgroundColor = .purple
         myTextView.layer.borderColor = UIColor.darkGrayColor.cgColor
         myTextView.layer.backgroundColor = UIColor.purple.cgColor
         myTextView.layer.borderWidth = 1
@@ -122,6 +122,7 @@ class ChatScreenView: UIView {
     
     func updateChat() {
         if !self.viewModel.messages.isEmpty {
+            stopActivityIndicator()
             self.chatTableView.reloadData()
             self.chatTableView.snp.remakeConstraints { make in
                 //                make.edges.equalToSuperview()
