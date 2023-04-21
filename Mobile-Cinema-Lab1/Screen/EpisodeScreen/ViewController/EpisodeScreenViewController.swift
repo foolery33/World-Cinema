@@ -28,7 +28,7 @@ class EpisodeScreenViewController: UIViewController {
         view = episodeScreenView
         navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = R.color.backgroundColor()
     }
     
     override func viewDidLoad() {

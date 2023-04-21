@@ -9,7 +9,6 @@ import UIKit
 
 class IconSelectionCollectionView: UICollectionView {
 
-    var viewModel: IconSelectionScreenViewModel!
     let icons = Array(1...36)
     
     // MARK: - InTrendCollectionView setup
@@ -40,11 +39,9 @@ extension IconSelectionCollectionView: UICollectionViewDataSource {
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("clicked")
         if let viewController = self.next?.next as? IconSelectionScreenViewController {
             viewController.delegate.choose(iconName: "Group \(icons[indexPath.row])")
             viewController.dismiss(animated: true)
-            print("dismissed")
         }
     }
 }

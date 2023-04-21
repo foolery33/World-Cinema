@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ChangeCollectionScreenView: UIView {
 
@@ -75,7 +76,7 @@ class ChangeCollectionScreenView: UIView {
     private lazy var textField: CreateCollectionTextField = {
         let myTextField = CreateCollectionTextField()
         myTextField.text = self.viewModel.collectionName
-        return myTextField.getOutlinedTextField(text: "", placeholderText: "Название", selector: #selector(updateCollectionName(_:)))
+        return myTextField.getOutlinedTextField(text: "", placeholderText: R.string.changeCollectionScreenStrings.placeholder_name(), selector: #selector(updateCollectionName(_:)))
     }()
     @objc func updateCollectionName(_ textField: OutlinedTextField) {
         viewModel.collectionName = textField.text ?? ""
@@ -125,30 +126,30 @@ class ChangeCollectionScreenView: UIView {
     // MARK: ChooseIconButton setup
     
     private lazy var chooseIconButton: OutlinedButton = {
-        let myButton = OutlinedButton().getOutlinedButton(label: "Выбрать иконку", selector: #selector(chooseIcon))
+        let myButton = OutlinedButton().getOutlinedButton(label: R.string.changeCollectionScreenStrings.choose_icon(), selector: #selector(chooseIcon))
         myButton.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return myButton
     }()
     @objc private func chooseIcon() {
         if let viewController = self.next as? ChangeCollectionScreenViewController {
-            viewController.present(IconSelectionScreenViewController(viewModel: IconSelectionScreenViewModel(), delegate: viewController), animated: true)
+            viewController.present(IconSelectionScreenViewController(delegate: viewController), animated: true)
         }
     }
     
     // MARK: - SaveCollectionButton setup
     
     private lazy var saveCollectionButton: FilledButton = {
-        let myButton = FilledButton().getFilledButton(label: "Сохранить", selector: #selector(saveCollection))
+        let myButton = FilledButton().getFilledButton(label: R.string.changeCollectionScreenStrings.save(), selector: #selector(saveCollection))
         return myButton
     }()
     @objc private func saveCollection() {
         // MARK: если успешный запрос, то в бд обновить значение имени
         if(EmptyFieldValidation().isEmptyField(viewModel.collectionName)) {
-            self.showAlert(title: "Failed to save collection", message: "Collection name field must not be empty")
+            self.showAlert(title: R.string.changeCollectionScreenStrings.failed_to_save_collection(), message: R.string.changeCollectionScreenStrings.non_empty_collection_name_warning())
             return
         }
         self.viewModel.changeCollectionName()
-        self.showAlert(title: "Success", message: "You've successfully updated the collection '\(self.viewModel.collection.name)'")
+        self.showAlert(title: R.string.changeCollectionScreenStrings.success(), message: "\(R.string.changeCollectionScreenStrings.success_update_collection()) '\(self.viewModel.collection.name)'")
     }
     private func setupSaveCollectionButton() {
         contentView.addSubview(saveCollectionButton)
@@ -160,7 +161,7 @@ class ChangeCollectionScreenView: UIView {
     // MARK: - DeleteCollectionButton setup
     
     private lazy var deleteCollectionButton: OutlinedButton = {
-        let myButton = OutlinedButton().getOutlinedButton(label: "Удалить", selector: #selector(deleteCollection))
+        let myButton = OutlinedButton().getOutlinedButton(label: R.string.changeCollectionScreenStrings.remove(), selector: #selector(deleteCollection))
         return myButton
     }()
     @objc private func deleteCollection() {
@@ -171,7 +172,7 @@ class ChangeCollectionScreenView: UIView {
                 self.viewModel.goBackToCollectionScreen()
             }
             else {
-                self.showAlert(title: "Deleting Collection Error", message: self.viewModel.error)
+                self.showAlert(title: R.string.changeCollectionScreenStrings.deleting_collection_error(), message: self.viewModel.error)
             }
         }
     }

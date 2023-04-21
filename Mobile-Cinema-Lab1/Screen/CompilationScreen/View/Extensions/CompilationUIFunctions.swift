@@ -20,10 +20,10 @@ extension CompilationScreenView {
         card.transform = CGAffineTransform(rotationAngle: xFromCenter / self.divisor)
 
         if(xFromCenter > 0) {
-            frontCompilationCardView.userReactionImageView.image = UIImage(named: "Like")
+            frontCompilationCardView.userReactionImageView.image = R.image.like()
         }
         else if(xFromCenter < 0) {
-            frontCompilationCardView.userReactionImageView.image = UIImage(named: "Reject")
+            frontCompilationCardView.userReactionImageView.image = R.image.reject()
         }
         
         frontCompilationCardView.userReactionImageView.alpha = 2 * abs(xFromCenter) / self.center.x
@@ -114,7 +114,7 @@ extension CompilationScreenView {
             make.bottom.equalToSuperview().offset(-32)
         }
         
-        let emptyImage = UIImageView(image: UIImage(named: "EmptyImage")?.resizeImage(newWidth: 213, newHeight: 198))
+        let emptyImage = UIImageView(image: R.image.emptyImage()?.resizeImage(newWidth: 213, newHeight: 198))
         emptyStack.addArrangedSubview(emptyImage)
         emptyImage.snp.makeConstraints { make in
             make.width.equalTo(213)
@@ -122,7 +122,7 @@ extension CompilationScreenView {
         }
         
         let emptyLabel = UILabel()
-        emptyLabel.text = "Новые фильмы в подборке закончились"
+        emptyLabel.text = R.string.compilationScreenStrings.compilation_movies_over()
         emptyLabel.font = .systemFont(ofSize: 24, weight: .regular)
         emptyLabel.textColor = .grayTextColor
         emptyLabel.numberOfLines = 0
@@ -150,10 +150,10 @@ extension CompilationScreenView {
             self.frontCompilationCardView.center = CGPoint(x: self.frontCompilationCardView.center.x + 500, y: self.frontCompilationCardView.center.y - 75)
             let xFromCenter = self.frontCompilationCardView.center.x - self.center.x
             if(xFromCenter > 0) {
-                self.frontCompilationCardView.userReactionImageView.image = UIImage(named: "Like")
+                self.frontCompilationCardView.userReactionImageView.image = R.image.like()
             }
             else if(xFromCenter < 0) {
-                self.frontCompilationCardView.userReactionImageView.image = UIImage(named: "Reject")
+                self.frontCompilationCardView.userReactionImageView.image = R.image.reject()
             }
             self.frontCompilationCardView.transform = CGAffineTransform(rotationAngle: xFromCenter / self.divisor)
         }) { finished in
@@ -188,10 +188,10 @@ extension CompilationScreenView {
             self.frontCompilationCardView.center = CGPoint(x: self.frontCompilationCardView.center.x - 500, y: self.frontCompilationCardView.center.y - 75)
             let xFromCenter = self.frontCompilationCardView.center.x - self.center.x
             if(xFromCenter > 0) {
-                self.frontCompilationCardView.userReactionImageView.image = UIImage(named: "Like")
+                self.frontCompilationCardView.userReactionImageView.image = R.image.like()
             }
             else if(xFromCenter < 0) {
-                self.frontCompilationCardView.userReactionImageView.image = UIImage(named: "Reject")
+                self.frontCompilationCardView.userReactionImageView.image = R.image.reject()
             }
             self.frontCompilationCardView.transform = CGAffineTransform(rotationAngle: xFromCenter / self.divisor)
         }) { finished in
@@ -219,8 +219,8 @@ extension CompilationScreenView {
     }
     
     func setupSkeleton() {
-        self.frontCompilationCardView.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
-        self.filmLabel.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.frontCompilationCardView.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
+        self.filmLabel.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
         self.buttonsStack.isUserInteractionEnabled = false
     }
     

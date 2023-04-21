@@ -9,29 +9,8 @@ import UIKit
 import SnapKit
 
 class LoginScreenView: UIView {
-
-    var viewModel: LoginScreenViewModel
     
-    private enum Paddings {
-        static let betweenTopAndLogo = 132.0
-        static let defaultPadding = 16.0
-        static let betweenLogoAndEmail = 104.0
-        static let betweenPasswordAndLogin = 156.0
-        static let betweenBottomAndRegister = 44.0
-    }
-    private enum Scales {
-        static let textFieldHeight = 44.0
-        static let buttonHeight = 44.0
-        static let passwordEyeSize = 22.0
-    }
-    private enum Strings {
-        static let email = "E-mail"
-        static let password = "Пароль"
-        static let login = "Войти"
-        static let register = "Регистрация"
-        static let loginFailed = "Login failed"
-        static let ok = "OK"
-    }
+    var viewModel: LoginScreenViewModel
     
     init(viewModel: LoginScreenViewModel) {
         self.viewModel = viewModel
@@ -67,7 +46,7 @@ class LoginScreenView: UIView {
     
     private lazy var logotype: UIImageView = {
         let logo = UIImageView()
-        logo.image = UIImage(named: "LogoWithName")!
+        logo.image = R.image.logoWithName()!
         return logo
     }()
     private func setupLogo() {
@@ -101,7 +80,7 @@ class LoginScreenView: UIView {
     
     private lazy var emailTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: false)
-        return textField.getOutlinedTextField(text: viewModel.email, placeholderText: Strings.email, selector: #selector(updateEmail(_:)))
+        return textField.getOutlinedTextField(text: viewModel.email, placeholderText: R.string.loginScreenStrings.email(), selector: #selector(updateEmail(_:)))
     }()
     @objc
     private func updateEmail(_ textField: OutlinedTextField) {
@@ -112,12 +91,12 @@ class LoginScreenView: UIView {
     
     private lazy var passwordTextField: OutlinedTextField = {
         let passwordTextField = OutlinedTextField(isSecured: true, passwordEye: passwordEye)
-        return passwordTextField.getOutlinedTextField(text: viewModel.password, placeholderText: Strings.password, selector: #selector(updatePassword(_:)))
+        return passwordTextField.getOutlinedTextField(text: viewModel.password, placeholderText: R.string.loginScreenStrings.password(), selector: #selector(updatePassword(_:)))
     }()
     private lazy var passwordEye: UIButton = {
         let eye = UIButton(type: .custom)
-        eye.setImage(UIImage(systemName: "eye.slash")!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .normal)
-        eye.setImage(UIImage(systemName: "eye")!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .selected)
+        eye.setImage(UIImage(systemName: SystemImages.eyeSlash)!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .normal)
+        eye.setImage(UIImage(systemName: SystemImages.eye)!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .selected)
         eye.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         return eye
     }()
@@ -153,7 +132,7 @@ class LoginScreenView: UIView {
     
     private lazy var loginButton: FilledButton = {
         let button = FilledButton()
-        return button.getFilledButton(label: Strings.login, selector: #selector(goToMainScreen))
+        return button.getFilledButton(label: R.string.loginScreenStrings.login(), selector: #selector(goToMainScreen))
     }()
     @objc
     private func goToMainScreen() {
@@ -161,11 +140,12 @@ class LoginScreenView: UIView {
         self.setupActivityIndicator()
         
         self.viewModel.login { success in
+            self.stopActivityIndicator()
             if(success) {
                 self.viewModel.coordinator.goToMainScreen()
             }
             else {
-                self.showAlert(title: Strings.loginFailed, message: self.viewModel.error)
+                self.showAlert(title: R.string.loginScreenStrings.login_failed(), message: self.viewModel.error)
             }
         }
     }
@@ -174,31 +154,11 @@ class LoginScreenView: UIView {
     
     private lazy var registerButton: OutlinedButton = {
         let button = OutlinedButton()
-        return button.getOutlinedButton(label: Strings.register, selector: #selector(goToRegisterScreen))
+        return button.getOutlinedButton(label: R.string.loginScreenStrings.register(), selector: #selector(goToRegisterScreen))
     }()
     @objc
     private func goToRegisterScreen() {
         viewModel.registerButtonTapped()
-    }
-    
-    func getActivityIndicator() -> UIView {
-        let newView = UIView(frame: .zero)
-        newView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
-        newView.alpha = 0.0
-        newView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        let indicator = UIActivityIndicatorView(style: .medium)
-        newView.addSubview(indicator)
-        indicator.color = .white
-        indicator.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
-        UIView.animate(withDuration: 0.15) {
-            newView.alpha = 1.0
-        }
-        return newView
     }
     
 }

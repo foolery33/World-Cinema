@@ -22,15 +22,15 @@ class CollectionsScreenViewController: UIViewController {
     override func loadView() {
         let collectionsScreenView = CollectionsScreenView(viewModel: self.viewModel)
         view = collectionsScreenView
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = R.color.backgroundColor()
         setupNavigationBarAppearence()
         collectionsScreenView.loadCollections()
-        self.title = "Коллекции"
+        self.title = R.string.collectionsScreenStrings.collections()
         self.navigationItem.rightBarButtonItem = getNavigationBarRightItem()
     }
     
     private func getNavigationBarRightItem() -> UIBarButtonItem {
-        let backItem = UIBarButtonItem(image: UIImage(named: "Plus"), style: .plain, target: self, action: #selector(goToCreateCollectionScreen))
+        let backItem = UIBarButtonItem(image: R.image.plus(), style: .plain, target: self, action: #selector(goToCreateCollectionScreen))
         backItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
         backItem.tintColor = .white
         return backItem

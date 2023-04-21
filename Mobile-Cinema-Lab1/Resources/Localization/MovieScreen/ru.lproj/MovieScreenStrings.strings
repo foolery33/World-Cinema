@@ -1,0 +1,13 @@
+/* 
+  MovieScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"watch" = "Смотреть";
+"description" = "Описание";
+"shots" = "Кадры";
+"episodes" = "Эпизоды";
+"episodes_loading_error" = "Ошибка загрузки эпизодов";

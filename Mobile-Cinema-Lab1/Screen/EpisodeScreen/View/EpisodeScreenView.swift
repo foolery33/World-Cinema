@@ -82,7 +82,7 @@ class EpisodeScreenView: UIView {
     
     private lazy var backButton: UIButton = {
         let myButton = UIButton(type: .system)
-        myButton.setImage(UIImage(named: "BackArrow"), for: .normal)
+        myButton.setImage(R.image.backArrow(), for: .normal)
         myButton.tintColor = .white
         myButton.addTarget(self, action: #selector(backToMainScreen), for: .touchUpInside)
         myButton.contentEdgeInsets = UIEdgeInsets(top: 11.5, left: 6.5, bottom: 14, right: 14)
@@ -191,7 +191,7 @@ class EpisodeScreenView: UIView {
     // MARK: Seasons label setup
     private lazy var seasonsLabel: UILabel = {
         let myLabel = UILabel()
-        myLabel.text = "Unknown сезонов"
+        myLabel.text = R.string.episodeScreenStrings.unknown_seasons()
         myLabel.numberOfLines = 1
         myLabel.font = .systemFont(ofSize: 12, weight: .regular)
         myLabel.textColor = .grayTextColor
@@ -227,7 +227,7 @@ class EpisodeScreenView: UIView {
     // MARK: Chat button setup
     private lazy var chatButton: UIButton = {
         let myButton = UIButton(type: .system)
-        myButton.setImage(UIImage(named: "Chat"), for: .normal)
+        myButton.setImage(R.image.chat(), for: .normal)
         myButton.tintColor = .redColor
         myButton.addTarget(self, action: #selector(goToChatScreen), for: .touchUpInside)
         return myButton
@@ -238,7 +238,7 @@ class EpisodeScreenView: UIView {
     // MARK: Plus button setup
     private lazy var plusButton: UIButton = {
         let myButton = UIButton(type: .system)
-        myButton.setImage(UIImage(named: "Plus"), for: .normal)
+        myButton.setImage(R.image.plus(), for: .normal)
         myButton.tintColor = .grayColor
         myButton.isEnabled = false
         myButton.addTarget(self, action: #selector(self.showAddToCollectionActionSheet), for: .touchUpInside)
@@ -251,7 +251,7 @@ class EpisodeScreenView: UIView {
     // MARK: Heart button setup
     private lazy var favouriteButton: UIButton = {
         let myButton = UIButton(type: .system)
-        myButton.setImage(UIImage(named: "Heart"), for: .normal)
+        myButton.setImage(R.image.heart(), for: .normal)
         myButton.tintColor = .redColor
         myButton.addTarget(self, action: #selector(self.addToFavourites), for: .touchUpInside)
         return myButton
@@ -261,10 +261,10 @@ class EpisodeScreenView: UIView {
         self.viewModel.addToCollection(collectionId: UserDataManager.shared.fetchFavouritesCollectionId(), movieId: self.viewModel.movie.movieId) { success in
             self.stopActivityIndicator()
             if success {
-                self.showAlert(title: "Success", message: "You've successfully added the movie to Favourites")
+                self.showAlert(title: R.string.episodeScreenStrings.success(), message: R.string.episodeScreenStrings.success_add_to_favourites())
             }
             else {
-                self.showAlert(title: "Error", message: self.viewModel.error)
+                self.showAlert(title: R.string.episodeScreenStrings.error(), message: self.viewModel.error)
             }
         }
     }
@@ -292,7 +292,7 @@ class EpisodeScreenView: UIView {
     private lazy var descriptionSectionLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.numberOfLines = 1
-        myLabel.text = "Описание"
+        myLabel.text = R.string.episodeScreenStrings.description()
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 24, weight: .bold)
         return myLabel
@@ -312,7 +312,7 @@ extension EpisodeScreenView {
     @objc func showAddToCollectionActionSheet() {
         let collectionNames = viewModel.getCollectionsList()
         
-        let alert = UIAlertController(title: "Добавить в коллекцию", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: R.string.episodeScreenStrings.add_to_collection(), message: nil, preferredStyle: .actionSheet)
         
         for collection in collectionNames {
             alert.addAction(UIAlertAction(title: collection.name, style: .default, handler: {_ in
@@ -320,16 +320,16 @@ extension EpisodeScreenView {
                 self.viewModel.addToCollection(collectionId: collection.id, movieId: self.viewModel.movie.movieId) { success in
                     self.stopActivityIndicator()
                     if(success) {
-                        self.showAlert(title: "Success", message: "You've successfully added the movie to the colleciton \(collection.name)")
+                        self.showAlert(title: R.string.episodeScreenStrings.success(), message: "\(R.string.episodeScreenStrings.success_add_to_collection()) \(collection.name)")
                     }
                     else {
-                        self.showAlert(title: "Adding to collection error", message: self.viewModel.error)
+                        self.showAlert(title: R.string.episodeScreenStrings.add_to_collection_error(), message: self.viewModel.error)
                         return
                     }
                 }
             }))
         }
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: R.string.episodeScreenStrings.cancel(), style: .cancel))
         if let viewController = self.next as? UIViewController {
             viewController.present(alert, animated: true, completion: nil)
         }

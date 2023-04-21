@@ -10,7 +10,5 @@ import Foundation
 protocol ChatsRepository {
     
     func getChatList(completion: @escaping (Result<[ChatModel], AppError>) -> Void)
-    func getChatMessages(chatId: String, completion: @escaping (Result<[MessageModel], AppError>) -> Void)
-    func postMessageToChat(chatId: String, completion: @escaping (Result<MessageModel, AppError>) -> Void)
     
 }

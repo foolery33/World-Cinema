@@ -56,15 +56,15 @@ final class CoverRepositoryImplementation: CoverRepository {
         var errorDescription: String {
             switch self {
             case .modelError:
-                return NSLocalizedString("Internal application error. Please contact developer", comment: "")
+                return R.string.errors.model_error()
             case .serverError:
-                return NSLocalizedString("Some server error occured. Please try again later", comment: "")
+                return R.string.errors.server_error()
             case .unauthorized:
-                return NSLocalizedString("Your authentication token is expired. Please login again", comment: "")
+                return R.string.errors.unauthorized()
             case .unexpectedError:
-                return NSLocalizedString("Some unexpected error occured. Please contact developer", comment: "")
+                return R.string.errors.unexpected_error()
             case .noCover:
-                return NSLocalizedString("There're no cover in database", comment: "")
+                return R.string.errors.no_cover()
             }
         }
     }

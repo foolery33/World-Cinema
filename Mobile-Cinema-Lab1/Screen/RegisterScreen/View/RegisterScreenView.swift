@@ -23,37 +23,10 @@ class RegisterScreenView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private enum Paddings {
-        static let betweenTopAndLogo = 88.0
-        static let betweenLogoAndName = 64.0
-        static let defaultPadding = 16.0
-        static let betweenBottomAndLogin = 44.0
-        static let textFieldVertical = 13.0
-    }
-    enum Scales {
-        fileprivate static let textFieldHeight = 44.0
-        fileprivate static let buttonHeight = 44.0
-        public static let passwordEyeSize = 22.0
-    }
-    private enum Strings {
-        static let name = "Имя"
-        static let surname = "Фамилия"
-        static let email = "E-mail"
-        static let password = "Пароль"
-        static let confirmPassword = "Повторите пароль"
-        static let register = "Зарегистрироваться"
-        static let alreadyHaveAccount = "У меня уже есть аккаунт"
-        static let registerFailed = "Registration Failed"
-        static let ok = "OK"
-        static let createFavouritesFailed = "Create Favourites Failed"
-    }
-    
     func setupSubviews() {
         setupLogo()
         setupButtonsStackView()
         setupScrollView()
-        //        setupTextFieldsStackView()
-        //        setupButtonsStackView()
     }
     
     // MARK: Keyboard dismiss
@@ -71,7 +44,7 @@ class RegisterScreenView: UIView {
     
     private lazy var logotype: UIImageView = {
         let logo = UIImageView()
-        logo.image = UIImage(named: "LogoWithName")!
+        logo.image = R.image.logoWithName()!
         return logo
     }()
     private func setupLogo() {
@@ -96,7 +69,7 @@ class RegisterScreenView: UIView {
         scrollView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(logotype.snp.bottom).offset(Paddings.betweenLogoAndName)
-            make.bottom.greaterThanOrEqualTo(buttonsStackView.snp.top).offset(-16)
+            make.bottom.greaterThanOrEqualTo(buttonsStackView.snp.top).offset(Paddings.defaultNegativePadding)
             make.width.equalToSuperview()
         }
     }
@@ -118,10 +91,10 @@ class RegisterScreenView: UIView {
         scrollView.addSubview(textFieldsStackView)
         textFieldsStackView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(Paddings.defaultPadding)
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.width.equalToSuperview().offset(-32)
+            make.width.equalToSuperview().offset(Paddings.doubleDefaultNegativePadding)
         }
     }
     
@@ -129,7 +102,7 @@ class RegisterScreenView: UIView {
     
     private lazy var nameTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: false)
-        return textField.getOutlinedTextField(text: viewModel.name, placeholderText: Strings.name, selector: #selector(updateName(_:)))
+        return textField.getOutlinedTextField(text: viewModel.name, placeholderText: R.string.registerScreenStrings.name(), selector: #selector(updateName(_:)))
     }()
     @objc
     private func updateName(_ textField: OutlinedTextField) {
@@ -140,7 +113,7 @@ class RegisterScreenView: UIView {
     
     private lazy var surnameTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: false)
-        return textField.getOutlinedTextField(text: viewModel.surname, placeholderText: Strings.surname, selector: #selector(updateSurname(_:)))
+        return textField.getOutlinedTextField(text: viewModel.surname, placeholderText: R.string.registerScreenStrings.surname(), selector: #selector(updateSurname(_:)))
     }()
     @objc
     private func updateSurname(_ textField: OutlinedTextField) {
@@ -151,7 +124,7 @@ class RegisterScreenView: UIView {
     
     private lazy var emailTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: false)
-        return textField.getOutlinedTextField(text: viewModel.email, placeholderText: Strings.email, selector: #selector(updateEmail(_:)))
+        return textField.getOutlinedTextField(text: viewModel.email, placeholderText: R.string.registerScreenStrings.email(), selector: #selector(updateEmail(_:)))
     }()
     @objc
     func updateEmail(_ textField: OutlinedTextField) {
@@ -162,12 +135,12 @@ class RegisterScreenView: UIView {
     
     private lazy var passwordTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: true, passwordEye: passwordEye)
-        return textField.getOutlinedTextField(text: viewModel.password, placeholderText: Strings.password, selector: #selector(updatePassword(_:)))
+        return textField.getOutlinedTextField(text: viewModel.password, placeholderText: R.string.registerScreenStrings.password(), selector: #selector(updatePassword(_:)))
     }()
     private lazy var passwordEye: UIButton = {
         let eye = UIButton(type: .custom)
-        eye.setImage(UIImage(systemName: "eye.slash")!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .normal)
-        eye.setImage(UIImage(systemName: "eye")!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .selected)
+        eye.setImage(UIImage(systemName: SystemImages.eyeSlash)!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .normal)
+        eye.setImage(UIImage(systemName: SystemImages.eye)!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .selected)
         eye.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         return eye
     }()
@@ -185,12 +158,12 @@ class RegisterScreenView: UIView {
     
     private lazy var confirmPasswordTextField: OutlinedTextField = {
         let textField = OutlinedTextField(isSecured: true, passwordEye: confirmPasswordEye)
-        return textField.getOutlinedTextField(text: viewModel.confirmPassword, placeholderText: Strings.confirmPassword, selector: #selector(updateConfirmPassword(_:)))
+        return textField.getOutlinedTextField(text: viewModel.confirmPassword, placeholderText: R.string.registerScreenStrings.confirm_password(), selector: #selector(updateConfirmPassword(_:)))
     }()
     private lazy var confirmPasswordEye: UIButton = {
         let eye = UIButton(type: .custom)
-        eye.setImage(UIImage(systemName: "eye.slash")!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .normal)
-        eye.setImage(UIImage(systemName: "eye")!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .selected)
+        eye.setImage(UIImage(systemName: SystemImages.eyeSlash)!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .normal)
+                     eye.setImage(UIImage(systemName: SystemImages.eye)!.resizeImage(newWidth: Scales.passwordEyeSize, newHeight: Scales.passwordEyeSize).withTintColor(.redColor), for: .selected)
         eye.addTarget(self, action: #selector(toggleConfirmPasswordVisibility), for: .touchUpInside)
         return eye
     }()
@@ -226,7 +199,7 @@ class RegisterScreenView: UIView {
     
     private lazy var backToLoginScreenButton: OutlinedButton = {
         let button = OutlinedButton()
-        return button.getOutlinedButton(label: Strings.alreadyHaveAccount, selector: #selector(goToLoginScreen))
+        return button.getOutlinedButton(label: R.string.registerScreenStrings.already_have_account(), selector: #selector(goToLoginScreen))
     }()
     @objc
     func goToLoginScreen() {
@@ -237,7 +210,7 @@ class RegisterScreenView: UIView {
     
     private lazy var registerButton: FilledButton = {
         let button = FilledButton()
-        return button.getFilledButton(label: Strings.register, selector: #selector(goToMainScreen))
+        return button.getFilledButton(label: R.string.registerScreenStrings.register(), selector: #selector(goToMainScreen))
     }()
     @objc
     func goToMainScreen() {
@@ -250,12 +223,12 @@ class RegisterScreenView: UIView {
                         self.viewModel.coordinator.goToMainScreen()
                     }
                     else {
-                        self.showAlert(title: Strings.createFavouritesFailed, message: self.viewModel.error)
+                        self.showAlert(title: R.string.registerScreenStrings.create_favourites_failed(), message: self.viewModel.error)
                     }
                 }
             }
             else {
-                self.showAlert(title: Strings.registerFailed, message: self.viewModel.error)
+                self.showAlert(title: R.string.registerScreenStrings.register_failed(), message: self.viewModel.error)
             }
         }
     }
@@ -265,7 +238,7 @@ class RegisterScreenView: UIView {
 extension UIView {
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: R.string.loginScreenStrings.ok(), style: .default, handler: { _ in
             if message == AppError.collectionsError(.unauthorized).errorDescription {
                 self.validateUser()
             }

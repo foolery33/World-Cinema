@@ -126,7 +126,7 @@ class ProfileScreenView: UIView {
     
     private lazy var changeButton: UIButton = {
         let myButton = UIButton(type: .system)
-        myButton.setTitle("Изменить", for: .normal)
+        myButton.setTitle(R.string.profileScreenStrings.change(), for: .normal)
         myButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         myButton.setTitleColor(.redColor, for: .normal)
         myButton.addTarget(self, action: #selector(showImagePicker), for: .touchUpInside)
@@ -192,7 +192,7 @@ class ProfileScreenView: UIView {
     // MARK: - ExitButton setup
     
     private lazy var exitButton: OutlinedButton = {
-        return OutlinedButton().getOutlinedButton(label: "Выход", selector: #selector(leaveAccount))
+        return OutlinedButton().getOutlinedButton(label: R.string.profileScreenStrings.exit(), selector: #selector(leaveAccount))
     }()
     @objc private func leaveAccount() {
         self.setupActivityIndicator()
@@ -211,8 +211,8 @@ class ProfileScreenView: UIView {
     }
     
     func loadProfile() {
-        userInfoStack.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
-        avatarImage.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        userInfoStack.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
+        avatarImage.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
 //        self.setupActivityIndicator()
         viewModel.getProfile { success in
 //            self.stopActivityIndicator()
@@ -221,7 +221,7 @@ class ProfileScreenView: UIView {
                 self.updateDataOnScreen()
             }
             else {
-                self.showAlert(title: "Profile Loading Failed", message: self.viewModel.error)
+                self.showAlert(title: R.string.profileScreenStrings.profile_loading_error(), message: self.viewModel.error)
             }
         }
     }
@@ -234,7 +234,7 @@ class ProfileScreenView: UIView {
                 self.avatarImage.image = image
             }
             else {
-                self.showAlert(title: "Avatar Setting Failed", message: self.viewModel.error)
+                self.showAlert(title: R.string.profileScreenStrings.avatar_setting_error(), message: self.viewModel.error)
             }
         }
     }
@@ -263,7 +263,7 @@ extension ProfileScreenView: UIImagePickerControllerDelegate, UINavigationContro
                 self.setAvatar(imageData: imageData, image: image)
             }
             else {
-                self.showAlert(title: "Avatar Setting Failed", message: "Your file is corrupted")
+                self.showAlert(title: R.string.profileScreenStrings.avatar_setting_error(), message: R.string.profileScreenStrings.corrupted_file())
             }
         }
         picker.dismiss(animated: true, completion: nil)
@@ -271,23 +271,23 @@ extension ProfileScreenView: UIImagePickerControllerDelegate, UINavigationContro
     
     
     func showAlertWithChoice() {
-        let alert = UIAlertController(title: "Выберите источник изображения", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: R.string.profileScreenStrings.choose_image_source(), message: nil, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Камера", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: R.string.profileScreenStrings.camera(), style: .default, handler: { _ in
             self.imagePicker.sourceType = .camera
             if let viewController = self.next as? UIViewController {
                 viewController.present(self.imagePicker, animated: true)
             }
         }))
         
-        alert.addAction(UIAlertAction(title: "Фото", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: R.string.profileScreenStrings.photo(), style: .default, handler: { _ in
             self.imagePicker.sourceType = .photoLibrary
             if let viewController = self.next as? UIViewController {
                 viewController.present(self.imagePicker, animated: true)
             }
         }))
         
-        alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: R.string.profileScreenStrings.cancel(), style: .cancel, handler: nil))
         if let viewController = self.next as? UIViewController {
             viewController.present(alert, animated: true, completion: nil)
         }

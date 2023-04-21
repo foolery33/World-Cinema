@@ -20,7 +20,7 @@ final class ForMeCollectionViewCell: UICollectionViewCell {
         super.init(frame: .zero)
         self.isSkeletonable = true
         self.contentView.isSkeletonable = true
-        self.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
         setupViews()
         setupPosterImageView()
     }
@@ -42,7 +42,6 @@ final class ForMeCollectionViewCell: UICollectionViewCell {
     }
 
     func setup(with movie: MovieModel) {
-//        posterImageView.image = UIImage(named: "InTrendFilmPoster")?.resizeImage(newWidth: 100, newHeight: 144)
         posterImageView.loadImageWithURL(movie.poster) {
             self.hideSkeleton()
         }

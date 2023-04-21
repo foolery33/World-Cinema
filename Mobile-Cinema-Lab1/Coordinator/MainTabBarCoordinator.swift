@@ -36,7 +36,7 @@ class MainTabBarCoordinator: Coordinator {
     
     private func initializeMainTabBar() {
         let viewController = MainTabBarController()
-        viewController.view.backgroundColor = UIColor(named: "BackgroundColor")
+        viewController.view.backgroundColor = R.color.backgroundColor()
         
         // MARK: - MainScreen
         
@@ -55,8 +55,8 @@ class MainTabBarCoordinator: Coordinator {
         mainCoordinator.parentCoordinator = parentCoordinator
         
         let mainItem = UITabBarItem()
-        mainItem.title = "Главное"
-        mainItem.image = UIImage(named: "Main")
+        mainItem.title = R.string.mainScreenStrings.home()
+        mainItem.image = R.image.main()
         mainNavigationController.tabBarItem = mainItem
         
         // MARK: - CompilationScreen
@@ -66,8 +66,8 @@ class MainTabBarCoordinator: Coordinator {
         compilationCoordinator.parentCoordinator = parentCoordinator
         
         let compilationItem = UITabBarItem()
-        compilationItem.title = "Подборка"
-        compilationItem.image = UIImage(named: "Compilation")
+        compilationItem.title = R.string.mainScreenStrings.compilation()
+        compilationItem.image = R.image.compilation()
         compilationNavigationController.tabBarItem = compilationItem
         
         // MARK: - Collections
@@ -91,8 +91,8 @@ class MainTabBarCoordinator: Coordinator {
         collectionsCoordinator.parentCoordinator = parentCoordinator
         
         let collectionsItem = UITabBarItem()
-        collectionsItem.title = "Коллекции"
-        collectionsItem.image = UIImage(named: "Collections")
+        collectionsItem.title = R.string.mainScreenStrings.collections()
+        collectionsItem.image = R.image.collections()
         collectionsNavigationController.tabBarItem = collectionsItem
 
         // MARK: - Profile
@@ -102,8 +102,8 @@ class MainTabBarCoordinator: Coordinator {
         profileCoordinator.parentCoordinator = parentCoordinator
         
         let profileItem = UITabBarItem()
-        profileItem.title = "Профиль"
-        profileItem.image = UIImage(named: "Profile")
+        profileItem.title = R.string.mainScreenStrings.profile()
+        profileItem.image = R.image.profile()
         profileNavigationController.tabBarItem = profileItem
         
         viewController.viewControllers = [mainNavigationController, compilationNavigationController, collectionsNavigationController, profileNavigationController]

@@ -58,7 +58,6 @@ extension CollectionsTableView: SkeletonTableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped")
         viewModel?.goToCollectionScreen(collection: viewModel?.collections[indexPath.row] ?? CollectionModel(collectionId: "", name: ""))
     }
 }

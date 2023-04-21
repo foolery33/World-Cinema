@@ -121,7 +121,7 @@ class CollectionMoviesTableViewCell: UITableViewCell {
 //        myImageView.isSkeletonable = true
         myImageView.tintColor = .skeletonViewColor
         myImageView.contentMode = .scaleAspectFit
-        myImageView.image = UIImage(named: "ForwardArrow")
+        myImageView.image = R.image.forwardArrow()
         myImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         myImageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return myImageView

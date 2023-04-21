@@ -79,7 +79,7 @@ class ProfileSectionTableViewCell: UITableViewCell {
         let myImageView = UIImageView()
         myImageView.tintColor = .nextButtonColor
         myImageView.contentMode = .scaleAspectFit
-        myImageView.image = UIImage(named: "ForwardArrow")
+        myImageView.image = R.image.forwardArrow()
         myImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         myImageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return myImageView

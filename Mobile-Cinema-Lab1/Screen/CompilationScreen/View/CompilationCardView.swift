@@ -27,7 +27,6 @@ class CompilationCardView: UIView {
     
     lazy var cardImageView: UIImageView = {
         let myImageView = UIImageView()
-//        myImageView.image = UIImage(named: "WitcherPoster")?.resizeImage(newWidth: 327, newHeight: 486)
         myImageView.contentMode = .scaleAspectFill
         myImageView.layer.cornerRadius = 16
         myImageView.layer.masksToBounds = true

@@ -42,7 +42,6 @@ extension EpisodesTableView: SkeletonTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("episodesCount", viewModel?.episodes.count ?? 0)
         return viewModel?.episodes.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +52,6 @@ extension EpisodesTableView: SkeletonTableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("clicked")
         viewModel?.coordinator.goToEpisodeScreen(
             yearRange: GetYearRangeForEpisodesUseCase().getRange(episodes: viewModel?.episodes ?? []),
             episode: viewModel?.episodes[indexPath.row] ?? EpisodeModel(episodeId: "", name: "", description: "", director: "", stars: [], year: 0, images: [], runtime: 0, preview: "", filePath: ""),

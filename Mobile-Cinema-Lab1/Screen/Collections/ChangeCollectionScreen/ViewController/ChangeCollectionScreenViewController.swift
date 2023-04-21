@@ -19,14 +19,14 @@ class ChangeCollectionScreenViewController: UIViewController {
     override func loadView() {
         let changeCollectionScreenView = ChangeCollectionScreenView(viewModel: self.viewModel)
         view = changeCollectionScreenView
-        view.backgroundColor = UIColor(named: "BackgroundColor")
-        self.title = "Изменить коллекцию"
+        view.backgroundColor = R.color.backgroundColor()
+        self.title = R.string.changeCollectionScreenStrings.change_collection()
         navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = getNavigationLeftItem()
     }
     
     private func getNavigationLeftItem() -> UIBarButtonItem {
-        let backItem = UIBarButtonItem(image: UIImage(named: "BackArrow"), style: .plain, target: self, action: #selector(goBackToCollectionsScreen))
+        let backItem = UIBarButtonItem(image: R.image.backArrow(), style: .plain, target: self, action: #selector(goBackToCollectionsScreen))
         backItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         backItem.tintColor = .white
         return backItem

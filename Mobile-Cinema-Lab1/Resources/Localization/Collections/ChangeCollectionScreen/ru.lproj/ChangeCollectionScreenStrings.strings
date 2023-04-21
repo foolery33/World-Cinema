@@ -1,0 +1,18 @@
+/* 
+  ChangeCollectionScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"placeholder_name" = "Название";
+"choose_icon" = "Выбрать иконку";
+"save" = "Сохранить";
+"failed_to_save_collection" = "Не удалось сохранить коллекцию";
+"non_empty_collection_name_warning" = "Имя коллекции не может быть пустым";
+"success" = "Успех";
+"success_update_collection" = "Вы успешно обновили коллекцию";
+"deleting_collection_error" = "Ошибка удаления коллекции";
+"remove" = "Удалить";
+"change_collection" = "Изменить коллекцию";

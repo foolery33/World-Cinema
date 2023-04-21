@@ -34,7 +34,6 @@ final class CreateCollectionScreenViewModel {
             case .success(let data):
                 self?.onCollectionCreated?(data)
                 self?.collectionsDatabase.createCollection(id: data.collectionId, name: data.name, imageName: self?.iconName ?? "Group 1")
-//                CollectionsManager.shared.setCollection(collectionId: data.collectionId, imageName: self?.iconName ?? "Group 1")
                 completion(true)
             case .failure(let error):
                 self?.error = error.errorDescription

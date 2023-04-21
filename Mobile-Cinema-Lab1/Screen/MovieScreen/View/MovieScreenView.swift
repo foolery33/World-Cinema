@@ -73,8 +73,8 @@ class MovieScreenView: UIView {
     private lazy var gradient: CAGradientLayer = {
         let myGradient = CAGradientLayer()
         myGradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        myGradient.startPoint = CGPoint(x: 0, y: 0.7)
-        myGradient.endPoint = CGPoint(x: 0, y: 1)
+        myGradient.startPoint = Constants.gradientStartPoint
+        myGradient.endPoint = Constants.gradientEndPoint
         return myGradient
     }()
     override func layoutSubviews() {
@@ -87,7 +87,7 @@ class MovieScreenView: UIView {
         poster.snp.makeConstraints { make in
             make.width.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(-topInset)
-            make.height.equalTo(400)
+            make.height.equalTo(Scales.posterHeight)
         }
     }
     
@@ -95,7 +95,7 @@ class MovieScreenView: UIView {
     
     private lazy var backButton: UIButton = {
         let myButton = UIButton(type: .system)
-        myButton.setImage(UIImage(named: "BackArrow"), for: .normal)
+        myButton.setImage(R.image.backArrow(), for: .normal)
         myButton.tintColor = .white
         myButton.addTarget(self, action: #selector(backToMainScreen), for: .touchUpInside)
         myButton.contentEdgeInsets = UIEdgeInsets(top: 11.5, left: 6.5, bottom: 14, right: 14)
@@ -116,7 +116,7 @@ class MovieScreenView: UIView {
     
     private lazy var watchPosterButton: UIButton = {
         let myButton = UIButton(type: .system)
-        myButton.setTitle("Смотреть", for: .normal)
+        myButton.setTitle(R.string.movieScreenStrings.watch(), for: .normal)
         myButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         myButton.setTitleColor(.white, for: .normal)
         myButton.contentEdgeInsets = UIEdgeInsets(top: 13, left: 32, bottom: 13, right: 32)
@@ -163,7 +163,7 @@ class MovieScreenView: UIView {
     
     private lazy var chatButton: UIButton = {
         let myButton = UIButton(type: .custom)
-        myButton.setImage(UIImage(named: "Chat"), for: .normal)
+        myButton.setImage(R.image.chat(), for: .normal)
         myButton.addTarget(self, action: #selector(goToChatScreen), for: .touchUpInside)
         return myButton
     }()
@@ -241,7 +241,7 @@ class MovieScreenView: UIView {
     
     private lazy var descriptionSectionLabel: UILabel = {
         let myLabel = UILabel()
-        myLabel.text = "Описание"
+        myLabel.text = R.string.movieScreenStrings.description()
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 24, weight: .bold)
         return myLabel
@@ -300,7 +300,7 @@ class MovieScreenView: UIView {
     
     private lazy var shotsLabel: UILabel = {
         let myLabel = UILabel()
-        myLabel.text = "Кадры"
+        myLabel.text = R.string.movieScreenStrings.shots()
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 24, weight: .bold)
         myLabel.sizeToFit()
@@ -338,7 +338,7 @@ class MovieScreenView: UIView {
     
     private lazy var episodesLabel: UILabel = {
         let myLabel = UILabel()
-        myLabel.text = "Эпизоды"
+        myLabel.text = R.string.movieScreenStrings.episodes()
         myLabel.textColor = .white
         myLabel.font = .systemFont(ofSize: 24, weight: .bold)
         return myLabel
@@ -369,7 +369,7 @@ class MovieScreenView: UIView {
     
     
     func getEpisodes() {
-        self.episodesTableView.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.episodesTableView.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
         viewModel.getMovieEpisodesById(movieId: viewModel.movie.movieId) {  success in
             self.episodesTableView.hideSkeleton()
             if(success) {
@@ -380,7 +380,7 @@ class MovieScreenView: UIView {
                 
             }
             else {
-                self.showAlert(title: "Episodes loading error", message: self.viewModel.error)
+                self.showAlert(title: R.string.movieScreenStrings.episodes_loading_error(), message: self.viewModel.error)
             }
         }
     }

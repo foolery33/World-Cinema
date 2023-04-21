@@ -8,8 +8,6 @@
 import UIKit
 
 class GenresCollectionView: UICollectionView {
-
-//    var genres: [String] = ["Comedy", "Tragedy", "Tragedy", "Tragedy", "Tragedy", "Trasdfsdfgedy"]
     
     var genres: [String]?
     

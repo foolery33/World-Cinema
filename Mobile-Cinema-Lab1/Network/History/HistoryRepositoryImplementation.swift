@@ -25,22 +25,48 @@ final class HistoryRepositoryImplementation: HistoryRepository {
                     let decodedData = try JSONDecoder().decode([EpisodeViewModel].self, from: data)
                     completion(.success(decodedData))
                 } catch {
-                    completion(.failure(.chatsError(.modelError)))
+                    completion(.failure(.historyError(.modelError)))
                 }
             case .failure(_):
                 if let requestStatusCode = response.response?.statusCode {
                     switch requestStatusCode {
                     case 401:
-                        completion(.failure(.chatsError(.unauthorized)))
+                        completion(.failure(.historyError(.unauthorized)))
                     case 404:
-                        completion(.failure(.chatsError(.wrongEndpoint)))
+                        completion(.failure(.historyError(.wrongEndpoint)))
                     case 500:
-                        completion(.failure(.chatsError(.serverError)))
+                        completion(.failure(.historyError(.serverError)))
                     default:
-                        completion(.failure(.chatsError(.unexpectedError)))
+                        completion(.failure(.historyError(.unexpectedError)))
                     }
                 }
             }
         }
     }
+    
+    enum HistoryError: Error, LocalizedError, Identifiable {
+        case wrongEndpoint
+        case modelError
+        case serverError
+        case unauthorized
+        case unexpectedError
+        var id: String {
+            self.errorDescription
+        }
+        var errorDescription: String {
+            switch self {
+            case .wrongEndpoint:
+                return R.string.errors.wrong_endpoint()
+            case .modelError:
+                return R.string.errors.model_error()
+            case .serverError:
+                return R.string.errors.server_error()
+            case .unauthorized:
+                return R.string.errors.unauthorized()
+            case .unexpectedError:
+                return R.string.errors.unexpected_error()
+            }
+        }
+    }
+    
 }

@@ -114,19 +114,19 @@ class AuthRepositoryImplementation: AuthRepository {
         var errorDescription: String {
             switch self {
             case .modelError:
-                return NSLocalizedString("Internal application error. Please contact developer", comment: "")
+                return R.string.errors.model_error()
             case .invalidCredentials:
-                return NSLocalizedString("Either your email or password are incorrect. Please try again", comment: "")
+                return R.string.errors.invalid_credentials()
             case .loginValidationError:
-                return NSLocalizedString("Some validation error", comment: "")
+                return R.string.errors.login_validation_error()
             case .serverError:
-                return NSLocalizedString("Some server error occured. Please try again later", comment: "")
+                return R.string.errors.server_error()
             case .emptyField:
-                return NSLocalizedString("Please make sure that you've provided all necessary data", comment: "")
+                return R.string.errors.empty_field()
             case .invalidEmail:
-                return NSLocalizedString("Your email does not conform to default email pattern", comment: "")
+                return R.string.errors.invalid_email()
             case .differentPasswords:
-                return NSLocalizedString("You've provided different passwords. Make sure they are equal", comment: "")
+                return R.string.errors.different_passwords()
             }
         }
     }

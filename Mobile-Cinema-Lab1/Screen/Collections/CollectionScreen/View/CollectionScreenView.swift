@@ -44,10 +44,8 @@ class CollectionScreenView: UIView {
     }
     
     func getMoviesFromCollection() {
-//        self.setupActivityIndicator()
-        self.collectionMoviesTableView.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.collectionMoviesTableView.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
         self.viewModel.getMoviesFromCollection(collectionId: self.viewModel.collection.collectionId) { success in
-//            self.stopActivityIndicator()
             if(success) {
                 self.collectionMoviesTableView.hideSkeleton()
                 self.collectionMoviesTableView.reloadData()
@@ -57,7 +55,7 @@ class CollectionScreenView: UIView {
                 print(self.collectionMoviesTableView.countHeight())
             }
             else {
-                self.showAlert(title: "Movies Loading Error", message: self.viewModel.error)
+                self.showAlert(title: R.string.collectionScreenStrings.movies_loading_error(), message: self.viewModel.error)
             }
         }
     }

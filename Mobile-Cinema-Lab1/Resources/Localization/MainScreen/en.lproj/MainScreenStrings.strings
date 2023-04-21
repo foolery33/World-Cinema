@@ -1,0 +1,22 @@
+/* 
+  MainScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"watch" = "Watch";
+"in_trend" = "In trend";
+"you_watched" = "Recently watched";
+"episode_loading_error" = "Episode loading error";
+"new" = "New";
+"for_you" = "For you";
+"set_interests" = "Set interests";
+"cover_loading_failed" = "Cover loading failed";
+"movies_loading_failed" = "Movies loading failed";
+"history_loading_failed" = "History loading failed";
+"home" = "Home";
+"compilation" = "Compilation";
+"collections" = "Collections";
+"profile" = "Profile";

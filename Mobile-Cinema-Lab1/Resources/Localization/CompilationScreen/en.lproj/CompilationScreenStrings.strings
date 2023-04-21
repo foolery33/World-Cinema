@@ -1,0 +1,12 @@
+/* 
+  CompilationScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"compilation_movies_over" = "No more movies left in compilation";
+"movies_loading_error" = "Movies loading error";
+"movie_dislike_error" = "Movie dislike error";
+"movie_like_error" = "Movie like error";

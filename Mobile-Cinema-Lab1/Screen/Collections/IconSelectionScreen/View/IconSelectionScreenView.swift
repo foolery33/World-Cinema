@@ -10,10 +10,8 @@ import SnapKit
 
 class IconSelectionScreenView: UIView {
 
-    var viewModel: IconSelectionScreenViewModel
     
-    init(viewModel: IconSelectionScreenViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init(frame: .zero)
         setupSubviews()
     }
@@ -30,7 +28,6 @@ class IconSelectionScreenView: UIView {
     
     private lazy var iconSelectionCollectionView: IconSelectionCollectionView = {
         let myCollecitonView = IconSelectionCollectionView()
-        myCollecitonView.viewModel = self.viewModel
         return myCollecitonView
     }()
     private func setupIconSelectionCollectionView() {

@@ -38,7 +38,6 @@ class IconSelectionCollectionViewCell: UICollectionViewCell {
     }
 
     func setup(with iconName: String) {
-//        posterImageView.image = UIImage(named: "InTrendFilmPoster")?.resizeImage(newWidth: 100, newHeight: 144)
         posterImageView.image = UIImage(named: iconName)
     }
 }

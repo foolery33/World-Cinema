@@ -1,0 +1,18 @@
+/* 
+  RegisterScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"name" = "First name";
+"surname" = "Last name";
+"email" = "E-mail";
+"password" = "Password";
+"confirm_password" = "Confirm password";
+"register" = "Register";
+"already_have_account" = "Already have account";
+"register_failed" = "Registration failed";
+"ok" = "OK";
+"create_favourites_failed" = "Create \"Favourites\" collection failed";

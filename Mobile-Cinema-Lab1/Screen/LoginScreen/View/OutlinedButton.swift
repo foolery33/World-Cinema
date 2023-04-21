@@ -15,7 +15,7 @@ class OutlinedButton: UIButton {
         button.titleLabel?.font = UIFont.systemFont(ofSize: Scales.fontSize, weight: .bold)
         button.setTitleColor(.redColor, for: .normal)
         button.contentEdgeInsets = UIEdgeInsets(top: Paddings.topContentPadding, left: Paddings.leadingContentPadding, bottom: Paddings.bottomContentPadding, right: Paddings.trailingContentPadding)
-        button.layer.borderColor = CGColor.grayColor
+        button.layer.borderColor = R.color.grayColor()?.cgColor
         button.layer.borderWidth = Scales.borderWidth
         button.layer.cornerRadius = Scales.cornerRadius
         button.addTarget(self, action: selector, for: .touchUpInside)

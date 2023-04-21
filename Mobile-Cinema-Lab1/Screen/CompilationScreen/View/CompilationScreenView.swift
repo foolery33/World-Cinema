@@ -142,7 +142,7 @@ class CompilationScreenView: UIView {
         myButton.layer.cornerRadius = 0.5 * 56
         myButton.clipsToBounds = true
         myButton.backgroundColor = .white
-        myButton.setImage(UIImage(named: "Reject"), for: .normal)
+        myButton.setImage(R.image.reject(), for: .normal)
         myButton.addImagePressedEffect()
         myButton.addTarget(self, action: #selector(self.dislikeAnimation), for: .touchUpInside)
         return myButton
@@ -161,7 +161,7 @@ class CompilationScreenView: UIView {
         myButton.layer.cornerRadius = 0.5 * 56
         myButton.clipsToBounds = true
         myButton.backgroundColor = .redColor
-        myButton.setImage(UIImage(named: "Play"), for: .normal)
+        myButton.setImage(R.image.play(), for: .normal)
         myButton.addImagePressedEffect()
         myButton.addTarget(self, action: #selector(goToMovieScreen), for: .touchUpInside)
         return myButton
@@ -183,7 +183,7 @@ class CompilationScreenView: UIView {
         myButton.layer.cornerRadius = 0.5 * 56
         myButton.clipsToBounds = true
         myButton.backgroundColor = .white
-        myButton.setImage(UIImage(named: "Like"), for: .normal)
+        myButton.setImage(R.image.like(), for: .normal)
         myButton.addImagePressedEffect()
         myButton.addTarget(self, action: #selector(self.likeAnimation), for: .touchUpInside)
         return myButton

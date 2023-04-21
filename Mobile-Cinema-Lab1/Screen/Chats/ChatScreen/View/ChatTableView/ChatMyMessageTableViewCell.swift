@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import RswiftResources
 
 class ChatMyMessageTableViewCell: UITableViewCell {
     
@@ -27,7 +28,7 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         self.senderNameLabel.text = message.authorName
         self.messageTimeLabel.text = " • \(IsoTimeToHHMMUseCase().convertToTime(message.creationDateTime)!)"
         if(message.authorAvatar == nil) {
-            self.userAvatarImageView.image = UIImage(named: "UserAvatar")
+            self.userAvatarImageView.image = R.image.userAvatar()
             self.userAvatarImageView.alpha = 1
         }
         else if message.authorAvatar == "lalala" {

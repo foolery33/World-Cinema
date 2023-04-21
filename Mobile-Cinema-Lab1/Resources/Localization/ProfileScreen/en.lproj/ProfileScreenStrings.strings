@@ -1,0 +1,20 @@
+/* 
+  ProfileScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"change" = "Change";
+"exit" = "Exit";
+"profile_loading_error" = "Profile loading failed";
+"avatar_setting_error" = "Avatar setting failed";
+"corrupted_file" = "Your file is corrupted";
+"choose_image_source" = "Choose image source";
+"camera" = "Camera";
+"photo" = "Photo library";
+"cancel" = "Cancel";
+"dialogs" = "Dialogs";
+"history" = "History";
+"settings" = "Settings";

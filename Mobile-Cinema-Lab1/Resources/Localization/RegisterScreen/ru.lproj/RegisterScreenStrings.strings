@@ -1,0 +1,18 @@
+/* 
+  RegisterScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"name" = "Имя";
+"surname" = "Фамилия";
+"email" = "E-mail";
+"password" = "Пароль";
+"confirm_password" = "Повторите пароль";
+"register" = "Зарегистрироваться";
+"already_have_account" = "У меня уже есть аккаунт";
+"register_failed" = "Регистрация неуспешна";
+"ok" = "OK";
+"create_favourites_failed" = "Не удалось создать коллекцию \"Избранное\"";

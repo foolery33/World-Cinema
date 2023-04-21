@@ -11,7 +11,7 @@ class FilledButton: UIButton {
 
     func getFilledButton(label: String, selector: Selector?) -> FilledButton {
         let button = FilledButton(type: .system)
-        button.layer.backgroundColor = CGColor.redColor
+        button.layer.backgroundColor = R.color.redColor()?.cgColor
         button.setTitle(label, for: .normal)
         button.contentEdgeInsets = UIEdgeInsets(top: Paddings.topContentPadding, left: Paddings.leadingContentPadding, bottom: Paddings.bottomContentPadding, right: Paddings.trailingContentPadding)
         button.titleLabel?.font = UIFont.systemFont(ofSize: Scales.fontSize, weight: .bold)

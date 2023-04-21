@@ -9,11 +9,9 @@ import UIKit
 
 class IconSelectionScreenViewController: UIViewController {
 
-    var viewModel: IconSelectionScreenViewModel
     var delegate: ChooseIconDelegate
     
-    init(viewModel: IconSelectionScreenViewModel, delegate: ChooseIconDelegate) {
-        self.viewModel = viewModel
+    init(delegate: ChooseIconDelegate) {
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -23,9 +21,9 @@ class IconSelectionScreenViewController: UIViewController {
     }
     
     override func loadView() {
-        let iconSelectionScreenView = IconSelectionScreenView(viewModel: self.viewModel)
+        let iconSelectionScreenView = IconSelectionScreenView()
         view = iconSelectionScreenView
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = R.color.backgroundColor()
         navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
     }

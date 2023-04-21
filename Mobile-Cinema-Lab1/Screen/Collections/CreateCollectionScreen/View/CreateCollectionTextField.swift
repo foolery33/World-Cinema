@@ -35,9 +35,9 @@ class CreateCollectionTextField: UITextField {
         textField.textColor = UIColor.white
         textField.font = UIFont.systemFont(ofSize: Scales.fontSize, weight: .regular)
 
-        textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor: UIColor.grayTextColor])
+        textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor: R.color.grayTextColor() ?? UIColor.grayTextColor])
         
-        textField.layer.borderColor = UIColor.darkGrayColor.cgColor
+        textField.layer.borderColor = R.color.darkGrayColor()?.cgColor
         textField.layer.borderWidth = Scales.borderWidth
         textField.layer.cornerRadius = Scales.cornerRadius
         

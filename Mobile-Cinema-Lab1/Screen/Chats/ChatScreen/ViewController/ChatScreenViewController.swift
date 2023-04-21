@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RswiftResources
 
 class ChatScreenViewController: UIViewController, ChatUpdateProtocol {
 
@@ -14,9 +15,9 @@ class ChatScreenViewController: UIViewController, ChatUpdateProtocol {
     override func loadView() {
         let chatScreenView = ChatScreenView(viewModel: self.viewModel)
         view = chatScreenView
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = R.color.backgroundColor()
         self.setupNavigationBarAppearence()
-        self.title = self.viewModel.chat?.chatName ?? "Some chat"
+        self.title = self.viewModel.chat?.chatName ?? R.string.chatScreenStrings.default_chat_name()
         self.navigationItem.leftBarButtonItem = getNavigationLeftItem()
         chatScreenView.connectToWebSocket()
         chatScreenView.getUserId()
@@ -24,7 +25,7 @@ class ChatScreenViewController: UIViewController, ChatUpdateProtocol {
     }
     
     private func getNavigationLeftItem() -> UIBarButtonItem {
-        let backItem = UIBarButtonItem(image: UIImage(named: "BackArrow"), style: .plain, target: self, action: #selector(goBackToChatListScreen))
+        let backItem = UIBarButtonItem(image: R.image.backArrow(), style: .plain, target: self, action: #selector(goBackToChatListScreen))
         backItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
         backItem.tintColor = .white
         return backItem
@@ -54,7 +55,7 @@ extension UIViewController {
         ]
         if let navBarAppearance = navigationController?.navigationBar.standardAppearance {
             navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.backgroundColor = UIColor(named: "BackgroundColor")
+            navBarAppearance.backgroundColor = R.color.backgroundColor()
             navBarAppearance.titleTextAttributes = navigationBarTitleAttributes
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance

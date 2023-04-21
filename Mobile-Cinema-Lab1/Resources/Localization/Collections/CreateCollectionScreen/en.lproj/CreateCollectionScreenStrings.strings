@@ -1,0 +1,17 @@
+/* 
+  CreateCollectionScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"placeholder_name" = "Name";
+"choose_icon" = "Choose icon";
+"save" = "Save";
+"failed_to_save_collection" = "Failed to save collection";
+"non_empty_collection_name_warning" = "Collection name field must not be empty";
+"success" = "Success";
+"collection" = "Collection";
+"was_successfully_saved" = "was successfully saved";
+"create_collection" = "Create collection";

@@ -14,13 +14,13 @@ final class GetDayAndMonthFromStringDateUseCase {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         guard let date = dateFormatter.date(from: dateString) else { return "" }
         
-//        dateFormatter.locale = Locale.current
-        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.locale = Locale.current
+//        dateFormatter.locale = Locale(identifier: "ru_RU")
         dateFormatter.dateFormat = "dd MMMM"
         let resultString = dateFormatter.string(from: date)
         
         if Calendar.current.isDateInToday(date) {
-            return "Сегодня"
+            return R.string.chatScreenStrings.today()
         } else {
             return resultString
         }

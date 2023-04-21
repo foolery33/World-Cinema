@@ -9,14 +9,6 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-extension CGColor {
-    
-    public static let grayColor: CGColor = CGColor(red: 168/255, green: 168/255, blue: 168/255, alpha: 1.0)
-    public static let redColor: CGColor = CGColor(red: 239/255, green: 58/255, blue: 1/255, alpha: 1.0)
-    
-}
-
-
 extension UIColor {
     
     public static let grayColor: UIColor = UIColor(red: 168/255, green: 168/255, blue: 168/255, alpha: 1.0)
@@ -31,7 +23,8 @@ extension UIColor {
     public static let chatElementBackground: UIColor = UIColor(red: 46/255, green: 43/255, blue: 42/255, alpha: 1)
     public static let myMessageSenderColor: UIColor = UIColor(red: 255/255, green: 191/255, blue: 171/255, alpha: 1)
     public static let notMyMessageInfoColor: UIColor = UIColor(red: 150/255, green: 149/255, blue: 148/255, alpha: 1)
-    public static let skeletonViewColor: UIColor = UIColor(red: 46/255, green: 38/255, blue: 36/255, alpha: 1)
+    public static let skeletonViewColor: UIColor = UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1)
+    public static let skeletonViewNextButtonColor: UIColor = UIColor(red: 46/255, green: 38/255, blue: 36/255, alpha: 1)
     public static let nextButtonColor: UIColor = UIColor(red: 168/255, green: 168/255, blue: 168/255, alpha: 1)
     
 }

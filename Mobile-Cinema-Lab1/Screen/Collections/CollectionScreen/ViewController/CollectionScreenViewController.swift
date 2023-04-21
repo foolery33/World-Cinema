@@ -22,7 +22,7 @@ class CollectionScreenViewController: UIViewController {
         let collectionScreenView = CollectionScreenView(viewModel: self.viewModel)
         view = collectionScreenView
         collectionScreenView.getMoviesFromCollection()
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = R.color.backgroundColor()
         self.navigationItem.leftBarButtonItem = getNavigationLeftItem()
         
         // Блокируем возможность редактировать "Избранное"
@@ -34,7 +34,7 @@ class CollectionScreenViewController: UIViewController {
     }
     
     private func getNavigationLeftItem() -> UIBarButtonItem {
-        let backItem = UIBarButtonItem(image: UIImage(named: "BackArrow"), style: .plain, target: self, action: #selector(goBackToCollectionsScreen))
+        let backItem = UIBarButtonItem(image: R.image.backArrow(), style: .plain, target: self, action: #selector(goBackToCollectionsScreen))
         backItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         backItem.tintColor = .white
         return backItem
@@ -44,7 +44,7 @@ class CollectionScreenViewController: UIViewController {
     }
     
     private func getNavigationRightItem() -> UIBarButtonItem {
-        let backItem = UIBarButtonItem(image: UIImage(named: "Pencil"), style: .plain, target: self, action: #selector(goToChangeCollectionScreen))
+        let backItem = UIBarButtonItem(image: R.image.pencil(), style: .plain, target: self, action: #selector(goToChangeCollectionScreen))
         backItem.image = backItem.image?.resizeImage(newWidth: 20, newHeight: 20)
         backItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         backItem.tintColor = .white

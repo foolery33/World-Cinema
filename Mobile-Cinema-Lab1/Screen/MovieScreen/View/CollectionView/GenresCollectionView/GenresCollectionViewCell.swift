@@ -42,7 +42,6 @@ final class GenresCollectionViewCell: UICollectionViewCell {
     }
 
     func setup(with genre: String) {
-//        posterImageView.image = UIImage(named: "InTrendFilmPoster")?.resizeImage(newWidth: 100, newHeight: 144)
         genreLabel.text = genre
     }
 }

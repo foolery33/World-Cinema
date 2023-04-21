@@ -21,7 +21,7 @@ final class NewCollectionViewCell: UICollectionViewCell {
         super.init(frame: .zero)
         self.isSkeletonable = true
         self.contentView.isSkeletonable = true
-        self.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
         setupViews()
         setupPosterImageView()
     }
@@ -64,32 +64,6 @@ extension UIImageView {
             if completion != nil {
                 completion!()
             }
-        }
-    }
-    func loadImageOnMainThread(_ url: String) {
-        if let url = URL(string: url) {
-            // Проверяем, есть ли данные в кэше
-            if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
-
-                // Если есть, используем кэшированные данные для создания изображения
-                let image = UIImage(data: cachedResponse.data)
-                self.image = image
-
-            } else {
-
-                // Если данных в кэше нет, загружаем их и добавляем в кэш
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    if let data = data, let response = response {
-                        let cachedData = CachedURLResponse(response: response, data: data)
-                        URLCache.shared.storeCachedResponse(cachedData, for: URLRequest(url: url))
-                        DispatchQueue.main.async {
-                            let image = UIImage(data: data)
-                            self.image = image
-                        }
-                    }
-                }.resume()
-            }
-            contentMode = .scaleAspectFill
         }
     }
 }

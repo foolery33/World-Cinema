@@ -43,16 +43,14 @@ class CollectionsScreenView: UIView {
     }
     
     func loadCollections() {
-//        self.setupActivityIndicator()
-        self.collectionsTableView.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.collectionsTableView.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
         viewModel.getCollections { success in
-//            self.stopActivityIndicator()
             self.collectionsTableView.hideSkeleton()
             if(success) {
                 self.reloadCollectionsTableView()
             }
             else {
-                self.showAlert(title: "Collections Loading Error", message: self.viewModel.error)
+                self.showAlert(title: R.string.collectionsScreenStrings.collections_loading_error(), message: self.viewModel.error)
             }
         }
     }

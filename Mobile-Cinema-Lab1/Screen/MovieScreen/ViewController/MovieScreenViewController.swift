@@ -15,10 +15,9 @@ class MovieScreenViewController: UIViewController {
         let movieScreenView = MovieScreenView(viewModel: self.viewModel)
         view = movieScreenView
         movieScreenView.getEpisodes()
-        print("MovieID", viewModel.movie.movieId)
         navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = R.color.backgroundColor()
     }
     
     override func viewDidLoad() {

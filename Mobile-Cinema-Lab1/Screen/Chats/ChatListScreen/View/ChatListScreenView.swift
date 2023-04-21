@@ -51,7 +51,7 @@ extension ChatListScreenView {
     
     func setupSkeleton() {
         self.isSkeletonable = true
-        self.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
     }
     func stopSkeleton() {
         self.hideSkeleton()

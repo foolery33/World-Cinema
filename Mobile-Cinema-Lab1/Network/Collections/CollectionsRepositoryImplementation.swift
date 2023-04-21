@@ -191,21 +191,21 @@ final class CollectionsRepositoryImplementation: CollectionsRepository {
         var errorDescription: String {
             switch self {
             case .somethingWentWrong:
-                return NSLocalizedString("Something went wrong. Please try again later", comment: "")
+                return R.string.errors.something_went_wrong()
             case .wrongEndpoint:
-                return NSLocalizedString("Endpoint provided in request is not valid. Please contact developer", comment: "")
+                return R.string.errors.wrong_endpoint()
             case .modelError:
-                return NSLocalizedString("Internal application error. Please contact developer", comment: "")
+                return R.string.errors.model_error()
             case .serverError:
-                return NSLocalizedString("Some server error occured. Please try again later", comment: "")
+                return R.string.errors.server_error()
             case .unauthorized:
-                return NSLocalizedString("Your authentication token is expired. Please login again", comment: "")
+                return R.string.errors.unauthorized()
             case .unexpectedError:
-                return NSLocalizedString("Some unexpected error occured. Please contact developer", comment: "")
+                return R.string.errors.unexpected_error()
             case .wrongCollectionId:
-                return NSLocalizedString("Provided collectionId is not valid. Please contact developer", comment: "")
+                return R.string.errors.wrong_collection_id()
             case .alreadyInThisCollection:
-                return NSLocalizedString("This film is already in the collection", comment: "")
+                return R.string.errors.already_in_this_collection()
             }
         }
     }

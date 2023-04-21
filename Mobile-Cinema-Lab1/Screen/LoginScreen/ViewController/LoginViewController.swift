@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
         view = loginScreenView
         navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = R.color.backgroundColor()
     }
     
     override func viewDidLoad() {

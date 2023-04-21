@@ -1,0 +1,13 @@
+/* 
+  ChatScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"type_message" = "Type message...";
+"send_message_error" = "Send message error";
+"preparation_error" = "Chat showing preparation error";
+"default_chat_name" = "Some chat";
+"today" = "Today";

@@ -48,11 +48,11 @@ class ChatScreenView: UIView {
     private lazy var messageTextField: UITextView = {
         let myTextView = UITextView()
         myTextView.delegate = self
-        myTextView.text = "Напишите сообщение..."
+        myTextView.text = R.string.chatScreenStrings.type_message()
         myTextView.font = .systemFont(ofSize: 14, weight: .regular)
         myTextView.textColor = .grayColor
         myTextView.isScrollEnabled = false
-        myTextView.layer.borderColor = UIColor.darkGrayColor.cgColor
+        myTextView.layer.borderColor = R.color.darkGrayColor()?.cgColor
         myTextView.layer.backgroundColor = UIColor.purple.cgColor
         myTextView.layer.borderWidth = 1
         myTextView.layer.cornerRadius = 5
@@ -79,7 +79,7 @@ class ChatScreenView: UIView {
         myButton.layer.cornerRadius = myButton.frame.height / 2
         myButton.clipsToBounds = true
         myButton.backgroundColor = .redColor
-        myButton.setImage(UIImage(named: "ArrowUp"), for: .normal)
+        myButton.setImage(R.image.arrowUp(), for: .normal)
         myButton.addImagePressedEffect()
         myButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         return myButton
@@ -91,7 +91,7 @@ class ChatScreenView: UIView {
                 self.messageTextField.text = ""
             }
             else {
-                self.showAlert(title: "Send Message Error", message: self.viewModel.error)
+                self.showAlert(title: R.string.chatScreenStrings.send_message_error(), message: self.viewModel.error)
             }
         }
     }
@@ -125,7 +125,6 @@ class ChatScreenView: UIView {
             stopActivityIndicator()
             self.chatTableView.reloadData()
             self.chatTableView.snp.remakeConstraints { make in
-                //                make.edges.equalToSuperview()
                 make.top.horizontalEdges.equalToSuperview()
                 make.bottom.equalTo(messageTextField.snp.top).offset(-8)
             }
@@ -138,7 +137,7 @@ class ChatScreenView: UIView {
     func getUserId() {
         self.viewModel.getUserId { success in
             if(!success) {
-                self.showAlert(title: "Preparation Error", message: self.viewModel.error)
+                self.showAlert(title: R.string.chatScreenStrings.preparation_error(), message: self.viewModel.error)
             }
         }
     }
@@ -178,7 +177,7 @@ extension ChatScreenView: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Напишите сообщение..." {
+        if textView.text == R.string.chatScreenStrings.type_message() {
             textView.text = ""
             textView.textColor = .white
         }
@@ -186,7 +185,7 @@ extension ChatScreenView: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
-            textView.text = "Напишите сообщение..."
+            textView.text = R.string.chatScreenStrings.type_message()
             textView.textColor = .grayColor
         }
         textViewDidChange(textView)

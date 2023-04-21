@@ -75,7 +75,7 @@ class CreateCollectionScreenView: UIView {
     
     private lazy var textField: CreateCollectionTextField = {
         let myTextField = CreateCollectionTextField()
-        return myTextField.getOutlinedTextField(text: "", placeholderText: "Название", selector: #selector(updateCollectionName(_:)))
+        return myTextField.getOutlinedTextField(text: "", placeholderText: R.string.createCollectionScreenStrings.placeholder_name(), selector: #selector(updateCollectionName(_:)))
     }()
     @objc func updateCollectionName(_ textField: OutlinedTextField) {
         viewModel.collectionName = textField.text ?? ""
@@ -125,33 +125,33 @@ class CreateCollectionScreenView: UIView {
     // MARK: ChooseIconButton setup
     
     private lazy var chooseIconButton: OutlinedButton = {
-        let myButton = OutlinedButton().getOutlinedButton(label: "Выбрать иконку", selector: #selector(chooseIcon))
+        let myButton = OutlinedButton().getOutlinedButton(label: R.string.createCollectionScreenStrings.choose_icon(), selector: #selector(chooseIcon))
         myButton.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return myButton
     }()
     @objc private func chooseIcon() {
         if let viewController = self.next as? CreateCollectionScreenViewController {
-            viewController.present(IconSelectionScreenViewController(viewModel: IconSelectionScreenViewModel(), delegate: viewController), animated: true)
+            viewController.present(IconSelectionScreenViewController(delegate: viewController), animated: true)
         }
     }
     
     // MARK: - SaveCollectionButton setup
     
     private lazy var saveCollectionButton: FilledButton = {
-        let myButton = FilledButton().getFilledButton(label: "Сохранить", selector: #selector(saveCollection))
+        let myButton = FilledButton().getFilledButton(label: R.string.createCollectionScreenStrings.save(), selector: #selector(saveCollection))
         return myButton
     }()
     @objc private func saveCollection() {
         if(EmptyFieldValidation().isEmptyField(viewModel.collectionName)) {
-            self.showAlert(title: "Failed to save collection", message: "Collection name field must not be empty")
+            self.showAlert(title: R.string.createCollectionScreenStrings.failed_to_save_collection(), message: R.string.createCollectionScreenStrings.non_empty_collection_name_warning())
             return
         }
         viewModel.createCollection(collectionName: viewModel.collectionName) { success in
             if(success) {
-                self.showAlert(title: "Success", message: "Collection '\(self.viewModel.collectionName)' was successfully saved")
+                self.showAlert(title: R.string.createCollectionScreenStrings.success(), message: "\(R.string.createCollectionScreenStrings.collection()) '\(self.viewModel.collectionName)' \(R.string.createCollectionScreenStrings.was_successfully_saved())")
             }
             else {
-                self.showAlert(title: "Failed to save collection", message: self.viewModel.error)
+                self.showAlert(title: R.string.createCollectionScreenStrings.failed_to_save_collection(), message: self.viewModel.error)
             }
         }
     }

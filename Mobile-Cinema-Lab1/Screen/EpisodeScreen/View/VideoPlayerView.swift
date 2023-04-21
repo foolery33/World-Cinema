@@ -53,6 +53,7 @@ class VideoPlayerView: UIView {
         let playerItem = AVPlayerItem(asset: asset)
         playerItem.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.old, .new], context: nil)
         let player = AVPlayer(playerItem: playerItem)
+        player.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), context: nil)
         
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = videoPlayerView.bounds
@@ -89,7 +90,9 @@ class VideoPlayerView: UIView {
                 print("Unknown")
                 // Состояние плеера неизвестно
             @unknown default:
-                fatalError()
+                print("default")
+//                fatalError()
+                break
             }
         }
     }
@@ -114,7 +117,7 @@ class VideoPlayerView: UIView {
     
     private lazy var pauseButton: UIButton = {
         let myButton = UIButton()
-        myButton.setImage(UIImage(named: "Pause")?.resizeImage(newWidth: 45, newHeight: 45), for: .normal)
+        myButton.setImage(R.image.pause()?.resizeImage(newWidth: 45, newHeight: 45), for: .normal)
         myButton.addTarget(self, action: #selector(playButtonTapped(_:)), for: .touchUpInside)
         return myButton
     }()
@@ -161,7 +164,7 @@ class VideoPlayerView: UIView {
     
     func pause() {
         videoPlayer.pause()
-        pauseButton.setImage(UIImage(named: "Play"), for: .normal)
+        pauseButton.setImage(R.image.play(), for: .normal)
         // invalidate timer if exists
         hideControlsTimer?.invalidate()
         hideControlsTimer = nil
@@ -170,7 +173,7 @@ class VideoPlayerView: UIView {
         hideControlsTimer?.invalidate()
         videoPlayer.play()
         startTimer()
-        pauseButton.setImage(UIImage(named: "Pause")?.resizeImage(newWidth: 45, newHeight: 45), for: .normal)
+        pauseButton.setImage(R.image.pause()?.resizeImage(newWidth: 45, newHeight: 45), for: .normal)
         
         hideControls()
     }
@@ -224,7 +227,7 @@ class VideoPlayerView: UIView {
         mySlider.maximumValue = Float(duration)
         mySlider.value = 0
         mySlider.tintColor = .redColor
-        mySlider.setThumbImage(UIImage(named: "ThumbImage"), for: .normal)
+        mySlider.setThumbImage(R.image.thumbImage(), for: .normal)
         mySlider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
         return mySlider
     }()
@@ -255,8 +258,8 @@ class VideoPlayerView: UIView {
     
     private lazy var volumeButton: UIButton = {
         let myButton = UIButton()
-        myButton.setImage(UIImage(named: "UnmutedVolume"), for: .normal)
-        myButton.setImage(UIImage(named: "MutedVolume"), for: .selected)
+        myButton.setImage(R.image.unmutedVolume(), for: .normal)
+        myButton.setImage(R.image.mutedVolume(), for: .selected)
         myButton.addTarget(self, action: #selector(onVolumeButtonTapped), for: .touchUpInside)
         return myButton
     }()
@@ -278,7 +281,7 @@ class VideoPlayerView: UIView {
             self.currentTimeLabel.text = self.getTimeString(from: self.videoPlayer.currentTime().seconds)
             self.videoSlider.value = currentTime
             if(Int(currentTime) == self.duration) {
-                self.pauseButton.setImage(UIImage(named: "Play"), for: .normal)
+                self.pauseButton.setImage(R.image.play(), for: .normal)
             }
         }
     }
@@ -302,6 +305,13 @@ class VideoPlayerView: UIView {
     
     func getCurrentVideoPlayerTime() -> Double {
         return videoPlayer.currentTime().seconds
+    }
+    
+    deinit {
+        print("observer removed")
+        self.videoPlayer.currentItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
+        self.videoPlayer.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
+        NotificationCenter.default.removeObserver(self)
     }
     
 }

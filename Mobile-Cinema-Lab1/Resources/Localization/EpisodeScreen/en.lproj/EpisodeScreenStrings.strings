@@ -1,0 +1,17 @@
+/* 
+  EpisodeScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"unknown_seasons" = "Unknown seasons";
+"success" = "Success";
+"success_add_to_favourites" = "You've successfully added the movie to Favourites";
+"error" = "Error";
+"description" = "Description";
+"add_to_collection" = "Add to collection";
+"add_to_collection_error" = "Adding to collection error";
+"cancel" = "Cancel";
+"success_add_to_collection" = "You've successfully added the movie to the colleciton";

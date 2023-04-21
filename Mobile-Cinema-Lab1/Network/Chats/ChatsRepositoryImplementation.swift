@@ -44,15 +44,6 @@ final class ChatsRepositoryImplementation: ChatsRepository {
         }
     }
     
-    func getChatMessages(chatId: String, completion: @escaping (Result<[MessageModel], AppError>) -> Void) {
-        
-    }
-    
-    func postMessageToChat(chatId: String, completion: @escaping (Result<MessageModel, AppError>) -> Void) {
-        
-    }
-    
-    
     enum ChatsError: Error, LocalizedError, Identifiable {
         case wrongEndpoint
         case modelError
@@ -68,21 +59,21 @@ final class ChatsRepositoryImplementation: ChatsRepository {
         var errorDescription: String {
             switch self {
             case .wrongEndpoint:
-                return NSLocalizedString("Endpoint provided in request is not valid. Please contact developer", comment: "")
+                return R.string.errors.wrong_endpoint()
             case .modelError:
-                return NSLocalizedString("Internal application error. Please contact developer", comment: "")
+                return R.string.errors.model_error()
             case .serverError:
-                return NSLocalizedString("Some server error occured. Please try again later", comment: "")
+                return R.string.errors.server_error()
             case .unknownRequestParameter:
-                return NSLocalizedString("Unknown request parameter was provided. Please contact developer", comment: "")
+                return R.string.errors.unknown_request_parameter()
             case .noQueryParameter:
-                return NSLocalizedString("No query parameter was provided. Please contact developer", comment: "")
+                return R.string.errors.no_query_parameter()
             case .unauthorized:
-                return NSLocalizedString("Your authentication token is expired. Please login again", comment: "")
+                return R.string.errors.unauthorized()
             case .unexpectedError:
-                return NSLocalizedString("Some unexpected error occured. Please contact developer", comment: "")
+                return R.string.errors.unexpected_error()
             case .emptyField:
-                return NSLocalizedString("Please make sure you provided text to send", comment: "")
+                return R.string.errors.empty_field()
             }
         }
     }

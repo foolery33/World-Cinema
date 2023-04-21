@@ -1,0 +1,12 @@
+/* 
+  CompilationScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"compilation_movies_over" = "Новые фильмы в подборке закончились";
+"movies_loading_error" = "Ошибка загрузки фильмов";
+"movie_dislike_error" = "Неудачно";
+"movie_like_error" = "Неудачно";

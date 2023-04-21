@@ -15,7 +15,7 @@ class MainTabBarController: UITabBarController {
     
     let normalTabBarAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 10, weight: .medium),
-        .foregroundColor: UIColor.grayTextColor
+        .foregroundColor: R.color.grayTextColor() ?? UIColor.grayTextColor
     ]
     let selectedTabBarAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 10, weight: .medium),

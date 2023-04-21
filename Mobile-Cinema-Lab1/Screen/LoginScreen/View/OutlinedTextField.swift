@@ -46,13 +46,13 @@ class OutlinedTextField: UITextField {
 
         textField.text = text
         textField.autocapitalizationType = .none
-        textField.textColor = UIColor.redColor
+        textField.textColor = R.color.redColor()
         textField.font = UIFont.systemFont(ofSize: Scales.fontSize, weight: .regular)
         textField.isSecureTextEntry = self.isSecured
 
-        textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor: UIColor.grayTextColor])
+        textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor: R.color.grayTextColor() ?? UIColor.grayTextColor])
         
-        textField.layer.borderColor = CGColor.grayColor
+        textField.layer.borderColor = R.color.grayColor()?.cgColor
         textField.layer.borderWidth = Scales.borderWidth
         textField.layer.cornerRadius = Scales.cornerRadius
         

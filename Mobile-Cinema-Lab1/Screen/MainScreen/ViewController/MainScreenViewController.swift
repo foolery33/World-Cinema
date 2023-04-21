@@ -15,7 +15,7 @@ class MainScreenViewController: UIViewController {
     override func loadView() {
         let mainScreenView = MainScreenView(viewModel: self.viewModel)
         view = mainScreenView
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = R.color.backgroundColor()
         mainScreenView.loadCover()
         mainScreenView.loadSections()
         navigationController?.isNavigationBarHidden = true

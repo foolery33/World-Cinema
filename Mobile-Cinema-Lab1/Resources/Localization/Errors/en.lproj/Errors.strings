@@ -1,0 +1,26 @@
+/* 
+  Errors.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+// MARK: - Errors
+"model_error" = "Internal application error. Please contact developer";
+"invalid_credentials" = "Either your email or password are incorrect. Please try again";
+"login_validation_error" = "Some validation error";
+"server_error" = "Some server error occured. Please try again later";
+"empty_field" = "Please make sure that you've provided all necessary data";
+"invalid_email" = "Your email does not conform to default email pattern";
+"different_passwords" = "You've provided different passwords. Make sure they are equal";
+"wrong_endpoint" = "Endpoint provided in request is not valid. Please contact developer";
+"unknown_request_parameter" = "Unknown request parameter was provided. Please contact developer";
+"no_query_parameter" = "No query parameter was provided. Please contact developer";
+"unauthorized" = "Your authentication token is expired. Please login again";
+"unexpected_error" = "Some unexpected error occured. Please contact developer";
+"no_cover" = "There're no cover in database";
+"something_went_wrong" = "Something went wrong. Please try again later";
+"wrong_collection_id" = "Provided collectionId is not valid. Please contact developer";
+"already_in_this_collection" = "This film is already in the collection";
+"problem_with_save" = "Some problem with episode time saving occured";

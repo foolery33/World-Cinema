@@ -1,0 +1,9 @@
+/* 
+  CollectionScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"movies_loading_error" = "Ошибка загрузки фильмов";

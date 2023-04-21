@@ -1,0 +1,13 @@
+/* 
+  ChatScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"type_message" = "Напишите сообщение...";
+"send_message_error" = "Ошибка отправки сообщения";
+"preparation_error" = "Ошибка при подготовке отображения чата";
+"default_chat_name" = "Обычный чат";
+"today" = "Сегодня";

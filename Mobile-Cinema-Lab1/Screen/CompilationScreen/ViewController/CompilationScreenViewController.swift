@@ -17,7 +17,7 @@ class CompilationScreenViewController: UIViewController {
         compilationScreenView.loadCompilationMovies()
         navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = R.color.backgroundColor()
     }
     
     override func viewDidLoad() {

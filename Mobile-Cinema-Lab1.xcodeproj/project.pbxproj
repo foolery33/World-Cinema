@@ -14,7 +14,6 @@
 		8413392229DE77B500A394D4 /* IconSelectionScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392129DE77B500A394D4 /* IconSelectionScreenViewController.swift */; };
 		8413392429DE77DD00A394D4 /* IconSelectionScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392329DE77DD00A394D4 /* IconSelectionScreenView.swift */; };
 		8413392729DE7A1100A394D4 /* ChooseIconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392629DE7A1100A394D4 /* ChooseIconDelegate.swift */; };
-		8413392929DE7C8A00A394D4 /* IconSelectionScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392829DE7C8A00A394D4 /* IconSelectionScreenViewModel.swift */; };
 		8413392C29DE7EFB00A394D4 /* IconSelectionCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392B29DE7EFB00A394D4 /* IconSelectionCollectionView.swift */; };
 		8413392E29DE7F2400A394D4 /* IconSelectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413392D29DE7F2400A394D4 /* IconSelectionCollectionViewCell.swift */; };
 		8427A3CE29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3CD29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift */; };
@@ -124,6 +123,27 @@
 		84BF4F9A29F2B1C300C4AA12 /* HistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4F9929F2B1C300C4AA12 /* HistoryRepository.swift */; };
 		84BF4F9C29F2B1D400C4AA12 /* HistoryRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4F9B29F2B1D400C4AA12 /* HistoryRepositoryImplementation.swift */; };
 		84BF4F9F29F2B24300C4AA12 /* EpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4F9E29F2B24300C4AA12 /* EpisodeViewModel.swift */; };
+		84BF4FA229F2E56400C4AA12 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 84BF4FA129F2E56400C4AA12 /* RswiftLibrary */; };
+		84BF4FB029F2F48A00C4AA12 /* LoginScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF4FB229F2F48A00C4AA12 /* LoginScreenStrings.strings */; };
+		84BF4FBB29F2FB9600C4AA12 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF4FBD29F2FB9600C4AA12 /* Errors.strings */; };
+		84BF4FC229F2FCA400C4AA12 /* LoginScreenViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4FC129F2FCA400C4AA12 /* LoginScreenViewConstants.swift */; };
+		84BF4FC829F2FD9A00C4AA12 /* RegisterScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF4FCA29F2FD9A00C4AA12 /* RegisterScreenStrings.strings */; };
+		84BF4FCF29F2FFA900C4AA12 /* RegisterScreenViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4FCE29F2FFA900C4AA12 /* RegisterScreenViewConstants.swift */; };
+		84BF4FD429F3015200C4AA12 /* MainScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF4FD629F3015200C4AA12 /* MainScreenStrings.strings */; };
+		84BF4FDB29F30B1600C4AA12 /* MainScreenViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4FDA29F30B1600C4AA12 /* MainScreenViewConstants.swift */; };
+		84BF4FE029F3107500C4AA12 /* MainScreenServerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4FDF29F3107500C4AA12 /* MainScreenServerFunctions.swift */; };
+		84BF4FE429F3116E00C4AA12 /* MainScreenUIFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4FE329F3116E00C4AA12 /* MainScreenUIFunctions.swift */; };
+		84BF4FE929F3152C00C4AA12 /* MovieScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF4FEB29F3152C00C4AA12 /* MovieScreenStrings.strings */; };
+		84BF4FF329F3182C00C4AA12 /* MovieScreenViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4FF229F3182C00C4AA12 /* MovieScreenViewConstants.swift */; };
+		84BF4FF929F3273A00C4AA12 /* EpisodeScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF4FFB29F3273A00C4AA12 /* EpisodeScreenStrings.strings */; };
+		84BF500129F3296400C4AA12 /* ProfileScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF500329F3296400C4AA12 /* ProfileScreenStrings.strings */; };
+		84BF500E29F32BA300C4AA12 /* ChangeCollectionScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF501029F32BA300C4AA12 /* ChangeCollectionScreenStrings.strings */; };
+		84BF501429F32BB600C4AA12 /* CollectionScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF501629F32BB600C4AA12 /* CollectionScreenStrings.strings */; };
+		84BF502029F32BE000C4AA12 /* CreateCollectionScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF502229F32BE000C4AA12 /* CreateCollectionScreenStrings.strings */; };
+		84BF502629F32BF100C4AA12 /* CollectionsScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF502829F32BF100C4AA12 /* CollectionsScreenStrings.strings */; };
+		84BF503029F3337000C4AA12 /* CompilationScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF503229F3337000C4AA12 /* CompilationScreenStrings.strings */; };
+		84BF503A29F3344E00C4AA12 /* ChatListScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF503C29F3344E00C4AA12 /* ChatListScreenStrings.strings */; };
+		84BF504129F3349C00C4AA12 /* ChatScreenStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84BF504329F3349C00C4AA12 /* ChatScreenStrings.strings */; };
 		84C3313B29DAC1E600904FEA /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3313A29DAC1E600904FEA /* ProfileCoordinator.swift */; };
 		84C3314129DAC4AF00904FEA /* ProfileScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3314029DAC4AF00904FEA /* ProfileScreenViewModel.swift */; };
 		84C3314329DAC54E00904FEA /* ProfileScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3314229DAC54E00904FEA /* ProfileScreenModel.swift */; };
@@ -186,7 +206,6 @@
 		8413392129DE77B500A394D4 /* IconSelectionScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionScreenViewController.swift; sourceTree = "<group>"; };
 		8413392329DE77DD00A394D4 /* IconSelectionScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionScreenView.swift; sourceTree = "<group>"; };
 		8413392629DE7A1100A394D4 /* ChooseIconDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseIconDelegate.swift; sourceTree = "<group>"; };
-		8413392829DE7C8A00A394D4 /* IconSelectionScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionScreenViewModel.swift; sourceTree = "<group>"; };
 		8413392B29DE7EFB00A394D4 /* IconSelectionCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionCollectionView.swift; sourceTree = "<group>"; };
 		8413392D29DE7F2400A394D4 /* IconSelectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		8427A3CD29E274D0007E4B2F /* ChangeCollectionScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCollectionScreenViewModel.swift; sourceTree = "<group>"; };
@@ -291,6 +310,40 @@
 		84BF4F9929F2B1C300C4AA12 /* HistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepository.swift; sourceTree = "<group>"; };
 		84BF4F9B29F2B1D400C4AA12 /* HistoryRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepositoryImplementation.swift; sourceTree = "<group>"; };
 		84BF4F9E29F2B24300C4AA12 /* EpisodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewModel.swift; sourceTree = "<group>"; };
+		84BF4FB129F2F48A00C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LoginScreenStrings.strings; sourceTree = "<group>"; };
+		84BF4FB329F2F5D100C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LoginScreenStrings.strings; sourceTree = "<group>"; };
+		84BF4FBC29F2FB9600C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Errors.strings; sourceTree = "<group>"; };
+		84BF4FBE29F2FB9A00C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Errors.strings; sourceTree = "<group>"; };
+		84BF4FC129F2FCA400C4AA12 /* LoginScreenViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewConstants.swift; sourceTree = "<group>"; };
+		84BF4FC929F2FD9A00C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RegisterScreenStrings.strings; sourceTree = "<group>"; };
+		84BF4FCB29F2FD9B00C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RegisterScreenStrings.strings; sourceTree = "<group>"; };
+		84BF4FCE29F2FFA900C4AA12 /* RegisterScreenViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenViewConstants.swift; sourceTree = "<group>"; };
+		84BF4FD529F3015200C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainScreenStrings.strings; sourceTree = "<group>"; };
+		84BF4FD729F3015500C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MainScreenStrings.strings; sourceTree = "<group>"; };
+		84BF4FDA29F30B1600C4AA12 /* MainScreenViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewConstants.swift; sourceTree = "<group>"; };
+		84BF4FDF29F3107500C4AA12 /* MainScreenServerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenServerFunctions.swift; sourceTree = "<group>"; };
+		84BF4FE329F3116E00C4AA12 /* MainScreenUIFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenUIFunctions.swift; sourceTree = "<group>"; };
+		84BF4FEA29F3152C00C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MovieScreenStrings.strings; sourceTree = "<group>"; };
+		84BF4FEC29F3152D00C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MovieScreenStrings.strings; sourceTree = "<group>"; };
+		84BF4FF229F3182C00C4AA12 /* MovieScreenViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieScreenViewConstants.swift; sourceTree = "<group>"; };
+		84BF4FFA29F3273A00C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/EpisodeScreenStrings.strings; sourceTree = "<group>"; };
+		84BF4FFC29F3273E00C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EpisodeScreenStrings.strings; sourceTree = "<group>"; };
+		84BF500229F3296400C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ProfileScreenStrings.strings; sourceTree = "<group>"; };
+		84BF500429F3296700C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ProfileScreenStrings.strings; sourceTree = "<group>"; };
+		84BF500F29F32BA300C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ChangeCollectionScreenStrings.strings; sourceTree = "<group>"; };
+		84BF501129F32BA700C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ChangeCollectionScreenStrings.strings; sourceTree = "<group>"; };
+		84BF501529F32BB600C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CollectionScreenStrings.strings; sourceTree = "<group>"; };
+		84BF501729F32BB900C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CollectionScreenStrings.strings; sourceTree = "<group>"; };
+		84BF502129F32BE000C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CreateCollectionScreenStrings.strings; sourceTree = "<group>"; };
+		84BF502329F32BE200C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CreateCollectionScreenStrings.strings; sourceTree = "<group>"; };
+		84BF502729F32BF100C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CollectionsScreenStrings.strings; sourceTree = "<group>"; };
+		84BF502929F32BF300C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CollectionsScreenStrings.strings; sourceTree = "<group>"; };
+		84BF503129F3337000C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CompilationScreenStrings.strings; sourceTree = "<group>"; };
+		84BF503329F3337100C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CompilationScreenStrings.strings; sourceTree = "<group>"; };
+		84BF503B29F3344E00C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ChatListScreenStrings.strings; sourceTree = "<group>"; };
+		84BF503D29F3345100C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ChatListScreenStrings.strings; sourceTree = "<group>"; };
+		84BF504229F3349C00C4AA12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ChatScreenStrings.strings; sourceTree = "<group>"; };
+		84BF504429F3349E00C4AA12 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ChatScreenStrings.strings; sourceTree = "<group>"; };
 		84C3313A29DAC1E600904FEA /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		84C3314029DAC4AF00904FEA /* ProfileScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewModel.swift; sourceTree = "<group>"; };
 		84C3314229DAC54E00904FEA /* ProfileScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenModel.swift; sourceTree = "<group>"; };
@@ -355,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8406704F29F0E61E00E0AE8E /* Kingfisher in Frameworks */,
+				84BF4FA229F2E56400C4AA12 /* RswiftLibrary in Frameworks */,
 				8406705729F1A49700E0AE8E /* SkeletonView in Frameworks */,
 				84969C8429E06ED600D98A56 /* RealmSwift in Frameworks */,
 				844A26B829D7F9C700395B0C /* Alamofire in Frameworks */,
@@ -379,7 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				8413392529DE79E000A394D4 /* Delegate */,
-				8413392029DE774700A394D4 /* ViewModel */,
 				8413391F29DE774000A394D4 /* ViewController */,
 				8413391E29DE773B00A394D4 /* View */,
 			);
@@ -401,14 +454,6 @@
 				8413392129DE77B500A394D4 /* IconSelectionScreenViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		8413392029DE774700A394D4 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				8413392829DE7C8A00A394D4 /* IconSelectionScreenViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		8413392529DE79E000A394D4 /* Delegate */ = {
@@ -595,6 +640,7 @@
 		843C9B9029D717A200E370EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84BF4FED29F3179100C4AA12 /* Extensions */,
 				844A26BF29D827BD00395B0C /* EpisodesTableView */,
 				843C9B9229D717BC00E370EC /* CollectionView */,
 				843C9B9729D71AAE00E370EC /* MovieScreenView.swift */,
@@ -660,6 +706,7 @@
 		84550A6629D3FDAB00DCAA57 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				84BF4FDC29F3104600C4AA12 /* Extensions */,
 				843C9B8429D6E8F800E370EC /* ForMeCollectionView */,
 				846E48AB29D1FF13006B5F59 /* InTrendCollectionView */,
 				84E49CF429D2CE0A00BCCA8B /* NewCollectionView */,
@@ -1085,6 +1132,254 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		84BF4FA929F2F17200C4AA12 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FB629F2FB7000C4AA12 /* Localization */,
+				84BF4FC329F2FD4000C4AA12 /* Colors */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		84BF4FAB29F2F19200C4AA12 /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FB229F2F48A00C4AA12 /* LoginScreenStrings.strings */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		84BF4FB629F2FB7000C4AA12 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				84BF503529F3342000C4AA12 /* Chats */,
+				84BF502B29F3334000C4AA12 /* CompilationScreen */,
+				84BF500529F32B3400C4AA12 /* Collections */,
+				84BF4FFD29F3294000C4AA12 /* ProfileScreen */,
+				84BF4FF529F326FB00C4AA12 /* EpisodeScreen */,
+				84BF4FE529F3151300C4AA12 /* MovieScreen */,
+				84BF4FD029F3011600C4AA12 /* MainScreen */,
+				84BF4FC529F2FD6A00C4AA12 /* RegisterScreen */,
+				84BF4FAB29F2F19200C4AA12 /* LoginScreen */,
+				84BF4FB729F2FB7B00C4AA12 /* Errors */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		84BF4FB729F2FB7B00C4AA12 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FBD29F2FB9600C4AA12 /* Errors.strings */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		84BF4FBF29F2FC9000C4AA12 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FC129F2FCA400C4AA12 /* LoginScreenViewConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		84BF4FC329F2FD4000C4AA12 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				84D7860B29CC7752004D518D /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		84BF4FC529F2FD6A00C4AA12 /* RegisterScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FCA29F2FD9A00C4AA12 /* RegisterScreenStrings.strings */,
+			);
+			path = RegisterScreen;
+			sourceTree = "<group>";
+		};
+		84BF4FCC29F2FF8900C4AA12 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FCE29F2FFA900C4AA12 /* RegisterScreenViewConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		84BF4FD029F3011600C4AA12 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FD629F3015200C4AA12 /* MainScreenStrings.strings */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		84BF4FD829F30AF700C4AA12 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FDA29F30B1600C4AA12 /* MainScreenViewConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		84BF4FDC29F3104600C4AA12 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FE129F3114400C4AA12 /* UIFunctions */,
+				84BF4FDE29F3105700C4AA12 /* ServerFunctions */,
+				84BF4FD829F30AF700C4AA12 /* Constants */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84BF4FDE29F3105700C4AA12 /* ServerFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FDF29F3107500C4AA12 /* MainScreenServerFunctions.swift */,
+			);
+			path = ServerFunctions;
+			sourceTree = "<group>";
+		};
+		84BF4FE129F3114400C4AA12 /* UIFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FE329F3116E00C4AA12 /* MainScreenUIFunctions.swift */,
+			);
+			path = UIFunctions;
+			sourceTree = "<group>";
+		};
+		84BF4FE529F3151300C4AA12 /* MovieScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FEB29F3152C00C4AA12 /* MovieScreenStrings.strings */,
+			);
+			path = MovieScreen;
+			sourceTree = "<group>";
+		};
+		84BF4FED29F3179100C4AA12 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FF129F3181700C4AA12 /* Constants */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84BF4FEE29F317A000C4AA12 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FBF29F2FC9000C4AA12 /* Constants */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84BF4FF029F317AE00C4AA12 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FCC29F2FF8900C4AA12 /* Constants */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84BF4FF129F3181700C4AA12 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FF229F3182C00C4AA12 /* MovieScreenViewConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		84BF4FF529F326FB00C4AA12 /* EpisodeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF4FFB29F3273A00C4AA12 /* EpisodeScreenStrings.strings */,
+			);
+			path = EpisodeScreen;
+			sourceTree = "<group>";
+		};
+		84BF4FFD29F3294000C4AA12 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF500329F3296400C4AA12 /* ProfileScreenStrings.strings */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		84BF500529F32B3400C4AA12 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				84BF500A29F32B8700C4AA12 /* ChangeCollectionScreen */,
+				84BF500929F32B7F00C4AA12 /* CollectionScreen */,
+				84BF500729F32B6C00C4AA12 /* CreateCollectionScreen */,
+				84BF500629F32B6600C4AA12 /* CollectionsScreen */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		84BF500629F32B6600C4AA12 /* CollectionsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF502829F32BF100C4AA12 /* CollectionsScreenStrings.strings */,
+			);
+			path = CollectionsScreen;
+			sourceTree = "<group>";
+		};
+		84BF500729F32B6C00C4AA12 /* CreateCollectionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF502229F32BE000C4AA12 /* CreateCollectionScreenStrings.strings */,
+			);
+			path = CreateCollectionScreen;
+			sourceTree = "<group>";
+		};
+		84BF500929F32B7F00C4AA12 /* CollectionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF501629F32BB600C4AA12 /* CollectionScreenStrings.strings */,
+			);
+			path = CollectionScreen;
+			sourceTree = "<group>";
+		};
+		84BF500A29F32B8700C4AA12 /* ChangeCollectionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF501029F32BA300C4AA12 /* ChangeCollectionScreenStrings.strings */,
+			);
+			path = ChangeCollectionScreen;
+			sourceTree = "<group>";
+		};
+		84BF502B29F3334000C4AA12 /* CompilationScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF503229F3337000C4AA12 /* CompilationScreenStrings.strings */,
+			);
+			path = CompilationScreen;
+			sourceTree = "<group>";
+		};
+		84BF503529F3342000C4AA12 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				84BF503729F3343000C4AA12 /* ChatScreen */,
+				84BF503629F3342800C4AA12 /* ChatListScreen */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		84BF503629F3342800C4AA12 /* ChatListScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF503C29F3344E00C4AA12 /* ChatListScreenStrings.strings */,
+			);
+			path = ChatListScreen;
+			sourceTree = "<group>";
+		};
+		84BF503729F3343000C4AA12 /* ChatScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84BF504329F3349C00C4AA12 /* ChatScreenStrings.strings */,
+			);
+			path = ChatScreen;
+			sourceTree = "<group>";
+		};
 		84C3313929DAC1D900904FEA /* ProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -1229,6 +1524,7 @@
 		84D7860829CC6227004D518D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84BF4FEE29F317A000C4AA12 /* Extensions */,
 				84D7860929CC6240004D518D /* LoginScreenView.swift */,
 				84D7860D29CC7A0C004D518D /* OutlinedTextField.swift */,
 				84D7860F29CC8534004D518D /* FilledButton.swift */,
@@ -1251,6 +1547,7 @@
 		84D7861529CCAE62004D518D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84BF4FF029F317AE00C4AA12 /* Extensions */,
 				84D7861F29CCB331004D518D /* RegisterScreenView.swift */,
 			);
 			path = View;
@@ -1322,11 +1619,11 @@
 				84B6049829CDEEC10047A603 /* Network */,
 				84B6049429CD9DC40047A603 /* Coordinator */,
 				84D785F629CC5432004D518D /* Protocols */,
+				84BF4FA929F2F17200C4AA12 /* Resources */,
 				84E4C7E829CAD6F80004732C /* AppDelegate.swift */,
 				84E4C7F129CAD6F90004732C /* Assets.xcassets */,
 				84E4C7F329CAD6F90004732C /* LaunchScreen.storyboard */,
 				84E4C7F629CAD6F90004732C /* Info.plist */,
-				84D7860B29CC7752004D518D /* Colors.swift */,
 				84BE5C2729CEF27D0051B6D0 /* ActivityIndicator.swift */,
 				8406705329F1984700E0AE8E /* SceneDelegate.swift */,
 			);
@@ -1481,6 +1778,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				84BF4FA629F2E83B00C4AA12 /* PBXTargetDependency */,
 			);
 			name = "Mobile-Cinema-Lab1";
 			packageProductDependencies = (
@@ -1491,6 +1789,7 @@
 				848ED65C29E7BFEC005655D0 /* Starscream */,
 				8406704E29F0E61E00E0AE8E /* Kingfisher */,
 				8406705629F1A49700E0AE8E /* SkeletonView */,
+				84BF4FA129F2E56400C4AA12 /* RswiftLibrary */,
 			);
 			productName = "Mobile-Cinema-Lab1";
 			productReference = 84E4C7E529CAD6F80004732C /* Mobile-Cinema-Lab1.app */;
@@ -1518,6 +1817,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 84E4C7DC29CAD6F80004732C;
 			packageReferences = (
@@ -1528,6 +1828,7 @@
 				848ED65B29E7BFEC005655D0 /* XCRemoteSwiftPackageReference "Starscream" */,
 				8406704D29F0E61D00E0AE8E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				8406705529F1A49700E0AE8E /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				84BF4FA029F2E56400C4AA12 /* XCRemoteSwiftPackageReference "R.swift" */,
 			);
 			productRefGroup = 84E4C7E629CAD6F80004732C /* Products */;
 			projectDirPath = "";
@@ -1543,8 +1844,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84BF4FD429F3015200C4AA12 /* MainScreenStrings.strings in Resources */,
+				84BF501429F32BB600C4AA12 /* CollectionScreenStrings.strings in Resources */,
+				84BF4FB029F2F48A00C4AA12 /* LoginScreenStrings.strings in Resources */,
 				84E4C7F529CAD6F90004732C /* LaunchScreen.storyboard in Resources */,
+				84BF4FC829F2FD9A00C4AA12 /* RegisterScreenStrings.strings in Resources */,
+				84BF4FE929F3152C00C4AA12 /* MovieScreenStrings.strings in Resources */,
 				84E4C7F229CAD6F90004732C /* Assets.xcassets in Resources */,
+				84BF4FBB29F2FB9600C4AA12 /* Errors.strings in Resources */,
+				84BF502029F32BE000C4AA12 /* CreateCollectionScreenStrings.strings in Resources */,
+				84BF502629F32BF100C4AA12 /* CollectionsScreenStrings.strings in Resources */,
+				84BF503A29F3344E00C4AA12 /* ChatListScreenStrings.strings in Resources */,
+				84BF504129F3349C00C4AA12 /* ChatScreenStrings.strings in Resources */,
+				84BF500E29F32BA300C4AA12 /* ChangeCollectionScreenStrings.strings in Resources */,
+				84BF4FF929F3273A00C4AA12 /* EpisodeScreenStrings.strings in Resources */,
+				84BF500129F3296400C4AA12 /* ProfileScreenStrings.strings in Resources */,
+				84BF503029F3337000C4AA12 /* CompilationScreenStrings.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1559,10 +1874,12 @@
 				844A26C929D88B9400395B0C /* GetAgeLimitLabelUseCase.swift in Sources */,
 				8413392C29DE7EFB00A394D4 /* IconSelectionCollectionView.swift in Sources */,
 				84AF454229E928340028C17E /* RecognizeChatCellsUseCase.swift in Sources */,
+				84BF4FC229F2FCA400C4AA12 /* LoginScreenViewConstants.swift in Sources */,
 				84BE5C3329CF012E0051B6D0 /* MainScreenViewModel.swift in Sources */,
 				84B604AA29CDF5C20047A603 /* AuthTokenPairModel.swift in Sources */,
 				843C9B8C29D6F96300E370EC /* MainTabBarCoordinator.swift in Sources */,
 				848ED67329E7EDD7005655D0 /* ChatListScreenViewController.swift in Sources */,
+				84BF4FF329F3182C00C4AA12 /* MovieScreenViewConstants.swift in Sources */,
 				84D7861C29CCAF00004D518D /* RegisterScreenViewModel.swift in Sources */,
 				84B604B129CE0FFC0047A603 /* EmailValidation.swift in Sources */,
 				84BE5C2829CEF27D0051B6D0 /* ActivityIndicator.swift in Sources */,
@@ -1623,6 +1940,7 @@
 				84AF453629E8FAC10028C17E /* ChatScreenViewController.swift in Sources */,
 				84B604A529CDF1DA0047A603 /* TokenManager.swift in Sources */,
 				84D7861229CC8767004D518D /* OutlinedButton.swift in Sources */,
+				84BF4FDB29F30B1600C4AA12 /* MainScreenViewConstants.swift in Sources */,
 				848ED67829E81DC5005655D0 /* ChatListTableView.swift in Sources */,
 				8413392229DE77B500A394D4 /* IconSelectionScreenViewController.swift in Sources */,
 				846AF3D629DD1B53001453A1 /* CreateCollectionScreenViewModel.swift in Sources */,
@@ -1642,7 +1960,6 @@
 				84AF453829E8FAF50028C17E /* ChatScreenView.swift in Sources */,
 				849FA1DD29D57F9E0097223A /* NewMoviesModel.swift in Sources */,
 				843C9B9629D71A1300E370EC /* MovieScreenViewModel.swift in Sources */,
-				8413392929DE7C8A00A394D4 /* IconSelectionScreenViewModel.swift in Sources */,
 				8428978229DC1DD00096D409 /* CollectionsCoordinator.swift in Sources */,
 				844A26BE29D80F8D00395B0C /* ShotsCollectionViewCell.swift in Sources */,
 				848ED68029E84257005655D0 /* ChatsRepositoryImplementation.swift in Sources */,
@@ -1653,6 +1970,7 @@
 				84969C8729E06F4500D98A56 /* MovieCollection.swift in Sources */,
 				84E49CED29D29D0C00BCCA8B /* InTrendCollectionView.swift in Sources */,
 				8427A3D029E274FE007E4B2F /* ChangeCollectionScreenViewController.swift in Sources */,
+				84BF4FCF29F2FFA900C4AA12 /* RegisterScreenViewConstants.swift in Sources */,
 				848ED66829E7DDE2005655D0 /* ChatScreenModel.swift in Sources */,
 				84E5702A29E1474400A10579 /* CollectionMoviesTableViewCell.swift in Sources */,
 				84E49CF629D2CE2600BCCA8B /* NewCollectionView.swift in Sources */,
@@ -1691,6 +2009,7 @@
 				84C3314729DAC5FC00904FEA /* ProfileScreenViewController.swift in Sources */,
 				84BF4F9A29F2B1C300C4AA12 /* HistoryRepository.swift in Sources */,
 				84D319E929E710800049F18D /* EpisodesRepositoryImplementation.swift in Sources */,
+				84BF4FE029F3107500C4AA12 /* MainScreenServerFunctions.swift in Sources */,
 				84B7DBB629E5599E00861D4A /* CompilationServerFunctions.swift in Sources */,
 				8406705429F1984700E0AE8E /* SceneDelegate.swift in Sources */,
 				84AF454C29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift in Sources */,
@@ -1710,6 +2029,7 @@
 				843C9B9429D717D600E370EC /* MovieScreenViewController.swift in Sources */,
 				848ED67129E7ED20005655D0 /* ChatListScreenViewModel.swift in Sources */,
 				84E49CF829D2CE3500BCCA8B /* NewCollectionViewCell.swift in Sources */,
+				84BF4FE429F3116E00C4AA12 /* MainScreenUIFunctions.swift in Sources */,
 				84EB775A29D99472002F5137 /* CoverRepository.swift in Sources */,
 				844A26BC29D80E5C00395B0C /* ShotsCollectionView.swift in Sources */,
 				84EB776629D99F5E002F5137 /* EpisodeScreenViewModel.swift in Sources */,
@@ -1722,7 +2042,140 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		84BF4FA629F2E83B00C4AA12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 84BF4FA529F2E83B00C4AA12 /* RswiftGenerateInternalResources */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		84BF4FB229F2F48A00C4AA12 /* LoginScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF4FB129F2F48A00C4AA12 /* en */,
+				84BF4FB329F2F5D100C4AA12 /* ru */,
+			);
+			name = LoginScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF4FBD29F2FB9600C4AA12 /* Errors.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF4FBC29F2FB9600C4AA12 /* en */,
+				84BF4FBE29F2FB9A00C4AA12 /* ru */,
+			);
+			name = Errors.strings;
+			sourceTree = "<group>";
+		};
+		84BF4FCA29F2FD9A00C4AA12 /* RegisterScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF4FC929F2FD9A00C4AA12 /* en */,
+				84BF4FCB29F2FD9B00C4AA12 /* ru */,
+			);
+			name = RegisterScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF4FD629F3015200C4AA12 /* MainScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF4FD529F3015200C4AA12 /* en */,
+				84BF4FD729F3015500C4AA12 /* ru */,
+			);
+			name = MainScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF4FEB29F3152C00C4AA12 /* MovieScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF4FEA29F3152C00C4AA12 /* en */,
+				84BF4FEC29F3152D00C4AA12 /* ru */,
+			);
+			name = MovieScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF4FFB29F3273A00C4AA12 /* EpisodeScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF4FFA29F3273A00C4AA12 /* en */,
+				84BF4FFC29F3273E00C4AA12 /* ru */,
+			);
+			name = EpisodeScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF500329F3296400C4AA12 /* ProfileScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF500229F3296400C4AA12 /* en */,
+				84BF500429F3296700C4AA12 /* ru */,
+			);
+			name = ProfileScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF501029F32BA300C4AA12 /* ChangeCollectionScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF500F29F32BA300C4AA12 /* en */,
+				84BF501129F32BA700C4AA12 /* ru */,
+			);
+			name = ChangeCollectionScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF501629F32BB600C4AA12 /* CollectionScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF501529F32BB600C4AA12 /* en */,
+				84BF501729F32BB900C4AA12 /* ru */,
+			);
+			name = CollectionScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF502229F32BE000C4AA12 /* CreateCollectionScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF502129F32BE000C4AA12 /* en */,
+				84BF502329F32BE200C4AA12 /* ru */,
+			);
+			name = CreateCollectionScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF502829F32BF100C4AA12 /* CollectionsScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF502729F32BF100C4AA12 /* en */,
+				84BF502929F32BF300C4AA12 /* ru */,
+			);
+			name = CollectionsScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF503229F3337000C4AA12 /* CompilationScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF503129F3337000C4AA12 /* en */,
+				84BF503329F3337100C4AA12 /* ru */,
+			);
+			name = CompilationScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF503C29F3344E00C4AA12 /* ChatListScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF503B29F3344E00C4AA12 /* en */,
+				84BF503D29F3345100C4AA12 /* ru */,
+			);
+			name = ChatListScreenStrings.strings;
+			sourceTree = "<group>";
+		};
+		84BF504329F3349C00C4AA12 /* ChatScreenStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BF504229F3349C00C4AA12 /* en */,
+				84BF504429F3349E00C4AA12 /* ru */,
+			);
+			name = ChatScreenStrings.strings;
+			sourceTree = "<group>";
+		};
 		84E4C7F329CAD6F90004732C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1738,6 +2191,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1798,6 +2252,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1988,6 +2443,14 @@
 				kind = branch;
 			};
 		};
+		84BF4FA029F2E56400C4AA12 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2025,6 +2488,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 84969C8229E06ED600D98A56 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		84BF4FA129F2E56400C4AA12 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84BF4FA029F2E56400C4AA12 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
+		84BF4FA529F2E83B00C4AA12 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

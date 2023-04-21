@@ -30,7 +30,7 @@ extension CompilationScreenView {
                     }
                 }
                 else {
-                    self.showAlert(title: "Movies Loading Error", message: self.viewModel.error)
+                    self.showAlert(title: R.string.compilationScreenStrings.movies_loading_error(), message: self.viewModel.error)
                 }
             }
         }
@@ -40,7 +40,7 @@ extension CompilationScreenView {
         DispatchQueue.global(qos: .userInteractive).async {
             self.viewModel.dislikeMovie(movieId: self.viewModel.movies[self.currentMovieIndex - 1].movieId) { success in
                 if !success {
-                    self.showAlert(title: "Movie Dislike Error", message: self.viewModel.error)
+                    self.showAlert(title: R.string.compilationScreenStrings.movie_dislike_error(), message: self.viewModel.error)
                 }
             }
         }
@@ -50,7 +50,7 @@ extension CompilationScreenView {
         DispatchQueue.global(qos: .userInitiated).async {
             self.viewModel.addToFavourites(collectionId: UserDataManager.shared.fetchFavouritesCollectionId(), movieId: self.viewModel.movies[self.currentMovieIndex - 1].movieId) { success in
                 if !success {
-                    self.showAlert(title: "Movie Like Error", message: self.viewModel.error)
+                    self.showAlert(title: R.string.compilationScreenStrings.movie_like_error(), message: self.viewModel.error)
                 }
             }
         }

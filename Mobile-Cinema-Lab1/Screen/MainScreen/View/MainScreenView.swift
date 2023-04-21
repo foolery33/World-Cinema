@@ -52,7 +52,6 @@ class MainScreenView: UIView {
     private func setupContentView() {
         scrollView.addSubview(contentView)
         setupPoster()
-//        setupForegroundPoster()
         setupWatchPosterButton()
         setupCollectionsStackView()
         contentView.snp.makeConstraints { make in
@@ -63,7 +62,7 @@ class MainScreenView: UIView {
     
     // MARK: - Poster image setup
     
-    private lazy var poster: UIImageView = {
+    lazy var poster: UIImageView = {
         let myPoster = UIImageView()
         myPoster.clipsToBounds = true
         myPoster.isSkeletonable = true
@@ -72,15 +71,10 @@ class MainScreenView: UIView {
     private lazy var gradient: CAGradientLayer = {
         let myGradient = CAGradientLayer()
         myGradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        myGradient.startPoint = CGPoint(x: 0, y: 0.7)
-        myGradient.endPoint = CGPoint(x: 0, y: 1)
+        myGradient.startPoint = Constants.gradientStartPoint
+        myGradient.endPoint = Constants.gradientEndPoint
         return myGradient
     }()
-//    private lazy var foregroundPoster: UIImageView = {
-//        let myForegroundPoster = UIImageView()
-//        myForegroundPoster.clipsToBounds = true
-//        return myForegroundPoster
-//    }()
     override func layoutSubviews() {
         gradient.frame = poster.bounds
         poster.layer.addSublayer(gradient)
@@ -91,26 +85,18 @@ class MainScreenView: UIView {
         poster.snp.makeConstraints { make in
             make.width.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(-topInset)
-            make.height.equalTo(400)
+            make.height.equalTo(Scales.posterHeight)
         }
     }
-//    private func setupForegroundPoster() {
-//        poster.addSubview(foregroundPoster)
-//        foregroundPoster.snp.makeConstraints { make in
-//            make.center.equalToSuperview()
-//            make.height.equalTo(98)
-//            make.width.equalTo(240)
-//        }
-//    }
     
     // MARK: Watch poster button setup
     
     private lazy var watchPosterButton: UIButton = {
         let myButton = UIButton(type: .system)
-        myButton.setTitle("Смотреть", for: .normal)
+        myButton.setTitle(R.string.mainScreenStrings.watch(), for: .normal)
         myButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         myButton.setTitleColor(.white, for: .normal)
-        myButton.contentEdgeInsets = UIEdgeInsets(top: 13, left: 32, bottom: 13, right: 32)
+        myButton.contentEdgeInsets = Scales.watchPosterButtonInsets
         myButton.backgroundColor = .redColor
         myButton.layer.cornerRadius = 4
         return myButton
@@ -118,7 +104,7 @@ class MainScreenView: UIView {
     private func setupWatchPosterButton() {
         contentView.addSubview(watchPosterButton)
         watchPosterButton.snp.makeConstraints { make in
-            make.bottom.equalTo(poster.snp.bottom).inset(64)
+            make.bottom.equalTo(poster.snp.bottom).inset(Paddings.watchPosterBottomPadding)
             make.centerX.equalToSuperview()
         }
     }
@@ -129,7 +115,7 @@ class MainScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.isSkeletonable = true
         myStackView.axis = .vertical
-        myStackView.spacing = 32
+        myStackView.spacing = CGFloat(Constants.collectionsStackViewSpacing)
         return myStackView
     }()
     private func setupCollectionsStackView() {
@@ -141,9 +127,9 @@ class MainScreenView: UIView {
         setupInterestsButtonStack()
         
         collectionsStackView.snp.makeConstraints { make in
-            make.top.equalTo(poster.snp.bottom).offset(32)
+            make.top.equalTo(poster.snp.bottom).offset(Paddings.doubleDefaultPadding)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-44)
+            make.bottom.equalToSuperview().offset(Paddings.collectionsStackViewBottomPadding)
         }
     }
     
@@ -152,7 +138,7 @@ class MainScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.isSkeletonable = true
         myStackView.axis = .vertical
-        myStackView.spacing = 16
+        myStackView.spacing = CGFloat(Constants.inTrendStackViewSpacing)
         return myStackView
     }()
     private func setupInTrendStackView() {
@@ -162,7 +148,7 @@ class MainScreenView: UIView {
 
         inTrendStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(144 + inTrendStack.spacing + inTrendLabel.frame.size.height)
+            make.height.equalTo(Scales.inTrendCollectionViewCellHeight + inTrendStack.spacing + inTrendLabel.frame.size.height)
         }
     }
     // MARK: InTrendCollectionView setup
@@ -182,7 +168,7 @@ class MainScreenView: UIView {
     private lazy var inTrendLabelStack: UIStackView = {
         let myStackView = UIStackView()
         myStackView.isSkeletonable = true
-        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        myStackView.layoutMargins = Scales.inTrendLabelStackMargins
         myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
     }()
@@ -194,15 +180,15 @@ class MainScreenView: UIView {
     private lazy var inTrendLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.isSkeletonable = true
-        myLabel.numberOfLines = 0
-        myLabel.text = "В тренде"
+        myLabel.numberOfLines = Constants.unlimitedLines
+        myLabel.text = R.string.mainScreenStrings.in_trend()
         myLabel.textColor = .redColor
         myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         myLabel.sizeToFit()
         return myLabel
     }()
     // MARK: Reload InTrendCollectionView
-    private func reloadInTrendMoviesView() {
+    func reloadInTrendMoviesView() {
         if(self.viewModel.inTrendMoviesViewModel.inTrendMovies.isEmpty) {
             inTrendStack.removeFromSuperview()
         }
@@ -217,7 +203,7 @@ class MainScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.isSkeletonable = true
         myStackView.axis = .vertical
-        myStackView.spacing = 16
+        myStackView.spacing = CGFloat(Constants.lastStackViewSpacing)
         return myStackView
     }()
     private func setupLastViewStackView() {
@@ -227,14 +213,14 @@ class MainScreenView: UIView {
 
         lastViewStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(240 + lastViewStack.spacing + lastViewLabel.frame.size.height)
+            make.height.equalTo(Scales.lastViewImageHeight + lastViewStack.spacing + lastViewLabel.frame.size.height)
         }
     }
     // MARK: InTrend label stack setup
     private lazy var lastViewLabelStack: UIStackView = {
         let myStackView = UIStackView()
         myStackView.isSkeletonable = true
-        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        myStackView.layoutMargins = Scales.lastViewLabelStackMargins
         myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
     }()
@@ -246,8 +232,8 @@ class MainScreenView: UIView {
     private lazy var lastViewLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.isSkeletonable = true
-        myLabel.numberOfLines = 0
-        myLabel.text = "Вы смотрели"
+        myLabel.numberOfLines = Constants.unlimitedLines
+        myLabel.text = R.string.mainScreenStrings.you_watched()
         myLabel.textColor = .redColor
         myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         myLabel.sizeToFit()
@@ -268,13 +254,13 @@ class MainScreenView: UIView {
         setupLastViewPlayButton()
         lastViewImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(240)
+            make.height.equalTo(Scales.lastViewImageHeight)
         }
     }
     // MARK: LastView PlayButton setup
     private lazy var lastViewPlayButton: UIButton = {
         let myButton = UIButton(type: .custom)
-        myButton.setImage(UIImage(named: "Polygon"), for: .normal)
+        myButton.setImage(R.image.polygon(), for: .normal)
         myButton.addImagePressedEffect()
         myButton.addTarget(self, action: #selector(onLastViewMovieButtonClicked), for: .touchUpInside)
         return myButton
@@ -287,7 +273,7 @@ class MainScreenView: UIView {
         }
     }
     // MARK: Reload LastSeenCollectionView
-    private func reloadLastViewMoviesView() {
+    func reloadLastViewMoviesView() {
         if(self.viewModel.lastViewMoviesViewModel.lastViewMovies.isEmpty) {
             lastViewStack.removeFromSuperview()
         }
@@ -304,7 +290,7 @@ class MainScreenView: UIView {
                 self.viewModel.lastViewMoviesViewModel.goToEpisodeScreen()
             }
             else {
-                self.showAlert(title: "Episode Loading Error", message: self.viewModel.lastViewMoviesViewModel.error)
+                self.showAlert(title: R.string.mainScreenStrings.episode_loading_error(), message: self.viewModel.lastViewMoviesViewModel.error)
             }
         }
     }
@@ -314,7 +300,7 @@ class MainScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.isSkeletonable = true
         myStackView.axis = .vertical
-        myStackView.spacing = 16
+        myStackView.spacing = CGFloat(Constants.newStackSpacing)
         return myStackView
     }()
     private func setupNewStackView() {
@@ -324,14 +310,14 @@ class MainScreenView: UIView {
 
         newStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(144 + newStack.spacing + newLabel.frame.size.height)
+            make.height.equalTo(Scales.newStackViewCellHeight + newStack.spacing + newLabel.frame.size.height)
         }
     }
     // MARK: New label stack setup
     private lazy var newLabelStack: UIStackView = {
         let myStackView = UIStackView()
         myStackView.isSkeletonable = true
-        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        myStackView.layoutMargins = Scales.newLabelStackMargins
         myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
     }()
@@ -343,8 +329,8 @@ class MainScreenView: UIView {
     private lazy var newLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.isSkeletonable = true
-        myLabel.numberOfLines = 0
-        myLabel.text = "Новое"
+        myLabel.numberOfLines = Constants.unlimitedLines
+        myLabel.text = R.string.mainScreenStrings.new()
         myLabel.textColor = .redColor
         myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         myLabel.sizeToFit()
@@ -363,7 +349,7 @@ class MainScreenView: UIView {
             make.leading.trailing.equalToSuperview()
         }
     }
-    private func reloadNewMoviesView() {
+    func reloadNewMoviesView() {
         if(self.viewModel.newMoviesViewModel.newMovies.isEmpty) {
             newStack.removeFromSuperview()
         }
@@ -378,7 +364,7 @@ class MainScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.isSkeletonable = true
         myStackView.axis = .vertical
-        myStackView.spacing = 16
+        myStackView.spacing = CGFloat(Constants.forMeStackSpacing)
         return myStackView
     }()
     private func setupForMeStackView() {
@@ -388,14 +374,14 @@ class MainScreenView: UIView {
 
         forMeStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(144 + forMeStack.spacing + forMeLabel.frame.size.height)
+            make.height.equalTo(Scales.newStackViewCellHeight + forMeStack.spacing + forMeLabel.frame.size.height)
         }
     }
     // MARK: ForMe label stack setup
     private lazy var forMeLabelStack: UIStackView = {
         let myStackView = UIStackView()
         myStackView.isSkeletonable = true
-        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        myStackView.layoutMargins = Scales.forMeLabelStackMargins
         myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
     }()
@@ -407,8 +393,8 @@ class MainScreenView: UIView {
     private lazy var forMeLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.isSkeletonable = true
-        myLabel.numberOfLines = 0
-        myLabel.text = "Для вас"
+        myLabel.numberOfLines = Constants.unlimitedLines
+        myLabel.text = R.string.mainScreenStrings.for_you()
         myLabel.textColor = .redColor
         myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         myLabel.sizeToFit()
@@ -428,7 +414,7 @@ class MainScreenView: UIView {
         }
     }
     // MARK: Reload InTrendCollectionView
-    private func reloadForYouMoviesView() {
+    func reloadForYouMoviesView() {
         if(self.viewModel.inTrendMoviesViewModel.inTrendMovies.isEmpty) {
             forMeStack.removeFromSuperview()
         }
@@ -441,7 +427,7 @@ class MainScreenView: UIView {
     // MARK: - SetInterests button stack setup
     private lazy var setInretestsButtonStack: UIStackView = {
         let myStackView = UIStackView()
-        myStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        myStackView.layoutMargins = Scales.setInterestsButtonStackMargins
         myStackView.isLayoutMarginsRelativeArrangement = true
         return myStackView
     }()
@@ -452,77 +438,14 @@ class MainScreenView: UIView {
     // MARK: SetInterests button setup
     private lazy var setInterestsButton: UIButton = {
         let myButton = FilledButton()
-        return myButton.getFilledButton(label: "Указать интересы", selector: nil)
+        return myButton.getFilledButton(label: R.string.mainScreenStrings.set_interests(), selector: nil)
     }()
-    
-    func loadCover() {
-        DispatchQueue.main.async {
-            self.viewModel.getCover { success in
-                if(success) {
-                    self.poster.loadImageWithURL(self.viewModel.cover.backgroundImage) {
-                        self.poster.hideSkeleton()
-                    }
-//                    self.foregroundPoster.loadImageWithURL(self.viewModel.cover.foregroundImage)
-                }
-                else {
-                    self.showAlert(title: "Cover Loading Failed", message: self.viewModel.error)
-                }
-            }
-        }
-    }
-    
-    func loadSections() {
-        self.setupSkeleton()
-        DispatchQueue.main.async {
-            self.viewModel.inTrendMoviesViewModel.getInTrendMovies { success in
-                if(success) {
-                    self.reloadInTrendMoviesView()
-                }
-                else {
-                    print("error", self.viewModel.inTrendMoviesViewModel.error)
-                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.inTrendMoviesViewModel.error)
-                }
-            }
-            self.viewModel.lastViewMoviesViewModel.getLastViewMovies { success in
-                if success {
-                    self.viewModel.lastViewMoviesViewModel.getHistory { newSuccess in
-                        if(newSuccess) {
-                            self.reloadLastViewMoviesView()
-                        }
-                        else {
-                            self.showAlert(title: "History Loading Failed", message: self.viewModel.lastViewMoviesViewModel.error)
-                        }
-                    }
-                }
-                else {
-                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.lastViewMoviesViewModel.error)
-                }
-            }
-            self.viewModel.newMoviesViewModel.getNewMovies { success in
-                if(success) {
-                    self.reloadNewMoviesView()
-                }
-                else {
-                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.newMoviesViewModel.error)
-                }
-            }
-            self.viewModel.forMeMoviesViewModel.getForMeMovies { success in
-                if(success) {
-                    self.reloadForYouMoviesView()
-                }
-                else {
-                    self.showAlert(title: "Movies Loading Failed", message: self.viewModel.forMeMoviesViewModel.error)
-                }
-                self.stopSkeleton()
-            }
-        }
-    }
     
 }
 
 extension MainScreenView {
     func setupSkeleton() {
-        self.contentView.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.contentView.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
     }
     
     func stopSkeleton() {

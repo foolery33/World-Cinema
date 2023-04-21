@@ -1,0 +1,15 @@
+/* 
+  LoginScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 21.04.2023.
+  
+*/
+
+// MARK: - View
+"email" = "E-mail";
+"password" = "Password";
+"login" = "Login";
+"register" = "Register";
+"login_failed" = "Login failed";
+"ok" = "OK";

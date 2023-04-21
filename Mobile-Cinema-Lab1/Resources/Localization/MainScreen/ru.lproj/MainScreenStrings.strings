@@ -1,0 +1,22 @@
+/* 
+  MainScreenStrings.strings
+  Mobile-Cinema-Lab1
+
+  Created by admin on 22.04.2023.
+  
+*/
+
+"watch" = "Смотреть";
+"in_trend" = "В тренде";
+"you_watched" = "Вы смотрели";
+"episode_loading_error" = "Ошибка загрузки эпизода";
+"new" = "Новое";
+"for_you" = "Для вас";
+"set_interests" = "Указать интересы";
+"cover_loading_failed" = "Ошибка загрузки постера";
+"movies_loading_failed" = "Ошибка загрузки фильмов";
+"history_loading_failed" = "Ошибка загрузки истории просмотров";
+"home" = "Главное";
+"compilation" = "Подборка";
+"collections" = "Коллекции";
+"profile" = "Профиль";

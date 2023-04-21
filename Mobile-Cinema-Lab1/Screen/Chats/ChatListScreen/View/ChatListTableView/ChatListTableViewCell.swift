@@ -36,7 +36,7 @@ class ChatListTableViewCell: UITableViewCell {
         self.letters.text = GetFirstTwoLettersOfChatNameUseCase().getLetters(chatName: chat.chatName)
         self.chatNameLabel.text = chat.chatName
         
-        let attributedString = NSMutableAttributedString(string: "\(chat.lastMessage?.authorName ?? ""): ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.grayTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)])
+        let attributedString = NSMutableAttributedString(string: "\(chat.lastMessage?.authorName ?? ""): ", attributes: [NSAttributedString.Key.foregroundColor: R.color.grayTextColor() ?? R.color.grayTextColor() ?? UIColor.grayTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)])
         attributedString.append(NSAttributedString(string: (chat.lastMessage?.text ?? ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)]))
         self.chatLastMessageLabel.attributedText = attributedString
     }

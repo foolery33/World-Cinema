@@ -24,7 +24,7 @@ final class InTrendMovieCell: UICollectionViewCell {
         super.init(frame: frame)
         self.isSkeletonable = true
         self.contentView.isSkeletonable = true
-        self.showAnimatedSkeleton(usingColor: UIColor(red: 33/255, green: 21/255, blue: 18/255, alpha: 1))
+        self.showAnimatedSkeleton(usingColor: R.color.skeletonViewColor() ?? UIColor.skeletonViewColor)
         setupViews()
         setupPosterImageView()
     }
