@@ -252,6 +252,7 @@ class MainScreenView: UIView {
     private func setupLastViewImageView() {
         lastViewStack.addArrangedSubview(lastViewImageView)
         setupLastViewPlayButton()
+        setupLastNameView()
         lastViewImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(Scales.lastViewImageHeight)
@@ -272,13 +273,29 @@ class MainScreenView: UIView {
             make.centerY.equalToSuperview()
         }
     }
+    // MARK: LastViewLabel setup
+    private lazy var lastViewNameLabel: UILabel = {
+        let myLabel = UILabel()
+        myLabel.textColor = .white
+        myLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        myLabel.numberOfLines = 1
+        return myLabel
+    }()
+    private func setupLastNameView() {
+        lastViewImageView.addSubview(lastViewNameLabel)
+        lastViewNameLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().offset(-16)
+        }
+    }
     // MARK: Reload LastSeenCollectionView
     func reloadLastViewMoviesView() {
         if(self.viewModel.lastViewMoviesViewModel.lastViewMovies.isEmpty) {
             lastViewStack.removeFromSuperview()
         }
         else {
-            self.lastViewImageView.loadImageWithURL(self.viewModel.lastViewMoviesViewModel.lastViewMovies[0].poster, contentMode: .scaleAspectFill)
+            self.lastViewImageView.loadImageWithURL(self.viewModel.lastViewMoviesViewModel.history[0].preview, contentMode: .scaleAspectFill)
+            self.lastViewNameLabel.text = self.viewModel.lastViewMoviesViewModel.history[0].episodeName
             self.lastViewStack.hideSkeleton()
         }
     }

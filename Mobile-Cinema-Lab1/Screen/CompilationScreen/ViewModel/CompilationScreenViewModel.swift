@@ -13,6 +13,7 @@ final class CompilationScreenViewModel {
     private var model = CompilationScreenModel()
     private var movieRepository: MovieRepository
     private var collectionsRepository: CollectionsRepository
+    private var collectionsDatabase: CollectionsDatabase
     
     var movies: [MovieModel] {
         get {
@@ -25,9 +26,10 @@ final class CompilationScreenViewModel {
     
     var error: String = ""
     
-    init(movieRepository: MovieRepository, collectionsRepository: CollectionsRepository) {
+    init(movieRepository: MovieRepository, collectionsRepository: CollectionsRepository, collectionsDatabase: CollectionsDatabase) {
         self.movieRepository = movieRepository
         self.collectionsRepository = collectionsRepository
+        self.collectionsDatabase = collectionsDatabase
     }
     
     func goToMovieScreen(movie: MovieModel) {
@@ -63,6 +65,21 @@ final class CompilationScreenViewModel {
         collectionsRepository.addToCollection(collectionId: collectionId, movieId: movieId) { [weak self] result in
             switch result {
             case .success:
+                completion(true)
+            case .failure(let error):
+                self?.error = error.errorDescription
+                completion(false)
+            }
+        }
+    }
+    
+    func getFavouriteCollection(completion: @escaping (Bool) -> Void) {
+        collectionsRepository.getCollections { [weak self] result in
+            switch result {
+            case .success(let data):
+                let collections = data
+                // Сохраняем id коллекции "Избранное"
+                UserDataManager.shared.saveFavouritesCollectionId(id: collections[0].collectionId)
                 completion(true)
             case .failure(let error):
                 self?.error = error.errorDescription

@@ -10,26 +10,33 @@ import SkeletonView
 
 extension CompilationScreenView {
     func loadCompilationMovies() {
-//        self.setupActivityIndicator()
         self.setupSkeleton()
         DispatchQueue.global(qos: .userInteractive).async {
             self.viewModel.getCompilaiton { success in
-                self.stopSkeleton()
                 if success {
-                    if self.viewModel.movies.isEmpty {
-                        self.showEmptyScreen()
-                    }
-                    else {
-                        if self.viewModel.movies.count > 1 {
-                            self.setupImages()
+                    self.getFavouriteCollection { newSuccess in
+                        self.stopSkeleton()
+                        if newSuccess {
+                            if self.viewModel.movies.isEmpty {
+                                self.showEmptyScreen()
+                            }
+                            else {
+                                if self.viewModel.movies.count > 1 {
+                                    self.setupImages()
+                                }
+                                else {
+                                    self.setupImage()
+                                }
+                                self.currentMovieIndex += 1
+                            }
                         }
                         else {
-                            self.setupImage()
+                            self.showAlert(title: R.string.compilationScreenStrings.movie_like_error(), message: self.viewModel.error)
                         }
-                        self.currentMovieIndex += 1
                     }
                 }
                 else {
+                    self.stopSkeleton()
                     self.showAlert(title: R.string.compilationScreenStrings.movies_loading_error(), message: self.viewModel.error)
                 }
             }
@@ -52,6 +59,14 @@ extension CompilationScreenView {
                 if !success {
                     self.showAlert(title: R.string.compilationScreenStrings.movie_like_error(), message: self.viewModel.error)
                 }
+            }
+        }
+    }
+    
+    @objc func getFavouriteCollection(completion: @escaping (Bool) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.viewModel.getFavouriteCollection { success in
+                return completion(success)
             }
         }
     }

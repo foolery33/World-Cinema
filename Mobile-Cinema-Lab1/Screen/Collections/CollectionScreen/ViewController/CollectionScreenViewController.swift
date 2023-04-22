@@ -27,8 +27,6 @@ class CollectionScreenViewController: UIViewController {
         
         // Блокируем возможность редактировать "Избранное"
         if UserDataManager.shared.fetchFavouritesCollectionId() != self.viewModel.collection.collectionId {
-            print(UserDataManager.shared.fetchFavouritesCollectionId())
-            print(self.viewModel.collection.collectionId)
             self.navigationItem.rightBarButtonItem = getNavigationRightItem()
         }
     }

@@ -57,8 +57,6 @@ class AuthCoordinator: Coordinator {
     
     func goToMainScreen() {
         let appCoordinator = parentCoordinator as! AppCoordinator
-//        self.loginViewModel = LoginScreenViewModel(authRepository: AuthRepositoryImplementation())
-//        self.registerViewModel = RegisterScreenViewModel(authRepository: AuthRepositoryImplementation())
         appCoordinator.goToMain()
         parentCoordinator?.childDidFinish(self)
     }

@@ -28,10 +28,6 @@ class InTrendCollectionView: UICollectionView {
     
 }
 
-//extension InTrendCollectionView: SkeletonCollectionViewDataSource, SkeletonCollectionViewDelegate {
-//    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
-//        return InTrendMovieCell.identifier
-//    }
 extension InTrendCollectionView: SkeletonCollectionViewDataSource {
     
     // MARK: - SkeletonCollectionViewDataSource

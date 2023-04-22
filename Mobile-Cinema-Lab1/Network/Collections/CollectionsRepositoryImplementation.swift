@@ -110,6 +110,7 @@ final class CollectionsRepositoryImplementation: CollectionsRepository {
     
     func addToCollection(collectionId: String, movieId: String, completion: @escaping (Result<Bool, AppError>) -> Void) {
         let url = baseURL + "/collections/\(collectionId)/movies"
+        print(url)
         let httpParameters = [
             "movieId": movieId
         ]

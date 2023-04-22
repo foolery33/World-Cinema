@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GetAgeLimitLabelUseCase {
+final class GetAgeLimitLabelUseCase {
     
     func getLabel(ageLimit: String) -> UILabel {
         let myLabel = UILabel()

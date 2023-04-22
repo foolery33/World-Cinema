@@ -57,7 +57,6 @@ extension ChatListScreenView {
     }
     
     func loadChatList() {
-//        setupSkeleton()
         self.viewModel.getChatList { success in
             self.stopSkeleton()
             if(success) {

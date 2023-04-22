@@ -62,7 +62,6 @@ final class ChatScreenViewModel {
     func goToPreviousScreen() {
         unsubscribe()
         print("unsubbed")
-//        self.chatManager.socket = nil
         self.coordinator?.goToPreviousScreen()
     }
     
