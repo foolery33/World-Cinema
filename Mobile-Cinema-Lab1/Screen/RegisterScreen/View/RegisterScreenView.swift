@@ -218,8 +218,8 @@ class RegisterScreenView: UIView {
         viewModel.register { success in
             if(success) {
                 self.viewModel.createFavouritesCollection { success in
-                    self.stopActivityIndicator()
                     if(success) {
+                        self.stopActivityIndicator()
                         self.viewModel.coordinator.goToMainScreen()
                     }
                     else {
@@ -228,6 +228,7 @@ class RegisterScreenView: UIView {
                 }
             }
             else {
+                self.stopActivityIndicator()
                 self.showAlert(title: R.string.registerScreenStrings.register_failed(), message: self.viewModel.error)
             }
         }
@@ -239,7 +240,7 @@ extension UIView {
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: R.string.loginScreenStrings.ok(), style: .default, handler: { _ in
-            if message == AppError.collectionsError(.unauthorized).errorDescription {
+            if message == R.string.errors.unauthorized() {
                 self.validateUser()
             }
         }))

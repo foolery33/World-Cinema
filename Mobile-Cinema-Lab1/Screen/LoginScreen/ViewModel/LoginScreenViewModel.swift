@@ -16,7 +16,7 @@ class LoginScreenViewModel {
         self.authRepository = authRepository
     }
     
-    var email: String = "usov107@gmail.com"
+    var email: String = "usov@yandex.ru"
     var password: String = "us2003ne"
     var error: String = ""
     
