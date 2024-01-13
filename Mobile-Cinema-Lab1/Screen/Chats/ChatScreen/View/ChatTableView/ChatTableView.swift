@@ -11,7 +11,7 @@ import SkeletonView
 class ChatTableView: UITableView {
 
     var viewModel: ChatScreenViewModel?
-    
+
     init() {
         super.init(frame: .zero, style: .plain)
         showsVerticalScrollIndicator = false
@@ -23,7 +23,7 @@ class ChatTableView: UITableView {
         self.register(ChatNotMyMessageTableViewCell.self, forCellReuseIdentifier: ChatNotMyMessageTableViewCell.identifier)
         self.register(ChatDateTableViewCell.self, forCellReuseIdentifier: ChatDateTableViewCell.identifier)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -31,88 +31,33 @@ class ChatTableView: UITableView {
 }
 
 extension ChatTableView: UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (viewModel?.groupedMessages.count ?? 0) + (viewModel?.messages.count ?? 0)
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if(viewModel?.dateIndicies[indexPath.row] is String) {
+        if isDate(index: indexPath.row) {
             let cell = tableView.dequeueReusableCell(withIdentifier: ChatDateTableViewCell.identifier, for: indexPath) as! ChatDateTableViewCell
             cell.setup(date: viewModel?.dateIndicies[indexPath.row] as! String)
             return cell
         }
-        else {
-            let message = viewModel?.dateIndicies[indexPath.row] as! MessageModel
-            
-            if(message.authorId == UserDataManager.shared.fetchUserId()) {
-                
-                // Если следующее сообщение написано тем же человеком, то надо сделать маленькое пространство между сообщениями:
-                if indexPath.row + 1 < viewModel?.dateIndicies.count ?? 0 {
-                    if(viewModel!.dateIndicies[indexPath.row + 1] is MessageModel) {
-                        let nextMessage = viewModel?.dateIndicies[indexPath.row + 1] as! MessageModel
-                        if(message.authorId == nextMessage.authorId) {
-                            let cell = tableView.dequeueReusableCell(withIdentifier: ChatMyMessageTableViewCell.identifier, for: indexPath) as! ChatMyMessageTableViewCell
-                            cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 4)
-                            return cell
-                        }
-                        else {
-                            let cell = tableView.dequeueReusableCell(withIdentifier: ChatMyMessageTableViewCell.identifier, for: indexPath) as! ChatMyMessageTableViewCell
-                            cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16)
-                            return cell
-                        }
-                    }
-                    else {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: ChatMyMessageTableViewCell.identifier, for: indexPath) as! ChatMyMessageTableViewCell
-                        cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 24)
-                        return cell
-                    }
-                }
-                else {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: ChatMyMessageTableViewCell.identifier, for: indexPath) as! ChatMyMessageTableViewCell
-                    cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16)
-                    return cell
-                }
-            }
-            else {
-                // Если следующее сообщение написано не тем же человеком, то надо сделать маленькое пространство между сообщениями:
-                if indexPath.row + 1 < viewModel?.dateIndicies.count ?? 0 {
-                    if(viewModel?.dateIndicies[indexPath.row + 1] is MessageModel) {
-                        let nextMessage = viewModel?.dateIndicies[indexPath.row + 1] as! MessageModel
-                        if(message.authorId == nextMessage.authorId) {
-                            let cell = tableView.dequeueReusableCell(withIdentifier: ChatNotMyMessageTableViewCell.identifier, for: indexPath) as! ChatNotMyMessageTableViewCell
-                            cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 4)
-                            return cell
-                        }
-                        else {
-                            let cell = tableView.dequeueReusableCell(withIdentifier: ChatNotMyMessageTableViewCell.identifier, for: indexPath) as! ChatNotMyMessageTableViewCell
-                            cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16)
-                            return cell
-                        }
-                    }
-                    else {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: ChatNotMyMessageTableViewCell.identifier, for: indexPath) as! ChatNotMyMessageTableViewCell
-                        cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 24)
-                        return cell
-                    }
-                }
-                else {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: ChatNotMyMessageTableViewCell.identifier, for: indexPath) as! ChatNotMyMessageTableViewCell
-                    cell.setup(message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel, bottomSpacing: 16)
-                    return cell
-                }
-            }
-        }
+        let message = viewModel?.dateIndicies[indexPath.row] as! MessageModel
+        return getSetupCellWithBottomSpacing(
+            tableView: tableView,
+            indexPath: indexPath,
+            isMyMessage: isMyMessage(message: message),
+            spacing: getBottomSpacingForCell(
+                message: message,
+                indexPath: indexPath
+            )
+        )
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    }
 }
 
 extension ChatTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+
         if(viewModel?.dateIndicies[indexPath.row] is String) {
             let data = viewModel?.dateIndicies[indexPath.row] as! String
             return data.calculateLabelSize(
@@ -123,5 +68,79 @@ extension ChatTableView: UITableViewDelegate {
         } else {
             return ChatTableView.automaticDimension
         }
+    }
+}
+
+extension ChatTableView {
+    func getSetupCellWithBottomSpacing(
+        tableView: UITableView,
+        indexPath: IndexPath,
+        isMyMessage: Bool,
+        spacing: CGFloat
+    ) -> UITableViewCell {
+        if isMyMessage {
+            if let cell = tableView.dequeueReusableCell(
+                withIdentifier: ChatMyMessageTableViewCell.identifier,
+                for: indexPath
+            ) as? ChatMyMessageTableViewCell {
+                cell.setup(
+                    message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel,
+                    bottomSpacing: spacing
+                )
+                return cell
+            }
+        }
+        if let cell = tableView.dequeueReusableCell(
+            withIdentifier: ChatNotMyMessageTableViewCell.identifier,
+            for: indexPath
+        ) as? ChatNotMyMessageTableViewCell {
+            cell.setup(
+                message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel,
+                bottomSpacing: spacing
+            )
+            return cell
+        }
+        return UITableViewCell()
+    }
+
+    func getBottomSpacingForCell(message: MessageModel, indexPath: IndexPath) -> CGFloat {
+        guard isNotLastMessage(indexPath: indexPath) else {
+            return 16
+        }
+        if isTheSameAuthorOfNextMessage(message: message, indexPath: indexPath) {
+            return 4
+        }
+        if isDate(index: indexPath.row + 1) {
+            return 24
+        }
+        return 16
+    }
+
+    func isTheSameAuthorOfNextMessage(message: MessageModel, indexPath: IndexPath) -> Bool {
+        if isNotLastMessage(indexPath: indexPath) {
+            if isMessage(index: indexPath.row + 1) {
+                let nextMessage = viewModel?.dateIndicies[indexPath.row + 1] as! MessageModel
+                if(message.authorId == nextMessage.authorId) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    func isMyMessage(message: MessageModel) -> Bool {
+        return message.authorId == UserDataManager.shared.fetchUserId()
+    }
+
+    func isMessage(index: Int) -> Bool {
+        return viewModel?.dateIndicies[index] is MessageModel
+    }
+
+    func isDate(index: Int) -> Bool {
+        return viewModel?.dateIndicies[index] is String
+    }
+
+    func isNotLastMessage(indexPath: IndexPath) -> Bool {
+        return indexPath.row + 1 < viewModel?.dateIndicies.count ?? 0
     }
 }
