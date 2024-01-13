@@ -29,77 +29,56 @@ extension CompilationScreenView {
         frontCompilationCardView.userReactionImageView.alpha = 2 * abs(xFromCenter) / self.center.x
      
         if(sender.state == UIGestureRecognizer.State.ended) {
-            
-            if(card.center.x < 75) {
-                // Move off to the left side
-                UIView.animate(withDuration: 0.3, animations: {
-                    card.center = CGPoint(x: card.center.x - 200, y: card.center.y + 75)
-                    card.alpha = 0
-                })
-                self.dislikeMovie()
+            if isSwipedAway(card: card) {
+                dislikeMovie()
+                if isSwipedToLeft(card: card) {
+                    // Move off to the left side
+                    UIView.animate(withDuration: 0.3, animations: {
+                        card.center = CGPoint(x: card.center.x - 200, y: card.center.y + 75)
+                        card.alpha = 0
+                    })
+                } else {
+                    addToFavourites()
+                    // Move off to the right side
+                    UIView.animate(withDuration: 0.3, animations: {
+                        card.center = CGPoint(x: card.center.x + 200, y: card.center.y + 75)
+                        card.alpha = 0
+                    })
+                }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    if(self.currentMovieIndex < self.viewModel.movies.count - 1) {
+                    if(self.currentMovieIndex <= self.viewModel.movies.count - 1) {
                         card.center = self.initialFrontCardCenter
                         card.transform = CGAffineTransform(rotationAngle: 0)
                         self.setupImages()
                         self.frontCompilationCardView.userReactionImageView.alpha = 0
                         self.currentMovieIndex += 1
                         card.alpha = 1
-                    }
-                    else if(self.currentMovieIndex == self.viewModel.movies.count - 1) {
-                        card.center = self.initialFrontCardCenter
-                        card.transform = CGAffineTransform(rotationAngle: 0)
-                        self.setupImage()
-                        self.frontCompilationCardView.userReactionImageView.alpha = 0
-                        card.alpha = 1
-                        self.currentMovieIndex += 1
-                    }
-                    else {
+                    } else {
                         self.showEmptyScreen()
                     }
                 }
-                return
-            }
-            else if(card.center.x > self.frame.width - 75) {
-                // Move off to the right side
-                UIView.animate(withDuration: 0.3, animations: {
-                    card.center = CGPoint(x: card.center.x + 200, y: card.center.y + 75)
-                    card.alpha = 0
+            } else {
+                UIView.animate(withDuration: 0.2, animations: {
+                    card.center = self.initialFrontCardCenter
+                    self.frontCompilationCardView.userReactionImageView.alpha = 0
+                    card.transform = CGAffineTransform(rotationAngle: 0)
                 })
-                self.dislikeMovie()
-                self.addToFavourites()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    if(self.currentMovieIndex < self.viewModel.movies.count - 1) {
-                        card.center = self.initialFrontCardCenter
-                        card.transform = CGAffineTransform(rotationAngle: 0)
-                        self.setupImages()
-                        self.frontCompilationCardView.userReactionImageView.alpha = 0
-                        self.currentMovieIndex += 1
-                        card.alpha = 1
-                    }
-                    else if(self.currentMovieIndex == self.viewModel.movies.count - 1) {
-                        card.center = self.initialFrontCardCenter
-                        card.transform = CGAffineTransform(rotationAngle: 0)
-                        self.setupImage()
-                        self.frontCompilationCardView.userReactionImageView.alpha = 0
-                        card.alpha = 1
-                        self.currentMovieIndex += 1
-                    }
-                    else {
-                        self.showEmptyScreen()
-                    }
-                }
-                return
             }
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                card.center = self.initialFrontCardCenter
-                self.frontCompilationCardView.userReactionImageView.alpha = 0
-                card.transform = CGAffineTransform(rotationAngle: 0)
-            })
         }
     }
-    
+
+    func isSwipedAway(card: UIView) -> Bool {
+        return isSwipedToLeft(card: card) || isSwipedToRight(card: card)
+    }
+
+    func isSwipedToLeft(card: UIView) -> Bool {
+        return card.center.x < 75
+    }
+
+    func isSwipedToRight(card: UIView) -> Bool {
+        return card.center.x > frame.width - 75
+    }
+
     func showEmptyScreen() {
         self.contentView.removeFromSuperview()
         
