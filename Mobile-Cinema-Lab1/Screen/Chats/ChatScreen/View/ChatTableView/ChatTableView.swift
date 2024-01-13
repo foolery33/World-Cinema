@@ -115,24 +115,13 @@ extension ChatTableView: UITableViewDelegate {
         
         if(viewModel?.dateIndicies[indexPath.row] is String) {
             let data = viewModel?.dateIndicies[indexPath.row] as! String
-            return data.calculateLabelSize(font: .systemFont(ofSize: 14, weight: .regular), widthInset: 32, heightInset: 14).height + 24
-        }
-        else {
-            let message = viewModel?.dateIndicies[indexPath.row] as! MessageModel
-            if(message.authorId == UserDataManager.shared.fetchUserId()) {
-                if indexPath.row + 1 < viewModel?.dateIndicies.count ?? 0 {
-                    if(viewModel?.dateIndicies[indexPath.row + 1] is MessageModel) {
-                        let nextMessage = viewModel?.dateIndicies[indexPath.row + 1] as! MessageModel
-                        if(message.authorId == nextMessage.authorId) {
-                            return ChatTableView.automaticDimension
-                        }
-                    }
-                }
-                return ChatTableView.automaticDimension
-            }
-            else {
-                return ChatTableView.automaticDimension
-            }
+            return data.calculateLabelSize(
+                font: .systemFont(ofSize: 14, weight: .regular),
+                widthInset: 32,
+                heightInset: 14
+            ).height + 24
+        } else {
+            return ChatTableView.automaticDimension
         }
     }
 }
