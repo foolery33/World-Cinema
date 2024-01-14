@@ -153,7 +153,7 @@ class MovieScreenView: UIView {
     // MARK: Age limit setup
     
     private lazy var ageLimit: UILabel = {
-        return GetAgeLimitLabelUseCase().getLabel(ageLimit: viewModel.movie.age)
+        return viewModel.getAgeLimit()
     }()
     private func setupAgeLimit() {
         underPosterStack.addArrangedSubview(ageLimit)
@@ -217,7 +217,7 @@ class MovieScreenView: UIView {
     
     private lazy var genresCollectionView: GenresCollectionView = {
         let myCollectionView = GenresCollectionView()
-        myCollectionView.genres = GetGenresListFromTagsUseCase().getList(viewModel.movie.tags)
+        myCollectionView.genres = viewModel.getGenresListFromTags()
         return myCollectionView
     }()
     

@@ -50,7 +50,11 @@ class MainTabBarCoordinator: Coordinator {
         let mainCoordinator = MainCoordinator(
             navigationController: mainNavigationController,
             mainViewModel: self.mainViewModel,
-            movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
+            movieViewModel: MovieScreenViewModel(
+                movieRepository: MovieRepositoryImplementation(),
+                getAgeLimitUseCase: GetAgeLimitLabelUseCase(),
+                getGenresListFromTagsUseCase: GetGenresListFromTagsUseCase()
+            ),
             episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), episodesRepository: EpisodesRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
         mainCoordinator.parentCoordinator = parentCoordinator
         
@@ -62,7 +66,11 @@ class MainTabBarCoordinator: Coordinator {
         // MARK: - CompilationScreen
         
         let compilationNavigationController = UINavigationController()
-        let compilationCoordinator = CompilationCoordinator(navigationController: compilationNavigationController, compilationViewModel: self.compilationViewModel, movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()), episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), episodesRepository: EpisodesRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
+        let compilationCoordinator = CompilationCoordinator(navigationController: compilationNavigationController, compilationViewModel: self.compilationViewModel, movieViewModel: MovieScreenViewModel(
+            movieRepository: MovieRepositoryImplementation(),
+            getAgeLimitUseCase: GetAgeLimitLabelUseCase(),
+            getGenresListFromTagsUseCase: GetGenresListFromTagsUseCase()
+        ), episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), episodesRepository: EpisodesRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
         compilationCoordinator.parentCoordinator = parentCoordinator
         
         let compilationItem = UITabBarItem()
@@ -83,7 +91,11 @@ class MainTabBarCoordinator: Coordinator {
             createCollectionViewModel: CreateCollectionScreenViewModel(
                 collectionsRepository: CollectionsRepositoryImplementation(),
                 collectionsDatabase: self.collectionsDatabase),
-            movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
+            movieViewModel: MovieScreenViewModel(
+                movieRepository: MovieRepositoryImplementation(),
+                getAgeLimitUseCase: GetAgeLimitLabelUseCase(),
+                getGenresListFromTagsUseCase: GetGenresListFromTagsUseCase()
+            ),
             episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), episodesRepository: EpisodesRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase), changeCollectinViewModel: ChangeCollectionScreenViewModel(
                 collection: CollectionModel(collectionId: "", name: ""),
                 collectionsDatabase: self.collectionsDatabase, collectionsRepository: CollectionsRepositoryImplementation(), deleteCollectionDelegate: self.collectionsViewModel, changeCollectionNameDelegate: self.collectionsViewModel)

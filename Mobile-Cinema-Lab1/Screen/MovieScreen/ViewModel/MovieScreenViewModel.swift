@@ -6,13 +6,17 @@
 //
 
 import Foundation
+import UIKit
 
 final class MovieScreenViewModel {
     
     weak var coordinator: MovieToEpisodeNavigationProtocol!
     private var model = MovieScreenModel()
     private var movieRepository: MovieRepository
-    
+
+    private let getAgeLimitUseCase: GetAgeLimitLabelUseCase
+    private let getGenresListFromTagsUseCase: GetGenresListFromTagsUseCase
+
     var movie: MovieModel {
         get {
             model.movie
@@ -33,10 +37,15 @@ final class MovieScreenViewModel {
     
     var error: String = ""
     
-    init(movieRepository: MovieRepository) {
+    init(movieRepository: MovieRepository,
+         getAgeLimitUseCase: GetAgeLimitLabelUseCase,
+         getGenresListFromTagsUseCase: GetGenresListFromTagsUseCase
+    ) {
         self.movieRepository = movieRepository
+        self.getAgeLimitUseCase = getAgeLimitUseCase
+        self.getGenresListFromTagsUseCase = getGenresListFromTagsUseCase
     }
-    
+
     func backToMainScreen() {
         let coordinator = self.coordinator as! Coordinator
         coordinator.navigationController.popViewController(animated: true)
@@ -58,5 +67,13 @@ final class MovieScreenViewModel {
     func goToChatScreen(chat: ChatModel) {
         self.coordinator.goToChatScreen(chat: chat)
     }
-    
+
+    func getAgeLimit() -> UILabel {
+        return getAgeLimitUseCase.getLabel(ageLimit: movie.age)
+    }
+
+    func getGenresListFromTags() -> [String] {
+        return getGenresListFromTagsUseCase.getList(movie.tags)
+    }
+
 }
