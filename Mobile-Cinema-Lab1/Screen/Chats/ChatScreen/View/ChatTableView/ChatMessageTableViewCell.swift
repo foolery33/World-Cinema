@@ -1,5 +1,5 @@
 //
-//  ChatTableViewCell.swift
+//  ChatMessageTableViewCell.swift
 //  Mobile-Cinema-Lab1
 //
 //  Created by admin on 14.04.2023.
@@ -10,20 +10,27 @@ import SnapKit
 import Kingfisher
 import RswiftResources
 
-class ChatMyMessageTableViewCell: UITableViewCell {
-    
+enum MessageType {
+    case myMessage
+    case notMyMessage
+}
+
+final class ChatMessageTableViewCell: UITableViewCell {
+
+    private var messageType: MessageType = .myMessage
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = .none
-        self.backgroundColor = .clear
+        selectionStyle = .none
+        backgroundColor = .clear
         setupSubviews()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setup(message: MessageModel, bottomSpacing: CGFloat, hideAvatar: Bool = false) {
+
+    func setup(messageType: MessageType, message: MessageModel, bottomSpacing: CGFloat, hideAvatar: Bool = false) {
         self.messageLabel.text = message.text
         self.senderNameLabel.text = message.authorName
         self.messageTimeLabel.text = " • \(IsoTimeToHHMMUseCase().convertToTime(message.creationDateTime)!)"
@@ -32,6 +39,8 @@ class ChatMyMessageTableViewCell: UITableViewCell {
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview().offset(-bottomSpacing)
         }
+        self.messageType = messageType
+        configureMessageType(messageType: messageType)
 
         guard !hideAvatar else {
             userAvatarImageView.alpha = .zero
@@ -46,13 +55,25 @@ class ChatMyMessageTableViewCell: UITableViewCell {
             self.userAvatarImageView.alpha = 1
         }
     }
-    
+
+    private func configureMessageType(messageType: MessageType) {
+        messageBackgroundView.layer.maskedCorners = maskedCorners
+        messageBackgroundView.backgroundColor = messageBackgroundViewColor
+        senderNameLabel.textColor = senderNameLabelTextColor
+        messageTimeLabel.textColor = messageTimeLabelTextColor
+
+        setupMessageViewConstraints()
+        setupMessageBackgroundViewConstraints()
+        setupSenderInfoStackConstraints()
+        setupUserAvatarImageViewConstraints()
+    }
+
     private func setupSubviews() {
         setupMessageView()
     }
-    
+
     // MARK: - MessageView setup
-    
+
     private lazy var messageView: UIView = {
         let myView = UIView()
         myView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -63,20 +84,13 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         setupMessageBackgroundView()
         setupUserAvatarImageView()
         setupBlankView()
-        messageView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview()
-            make.leading.greaterThanOrEqualToSuperview().inset(56)
-            make.trailing.equalToSuperview().inset(16)
-        }
     }
-    
+
     // MARK: - MessageBackgroundView setup
-    
+
     private lazy var messageBackgroundView: UIView = {
         let myView = UIView()
-        myView.backgroundColor = .redColor
         myView.layer.cornerRadius = 8
-        myView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
         myView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return myView
     }()
@@ -84,15 +98,10 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         messageView.addSubview(messageBackgroundView)
         setupMessageLabel()
         setupSenderInfoStack()
-        messageBackgroundView.snp.makeConstraints { make in
-//            make.bottom.equalToSuperview()
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
     }
-    
+
     // MARK: - MessageLabel setup
-    
+
     private lazy var messageLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.textColor = .white
@@ -108,9 +117,9 @@ class ChatMyMessageTableViewCell: UITableViewCell {
             make.top.equalToSuperview().offset(12)
         }
     }
-    
+
     // MARK: - SenderInfoStack setup
-    
+
     private lazy var senderInfoStack: UIStackView = {
         let myStackView = UIStackView()
         myStackView.axis = .horizontal
@@ -121,20 +130,13 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         messageBackgroundView.addSubview(senderInfoStack)
         setupSenderNameLabel()
         setupMessageTimeLabel()
-        senderInfoStack.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(16)
-            make.leading.greaterThanOrEqualToSuperview().inset(16)
-            make.bottom.equalToSuperview().offset(-4)
-            make.top.equalTo(messageLabel.snp.bottom).offset(4)
-        }
     }
-    
+
     // MARK: - SenderNameLabel setup
-    
+
     private lazy var senderNameLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.numberOfLines = 1
-        myLabel.textColor = .myMessageSenderColor
         myLabel.font = .systemFont(ofSize: 12, weight: .regular)
         myLabel.textAlignment = .right
         return myLabel
@@ -142,13 +144,12 @@ class ChatMyMessageTableViewCell: UITableViewCell {
     private func setupSenderNameLabel() {
         senderInfoStack.addArrangedSubview(senderNameLabel)
     }
-    
+
     // MARK: - MessageTimeLabel setup
-    
+
     private lazy var messageTimeLabel: UILabel = {
         let myLabel = UILabel()
         myLabel.numberOfLines = 1
-        myLabel.textColor = .myMessageSenderColor
         myLabel.font = .systemFont(ofSize: 12, weight: .regular)
         myLabel.textAlignment = .right
         myLabel.setContentHuggingPriority(.required, for: .horizontal)
@@ -158,9 +159,9 @@ class ChatMyMessageTableViewCell: UITableViewCell {
     private func setupMessageTimeLabel() {
         senderInfoStack.addArrangedSubview(messageTimeLabel)
     }
-    
+
     // MARK: - UserAvatarImageView setup
-    
+
     private lazy var userAvatarImageView: UIImageView = {
         let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         myImageView.layer.cornerRadius = myImageView.frame.height / 2
@@ -170,16 +171,10 @@ class ChatMyMessageTableViewCell: UITableViewCell {
     }()
     private func setupUserAvatarImageView() {
         messageView.addSubview(userAvatarImageView)
-        userAvatarImageView.snp.makeConstraints { make in
-            make.height.width.equalTo(32)
-            make.leading.equalTo(messageBackgroundView.snp.trailing).offset(8)
-            make.bottom.equalTo(messageBackgroundView.snp.bottom)
-            make.trailing.equalToSuperview()
-        }
     }
-    
+
     // MARK: - BlankView setup
-    
+
     private lazy var blankView: UIView = {
         let myView = UIView()
         myView.backgroundColor = .purple
@@ -191,8 +186,104 @@ class ChatMyMessageTableViewCell: UITableViewCell {
 
 }
 
-extension ChatMyMessageTableViewCell: ReusableView {
+// MARK: - ReusableView
+
+extension ChatMessageTableViewCell: ReusableView {
     static var identifier: String {
         return String(describing: self)
+    }
+}
+
+private extension ChatMessageTableViewCell {
+    var maskedCorners: CACornerMask {
+        switch messageType {
+        case .myMessage:
+            return [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
+        case .notMyMessage:
+            return [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        }
+    }
+
+    var messageBackgroundViewColor: UIColor {
+        switch messageType {
+        case .myMessage:
+            return .redColor
+        case .notMyMessage:
+            return .chatElementBackground
+        }
+    }
+
+    var senderNameLabelTextColor: UIColor {
+        switch messageType {
+        case .myMessage:
+            return .myMessageSenderColor
+        case .notMyMessage:
+            return .notMyMessageInfoColor
+        }
+    }
+
+    var messageTimeLabelTextColor: UIColor {
+        switch messageType {
+        case .myMessage:
+            return .myMessageSenderColor
+        case .notMyMessage:
+            return .notMyMessageInfoColor
+        }
+    }
+
+    func setupMessageViewConstraints() {
+        messageView.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview()
+            switch messageType {
+            case .myMessage:
+                make.leading.greaterThanOrEqualToSuperview().inset(56)
+                make.trailing.equalToSuperview().inset(16)
+            case .notMyMessage:
+                make.trailing.lessThanOrEqualToSuperview().inset(56)
+                make.leading.equalToSuperview().inset(16)
+            }
+        }
+    }
+
+    func setupMessageBackgroundViewConstraints() {
+        messageBackgroundView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            switch messageType {
+            case .myMessage:
+                make.leading.equalToSuperview()
+            case .notMyMessage:
+                make.trailing.equalToSuperview()
+            }
+        }
+    }
+
+    func setupSenderInfoStackConstraints() {
+        senderInfoStack.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-4)
+            make.top.equalTo(messageLabel.snp.bottom).offset(4)
+            switch messageType {
+            case .myMessage:
+                make.trailing.equalToSuperview().inset(16)
+                make.leading.greaterThanOrEqualToSuperview().inset(16)
+            case .notMyMessage:
+                make.trailing.lessThanOrEqualToSuperview().inset(16)
+                make.leading.equalToSuperview().inset(16)
+            }
+        }
+    }
+
+    func setupUserAvatarImageViewConstraints() {
+        userAvatarImageView.snp.makeConstraints { make in
+            make.height.width.equalTo(32)
+            make.bottom.equalTo(messageBackgroundView.snp.bottom)
+            switch messageType {
+            case .myMessage:
+                make.trailing.equalToSuperview()
+                make.leading.equalTo(messageBackgroundView.snp.trailing).offset(8)
+            case .notMyMessage:
+                make.trailing.equalTo(messageBackgroundView.snp.leading).inset(-8)
+                make.leading.equalToSuperview()
+            }
+        }
     }
 }

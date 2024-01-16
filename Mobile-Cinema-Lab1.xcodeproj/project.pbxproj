@@ -93,12 +93,10 @@
 		84AF453829E8FAF50028C17E /* ChatScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF453729E8FAF50028C17E /* ChatScreenView.swift */; };
 		84AF453B29E9182B0028C17E /* GroupMessagesByDateAndTimeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF453A29E9182B0028C17E /* GroupMessagesByDateAndTimeUseCase.swift */; };
 		84AF453E29E921150028C17E /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF453D29E921150028C17E /* ChatTableView.swift */; };
-		84AF454029E9211F0028C17E /* ChatMyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF453F29E9211F0028C17E /* ChatMyMessageTableViewCell.swift */; };
 		84AF454229E928340028C17E /* RecognizeChatCellsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454129E928340028C17E /* RecognizeChatCellsUseCase.swift */; };
 		84AF454429E92AEA0028C17E /* ChatDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454329E92AEA0028C17E /* ChatDateTableViewCell.swift */; };
 		84AF454629E93A000028C17E /* GetDayAndMonthFromStringDateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454529E93A000028C17E /* GetDayAndMonthFromStringDateUseCase.swift */; };
 		84AF454829E957F20028C17E /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454729E957F20028C17E /* UserDataManager.swift */; };
-		84AF454A29E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454929E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift */; };
 		84AF454C29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF454B29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift */; };
 		84B6049329CD9BCB0047A603 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6049229CD9BCB0047A603 /* AuthCoordinator.swift */; };
 		84B6049B29CDEEF00047A603 /* AuthRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6049A29CDEEF00047A603 /* AuthRepositoryImplementation.swift */; };
@@ -189,6 +187,7 @@
 		84E5702829E1473200A10579 /* CollectionMoviesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E5702729E1473200A10579 /* CollectionMoviesTableView.swift */; };
 		84E5702A29E1474400A10579 /* CollectionMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E5702929E1474400A10579 /* CollectionMoviesTableViewCell.swift */; };
 		84E5702D29E15D7400A10579 /* MovieHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E5702C29E15D7400A10579 /* MovieHandlerDelegate.swift */; };
+		84E61FF82B5708C700116957 /* ChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E61FF72B5708C700116957 /* ChatMessageTableViewCell.swift */; };
 		84EB775A29D99472002F5137 /* CoverRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB775929D99472002F5137 /* CoverRepository.swift */; };
 		84EB775D29D994CB002F5137 /* CoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB775C29D994CB002F5137 /* CoverModel.swift */; };
 		84EB775F29D99534002F5137 /* CoverRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB775E29D99534002F5137 /* CoverRepositoryImplementation.swift */; };
@@ -279,12 +278,10 @@
 		84AF453729E8FAF50028C17E /* ChatScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenView.swift; sourceTree = "<group>"; };
 		84AF453A29E9182B0028C17E /* GroupMessagesByDateAndTimeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMessagesByDateAndTimeUseCase.swift; sourceTree = "<group>"; };
 		84AF453D29E921150028C17E /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
-		84AF453F29E9211F0028C17E /* ChatMyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMyMessageTableViewCell.swift; sourceTree = "<group>"; };
 		84AF454129E928340028C17E /* RecognizeChatCellsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizeChatCellsUseCase.swift; sourceTree = "<group>"; };
 		84AF454329E92AEA0028C17E /* ChatDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDateTableViewCell.swift; sourceTree = "<group>"; };
 		84AF454529E93A000028C17E /* GetDayAndMonthFromStringDateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDayAndMonthFromStringDateUseCase.swift; sourceTree = "<group>"; };
 		84AF454729E957F20028C17E /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
-		84AF454929E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNotMyMessageTableViewCell.swift; sourceTree = "<group>"; };
 		84AF454B29E9B8D20028C17E /* IsoTimeToHHMMUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoTimeToHHMMUseCase.swift; sourceTree = "<group>"; };
 		84B6049229CD9BCB0047A603 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		84B6049A29CDEEF00047A603 /* AuthRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryImplementation.swift; sourceTree = "<group>"; };
@@ -390,6 +387,7 @@
 		84E5702729E1473200A10579 /* CollectionMoviesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMoviesTableView.swift; sourceTree = "<group>"; };
 		84E5702929E1474400A10579 /* CollectionMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMoviesTableViewCell.swift; sourceTree = "<group>"; };
 		84E5702C29E15D7400A10579 /* MovieHandlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHandlerDelegate.swift; sourceTree = "<group>"; };
+		84E61FF72B5708C700116957 /* ChatMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageTableViewCell.swift; sourceTree = "<group>"; };
 		84EB775929D99472002F5137 /* CoverRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverRepository.swift; sourceTree = "<group>"; };
 		84EB775C29D994CB002F5137 /* CoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverModel.swift; sourceTree = "<group>"; };
 		84EB775E29D99534002F5137 /* CoverRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverRepositoryImplementation.swift; sourceTree = "<group>"; };
@@ -979,9 +977,8 @@
 			isa = PBXGroup;
 			children = (
 				84AF453D29E921150028C17E /* ChatTableView.swift */,
-				84AF453F29E9211F0028C17E /* ChatMyMessageTableViewCell.swift */,
 				84AF454329E92AEA0028C17E /* ChatDateTableViewCell.swift */,
-				84AF454929E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift */,
+				84E61FF72B5708C700116957 /* ChatMessageTableViewCell.swift */,
 			);
 			path = ChatTableView;
 			sourceTree = "<group>";
@@ -1889,6 +1886,7 @@
 				84EB776A29D9A03F002F5137 /* EpisodeScreenViewController.swift in Sources */,
 				8428978D29DC34DB0096D409 /* CollectionsTableView.swift in Sources */,
 				848ED67C29E81EED005655D0 /* ChatModel.swift in Sources */,
+				84E61FF82B5708C700116957 /* ChatMessageTableViewCell.swift in Sources */,
 				84D7861A29CCAE9F004D518D /* RegisterScreenModel.swift in Sources */,
 				844A26C529D82E1100395B0C /* EpisodesTableViewCell.swift in Sources */,
 				84AF453B29E9182B0028C17E /* GroupMessagesByDateAndTimeUseCase.swift in Sources */,
@@ -1922,7 +1920,6 @@
 				8428979729DC7D050096D409 /* CollectionsRepositoryImplementation.swift in Sources */,
 				8428978A29DC1EDC0096D409 /* CollectionsScreenView.swift in Sources */,
 				84AF453E29E921150028C17E /* ChatTableView.swift in Sources */,
-				84AF454029E9211F0028C17E /* ChatMyMessageTableViewCell.swift in Sources */,
 				8428978F29DC34E90096D409 /* CollectionsTableViewCell.swift in Sources */,
 				8428978629DC1E8D0096D409 /* CollectionsScreenViewModel.swift in Sources */,
 				84E5702D29E15D7400A10579 /* MovieHandlerDelegate.swift in Sources */,
@@ -1941,7 +1938,6 @@
 				84EB776C29D9A09B002F5137 /* EpisodeScreenView.swift in Sources */,
 				843C9B9829D71AAE00E370EC /* MovieScreenView.swift in Sources */,
 				84D785FA29CC54FB004D518D /* AppCoordinator.swift in Sources */,
-				84AF454A29E95ABC0028C17E /* ChatNotMyMessageTableViewCell.swift in Sources */,
 				84EB775F29D99534002F5137 /* CoverRepositoryImplementation.swift in Sources */,
 				8428978429DC1E750096D409 /* CollectionsScreenModel.swift in Sources */,
 				84C3314129DAC4AF00904FEA /* ProfileScreenViewModel.swift in Sources */,

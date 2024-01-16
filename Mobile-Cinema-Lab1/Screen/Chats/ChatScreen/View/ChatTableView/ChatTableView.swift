@@ -19,8 +19,7 @@ class ChatTableView: UITableView {
         delegate = self
         separatorStyle = .none
         backgroundColor = .clear
-        self.register(ChatMyMessageTableViewCell.self, forCellReuseIdentifier: ChatMyMessageTableViewCell.identifier)
-        self.register(ChatNotMyMessageTableViewCell.self, forCellReuseIdentifier: ChatNotMyMessageTableViewCell.identifier)
+        self.register(ChatMessageTableViewCell.self, forCellReuseIdentifier: ChatMessageTableViewCell.identifier)
         self.register(ChatDateTableViewCell.self, forCellReuseIdentifier: ChatDateTableViewCell.identifier)
     }
 
@@ -78,24 +77,12 @@ extension ChatTableView {
         isMyMessage: Bool,
         spacing: CGFloat
     ) -> UITableViewCell {
-        if isMyMessage {
-            if let cell = tableView.dequeueReusableCell(
-                withIdentifier: ChatMyMessageTableViewCell.identifier,
-                for: indexPath
-            ) as? ChatMyMessageTableViewCell {
-                cell.setup(
-                    message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel,
-                    bottomSpacing: spacing,
-                    hideAvatar: hideAvatar(indexPath: indexPath)
-                )
-                return cell
-            }
-        }
         if let cell = tableView.dequeueReusableCell(
-            withIdentifier: ChatNotMyMessageTableViewCell.identifier,
+            withIdentifier: ChatMessageTableViewCell.identifier,
             for: indexPath
-        ) as? ChatNotMyMessageTableViewCell {
+        ) as? ChatMessageTableViewCell {
             cell.setup(
+                messageType: isMyMessage ? .myMessage : .notMyMessage,
                 message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel,
                 bottomSpacing: spacing,
                 hideAvatar: hideAvatar(indexPath: indexPath)
