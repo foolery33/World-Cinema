@@ -42,11 +42,6 @@ class MainTabBarCoordinator: Coordinator {
         
         let mainNavigationController = UINavigationController()
         mainNavigationController.setNavigationBarHidden(true, animated: false)
-//        let mainCoordinator = MainCoordinator(
-//            navigationController: mainNavigationController,
-//            mainViewModel: MainScreenViewModel(coverRepository: CoverRepositoryImplementation()),
-//            movieViewModel: MovieScreenViewModel(movieRepository: MovieRepositoryImplementation()),
-//            episodeViewModel: EpisodeScreenViewModel(collectionsRepository: CollectionsRepositoryImplementation(), collectionsDatabase: self.collectionsDatabase))
         let mainCoordinator = MainCoordinator(
             navigationController: mainNavigationController,
             mainViewModel: self.mainViewModel,

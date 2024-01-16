@@ -122,7 +122,6 @@ class EpisodeScreenView: UIView {
         let myStackView = UIStackView()
         myStackView.axis = .horizontal
         myStackView.distribution = .equalSpacing
-//        myStackView.spacing = 16
         return myStackView
     }()
     private func setupUnderNameStack() {

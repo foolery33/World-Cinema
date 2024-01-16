@@ -62,8 +62,6 @@ class ChatNotMyMessageTableViewCell: UITableViewCell {
         messageView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview()
             make.trailing.lessThanOrEqualToSuperview().inset(56)
-//             MARK: -
-//            make.trailing.greaterThanOrEqualToSuperview().inset(56)
             make.leading.equalToSuperview().inset(16)
         }
     }
@@ -76,16 +74,13 @@ class ChatNotMyMessageTableViewCell: UITableViewCell {
         myView.layer.cornerRadius = 8
         myView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         myView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-//        myView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 4, trailing: 16)
         return myView
-//        myView.layoutMargins = UIEdgeInsets(top: 12, left: 16, bottom: 4, right: 16)
     }()
     private func setupMessageBackgroundView() {
         messageView.addSubview(messageBackgroundView)
         setupMessageLabel()
         setupSenderInfoStack()
         messageBackgroundView.snp.makeConstraints { make in
-//            make.bottom.equalToSuperview()
             make.top.equalToSuperview()
             make.trailing.equalToSuperview()
         }
@@ -124,8 +119,6 @@ class ChatNotMyMessageTableViewCell: UITableViewCell {
         senderInfoStack.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(16)
             make.trailing.lessThanOrEqualToSuperview().inset(16)
-            // MARK: -
-//            make.trailing.greaterThanOrEqualToSuperview().inset(16)
             make.bottom.equalToSuperview().offset(-4)
             make.top.equalTo(messageLabel.snp.bottom).offset(4)
         }
@@ -155,7 +148,6 @@ class ChatNotMyMessageTableViewCell: UITableViewCell {
         myLabel.textAlignment = .right
         myLabel.setContentHuggingPriority(.required, for: .horizontal)
         myLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-//        myLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return myLabel
     }()
     private func setupMessageTimeLabel() {

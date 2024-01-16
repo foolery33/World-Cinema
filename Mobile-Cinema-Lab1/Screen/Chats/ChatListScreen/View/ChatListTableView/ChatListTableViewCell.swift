@@ -53,7 +53,6 @@ class ChatListTableViewCell: UITableViewCell {
     }()
     private func setupHStackView() {
         contentView.addSubview(hStackView)
-//        setupImageView()
         setupChatPicture()
         setupChatInfoStack()
         setupSeparatingLine()

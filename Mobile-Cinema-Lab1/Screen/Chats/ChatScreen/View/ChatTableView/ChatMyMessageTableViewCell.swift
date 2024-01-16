@@ -76,9 +76,7 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         myView.layer.cornerRadius = 8
         myView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
         myView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-//        myView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 4, trailing: 16)
         return myView
-//        myView.layoutMargins = UIEdgeInsets(top: 12, left: 16, bottom: 4, right: 16)
     }()
     private func setupMessageBackgroundView() {
         messageView.addSubview(messageBackgroundView)
@@ -153,7 +151,6 @@ class ChatMyMessageTableViewCell: UITableViewCell {
         myLabel.textAlignment = .right
         myLabel.setContentHuggingPriority(.required, for: .horizontal)
         myLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-//        myLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return myLabel
     }()
     private func setupMessageTimeLabel() {

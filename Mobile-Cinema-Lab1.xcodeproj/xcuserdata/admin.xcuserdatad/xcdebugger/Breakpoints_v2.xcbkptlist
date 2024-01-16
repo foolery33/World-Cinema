@@ -507,22 +507,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "360DBC02-FD11-4DB8-9083-AF560DA9173B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mobile-Cinema-Lab1/Coordinator/MainTabBarCoordinator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "initializeMainTabBar()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7EB5D567-820E-40A9-850E-5C8884952B1C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1456,8 +1440,8 @@
             filePath = "Mobile-Cinema-Lab1/Screen/EpisodeScreen/View/EpisodeScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "showAddToCollectionActionSheet()"
             landmarkType = "7">
          </BreakpointContent>

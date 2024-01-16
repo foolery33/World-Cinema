@@ -32,7 +32,6 @@ final class GenresCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 4
         genreLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 16, bottom: 5, right: 16))
-//            make.edges.equalToSuperview()
         }
 
     }

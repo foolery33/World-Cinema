@@ -1,5 +1,5 @@
 //
-//  ].swift
+//  ProfileScreenModel.swift
 //  Mobile-Cinema-Lab1
 //
 //  Created by admin on 03.04.2023.

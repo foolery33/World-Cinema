@@ -26,7 +26,6 @@ class CollectionMoviesTableViewCell: UITableViewCell {
     func setup(movie: MovieModel) {
         self.nextImage.tintColor = .nextButtonColor
         self.image.loadImageWithURL(movie.poster) {
-//            self.hideSkeleton()
         }
         self.image.image = self.image.image?.resizeImage(newWidth: 56, newHeight: 80)
         self.movieName.text = movie.name
@@ -50,9 +49,7 @@ class CollectionMoviesTableViewCell: UITableViewCell {
         setupMovieInfoStack()
         setupNextImage()
         hStackView.snp.makeConstraints { make in
-//            make.horizontalEdges.equalToSuperview()
             make.width.equalToSuperview()
-//            make.height.equalTo(96)
         }
     }
     
@@ -96,8 +93,6 @@ class CollectionMoviesTableViewCell: UITableViewCell {
         myLabel.numberOfLines = 1
         myLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         myLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-//        myLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
-//        myLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return myLabel
     }()
     
@@ -109,8 +104,6 @@ class CollectionMoviesTableViewCell: UITableViewCell {
         myLabel.numberOfLines = 3
         myLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         myLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-//        myLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-//        myLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         return myLabel
     }()
     
@@ -118,7 +111,6 @@ class CollectionMoviesTableViewCell: UITableViewCell {
     
     private lazy var nextImage: UIImageView = {
         let myImageView = UIImageView()
-//        myImageView.isSkeletonable = true
         myImageView.tintColor = .skeletonViewColor
         myImageView.contentMode = .scaleAspectFit
         myImageView.image = R.image.forwardArrow()

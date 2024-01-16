@@ -466,7 +466,6 @@ extension MainScreenView {
     }
     
     func stopSkeleton() {
-//        self.contentView.hideSkeleton()
     }
     
 }
