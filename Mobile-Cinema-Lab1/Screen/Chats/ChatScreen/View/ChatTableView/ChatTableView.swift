@@ -85,7 +85,8 @@ extension ChatTableView {
             ) as? ChatMyMessageTableViewCell {
                 cell.setup(
                     message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel,
-                    bottomSpacing: spacing
+                    bottomSpacing: spacing,
+                    hideAvatar: hideAvatar(indexPath: indexPath)
                 )
                 return cell
             }
@@ -96,7 +97,8 @@ extension ChatTableView {
         ) as? ChatNotMyMessageTableViewCell {
             cell.setup(
                 message: viewModel?.dateIndicies[indexPath.row]! as! MessageModel,
-                bottomSpacing: spacing
+                bottomSpacing: spacing,
+                hideAvatar: hideAvatar(indexPath: indexPath)
             )
             return cell
         }
@@ -124,6 +126,16 @@ extension ChatTableView {
                     return true
                 }
             }
+        }
+        return false
+    }
+
+    func hideAvatar(indexPath: IndexPath) -> Bool {
+        if isMessage(index: indexPath.row) &&
+            indexPath.row - 1 > 0 &&
+            isMessage(index: indexPath.row - 1) &&
+            isTheSameAuthorOfNextMessage(message: viewModel?.dateIndicies[indexPath.row - 1] as! MessageModel, indexPath: indexPath) {
+            return true
         }
         return false
     }

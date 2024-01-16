@@ -1154,7 +1154,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "setup(message:bottomSpacing:)"
+            landmarkName = "setup(message:bottomSpacing:hideAvatar:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1186,7 +1186,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
             endingLineNumber = "28"
-            landmarkName = "setup(message:bottomSpacing:)"
+            landmarkName = "setup(message:bottomSpacing:hideAvatar:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

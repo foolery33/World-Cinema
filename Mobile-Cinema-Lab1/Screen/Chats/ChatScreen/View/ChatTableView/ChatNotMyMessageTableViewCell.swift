@@ -22,25 +22,26 @@ class ChatNotMyMessageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(message: MessageModel, bottomSpacing: CGFloat) {
+    func setup(message: MessageModel, bottomSpacing: CGFloat, hideAvatar: Bool = false) {
         self.messageLabel.text = message.text
         self.senderNameLabel.text = message.authorName
         self.messageTimeLabel.text = " • \(IsoTimeToHHMMUseCase().convertToTime(message.creationDateTime)!)"
-        if(message.authorAvatar == nil) {
-            self.userAvatarImageView.image = R.image.userAvatar()
-            self.userAvatarImageView.alpha = 1
-        }
-        else if message.authorAvatar == "lalala" {
-            self.userAvatarImageView.alpha = 0
-        }
-        else {
-            self.userAvatarImageView.loadImageWithURL(message.authorAvatar ?? "", contentMode: .scaleAspectFill)
-            self.userAvatarImageView.alpha = 1
-        }
         blankView.snp.remakeConstraints { make in
             make.top.equalTo(messageBackgroundView.snp.bottom)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview().offset(-bottomSpacing)
+        }
+        guard !hideAvatar else {
+            userAvatarImageView.alpha = .zero
+            return
+        }
+        if(message.authorAvatar == nil) {
+            self.userAvatarImageView.image = R.image.userAvatar()
+            self.userAvatarImageView.alpha = 1
+        }
+        else {
+            self.userAvatarImageView.loadImageWithURL(message.authorAvatar ?? "", contentMode: .scaleAspectFill)
+            self.userAvatarImageView.alpha = 1
         }
     }
     

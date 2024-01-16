@@ -22,8 +22,6 @@ final class RecognizeChatCellsUseCase {
                 if(messageIndex + 1 < groupedMessages[dayIndex].count) {
                     if(groupedMessages[dayIndex][messageIndex].authorId == groupedMessages[dayIndex][messageIndex + 1].authorId) {
                         var message = groupedMessages[dayIndex][messageIndex] as MessageModel
-                        groupedMessages[dayIndex][messageIndex].authorAvatar = "lalala"
-                        message.authorAvatar = "lalala"
                         result[elementCounter] = message
                     }
                     else {
